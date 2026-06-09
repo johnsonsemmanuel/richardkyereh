@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ElitePlanCard } from "@/components/ElitePlanCard";
+import { placeholderImage } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -13,8 +14,7 @@ const services = [
     subtitle: "Core Service",
     description:
       "Fleet planning, route optimization, and market entry strategy for airlines and aerospace organizations.",
-    image:
-      "https://images.unsplash.com/photo-XrViyzENBIU?q=80&w=800&h=600&fit=crop",
+    image: placeholderImage("Strategic Advisory", "Fleet planning & M&A"),
     highlights: [
       "Fleet Planning",
       "Route Optimization",
@@ -27,8 +27,7 @@ const services = [
     subtitle: "Core Service",
     description:
       "Safety management systems, regulatory audits, and ICAO certification support for global operators.",
-    image:
-      "https://images.unsplash.com/photo-tlawhEdeiPk?q=80&w=800&h=600&fit=crop",
+    image: placeholderImage("Safety & Compliance", "SMS & audits", "0A0F1A,111827"),
     highlights: [
       "SMS Design",
       "EASA/FAA/ICAO",
@@ -41,8 +40,7 @@ const services = [
     subtitle: "Core Service",
     description:
       "End-to-end aircraft acquisition, lease negotiation, and asset lifecycle management services.",
-    image:
-      "https://images.unsplash.com/photo-ECkBQku9eKU?q=80&w=800&h=600&fit=crop",
+    image: placeholderImage("Fleet Management", "Acquisition & leasing", "05080F,1F2937"),
     highlights: [
       "Acquisition",
       "Lease Negotiation",
@@ -55,8 +53,7 @@ const services = [
     subtitle: "Core Service",
     description:
       "Operational audits, crew management optimization, and turnaround time reduction programs.",
-    image:
-      "https://images.unsplash.com/photo-AzMSyv2ikwI?q=80&w=800&h=600&fit=crop",
+    image: placeholderImage("Operations", "Efficiency & optimization", "0A0F1A,1A2D4A"),
     highlights: [
       "Efficiency Audits",
       "Crew Management",
@@ -69,8 +66,7 @@ const services = [
     subtitle: "Core Service",
     description:
       "Custom training programs for flight crews, ground staff, and management in safety best practices.",
-    image:
-      "https://images.unsplash.com/photo-jKYlc0hangQ?q=80&w=800&h=600&fit=crop",
+    image: placeholderImage("Training", "Crew & management", "05080F,111827"),
     highlights: [
       "Crew Training",
       "Management Programs",
@@ -83,8 +79,7 @@ const services = [
     subtitle: "Core Service",
     description:
       "Carbon management, sustainable aviation fuel adoption, and ESG framework implementation.",
-    image:
-      "https://images.unsplash.com/photo-rVbzsOK-tQY?q=80&w=800&h=600&fit=crop",
+    image: placeholderImage("Sustainability", "SAF & ESG", "0A0F1A,1F2937"),
     highlights: [
       "Carbon Management",
       "SAF Adoption",

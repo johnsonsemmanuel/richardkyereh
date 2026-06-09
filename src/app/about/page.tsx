@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { GlassBlogCard } from "@/components/GlassBlogCard";
+import { placeholderImage } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "About",
@@ -106,7 +107,7 @@ export default function AboutPage() {
             <GlassBlogCard
               title="Aviation Safety in a Growing Market"
               excerpt="Richard Kyereh shares insights on safety management challenges facing rapidly expanding African carriers."
-              image="https://images.unsplash.com/photo-XrViyzENBIU?q=80&w=800&h=600&fit=crop"
+              image={placeholderImage("Aviation Safety", "Featured interview", "05080F,1A2D4A")}
               author={{ name: "Aviation Week", avatar: "" }}
               date="Feb 2026"
               readTime="Featured"
@@ -115,7 +116,7 @@ export default function AboutPage() {
             <GlassBlogCard
               title="The Future of Fleet Financing in Africa"
               excerpt="An in-depth look at emerging lease structures and investment vehicles for the continent's airlines."
-              image="https://images.unsplash.com/photo-qKdWAVgDHSE?q=80&w=800&h=600&fit=crop"
+              image={placeholderImage("Fleet Financing", "Africa focus", "0A0F1A,111827")}
               author={{ name: "Airline Economics", avatar: "" }}
               date="Jan 2026"
               readTime="Featured"
@@ -124,7 +125,7 @@ export default function AboutPage() {
             <GlassBlogCard
               title="Sustainability Targets: Realistic Pathways"
               excerpt="Richard Kyereh on what realistic carbon reduction looks like for airlines in emerging markets."
-              image="https://images.unsplash.com/photo-AzMSyv2ikwI?q=80&w=800&h=600&fit=crop"
+              image={placeholderImage("Sustainability", "Realistic pathways", "05080F,1F2937")}
               author={{ name: "Green Aviation", avatar: "" }}
               date="Dec 2025"
               readTime="Featured"

@@ -2,39 +2,42 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { StackedCardsInteraction } from "@/components/StackedCards";
 import { GlassBlogCard } from "@/components/GlassBlogCard";
+import { HeroCarousel } from "@/components/HeroCarousel";
+import { AviationBackground } from "@/components/AviationBackground";
+import { placeholderImage } from "@/lib/images";
 
 export default function Home() {
   return (
     <>
-      <section className="relative min-h-screen flex items-center bg-background">
+      <section className="relative min-h-screen flex items-center bg-background overflow-hidden">
+        <AviationBackground />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary to-background" />
-        <div className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, var(--foreground) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
-          <div className="max-w-3xl">
-            <p className="text-primary text-sm font-medium tracking-widest uppercase mb-6">
-              Aerospace & Aviation Consultancy
-            </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-foreground">
-              Strategic Clarity
-              <br />
-              <span className="text-foreground/50">for the skies.</span>
-            </h1>
-            <p className="mt-6 text-lg sm:text-xl text-foreground/40 leading-relaxed max-w-xl">
-              Richard Kyereh provides world-class aerospace advisory from
-              fleet strategy and safety compliance to operational excellence.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg">
-                <Link href="/booking">Book a Consultation</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/services">Explore Services</Link>
-              </Button>
+        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="max-w-xl">
+              <p className="text-primary text-sm font-medium tracking-widest uppercase mb-6">
+                Aerospace & Aviation Consultancy
+              </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-foreground">
+                Strategic Clarity
+                <br />
+                <span className="text-foreground/50">for the skies.</span>
+              </h1>
+              <p className="mt-6 text-lg sm:text-xl text-foreground/40 leading-relaxed">
+                Richard Kyereh provides world-class aerospace advisory from
+                fleet strategy and safety compliance to operational excellence.
+              </p>
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg">
+                  <Link href="/booking">Book a Consultation</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/services">Explore Services</Link>
+                </Button>
+              </div>
+            </div>
+            <div className="hidden lg:block">
+              <HeroCarousel />
             </div>
           </div>
         </div>
@@ -128,7 +131,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4">
-                    About
+                About
               </p>
               <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
                 Decisions that
@@ -149,17 +152,17 @@ export default function Home() {
               <StackedCardsInteraction
                 cards={[
                   {
-                    image: "https://images.unsplash.com/photo-XrViyzENBIU?q=80&w=800&h=600&fit=crop",
+                    image: placeholderImage("15+ Years", "Experience across 4 continents"),
                     title: "15+ Years Experience",
                     description: "Across airlines, regulators, and investment firms on four continents.",
                   },
                   {
-                    image: "https://images.unsplash.com/photo-AzMSyv2ikwI?q=80&w=800&h=600&fit=crop",
+                    image: placeholderImage("40+ Clients", "Global portfolio", "0A0F1A,111827"),
                     title: "40+ Global Clients",
                     description: "From startups to established carriers across commercial and business aviation.",
                   },
                   {
-                    image: "https://images.unsplash.com/photo-qKdWAVgDHSE?q=80&w=800&h=600&fit=crop",
+                    image: placeholderImage("$2.8B+", "Fleet value managed", "05080F,1F2937"),
                     title: "$2.8B+ Fleet Value",
                     description: "Advised on fleet acquisition and asset management strategies worldwide.",
                   },
@@ -170,7 +173,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-secondary py-24 lg:py-32">
+      <section className="bg-background py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4">
@@ -186,7 +189,7 @@ export default function Home() {
             <GlassBlogCard
               title="The State of Global Fleet Management in 2026"
               excerpt="An analysis of fleet utilization trends, lease rates, and emerging market dynamics shaping aerospace investment decisions."
-              image="https://images.unsplash.com/photo-qKdWAVgDHSE?q=80&w=800&h=600&fit=crop"
+              image={placeholderImage("Fleet Management", "Market analysis 2026", "05080F,1A2D4A")}
               author={{ name: "Richard Kyereh", avatar: "" }}
               date="May 2026"
               readTime="6 min read"
@@ -195,7 +198,7 @@ export default function Home() {
             <GlassBlogCard
               title="Safety Management Systems Beyond Compliance"
               excerpt="How leading carriers are transforming SMS from a regulatory requirement into a competitive advantage in operations."
-              image="https://images.unsplash.com/photo-XrViyzENBIU?q=80&w=800&h=600&fit=crop"
+              image={placeholderImage("Safety Systems", "Beyond compliance", "0A0F1A,111827")}
               author={{ name: "Richard Kyereh", avatar: "" }}
               date="Apr 2026"
               readTime="4 min read"
@@ -204,7 +207,7 @@ export default function Home() {
             <GlassBlogCard
               title="Sustainable Aviation Fuel: Realities & Roadmap"
               excerpt="A practical assessment of SAF adoption timelines, infrastructure requirements, and cost trajectories for airlines."
-              image="https://images.unsplash.com/photo-AzMSyv2ikwI?q=80&w=800&h=600&fit=crop"
+              image={placeholderImage("SAF Adoption", "Realities & roadmap", "05080F,1F2937")}
               author={{ name: "Richard Kyereh", avatar: "" }}
               date="Mar 2026"
               readTime="5 min read"
@@ -214,7 +217,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-background py-24 lg:py-32">
+      <section className="bg-secondary py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
             Ready to elevate
