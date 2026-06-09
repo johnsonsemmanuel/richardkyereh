@@ -66,12 +66,14 @@ export function Header() {
             scrolled ? "md:px-4" : "md:px-6"
           )}
         >
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold text-foreground">
-              <span className="text-primary">Richard Kyereh</span>
-              <span className="text-foreground/40 ml-1.5 text-sm font-normal hidden sm:inline">
-                | Aviation Expert
-              </span>
+          <Link href="/" className="flex items-center gap-3">
+            <img
+              src="/richardkyerehlogo.png"
+              alt="Richard Kyereh"
+              className="h-8 w-auto"
+            />
+            <span className="hidden sm:block text-sm font-medium text-foreground/60">
+              Aviation Expert
             </span>
           </Link>
 

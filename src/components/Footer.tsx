@@ -82,8 +82,12 @@ export function Footer() {
 
           <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-16">
             <div className="flex flex-col gap-4 max-w-sm">
-              <Link href="/" className="text-2xl font-bold text-foreground tracking-tight">
-                <span className="text-primary">RK</span>
+              <Link href="/" className="flex items-center">
+                <img
+                  src="/richardkyerehlogo.png"
+                  alt="Richard Kyereh"
+                  className="h-10 w-auto"
+                />
               </Link>
               <p className="text-foreground/40 text-sm leading-relaxed">
                 Aerospace and aviation consultancy delivering strategic excellence,
