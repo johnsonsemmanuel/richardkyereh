@@ -102,7 +102,7 @@ export default function BookingPage() {
   const [qDirection, setQDirection] = useState(0);
   const [form, setForm] = useState<Record<string, string>>({
     name: "", email: "", phone: "", company: "", service: "",
-    date: "", time: "", message: "",
+    date: "", time: "", message: "", videoCall: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -541,6 +541,48 @@ export default function BookingPage() {
                     </div>
 
                     <div>
+                      <p className="text-sm font-semibold text-foreground mb-4">
+                        Meeting Preference
+                      </p>
+                      <div className="grid grid-cols-2 gap-3">
+                        <button
+                          type="button"
+                          onClick={() => update("videoCall", "in-person")}
+                          className={`p-4 rounded-xl border text-left transition-all ${
+                            form.videoCall === "in-person"
+                              ? "bg-primary/10 border-primary/40"
+                              : "bg-secondary/30 border-input hover:border-foreground/30"
+                          }`}
+                        >
+                          <span className="text-lg block mb-1">👤</span>
+                          <p className={`text-xs font-semibold ${
+                            form.videoCall === "in-person" ? "text-primary" : "text-foreground/60"
+                          }`}>
+                            In Person
+                          </p>
+                          <p className="text-[10px] text-foreground/30 mt-0.5">Meet face to face</p>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => update("videoCall", "video")}
+                          className={`p-4 rounded-xl border text-left transition-all ${
+                            form.videoCall === "video"
+                              ? "bg-primary/10 border-primary/40"
+                              : "bg-secondary/30 border-input hover:border-foreground/30"
+                          }`}
+                        >
+                          <span className="text-lg block mb-1">📹</span>
+                          <p className={`text-xs font-semibold ${
+                            form.videoCall === "video" ? "text-primary" : "text-foreground/60"
+                          }`}>
+                            Video Call
+                          </p>
+                          <p className="text-[10px] text-foreground/30 mt-0.5">Remote via video</p>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div>
                       <label className="block text-xs text-foreground/50 mb-1.5">
                         Additional Notes
                       </label>
@@ -587,6 +629,12 @@ export default function BookingPage() {
                           <span className="text-foreground/30 text-xs">Date &amp; Time</span>
                           <p className="text-foreground/70">{form.date} at {form.time}</p>
                         </div>
+                        {form.videoCall && (
+                          <div>
+                            <span className="text-foreground/30 text-xs">Format</span>
+                            <p className="text-foreground/70">{form.videoCall === "video" ? "Video Call" : "In Person"}</p>
+                          </div>
+                        )}
                       </div>
                       {questions.some((q) => form[q.key]) && (
                         <div className="mt-4 pt-4 border-t border-input/60">

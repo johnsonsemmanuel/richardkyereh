@@ -81,6 +81,38 @@ export function heroBg(gradient: string = "05080F,0A0F1A"): string {
   );
 }
 
+export function awardImage(
+  title: string,
+  year: string,
+  gradient: string = "0A0F1A,1A2D4A"
+): string {
+  const colors = gradient.split(",").map((c) => `#${c}`);
+  return svgData(
+    `<defs>
+      <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="${colors[0]}"/>
+        <stop offset="100%" stop-color="${colors[1]}"/>
+      </linearGradient>
+      <pattern id="grain" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+        <rect x="0" y="0" width="1" height="1" fill="rgba(255,255,255,0.02)"/>
+        <rect x="2" y="2" width="1" height="1" fill="rgba(255,255,255,0.015)"/>
+      </pattern>
+      <linearGradient id="f" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="transparent"/>
+        <stop offset="100%" stop-color="rgba(0,0,0,0.6)"/>
+      </linearGradient>
+    </defs>
+    <rect width="800" height="600" fill="url(#g)"/>
+    <rect width="800" height="600" fill="url(#grain)"/>
+    <circle cx="400" cy="200" r="160" fill="rgba(255,255,255,0.03)"/>
+    <circle cx="300" cy="450" r="100" fill="rgba(255,255,255,0.02)"/>
+    <circle cx="580" cy="380" r="80" fill="rgba(255,255,255,0.02)"/>
+    <rect x="0" y="380" width="800" height="220" fill="url(#f)"/>
+    <text x="40" y="460" fill="rgba(255,255,255,0.5)" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" letter-spacing="2">${escapeXml(year)}</text>
+    <text x="40" y="490" fill="white" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="700">${escapeXml(title)}</text>`
+  );
+}
+
 export const heroSlides = [
   {
     id: 0,

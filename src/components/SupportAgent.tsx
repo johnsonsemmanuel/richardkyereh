@@ -4,15 +4,19 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { HeadsetIcon, X, Phone, Video, MessageCircle } from "lucide-react";
+import { HeadsetIcon, X, Phone, Video, MessageCircle, PhoneCall } from "lucide-react";
 import { PlaneIcon, CompassIcon } from "@/components/ui/aviation-icons";
+
+const PHONE = "+233 24 368 1135";
+const PHONE_HREF = "tel:+233243681135";
 
 const supportOptions = [
   {
-    label: "Schedule a Call",
-    desc: "Speak directly with our aviation support team",
-    icon: Phone,
-    href: "/booking?service=career",
+    label: "Call Us Directly",
+    desc: `Speak with us on ${PHONE}`,
+    icon: PhoneCall,
+    href: PHONE_HREF,
+    external: true,
   },
   {
     label: "Video Consultation",
@@ -75,13 +79,9 @@ export function SupportAgent() {
               <div className="grid gap-2">
                 {supportOptions.map((opt) => {
                   const Icon = opt.icon;
-                  return (
-                    <Link
-                      key={opt.label}
-                      href={opt.href}
-                      onClick={() => setOpen(false)}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50 hover:bg-secondary border border-transparent hover:border-border transition-all group"
-                    >
+                  const classes = "flex items-center gap-3 p-3 rounded-xl bg-secondary/50 hover:bg-secondary border border-transparent hover:border-border transition-all group";
+                  const content = (
+                    <>
                       <Icon className="size-5 text-primary/40 group-hover:text-primary transition-colors shrink-0" />
                       <div className="min-w-0">
                         <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
@@ -89,6 +89,15 @@ export function SupportAgent() {
                         </p>
                         <p className="text-[10px] text-foreground/40">{opt.desc}</p>
                       </div>
+                    </>
+                  );
+                  return opt.external ? (
+                    <a key={opt.label} href={opt.href} className={classes} onClick={() => setOpen(false)}>
+                      {content}
+                    </a>
+                  ) : (
+                    <Link key={opt.label} href={opt.href} className={classes} onClick={() => setOpen(false)}>
+                      {content}
                     </Link>
                   );
                 })}
