@@ -7,14 +7,37 @@ import { cn } from "@/lib/utils";
 import { MenuToggleIcon } from "@/components/ui/menu-toggle-icon";
 import { useScroll } from "@/components/ui/use-scroll";
 import { useTheme } from "@/components/theme-provider";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-const links = [
+type NavItem = { label: string; href: string } | { label: string; dropdown: { label: string; href: string }[] };
+
+const navItems: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  {
+    label: "Our Services",
+    dropdown: [
+      { label: "Career Consultancy", href: "/booking?service=career" },
+      { label: "Speaking Engagement", href: "/booking?service=speaking" },
+      { label: "Face To Face Meeting", href: "/booking?service=meeting" },
+      { label: "Mentorship", href: "/booking?service=mentorship" },
+      { label: "Aircraft Leases", href: "/booking?service=leases" },
+      { label: "Charters Services", href: "/booking?service=charters" },
+    ],
+  },
+  { label: "Our Awards", href: "/awards" },
+  { label: "Our Newsroom", href: "/newsroom" },
+  { label: "Contact Us", href: "/contact" },
 ];
+
+function isDropdown(item: NavItem): item is { label: string; dropdown: { label: string; href: string }[] } {
+  return "dropdown" in item;
+}
 
 export function Header() {
   const [open, setOpen] = React.useState(false);
@@ -45,23 +68,44 @@ export function Header() {
         >
           <Link href="/" className="flex items-center gap-2">
             <span className="text-xl font-bold text-foreground">
-              <span className="text-primary">RK</span>
-              <span className="text-foreground/60 ml-1.5 text-sm font-normal hidden sm:inline">
-                Aerospace Consultancy
+              <span className="text-primary">Richard Kyereh</span>
+              <span className="text-foreground/40 ml-1.5 text-sm font-normal hidden sm:inline">
+                | Aviation Expert
               </span>
             </span>
           </Link>
 
           <div className="hidden items-center gap-1 md:flex">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={buttonVariants({ variant: "ghost" })}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              if (isDropdown(item)) {
+                return (
+                  <DropdownMenu key={item.label}>
+                    <DropdownMenuTrigger asChild>
+                      <button className={buttonVariants({ variant: "ghost", className: "gap-1" })}>
+                        {item.label}
+                        <ChevronDown className="size-3 mt-0.5" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="center" className="w-56">
+                      {item.dropdown.map((sub) => (
+                        <DropdownMenuItem key={sub.label} asChild>
+                          <Link href={sub.href}>{sub.label}</Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                );
+              }
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={buttonVariants({ variant: "ghost" })}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
             <button
               onClick={toggle}
               className={buttonVariants({ variant: "ghost", size: "icon" })}
@@ -70,7 +114,7 @@ export function Header() {
               {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
             </button>
             <Button asChild>
-              <Link href="/booking">Book Consultation</Link>
+              <Link href="/booking">Book Richard</Link>
             </Button>
           </div>
 
@@ -103,24 +147,61 @@ export function Header() {
           )}
         >
           <div className="grid gap-y-1">
-            {links.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className={buttonVariants({
-                  variant: "ghost",
-                  className: "justify-start text-base",
-                })}
-              >
-                {link.label}
-              </Link>
-            ))}
+            <Link
+              href="/"
+              onClick={() => setOpen(false)}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base" })}
+            >
+              Home
+            </Link>
+            <p className={buttonVariants({ variant: "ghost", className: "justify-start text-base text-foreground/40 pointer-events-none" })}>
+              Our Services
+            </p>
+            <div className="pl-4 grid gap-y-1 border-l border-input ml-3 mb-2">
+              {[
+                { label: "Career Consultancy", href: "/booking?service=career" },
+                { label: "Speaking Engagement", href: "/booking?service=speaking" },
+                { label: "Face To Face Meeting", href: "/booking?service=meeting" },
+                { label: "Mentorship", href: "/booking?service=mentorship" },
+                { label: "Aircraft Leases", href: "/booking?service=leases" },
+                { label: "Charters Services", href: "/booking?service=charters" },
+              ].map((sub) => (
+                <Link
+                  key={sub.label}
+                  href={sub.href}
+                  onClick={() => setOpen(false)}
+                  className={buttonVariants({ variant: "ghost", className: "justify-start text-sm h-9" })}
+                >
+                  {sub.label}
+                </Link>
+              ))}
+            </div>
+            <Link
+              href="/awards"
+              onClick={() => setOpen(false)}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base" })}
+            >
+              Our Awards
+            </Link>
+            <Link
+              href="/newsroom"
+              onClick={() => setOpen(false)}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base" })}
+            >
+              Our Newsroom
+            </Link>
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base" })}
+            >
+              Contact Us
+            </Link>
           </div>
           <div className="flex flex-col gap-2">
             <Button asChild className="w-full">
               <Link href="/booking" onClick={() => setOpen(false)}>
-                Book a Consultation
+                Book Richard
               </Link>
             </Button>
           </div>

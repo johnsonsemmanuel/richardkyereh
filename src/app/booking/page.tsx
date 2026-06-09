@@ -8,12 +8,12 @@ const timeSlots = [
 ];
 
 const serviceTypes = [
-  "Strategic Advisory",
-  "Safety & Compliance",
-  "Fleet Management",
-  "Operations Consulting",
-  "Training & Development",
-  "Sustainability Advisory",
+  "Career Consultancy",
+  "Speaking Engagement",
+  "Face To Face Meeting",
+  "Mentorship",
+  "Aircraft Leases",
+  "Charters Services",
 ];
 
 export default function BookingPage() {

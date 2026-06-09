@@ -1,91 +1,61 @@
 import type { Metadata } from "next";
-import { ElitePlanCard } from "@/components/ElitePlanCard";
-import { placeholderImage } from "@/lib/images";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { serviceImage } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Services",
-  description:
-    "Comprehensive aerospace and aviation consultancy services by Richard Kyereh.",
+  description: "Aviation consultancy services by Richard Kyereh.",
 };
 
 const services = [
   {
-    title: "Strategic Advisory",
-    subtitle: "Core Service",
+    title: "Career Consultancy",
+    duration: "1 hr",
+    price: "Free",
+    gradient: "05080F,1A2D4A",
     description:
-      "Fleet planning, route optimization, and market entry strategy for airlines and aerospace organizations.",
-    image: placeholderImage("Strategic Advisory", "Fleet planning & M&A"),
-    highlights: [
-      "Fleet Planning",
-      "Route Optimization",
-      "Market Entry",
-      "M&A Advisory",
-    ],
+      "Personalized career guidance for aviation professionals seeking to advance in the aerospace industry.",
   },
   {
-    title: "Safety & Compliance",
-    subtitle: "Core Service",
+    title: "Speaking Engagement",
+    duration: "1 hr",
+    price: "Free",
+    gradient: "0A0F1A,111827",
     description:
-      "Safety management systems, regulatory audits, and ICAO certification support for global operators.",
-    image: placeholderImage("Safety & Compliance", "SMS & audits", "0A0F1A,111827"),
-    highlights: [
-      "SMS Design",
-      "EASA/FAA/ICAO",
-      "Accident Investigation",
-      "Security Protocols",
-    ],
+      "Expert keynote speaking and panel participation for conferences, corporate events, and industry summits.",
   },
   {
-    title: "Fleet Management",
-    subtitle: "Core Service",
+    title: "Face To Face Meeting",
+    duration: "30 mins",
+    price: "Free",
+    gradient: "05080F,1F2937",
     description:
-      "End-to-end aircraft acquisition, lease negotiation, and asset lifecycle management services.",
-    image: placeholderImage("Fleet Management", "Acquisition & leasing", "05080F,1F2937"),
-    highlights: [
-      "Acquisition",
-      "Lease Negotiation",
-      "Asset Valuation",
-      "End-of-Life",
-    ],
+      "Confidential one-on-one meetings for strategic discussions, partnership exploration, or advisory sessions.",
   },
   {
-    title: "Operations Consulting",
-    subtitle: "Core Service",
+    title: "Mentorship",
+    duration: "1 hr",
+    price: "Free",
+    gradient: "0A0F1A,1A2D4A",
     description:
-      "Operational audits, crew management optimization, and turnaround time reduction programs.",
-    image: placeholderImage("Operations", "Efficiency & optimization", "0A0F1A,1A2D4A"),
-    highlights: [
-      "Efficiency Audits",
-      "Crew Management",
-      "Ground Operations",
-      "Turnaround",
-    ],
+      "Structured mentorship for emerging aviation leaders, covering technical and leadership development.",
   },
   {
-    title: "Training & Development",
-    subtitle: "Core Service",
+    title: "Aircraft Leases",
+    duration: "1 hr",
+    price: "Free",
+    gradient: "05080F,111827",
     description:
-      "Custom training programs for flight crews, ground staff, and management in safety best practices.",
-    image: placeholderImage("Training", "Crew & management", "05080F,111827"),
-    highlights: [
-      "Crew Training",
-      "Management Programs",
-      "Regulatory Training",
-      "Emergency Procedures",
-    ],
+      "Advisory on aircraft leasing strategies, lease vs. buy analysis, and portfolio optimization.",
   },
   {
-    title: "Sustainability Advisory",
-    subtitle: "Core Service",
+    title: "Charters Services",
+    duration: "1 hr",
+    price: "Free",
+    gradient: "0A0F1A,1F2937",
     description:
-      "Carbon management, sustainable aviation fuel adoption, and ESG framework implementation.",
-    image: placeholderImage("Sustainability", "SAF & ESG", "0A0F1A,1F2937"),
-    highlights: [
-      "Carbon Management",
-      "SAF Adoption",
-      "ESG Frameworks",
-      "Sustainability Strategy",
-    ],
+      "Consulting on charter operations, fleet configuration, and premium service delivery standards.",
   },
 ];
 
@@ -105,8 +75,7 @@ export default function ServicesPage() {
             </h1>
             <p className="mt-6 text-foreground/40 leading-relaxed">
               Every engagement is tailored to the client&apos;s specific
-              operating environment, regulatory landscape, and strategic
-              objectives.
+              operating environment and objectives.
             </p>
           </div>
         </div>
@@ -114,16 +83,42 @@ export default function ServicesPage() {
 
       <section className="pb-24 lg:pb-32 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (
-              <ElitePlanCard
+              <Link
                 key={service.title}
-                imageUrl={service.image}
-                title={service.title}
-                subtitle={service.subtitle}
-                description={service.description}
-                highlights={service.highlights}
-              />
+                href="/booking"
+                className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input overflow-hidden"
+              >
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={serviceImage(service.title, service.gradient)}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {service.title}
+                    </h3>
+                    <span className="text-xs text-foreground/30 bg-background/50 px-2 py-1 rounded">
+                      {service.price}
+                    </span>
+                  </div>
+                  <p className="text-xs text-foreground/40 mb-2">
+                    Duration: {service.duration}
+                  </p>
+                  <p className="text-sm text-foreground/40 leading-relaxed">
+                    {service.description}
+                  </p>
+                  <div className="mt-4">
+                    <Button size="sm" variant="outline" className="group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors">
+                      Book
+                    </Button>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
