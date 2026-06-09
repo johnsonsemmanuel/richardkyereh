@@ -2,7 +2,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { StackedCardsInteraction } from "@/components/StackedCards";
 import { GlassBlogCard } from "@/components/GlassBlogCard";
-import { HeroSection } from "@/components/HeroSection";
+import { HeroCarousel } from "@/components/HeroCarousel";
+import { AviationBackground } from "@/components/AviationBackground";
 import { placeholderImage, serviceImage } from "@/lib/images";
 
 const services = [
@@ -47,7 +48,39 @@ const services = [
 export default function Home() {
   return (
     <>
-      <HeroSection />
+      <section className="relative min-h-screen flex items-center bg-background overflow-hidden">
+        <AviationBackground />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary to-background" />
+        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="max-w-xl">
+              <p className="text-primary text-sm font-medium tracking-widest uppercase mb-6">
+                Aerospace & Aviation Consultancy
+              </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-foreground">
+                Strategic Clarity
+                <br />
+                <span className="text-foreground/50">for the skies.</span>
+              </h1>
+              <p className="mt-6 text-lg sm:text-xl text-foreground/40 leading-relaxed">
+                Richard Kyereh provides world-class aerospace advisory from
+                fleet strategy and safety compliance to operational excellence.
+              </p>
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg">
+                  <Link href="/booking">Book a Consultation</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/services">Explore Services</Link>
+                </Button>
+              </div>
+            </div>
+            <div className="hidden lg:block">
+              <HeroCarousel />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="bg-secondary py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
