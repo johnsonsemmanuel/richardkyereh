@@ -7,27 +7,30 @@ import { cn } from "@/lib/utils";
 import { MenuToggleIcon } from "@/components/ui/menu-toggle-icon";
 import { useScroll } from "@/components/ui/use-scroll";
 import { useTheme } from "@/components/theme-provider";
-import { Sun, Moon, ChevronDown } from "lucide-react";
+import { Sun, Moon, ChevronDown, ChevronRight } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  CompassIcon, GlobeIcon, WingsIcon, ShieldIcon, RadarIcon, PlaneIcon,
+} from "@/components/ui/aviation-icons";
 
-type NavItem = { label: string; href: string } | { label: string; dropdown: { label: string; href: string }[] };
+type NavItem = { label: string; href: string } | { label: string; dropdown: { label: string; desc: string; href: string; icon: React.ComponentType<{ className?: string }> }[] };
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   {
     label: "Our Services",
     dropdown: [
-      { label: "Career Consultancy", href: "/booking?service=career" },
-      { label: "Speaking Engagement", href: "/booking?service=speaking" },
-      { label: "Face To Face Meeting", href: "/booking?service=meeting" },
-      { label: "Mentorship", href: "/booking?service=mentorship" },
-      { label: "Aircraft Leases", href: "/booking?service=leases" },
-      { label: "Charters Services", href: "/booking?service=charters" },
+      { label: "Career Consultancy", desc: "Personalized career guidance", href: "/booking?service=career", icon: CompassIcon },
+      { label: "Speaking Engagement", desc: "Keynotes & panel participation", href: "/booking?service=speaking", icon: GlobeIcon },
+      { label: "Face To Face Meeting", desc: "Confidential strategic discussions", href: "/booking?service=meeting", icon: WingsIcon },
+      { label: "Mentorship", desc: "Leadership development programs", href: "/booking?service=mentorship", icon: ShieldIcon },
+      { label: "Aircraft Leases", desc: "Fleet strategy & lease analysis", href: "/booking?service=leases", icon: RadarIcon },
+      { label: "Charters Services", desc: "Charter operations consulting", href: "/booking?service=charters", icon: PlaneIcon },
     ],
   },
   { label: "Our Awards", href: "/awards" },
@@ -35,19 +38,17 @@ const navItems: NavItem[] = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-function isDropdown(item: NavItem): item is { label: string; dropdown: { label: string; href: string }[] } {
+type DropdownItem = Extract<NavItem, { dropdown: unknown[] }>["dropdown"][number];
+
+function isDropdown(item: NavItem): item is Extract<NavItem, { dropdown: unknown[] }> {
   return "dropdown" in item;
 }
 
 export function Header() {
   const [open, setOpen] = React.useState(false);
+  const [mobileSubmenu, setMobileSubmenu] = React.useState(false);
   const scrolled = useScroll(10);
   const { theme, toggle } = useTheme();
-
-  React.useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [open]);
 
   return (
     <header
@@ -88,12 +89,24 @@ export function Header() {
                         <ChevronDown className="size-3 mt-0.5" />
                       </button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="center" className="w-56">
-                      {item.dropdown.map((sub) => (
-                        <DropdownMenuItem key={sub.label} asChild>
-                          <Link href={sub.href}>{sub.label}</Link>
-                        </DropdownMenuItem>
-                      ))}
+                    <DropdownMenuContent align="center" className="w-64 p-1.5">
+                      {item.dropdown.map((sub) => {
+                        const Icon = sub.icon;
+                        return (
+                          <DropdownMenuItem key={sub.label} asChild className="p-0">
+                            <Link
+                              href={sub.href}
+                              className="flex items-start gap-3 px-3 py-2.5 rounded-lg"
+                            >
+                              <Icon className="size-4 text-primary/60 mt-0.5 shrink-0" />
+                              <div>
+                                <p className="text-sm font-medium">{sub.label}</p>
+                                <p className="text-xs text-foreground/40">{sub.desc}</p>
+                              </div>
+                            </Link>
+                          </DropdownMenuItem>
+                        );
+                      })}
                     </DropdownMenuContent>
                   </DropdownMenu>
                 );
@@ -137,17 +150,11 @@ export function Header() {
 
       <div
         className={cn(
-          "fixed top-14 right-0 bottom-0 left-0 z-50 flex flex-col overflow-hidden border-y md:hidden bg-background",
+          "fixed top-14 right-0 bottom-0 left-0 z-50 flex flex-col overflow-y-auto border-y md:hidden bg-background",
           open ? "block" : "hidden"
         )}
       >
-        <div
-          data-slot={open ? "open" : "closed"}
-          className={cn(
-            "data-[slot=open]:animate-in data-[slot=open]:zoom-in-95 data-[slot=closed]:animate-out data-[slot=closed]:zoom-out-95 ease-out",
-            "flex h-full w-full flex-col justify-between gap-y-2 p-6"
-          )}
-        >
+        <div className="flex h-full w-full flex-col justify-between gap-y-2 p-6">
           <div className="grid gap-y-1">
             <Link
               href="/"
@@ -156,28 +163,42 @@ export function Header() {
             >
               Home
             </Link>
-            <p className={buttonVariants({ variant: "ghost", className: "justify-start text-base text-foreground/40 pointer-events-none" })}>
+
+            <button
+              onClick={() => setMobileSubmenu(!mobileSubmenu)}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base gap-2 w-full" })}
+            >
+              <ChevronRight
+                className={cn(
+                  "size-3.5 text-foreground/30 transition-transform",
+                  mobileSubmenu && "rotate-90"
+                )}
+              />
               Our Services
-            </p>
-            <div className="pl-4 grid gap-y-1 border-l border-input ml-3 mb-2">
-              {[
-                { label: "Career Consultancy", href: "/booking?service=career" },
-                { label: "Speaking Engagement", href: "/booking?service=speaking" },
-                { label: "Face To Face Meeting", href: "/booking?service=meeting" },
-                { label: "Mentorship", href: "/booking?service=mentorship" },
-                { label: "Aircraft Leases", href: "/booking?service=leases" },
-                { label: "Charters Services", href: "/booking?service=charters" },
-              ].map((sub) => (
-                <Link
-                  key={sub.label}
-                  href={sub.href}
-                  onClick={() => setOpen(false)}
-                  className={buttonVariants({ variant: "ghost", className: "justify-start text-sm h-9" })}
-                >
-                  {sub.label}
-                </Link>
-              ))}
-            </div>
+            </button>
+
+            {mobileSubmenu && (
+              <div className="pl-8 grid gap-y-0.5 mb-1 overflow-hidden">
+                {(navItems.find((n) => "dropdown" in n && n.label === "Our Services") as Extract<NavItem, { dropdown: unknown[] }>).dropdown.map((sub) => {
+                  const Icon = sub.icon;
+                  return (
+                    <Link
+                      key={sub.label}
+                      href={sub.href}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-secondary/50 transition-colors"
+                    >
+                      <Icon className="size-4 text-primary/40 shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-foreground/70">{sub.label}</p>
+                        <p className="text-xs text-foreground/30">{sub.desc}</p>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+
             <Link
               href="/awards"
               onClick={() => setOpen(false)}
