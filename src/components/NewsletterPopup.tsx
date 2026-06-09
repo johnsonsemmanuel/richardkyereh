@@ -38,9 +38,9 @@ export function NewsletterPopup() {
     <AnimatePresence>
       {show && (
         <motion.div
-          initial={{ opacity: 0, y: 50, x: "-50%" }}
+          initial={{ opacity: 0, y: 120, x: "-50%" }}
           animate={{ opacity: 1, y: 0, x: "-50%" }}
-          exit={{ opacity: 0, y: 50, x: "-50%" }}
+          exit={{ opacity: 0, y: 120, x: "-50%" }}
           className="fixed bottom-6 left-1/2 z-50 w-[calc(100%-2rem)] max-w-md"
         >
           <div className="bg-card border border-border rounded-2xl p-6 shadow-2xl">
