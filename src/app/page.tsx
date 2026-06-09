@@ -2,46 +2,52 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { StackedCardsInteraction } from "@/components/StackedCards";
 import { GlassBlogCard } from "@/components/GlassBlogCard";
-import { HeroCarousel } from "@/components/HeroCarousel";
-import { AviationBackground } from "@/components/AviationBackground";
-import { placeholderImage } from "@/lib/images";
+import { HeroSection } from "@/components/HeroSection";
+import { placeholderImage, serviceImage } from "@/lib/images";
+
+const services = [
+  {
+    title: "Strategic Advisory",
+    description:
+      "Fleet planning, route optimization, market entry strategy, and merger advisory for airlines and aerospace organizations.",
+    gradient: "05080F,1A2D4A",
+  },
+  {
+    title: "Safety & Compliance",
+    description:
+      "Full-spectrum safety management systems, regulatory compliance audits, and ICAO standard certification support.",
+    gradient: "0A0F1A,111827",
+  },
+  {
+    title: "Fleet Management",
+    description:
+      "End-to-end fleet acquisition, lifecycle management, lease negotiation, and asset valuation services.",
+    gradient: "05080F,1F2937",
+  },
+  {
+    title: "Operations Consulting",
+    description:
+      "Operational audit, crew management optimization, ground operations, and turnaround time reduction.",
+    gradient: "0A0F1A,1A2D4A",
+  },
+  {
+    title: "Training & Development",
+    description:
+      "Custom training programs for flight crews, ground staff, and management in safety and operational best practices.",
+    gradient: "05080F,111827",
+  },
+  {
+    title: "Sustainability",
+    description:
+      "Carbon offset strategies, sustainable aviation fuel adoption, and ESG framework implementation.",
+    gradient: "0A0F1A,1F2937",
+  },
+];
 
 export default function Home() {
   return (
     <>
-      <section className="relative min-h-screen flex items-center bg-background overflow-hidden">
-        <AviationBackground />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary to-background" />
-        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="max-w-xl">
-              <p className="text-primary text-sm font-medium tracking-widest uppercase mb-6">
-                Aerospace & Aviation Consultancy
-              </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-foreground">
-                Strategic Clarity
-                <br />
-                <span className="text-foreground/50">for the skies.</span>
-              </h1>
-              <p className="mt-6 text-lg sm:text-xl text-foreground/40 leading-relaxed">
-                Richard Kyereh provides world-class aerospace advisory from
-                fleet strategy and safety compliance to operational excellence.
-              </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg">
-                  <Link href="/booking">Book a Consultation</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/services">Explore Services</Link>
-                </Button>
-              </div>
-            </div>
-            <div className="hidden lg:block">
-              <HeroCarousel />
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection />
 
       <section className="bg-secondary py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -78,49 +84,28 @@ export default function Home() {
             </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Strategic Advisory",
-                description:
-                  "Fleet planning, route optimization, market entry strategy, and merger advisory for airlines and aerospace organizations.",
-              },
-              {
-                title: "Safety & Compliance",
-                description:
-                  "Full-spectrum safety management systems, regulatory compliance audits, and ICAO standard certification support.",
-              },
-              {
-                title: "Fleet Management",
-                description:
-                  "End-to-end fleet acquisition, lifecycle management, lease negotiation, and asset valuation services.",
-              },
-              {
-                title: "Operations Consulting",
-                description:
-                  "Operational audit, crew management optimization, ground operations, and turnaround time reduction.",
-              },
-              {
-                title: "Training & Development",
-                description:
-                  "Custom training programs for flight crews, ground staff, and management in safety and operational best practices.",
-              },
-              {
-                title: "Sustainability",
-                description:
-                  "Carbon offset strategies, sustainable aviation fuel adoption, and ESG framework implementation.",
-              },
-            ].map((service) => (
-              <div
+            {services.map((service) => (
+              <Link
                 key={service.title}
-                className="group p-8 bg-secondary/50 hover:bg-secondary transition-colors border border-input"
+                href="/services"
+                className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input overflow-hidden"
               >
-                <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="mt-3 text-sm text-foreground/40 leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={serviceImage(service.title, service.gradient)}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-foreground/40 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
