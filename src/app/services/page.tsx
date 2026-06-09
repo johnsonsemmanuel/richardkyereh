@@ -93,7 +93,7 @@ export default function ServicesPage() {
                 <TiltCard>
                   <Link
                     href="/booking"
-                    className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input overflow-hidden"
+                    className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden"
                   >
                     <div className="aspect-[16/10] overflow-hidden">
                       <img

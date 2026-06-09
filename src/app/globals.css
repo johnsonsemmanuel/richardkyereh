@@ -32,23 +32,24 @@
 }
 
 :root {
-  --background: #ffffff;
+  --background: #f8f9fb;
   --foreground: #05080F;
-  --primary: #05080F;
+  --primary: #0A1F44;
   --primary-foreground: #ffffff;
-  --secondary: #f3f4f6;
+  --secondary: #f0f2f5;
   --secondary-foreground: #05080F;
-  --accent: #e5e7eb;
+  --accent: #e2e6ed;
   --accent-foreground: #05080F;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --input: #d1d5db;
-  --ring: #05080F;
+  --ring: #0A1F44;
   --card: #ffffff;
   --card-foreground: #05080F;
-  --muted: #f3f4f6;
+  --muted: #f0f2f5;
   --muted-foreground: #6b7280;
-  --border: #e5e7eb;
+  --border: #e2e6ed;
+  --dot-color: rgba(5, 8, 15, 0.04);
 }
 
 .dark {
@@ -62,13 +63,14 @@
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --input: rgba(255, 255, 255, 0.1);
-  --ring: rgba(255, 255, 255, 0.3);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: rgba(255, 255, 255, 0.25);
   --card: #0A0F1A;
   --card-foreground: #ffffff;
   --muted: #1F2937;
   --muted-foreground: #9ca3af;
-  --border: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.06);
+  --dot-color: rgba(255, 255, 255, 0.025);
 }
 
 html {
@@ -81,6 +83,25 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   transition: background-color 0.3s, color 0.3s;
+  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@media (max-width: 640px) {
+  body {
+    background-size: 24px 24px;
+  }
+}
+
+/* Card rounding — bordered containers that act as cards */
+.border-card {
+  border-radius: 0.75rem;
+  border-width: 1px;
+}
+
+.border-card-lg {
+  border-radius: 1rem;
+  border-width: 1px;
 }
 
 ::selection {
