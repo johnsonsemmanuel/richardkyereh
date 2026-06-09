@@ -1,108 +1,131 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { MenuToggleIcon } from "@/components/ui/menu-toggle-icon";
+import { useScroll } from "@/components/ui/use-scroll";
 import { useTheme } from "@/components/theme-provider";
 import { Sun, Moon } from "lucide-react";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
-  { href: "/booking", label: "Book a Consultation" },
-  { href: "/contact", label: "Contact" },
+const links = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Header() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const scrolled = useScroll(10);
   const { theme, toggle } = useTheme();
 
+  React.useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur border-b border-input">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          <Link
-            href="/"
-            className="text-xl font-semibold tracking-tight text-foreground"
-          >
-            <span className="text-primary">RK</span>
-            <span className="text-foreground/60 ml-2 hidden sm:inline text-sm font-normal">
-              Aerospace Consultancy
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 w-full border-b border-transparent transition-all ease-out",
+        scrolled && !open
+          ? "bg-background/95 supports-[backdrop-filter]:bg-background/50 border-border backdrop-blur-lg"
+          : "",
+        open ? "bg-background/90" : ""
+      )}
+    >
+      <div className="max-w-5xl mx-auto">
+        <nav
+          className={cn(
+            "flex h-14 w-full items-center justify-between px-6 transition-all ease-out",
+            scrolled ? "md:px-4" : "md:px-6"
+          )}
+        >
+          <Link href="/" className="flex items-center gap-2">
+            <span className="text-xl font-bold text-foreground">
+              <span className="text-primary">RK</span>
+              <span className="text-foreground/60 ml-1.5 text-sm font-normal hidden sm:inline">
+                Aerospace Consultancy
+              </span>
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.slice(0, -1).map((link) => (
+          <div className="hidden items-center gap-1 md:flex">
+            {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+                className={buttonVariants({ variant: "ghost" })}
               >
                 {link.label}
               </Link>
             ))}
-            <Button asChild size="lg">
+            <button
+              onClick={toggle}
+              className={buttonVariants({ variant: "ghost", size: "icon" })}
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+            </button>
+            <Button asChild>
               <Link href="/booking">Book Consultation</Link>
             </Button>
-            <button
-              onClick={toggle}
-              className="p-2 text-foreground/60 hover:text-foreground transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? (
-                <Sun className="w-4 h-4" />
-              ) : (
-                <Moon className="w-4 h-4" />
-              )}
-            </button>
-          </nav>
+          </div>
 
-          <div className="flex items-center gap-3 lg:hidden">
+          <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={toggle}
-              className="p-2 text-foreground/60 hover:text-foreground transition-colors"
+              className={buttonVariants({ variant: "ghost", size: "icon" })}
               aria-label="Toggle theme"
             >
-              {theme === "dark" ? (
-                <Sun className="w-4 h-4" />
-              ) : (
-                <Moon className="w-4 h-4" />
-              )}
+              {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
             </button>
-            <button
-              onClick={() => setOpen(!open)}
-              className="p-2 text-foreground/70 hover:text-foreground"
-              aria-label="Menu"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                {open ? (
-                  <path d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+            <Button size="icon" variant="outline" onClick={() => setOpen(!open)}>
+              <MenuToggleIcon open={open} className="size-5" duration={300} />
+            </Button>
+          </div>
+        </nav>
+      </div>
+
+      <div
+        className={cn(
+          "fixed top-14 right-0 bottom-0 left-0 z-50 flex flex-col overflow-hidden border-y md:hidden bg-background",
+          open ? "block" : "hidden"
+        )}
+      >
+        <div
+          data-slot={open ? "open" : "closed"}
+          className={cn(
+            "data-[slot=open]:animate-in data-[slot=open]:zoom-in-95 data-[slot=closed]:animate-out data-[slot=closed]:zoom-out-95 ease-out",
+            "flex h-full w-full flex-col justify-between gap-y-2 p-6"
+          )}
+        >
+          <div className="grid gap-y-1">
+            {links.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={buttonVariants({
+                  variant: "ghost",
+                  className: "justify-start text-base",
+                })}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-col gap-2">
+            <Button asChild className="w-full">
+              <Link href="/booking" onClick={() => setOpen(false)}>
+                Book a Consultation
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
-
-      {open && (
-        <div className="lg:hidden border-t border-input bg-background">
-          <div className="px-6 py-4 space-y-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="block text-foreground/70 hover:text-foreground transition-colors text-sm py-2"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
     </header>
   );
 }

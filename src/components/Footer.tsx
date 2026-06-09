@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const footerLinks = [
   {
@@ -20,20 +24,31 @@ const footerLinks = [
     ],
   },
   {
-    title: "Connect",
+    title: "Legal",
     links: [
-      { label: "Book Consultation", href: "/booking" },
-      { label: "Send a Message", href: "/contact" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms & Conditions", href: "/terms" },
     ],
   },
 ];
 
 export function Footer() {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  function handleNewsletter(e: React.FormEvent) {
+    e.preventDefault();
+    if (email) {
+      setSubscribed(true);
+      setEmail("");
+    }
+  }
+
   return (
     <footer className="bg-secondary border-t border-input">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
-          <div className="col-span-2 lg:col-span-1">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-10">
+          <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="text-xl font-semibold text-foreground">
               <span className="text-primary">RK</span>
             </Link>
@@ -41,7 +56,33 @@ export function Footer() {
               Aerospace and aviation consultancy delivering strategic
               excellence, operational safety, and global impact.
             </p>
+
+            <div className="mt-8">
+              <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground/30 mb-3">
+                Newsletter
+              </h4>
+              {subscribed ? (
+                <p className="text-sm text-foreground/50">
+                  You&apos;re subscribed. Watch for aviation insights.
+                </p>
+              ) : (
+                <form onSubmit={handleNewsletter} className="flex gap-2 max-w-xs">
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your email"
+                    className="flex-1 min-w-0 bg-background/50 border border-input rounded-lg px-3 py-2 text-sm text-foreground focus:outline-none focus:border-ring/50"
+                  />
+                  <Button type="submit" size="sm">
+                    Join
+                  </Button>
+                </form>
+              )}
+            </div>
           </div>
+
           {footerLinks.map((group) => (
             <div key={group.title}>
               <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground/30 mb-4">
@@ -62,10 +103,10 @@ export function Footer() {
             </div>
           ))}
         </div>
+
         <div className="mt-16 pt-8 border-t border-input flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <p className="text-xs text-foreground/30">
-            &copy; {new Date().getFullYear()} Richard Kyereh. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} Richard Kyereh. All rights reserved.
           </p>
         </div>
       </div>
