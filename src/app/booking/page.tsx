@@ -42,8 +42,8 @@ export default function BookingPage() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-xl mx-auto text-center">
-            <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2">
+            <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2">
                 <path d="M20 6L9 17l-5-5" />
               </svg>
             </div>
@@ -66,7 +66,7 @@ export default function BookingPage() {
       <section className="pt-32 pb-12 lg:pt-40 lg:pb-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-xl">
-            <p className="text-gold text-sm font-medium tracking-widest uppercase mb-4">
+            <p className="text-white/70 text-sm font-medium tracking-widest uppercase mb-4">
               Booking
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
@@ -91,8 +91,8 @@ export default function BookingPage() {
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold ${
                       s <= step
-                        ? "bg-gold text-navy-900"
-                        : "bg-navy-700 text-white/30"
+                        ? "bg-white text-blueblack-900"
+                        : "bg-blueblack-700 text-white/30"
                     }`}
                   >
                     {s}
@@ -100,7 +100,7 @@ export default function BookingPage() {
                   {s < 3 && (
                     <div
                       className={`w-12 h-px ${
-                        s < step ? "bg-gold" : "bg-white/10"
+                        s < step ? "bg-white" : "bg-white/10"
                       }`}
                     />
                   )}
@@ -121,7 +121,7 @@ export default function BookingPage() {
                         type="text"
                         value={form.name}
                         onChange={(e) => update("name", e.target.value)}
-                        className="w-full bg-navy-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold/50 transition-colors"
+                        className="w-full bg-blueblack-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-white/50 transition-colors"
                         placeholder="Your name"
                       />
                     </div>
@@ -134,7 +134,7 @@ export default function BookingPage() {
                         type="email"
                         value={form.email}
                         onChange={(e) => update("email", e.target.value)}
-                        className="w-full bg-navy-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold/50 transition-colors"
+                        className="w-full bg-blueblack-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-white/50 transition-colors"
                         placeholder="you@company.com"
                       />
                     </div>
@@ -147,7 +147,7 @@ export default function BookingPage() {
                       type="text"
                       value={form.company}
                       onChange={(e) => update("company", e.target.value)}
-                      className="w-full bg-navy-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold/50 transition-colors"
+                      className="w-full bg-blueblack-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-white/50 transition-colors"
                       placeholder="Optional"
                     />
                   </div>
@@ -159,13 +159,13 @@ export default function BookingPage() {
                       required
                       value={form.service}
                       onChange={(e) => update("service", e.target.value)}
-                      className="w-full bg-navy-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold/50 transition-colors"
+                      className="w-full bg-blueblack-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-white/50 transition-colors"
                     >
-                      <option value="" className="bg-navy-900">
+                      <option value="" className="bg-blueblack-900">
                         Select a service
                       </option>
                       {serviceTypes.map((s) => (
-                        <option key={s} value={s} className="bg-navy-900">
+                        <option key={s} value={s} className="bg-blueblack-900">
                           {s}
                         </option>
                       ))}
@@ -174,7 +174,7 @@ export default function BookingPage() {
                   <button
                     type="button"
                     onClick={() => setStep(2)}
-                    className="px-8 py-4 bg-gold text-navy-900 font-semibold hover:bg-gold-light transition-colors text-sm"
+                    className="px-8 py-4 bg-white text-blueblack-900 font-semibold hover:bg-white/90 transition-colors text-sm"
                   >
                     Continue
                   </button>
@@ -193,7 +193,7 @@ export default function BookingPage() {
                       value={form.date}
                       onChange={(e) => update("date", e.target.value)}
                       min={new Date().toISOString().split("T")[0]}
-                      className="w-full bg-navy-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold/50 transition-colors [color-scheme:dark]"
+                      className="w-full bg-blueblack-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-white/50 transition-colors [color-scheme:dark]"
                     />
                   </div>
                   <div>
@@ -208,8 +208,8 @@ export default function BookingPage() {
                           onClick={() => update("time", t)}
                           className={`px-4 py-3 text-sm border transition-colors ${
                             form.time === t
-                              ? "bg-gold text-navy-900 border-gold font-medium"
-                              : "bg-navy-800/50 border-white/10 text-white/60 hover:border-white/20"
+                              ? "bg-white text-blueblack-900 border-white font-medium"
+                              : "bg-blueblack-800/50 border-white/10 text-white/60 hover:border-white/20"
                           }`}
                         >
                           {t}
@@ -228,7 +228,7 @@ export default function BookingPage() {
                     <button
                       type="button"
                       onClick={() => setStep(3)}
-                      className="px-8 py-4 bg-gold text-navy-900 font-semibold hover:bg-gold-light transition-colors text-sm"
+                      className="px-8 py-4 bg-white text-blueblack-900 font-semibold hover:bg-white/90 transition-colors text-sm"
                     >
                       Continue
                     </button>
@@ -246,11 +246,11 @@ export default function BookingPage() {
                       rows={5}
                       value={form.message}
                       onChange={(e) => update("message", e.target.value)}
-                      className="w-full bg-navy-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold/50 transition-colors resize-none"
+                      className="w-full bg-blueblack-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-white/50 transition-colors resize-none"
                       placeholder="Briefly describe what you would like to discuss..."
                     />
                   </div>
-                  <div className="bg-navy-800/30 border border-white/5 p-6 space-y-2 text-sm">
+                  <div className="bg-blueblack-800/30 border border-white/5 p-6 space-y-2 text-sm">
                     <p className="text-white/30">
                       <span className="text-white/60">Name:</span> {form.name}
                     </p>
@@ -279,7 +279,7 @@ export default function BookingPage() {
                     </button>
                     <button
                       type="submit"
-                      className="px-8 py-4 bg-gold text-navy-900 font-semibold hover:bg-gold-light transition-colors text-sm"
+                      className="px-8 py-4 bg-white text-blueblack-900 font-semibold hover:bg-white/90 transition-colors text-sm"
                     >
                       Submit Request
                     </button>

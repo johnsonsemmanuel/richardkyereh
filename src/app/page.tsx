@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <section className="relative min-h-screen flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blueblack-900 via-blueblack-800 to-blueblack-900" />
         <div className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `radial-gradient(circle at 25% 25%, white 1px, transparent 1px)`,
@@ -13,7 +13,7 @@ export default function Home() {
         />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
           <div className="max-w-3xl">
-            <p className="text-gold text-sm font-medium tracking-widest uppercase mb-6">
+            <p className="text-white/70 text-sm font-medium tracking-widest uppercase mb-6">
               Aerospace & Aviation Consultancy
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
@@ -28,7 +28,7 @@ export default function Home() {
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <Link
                 href="/booking"
-                className="inline-flex items-center justify-center px-8 py-4 bg-gold text-navy-900 font-semibold hover:bg-gold-light transition-colors text-sm"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-blueblack-900 font-semibold hover:bg-white/90 transition-colors text-sm"
               >
                 Book a Consultation
               </Link>
@@ -43,7 +43,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white text-navy-900 py-24 lg:py-32">
+      <section className="bg-white text-blueblack-900 py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
@@ -56,7 +56,7 @@ export default function Home() {
                 <p className="text-3xl lg:text-5xl font-bold tracking-tight">
                   {stat}
                 </p>
-                <p className="mt-2 text-sm text-navy-500 uppercase tracking-wider">
+                <p className="mt-2 text-sm text-blueblack-500 uppercase tracking-wider">
                   {label}
                 </p>
               </div>
@@ -65,10 +65,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-navy-900 py-24 lg:py-32">
+      <section className="bg-blueblack-900 py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-20">
-            <p className="text-gold text-sm font-medium tracking-widest uppercase mb-4">
+            <p className="text-white/70 text-sm font-medium tracking-widest uppercase mb-4">
               Core Services
             </p>
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight">
@@ -112,9 +112,9 @@ export default function Home() {
             ].map((service) => (
               <div
                 key={service.title}
-                className="group p-8 bg-navy-800/50 hover:bg-navy-800 transition-colors border border-white/5"
+                className="group p-8 bg-blueblack-800/50 hover:bg-blueblack-800 transition-colors border border-white/5"
               >
-                <h3 className="text-lg font-semibold text-white group-hover:text-gold transition-colors">
+                <h3 className="text-lg font-semibold text-white group-hover:text-white/70 transition-colors">
                   {service.title}
                 </h3>
                 <p className="mt-3 text-sm text-white/40 leading-relaxed">
@@ -126,11 +126,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-navy-800 py-24 lg:py-32">
+      <section className="bg-blueblack-800 py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-gold text-sm font-medium tracking-widest uppercase mb-4">
+              <p className="text-white/70 text-sm font-medium tracking-widest uppercase mb-4">
                     About
               </p>
               <h2 className="text-3xl lg:text-5xl font-bold tracking-tight">
@@ -146,7 +146,7 @@ export default function Home() {
               </p>
               <Link
                 href="/about"
-                className="mt-8 inline-flex items-center text-sm text-gold hover:text-gold-light transition-colors"
+                className="mt-8 inline-flex items-center text-sm text-white/70 hover:text-white/70-light transition-colors"
               >
                 Full Bio &rarr;
               </Link>
@@ -160,9 +160,9 @@ export default function Home() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="p-6 bg-navy-900/50 border border-white/5"
+                  className="p-6 bg-blueblack-900/50 border border-white/5"
                 >
-                  <p className="text-2xl font-bold text-gold">{item.value}</p>
+                  <p className="text-2xl font-bold text-white/70">{item.value}</p>
                   <p className="text-xs text-white/40 uppercase tracking-wider mt-1">
                     {item.label}
                   </p>
@@ -173,7 +173,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-navy-900 py-24 lg:py-32">
+      <section className="bg-blueblack-900 py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-5xl font-bold tracking-tight">
             Ready to elevate
@@ -186,7 +186,7 @@ export default function Home() {
           </p>
           <Link
             href="/booking"
-            className="mt-10 inline-flex items-center justify-center px-10 py-4 bg-gold text-navy-900 font-semibold hover:bg-gold-light transition-colors text-sm"
+            className="mt-10 inline-flex items-center justify-center px-10 py-4 bg-white text-blueblack-900 font-semibold hover:bg-white/90 transition-colors text-sm"
           >
             Schedule a Consultation
           </Link>

@@ -14,7 +14,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div>
-              <p className="text-gold text-sm font-medium tracking-widest uppercase mb-4">
+              <p className="text-white/70 text-sm font-medium tracking-widest uppercase mb-4">
                 About
               </p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
@@ -45,7 +45,7 @@ export default function AboutPage() {
               </p>
               <Link
                 href="/booking"
-                className="mt-8 inline-flex items-center px-8 py-4 bg-gold text-navy-900 font-semibold hover:bg-gold-light transition-colors text-sm"
+                className="mt-8 inline-flex items-center px-8 py-4 bg-white text-blueblack-900 font-semibold hover:bg-white/90 transition-colors text-sm"
               >
                 Book a Consultation
               </Link>
@@ -76,9 +76,9 @@ export default function AboutPage() {
             ].map((item) => (
               <div
                 key={item.label}
-                className="p-8 bg-navy-800/30 border border-white/5"
+                className="p-8 bg-blueblack-800/30 border border-white/5"
               >
-                <p className="text-xs text-gold uppercase tracking-widest font-medium">
+                <p className="text-xs text-white/70 uppercase tracking-widest font-medium">
                   {item.label}
                 </p>
                 <p className="mt-2 text-2xl font-bold text-white">

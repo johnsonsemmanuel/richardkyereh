@@ -30,12 +30,12 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-navy-800 border-t border-white/5">
+    <footer className="bg-blueblack-800 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="col-span-2 lg:col-span-1">
             <Link href="/" className="text-xl font-semibold text-white">
-              <span className="text-gold">RK</span>
+              <span className="text-white">RK</span>
             </Link>
             <p className="mt-3 text-sm text-white/40 leading-relaxed max-w-xs">
               Aerospace and aviation consultancy delivering strategic
@@ -52,7 +52,7 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/50 hover:text-gold transition-colors"
+                      className="text-sm text-white/50 hover:text-white transition-colors"
                     >
                       {link.label}
                     </Link>

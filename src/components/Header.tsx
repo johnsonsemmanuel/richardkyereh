@@ -15,14 +15,14 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-navy-900/95 backdrop-blur border-b border-white/5">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-blueblack-900/95 backdrop-blur border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link
             href="/"
             className="text-xl font-semibold tracking-tight text-white"
           >
-            <span className="text-gold">RK</span>
+            <span className="text-white">RK</span>
             <span className="text-white/60 ml-2 hidden sm:inline text-sm font-normal">
               Aerospace Consultancy
             </span>
@@ -33,14 +33,14 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-white/70 hover:text-gold transition-colors"
+                className="text-sm text-white/70 hover:text-white transition-colors"
               >
                 {link.label}
               </Link>
             ))}
             <Link
               href="/booking"
-              className="text-sm px-5 py-2.5 bg-gold text-navy-900 font-medium hover:bg-gold-light transition-colors"
+              className="text-sm px-5 py-2.5 bg-white text-blueblack-900 font-medium hover:bg-white/90 transition-colors"
             >
               Book Consultation
             </Link>
@@ -63,14 +63,14 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-white/5 bg-navy-900">
+        <div className="lg:hidden border-t border-white/5 bg-blueblack-900">
           <div className="px-6 py-4 space-y-3">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block text-white/70 hover:text-gold transition-colors text-sm py-2"
+                className="block text-white/70 hover:text-white transition-colors text-sm py-2"
               >
                 {link.label}
               </Link>

@@ -82,7 +82,7 @@ export default function ServicesPage() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-2xl">
-            <p className="text-gold text-sm font-medium tracking-widest uppercase mb-4">
+            <p className="text-white/70 text-sm font-medium tracking-widest uppercase mb-4">
               Services
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
@@ -105,7 +105,7 @@ export default function ServicesPage() {
             {services.map((service) => (
               <div
                 key={service.title}
-                className="p-8 lg:p-10 bg-navy-800/30 border border-white/5 hover:border-white/10 transition-colors"
+                className="p-8 lg:p-10 bg-blueblack-800/30 border border-white/5 hover:border-white/10 transition-colors"
               >
                 <h2 className="text-xl font-semibold text-white">
                   {service.title}
@@ -119,7 +119,7 @@ export default function ServicesPage() {
                       key={area}
                       className="text-sm text-white/30 flex items-center gap-3"
                     >
-                      <span className="w-1 h-1 bg-gold/60 shrink-0" />
+                      <span className="w-1 h-1 bg-white/40 shrink-0" />
                       {area}
                     </li>
                   ))}
@@ -130,7 +130,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-navy-800 py-24 lg:py-32">
+      <section className="bg-blueblack-800 py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold tracking-tight">
             Not sure where to start?
@@ -141,7 +141,7 @@ export default function ServicesPage() {
           </p>
           <Link
             href="/booking"
-            className="mt-8 inline-flex items-center justify-center px-8 py-4 bg-gold text-navy-900 font-semibold hover:bg-gold-light transition-colors text-sm"
+            className="mt-8 inline-flex items-center justify-center px-8 py-4 bg-white text-blueblack-900 font-semibold hover:bg-white/90 transition-colors text-sm"
           >
             Book a Discovery Call
           </Link>

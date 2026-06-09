@@ -1,16 +1,11 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-navy-900: #0B1426;
-  --color-navy-800: #111D35;
-  --color-navy-700: #1A2D4A;
-  --color-navy-600: #2A3F5C;
-  --color-navy-500: #3D5675;
-  --color-gold: #C9A84C;
-  --color-gold-light: #DFC66A;
-  --color-gold-dark: #A88A2E;
-  --color-platinum: #E8ECEF;
-  --color-stone: #8B9098;
+  --color-blueblack-900: #05080F;
+  --color-blueblack-800: #0A0F1A;
+  --color-blueblack-700: #111827;
+  --color-blueblack-600: #1F2937;
+  --color-blueblack-500: #374151;
 }
 
 html {
@@ -24,6 +19,6 @@ body {
 }
 
 ::selection {
-  background-color: #C9A84C;
-  color: #0B1426;
+  background-color: white;
+  color: #05080F;
 }

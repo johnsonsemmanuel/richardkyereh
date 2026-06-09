@@ -25,8 +25,8 @@ export default function ContactPage() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-xl mx-auto text-center">
-            <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2">
+            <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2">
                 <path d="M20 6L9 17l-5-5" />
               </svg>
             </div>
@@ -49,7 +49,7 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             <div>
-              <p className="text-gold text-sm font-medium tracking-widest uppercase mb-4">
+              <p className="text-white/70 text-sm font-medium tracking-widest uppercase mb-4">
                 Contact
               </p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
@@ -64,7 +64,7 @@ export default function ContactPage() {
               </p>
               <div className="mt-10 space-y-4">
                 <div className="flex items-center gap-4 text-sm text-white/40">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gold shrink-0">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white/70 shrink-0">
                     <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                   </svg>
                   <span>Based in Accra, Ghana &mdash; serving globally</span>
@@ -83,7 +83,7 @@ export default function ContactPage() {
                     type="text"
                     value={form.name}
                     onChange={(e) => update("name", e.target.value)}
-                    className="w-full bg-navy-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold/50 transition-colors"
+                    className="w-full bg-blueblack-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-white/50 transition-colors"
                     placeholder="Your name"
                   />
                 </div>
@@ -96,7 +96,7 @@ export default function ContactPage() {
                     type="email"
                     value={form.email}
                     onChange={(e) => update("email", e.target.value)}
-                    className="w-full bg-navy-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold/50 transition-colors"
+                    className="w-full bg-blueblack-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-white/50 transition-colors"
                     placeholder="you@company.com"
                   />
                 </div>
@@ -110,7 +110,7 @@ export default function ContactPage() {
                   type="text"
                   value={form.subject}
                   onChange={(e) => update("subject", e.target.value)}
-                  className="w-full bg-navy-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold/50 transition-colors"
+                  className="w-full bg-blueblack-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-white/50 transition-colors"
                   placeholder="What is this regarding?"
                 />
               </div>
@@ -123,13 +123,13 @@ export default function ContactPage() {
                   rows={6}
                   value={form.message}
                   onChange={(e) => update("message", e.target.value)}
-                  className="w-full bg-navy-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold/50 transition-colors resize-none"
+                  className="w-full bg-blueblack-800/50 border border-white/10 px-4 py-3 text-white text-sm focus:outline-none focus:border-white/50 transition-colors resize-none"
                   placeholder="Your message..."
                 />
               </div>
               <button
                 type="submit"
-                className="px-8 py-4 bg-gold text-navy-900 font-semibold hover:bg-gold-light transition-colors text-sm"
+                className="px-8 py-4 bg-white text-blueblack-900 font-semibold hover:bg-white/90 transition-colors text-sm"
               >
                 Send Message
               </button>
