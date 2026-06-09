@@ -8,6 +8,7 @@ import { placeholderImage, serviceImage } from "@/lib/images";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { CompassIcon, WingsIcon, AltitudeIcon, GlobeIcon, ShieldIcon } from "@/components/ui/aviation-icons";
+import { WavePath } from "@/components/ui/wave-path";
 
 const services = [
   {
@@ -87,6 +88,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <WavePath />
 
       <section className="bg-secondary py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

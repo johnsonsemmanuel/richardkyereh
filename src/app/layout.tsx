@@ -7,6 +7,7 @@ import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { CookieConsent } from "@/components/CookieConsent";
 import { SupportAgent } from "@/components/SupportAgent";
 import { PageTransition } from "@/components/ui/page-transition";
+import { DotPattern } from "@/components/ui/dot-pattern";
 
 const siteUrl = "https://richardkyereh.com";
 
@@ -115,7 +116,8 @@ export default function RootLayout({
           }),
         }} />
       </head>
-      <body className="min-h-full flex flex-col font-sans antialiased">
+      <body className="min-h-full flex flex-col font-sans antialiased relative">
+        <DotPattern />
         <ThemeProvider>
           <Header />
           <main className="flex-1"><PageTransition>{children}</PageTransition></main>

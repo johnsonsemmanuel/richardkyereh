@@ -5,6 +5,7 @@ import { serviceImage } from "@/lib/images";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { CompassIcon } from "@/components/ui/aviation-icons";
+import { WavePath } from "@/components/ui/wave-path";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -84,6 +85,8 @@ export default function ServicesPage() {
           </Reveal>
         </div>
       </section>
+
+      <WavePath />
 
       <section className="pb-24 lg:pb-32 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

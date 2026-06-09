@@ -5,6 +5,7 @@ import { GlassBlogCard } from "@/components/GlassBlogCard";
 import { placeholderImage, portrait } from "@/lib/images";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { GlobeIcon, WingsIcon, CompassIcon, ShieldIcon, PlaneIcon } from "@/components/ui/aviation-icons";
+import { WavePath } from "@/components/ui/wave-path";
 
 export const metadata: Metadata = {
   title: "About",
@@ -50,6 +51,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <WavePath />
 
       <section className="pb-24 lg:pb-32 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

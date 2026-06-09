@@ -83,14 +83,6 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   transition: background-color 0.3s, color 0.3s;
-  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-@media (max-width: 640px) {
-  body {
-    background-size: 24px 24px;
-  }
 }
 
 /* Card rounding — bordered containers that act as cards */
