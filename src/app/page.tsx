@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { StackedCardsInteraction } from "@/components/StackedCards";
 
 export default function Home() {
   return (
@@ -146,28 +147,31 @@ export default function Home() {
               </p>
               <Link
                 href="/about"
-                className="mt-8 inline-flex items-center text-sm text-white/70 hover:text-white/70-light transition-colors"
+                className="mt-8 inline-flex items-center text-sm text-white/70 hover:text-white transition-colors"
               >
                 Full Bio &rarr;
               </Link>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { label: "Airlines Advised", value: "25+" },
-                { label: "Countries", value: "18" },
-                { label: "Aircraft Types", value: "40+" },
-                { label: "Fleet Value Managed", value: "$2.8B" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="p-6 bg-blueblack-900/50 border border-white/5"
-                >
-                  <p className="text-2xl font-bold text-white/70">{item.value}</p>
-                  <p className="text-xs text-white/40 uppercase tracking-wider mt-1">
-                    {item.label}
-                  </p>
-                </div>
-              ))}
+            <div className="relative h-[420px]">
+              <StackedCardsInteraction
+                cards={[
+                  {
+                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='288'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23050E1A'/%3E%3Cstop offset='100%25' style='stop-color:%231A2D4A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='350' height='288' fill='url(%23g)'/%3E%3Ctext x='175' y='140' text-anchor='middle' fill='white' font-family='Inter,sans-serif' font-size='28' font-weight='bold'%3E25%2B%3C/text%3E%3Ctext x='175' y='170' text-anchor='middle' fill='%23ffffff80' font-family='Inter,sans-serif' font-size='14'%3EAirlines Advised%3C/text%3E%3C/svg%3E",
+                    title: "Strategic Advisory",
+                    description: "Fleet planning, market entry, and merger advisory across four continents.",
+                  },
+                  {
+                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='288'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23050E1A'/%3E%3Cstop offset='100%25' style='stop-color:%231A2D4A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='350' height='288' fill='url(%23g)'/%3E%3Ctext x='175' y='140' text-anchor='middle' fill='white' font-family='Inter,sans-serif' font-size='28' font-weight='bold'%3E18%3C/text%3E%3Ctext x='175' y='170' text-anchor='middle' fill='%23ffffff80' font-family='Inter,sans-serif' font-size='14'%3ECountries%3C/text%3E%3C/svg%3E",
+                    title: "Safety & Compliance",
+                    description: "Full-spectrum SMS design, audits, and ICAO certification support.",
+                  },
+                  {
+                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='288'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23050E1A'/%3E%3Cstop offset='100%25' style='stop-color:%231A2D4A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='350' height='288' fill='url(%23g)'/%3E%3Ctext x='175' y='140' text-anchor='middle' fill='white' font-family='Inter,sans-serif' font-size='28' font-weight='bold'%3E%242.8B%3C/text%3E%3Ctext x='175' y='170' text-anchor='middle' fill='%23ffffff80' font-family='Inter,sans-serif' font-size='14'%3EFleet Value Managed%3C/text%3E%3C/svg%3E",
+                    title: "Fleet Management",
+                    description: "End-to-end acquisition, lease negotiation, and asset lifecycle strategy.",
+                  },
+                ]}
+              />
             </div>
           </div>
         </div>
