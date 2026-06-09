@@ -15,51 +15,51 @@ export const metadata: Metadata = {
 const services = [
   {
     title: "Career Consultancy",
+    slug: "career-consultancy",
     duration: "1 hr",
     price: "Free",
     gradient: "05080F,1A2D4A",
-    description:
-      "Personalized career guidance for aviation professionals seeking to advance in the aerospace industry.",
+    description: "Personalized career guidance for aviation professionals seeking to advance in the aerospace industry.",
   },
   {
     title: "Speaking Engagement",
+    slug: "speaking-engagement",
     duration: "1 hr",
     price: "Free",
     gradient: "0A0F1A,111827",
-    description:
-      "Expert keynote speaking and panel participation for conferences, corporate events, and industry summits.",
+    description: "Expert keynote speaking and panel participation for conferences, corporate events, and industry summits.",
   },
   {
     title: "Face To Face Meeting",
+    slug: "face-to-face-meeting",
     duration: "30 mins",
     price: "Free",
     gradient: "05080F,1F2937",
-    description:
-      "Confidential one-on-one meetings for strategic discussions, partnership exploration, or advisory sessions.",
+    description: "Confidential one-on-one meetings for strategic discussions, partnership exploration, or advisory sessions.",
   },
   {
     title: "Mentorship",
+    slug: "mentorship",
     duration: "1 hr",
     price: "Free",
     gradient: "0A0F1A,1A2D4A",
-    description:
-      "Structured mentorship for emerging aviation leaders, covering technical and leadership development.",
+    description: "Structured mentorship for emerging aviation leaders, covering technical and leadership development.",
   },
   {
     title: "Aircraft Leases",
+    slug: "aircraft-leases",
     duration: "1 hr",
     price: "Free",
     gradient: "05080F,111827",
-    description:
-      "Advisory on aircraft leasing strategies, lease vs. buy analysis, and portfolio optimization.",
+    description: "Advisory on aircraft leasing strategies, lease vs. buy analysis, and portfolio optimization.",
   },
   {
     title: "Charters Services",
+    slug: "charters-services",
     duration: "1 hr",
     price: "Free",
     gradient: "0A0F1A,1F2937",
-    description:
-      "Consulting on charter operations, fleet configuration, and premium service delivery standards.",
+    description: "Consulting on charter operations, fleet configuration, and premium service delivery standards.",
   },
 ];
 
@@ -95,7 +95,7 @@ export default function ServicesPage() {
               <StaggerItem key={service.title}>
                 <TiltCard>
                   <Link
-                    href="/booking"
+                    href={`/services/${service.slug}`}
                     className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden"
                   >
                     <div className="aspect-[16/10] overflow-hidden">
