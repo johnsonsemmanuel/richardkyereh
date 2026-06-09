@@ -156,19 +156,19 @@ export default function Home() {
               <StackedCardsInteraction
                 cards={[
                   {
-                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='288'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23050E1A'/%3E%3Cstop offset='100%25' style='stop-color:%231A2D4A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='350' height='288' fill='url(%23g)'/%3E%3Ctext x='175' y='140' text-anchor='middle' fill='white' font-family='Inter,sans-serif' font-size='28' font-weight='bold'%3E25%2B%3C/text%3E%3Ctext x='175' y='170' text-anchor='middle' fill='%23ffffff80' font-family='Inter,sans-serif' font-size='14'%3EAirlines Advised%3C/text%3E%3C/svg%3E",
-                    title: "Strategic Advisory",
-                    description: "Fleet planning, market entry, and merger advisory across four continents.",
+                    image: "https://images.unsplash.com/photo-XrViyzENBIU?q=80&w=800&h=600&fit=crop",
+                    title: "15+ Years Experience",
+                    description: "Across airlines, regulators, and investment firms on four continents.",
                   },
                   {
-                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='288'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23050E1A'/%3E%3Cstop offset='100%25' style='stop-color:%231A2D4A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='350' height='288' fill='url(%23g)'/%3E%3Ctext x='175' y='140' text-anchor='middle' fill='white' font-family='Inter,sans-serif' font-size='28' font-weight='bold'%3E18%3C/text%3E%3Ctext x='175' y='170' text-anchor='middle' fill='%23ffffff80' font-family='Inter,sans-serif' font-size='14'%3ECountries%3C/text%3E%3C/svg%3E",
-                    title: "Safety & Compliance",
-                    description: "Full-spectrum SMS design, audits, and ICAO certification support.",
+                    image: "https://images.unsplash.com/photo-AzMSyv2ikwI?q=80&w=800&h=600&fit=crop",
+                    title: "40+ Global Clients",
+                    description: "From startups to established carriers across commercial and business aviation.",
                   },
                   {
-                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='288'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23050E1A'/%3E%3Cstop offset='100%25' style='stop-color:%231A2D4A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='350' height='288' fill='url(%23g)'/%3E%3Ctext x='175' y='140' text-anchor='middle' fill='white' font-family='Inter,sans-serif' font-size='28' font-weight='bold'%3E%242.8B%3C/text%3E%3Ctext x='175' y='170' text-anchor='middle' fill='%23ffffff80' font-family='Inter,sans-serif' font-size='14'%3EFleet Value Managed%3C/text%3E%3C/svg%3E",
-                    title: "Fleet Management",
-                    description: "End-to-end acquisition, lease negotiation, and asset lifecycle strategy.",
+                    image: "https://images.unsplash.com/photo-qKdWAVgDHSE?q=80&w=800&h=600&fit=crop",
+                    title: "$2.8B+ Fleet Value",
+                    description: "Advised on fleet acquisition and asset management strategies worldwide.",
                   },
                 ]}
               />
