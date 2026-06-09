@@ -17,6 +17,7 @@ import {
 import {
   CompassIcon, GlobeIcon, WingsIcon, ShieldIcon, RadarIcon, PlaneIcon,
 } from "@/components/ui/aviation-icons";
+import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/social-icons";
 
 type NavItem = { label: string; href: string } | { label: string; dropdown: { label: string; desc: string; href: string; icon: React.ComponentType<{ className?: string }> }[] };
 
@@ -67,15 +68,12 @@ export function Header() {
             scrolled ? "md:px-4" : "md:px-6"
           )}
         >
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center">
             <img
               src="/richardkyerehlogo.png"
               alt="Richard Kyereh"
-              className="h-8 w-auto"
+              className="h-10 w-auto"
             />
-            <span className="hidden sm:block text-sm font-medium text-foreground/60">
-              Aviation Expert
-            </span>
           </Link>
 
           <div className="hidden items-center gap-1 md:flex">
@@ -221,7 +219,18 @@ export function Header() {
               Contact Us
             </Link>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-center gap-4 pt-2 border-t border-border">
+              <a href="https://linkedin.com/in/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground/40 hover:text-foreground transition-colors">
+                <LinkedInIcon className="size-5" />
+              </a>
+              <a href="https://x.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-foreground/40 hover:text-foreground transition-colors">
+                <XIcon className="size-5" />
+              </a>
+              <a href="https://instagram.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-foreground/40 hover:text-foreground transition-colors">
+                <InstagramIcon className="size-5" />
+              </a>
+            </div>
             <Button asChild className="w-full">
               <Link href="/booking" onClick={() => setOpen(false)}>
                 Book Richard

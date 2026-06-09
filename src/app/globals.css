@@ -29,6 +29,8 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
 }
 
 :root {
@@ -49,7 +51,9 @@
   --muted: #f0f2f5;
   --muted-foreground: #6b7280;
   --border: #e2e6ed;
-  --dot-color: rgba(5, 8, 15, 0.04);
+  --dot-color: rgba(5, 8, 15, 0.06);
+  --popover: #ffffff;
+  --popover-foreground: #05080F;
 }
 
 .dark {
@@ -70,7 +74,9 @@
   --muted: #1F2937;
   --muted-foreground: #9ca3af;
   --border: rgba(255, 255, 255, 0.06);
-  --dot-color: rgba(255, 255, 255, 0.025);
+  --dot-color: rgba(255, 255, 255, 0.04);
+  --popover: #0A0F1A;
+  --popover-foreground: #ffffff;
 }
 
 html {
@@ -94,6 +100,28 @@ body {
 .border-card-lg {
   border-radius: 1rem;
   border-width: 1px;
+}
+
+/* Always show scrollbar so users know they can scroll */
+html {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
 }
 
 ::selection {

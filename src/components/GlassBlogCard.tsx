@@ -25,7 +25,7 @@ const defaultPost = {
   excerpt:
     "Exploring the latest trends in glassmorphism, 3D elements, and micro-interactions.",
   image:
-    "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80",
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E%3Crect fill='%2305080F' width='800' height='400'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff20' font-family='system-ui' font-size='20' text-anchor='middle' dominant-baseline='middle'%3EArticle%3C/text%3E%3C/svg%3E",
   author: {
     name: "Moumen Soliman",
     avatar: "https://github.com/shadcn.png",

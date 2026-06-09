@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { heroSlides, heroBg } from "@/lib/images";
+import { heroSlides } from "@/lib/images";
 
 export function HeroCarousel() {
   const [current, setCurrent] = useState(0);
@@ -38,10 +38,11 @@ export function HeroCarousel() {
           className="absolute inset-0"
         >
           <img
-            src={heroBg(slide.gradient)}
+            src={slide.image}
             alt={slide.title}
             className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#05080Faa] via-[#05080F44] to-[#05080F66]" />
           <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
             <p className="text-white/40 text-xs uppercase tracking-[0.2em] mb-4">
               Richard Kyereh

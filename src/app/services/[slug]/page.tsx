@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { serviceImage } from "@/lib/images";
+import { serviceImageUrls } from "@/lib/images";
 import { Reveal } from "@/components/ui/reveal";
 import {
   CompassIcon, GlobeIcon, WingsIcon, ShieldIcon, RadarIcon, PlaneIcon,
@@ -197,7 +197,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             <Reveal delay={0.1}>
               <div className="relative rounded-xl overflow-hidden border border-input/40">
                 <img
-                  src={serviceImage(service.title, service.gradient)}
+                  src={serviceImageUrls[service.title]}
                   alt={service.title}
                   className="w-full h-full object-cover"
                 />

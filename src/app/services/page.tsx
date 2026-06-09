@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { serviceImage } from "@/lib/images";
+import { serviceImageUrls } from "@/lib/images";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { CompassIcon } from "@/components/ui/aviation-icons";
@@ -100,7 +100,7 @@ export default function ServicesPage() {
                   >
                     <div className="aspect-[16/10] overflow-hidden">
                       <img
-                        src={serviceImage(service.title, service.gradient)}
+                        src={serviceImageUrls[service.title]}
                         alt={service.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />

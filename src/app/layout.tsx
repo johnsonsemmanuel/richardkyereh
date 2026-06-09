@@ -9,7 +9,7 @@ import { SupportAgent } from "@/components/SupportAgent";
 import { PageTransition } from "@/components/ui/page-transition";
 import { DotPattern } from "@/components/ui/dot-pattern";
 
-const siteUrl = "https://richardkyereh.com";
+const siteUrl = "https://richardkyereh.vercel.app";
 
 export const metadata: Metadata = {
   title: {

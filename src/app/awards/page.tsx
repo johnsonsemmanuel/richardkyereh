@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { awardImage } from "@/lib/images";
+import { awardImages } from "@/lib/images";
 import { Reveal } from "@/components/ui/reveal";
 import { X, ChevronLeft, ChevronRight, Award } from "lucide-react";
 
@@ -42,7 +42,7 @@ function AwardCard({ award, index, onSelect }: {
       style={{ contentVisibility: "auto" }}
     >
       <img
-        src={awardImage(award.title, award.year, award.gradient)}
+        src={awardImages[index % awardImages.length]}
         alt={`${award.title} — ${award.org}, ${award.year}`}
         loading="lazy"
         decoding="async"
@@ -131,7 +131,7 @@ function Lightbox({
       >
         <img
           ref={imgRef}
-          src={awardImage(award.title, award.year, award.gradient)}
+          src={awardImages[idx % awardImages.length]}
           alt={`${award.title} — ${award.org}`}
           className="w-full h-full object-contain"
         />

@@ -4,47 +4,49 @@ import { StackedCardsInteraction } from "@/components/StackedCards";
 import { GlassBlogCard } from "@/components/GlassBlogCard";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import { AviationBackground } from "@/components/AviationBackground";
-import { placeholderImage, serviceImage } from "@/lib/images";
+import { images, serviceImageUrls } from "@/lib/images";
+import { articles } from "@/lib/articles";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
+import { ArrowRight } from "lucide-react";
 import { CompassIcon, WingsIcon, AltitudeIcon, GlobeIcon, ShieldIcon } from "@/components/ui/aviation-icons";
 import { WavePath } from "@/components/ui/wave-path";
 
 const services = [
   {
-    title: "Strategic Advisory",
-    description:
-      "Fleet planning, route optimization, market entry strategy, and merger advisory for airlines and aerospace organizations.",
+    title: "Career Consultancy",
+    slug: "career-consultancy",
+    description: "Personalized career guidance for aviation professionals seeking to advance in the aerospace industry.",
     gradient: "05080F,1A2D4A",
   },
   {
-    title: "Safety & Compliance",
-    description:
-      "Full-spectrum safety management systems, regulatory compliance audits, and ICAO standard certification support.",
+    title: "Speaking Engagement",
+    slug: "speaking-engagement",
+    description: "Expert keynote speaking and panel participation for conferences, corporate events, and industry summits.",
     gradient: "0A0F1A,111827",
   },
   {
-    title: "Fleet Management",
-    description:
-      "End-to-end fleet acquisition, lifecycle management, lease negotiation, and asset valuation services.",
+    title: "Face To Face Meeting",
+    slug: "face-to-face-meeting",
+    description: "Confidential one-on-one meetings for strategic discussions, partnership exploration, or advisory sessions.",
     gradient: "05080F,1F2937",
   },
   {
-    title: "Operations Consulting",
-    description:
-      "Operational audit, crew management optimization, ground operations, and turnaround time reduction.",
+    title: "Mentorship",
+    slug: "mentorship",
+    description: "Structured mentorship for emerging aviation leaders, covering technical and leadership development.",
     gradient: "0A0F1A,1A2D4A",
   },
   {
-    title: "Training & Development",
-    description:
-      "Custom training programs for flight crews, ground staff, and management in safety and operational best practices.",
+    title: "Aircraft Leases",
+    slug: "aircraft-leases",
+    description: "Advisory on aircraft leasing strategies, lease vs. buy analysis, and portfolio optimization.",
     gradient: "05080F,111827",
   },
   {
-    title: "Sustainability",
-    description:
-      "Carbon offset strategies, sustainable aviation fuel adoption, and ESG framework implementation.",
+    title: "Charters Services",
+    slug: "charters-services",
+    description: "Consulting on charter operations, fleet configuration, and premium service delivery standards.",
     gradient: "0A0F1A,1F2937",
   },
 ];
@@ -135,12 +137,12 @@ export default function Home() {
               <StaggerItem key={service.title}>
                 <TiltCard>
                   <Link
-                    href="/services"
+                    href={`/services/${service.slug}`}
                     className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden"
                   >
                     <div className="aspect-[16/10] overflow-hidden">
                       <img
-                        src={serviceImage(service.title, service.gradient)}
+                        src={serviceImageUrls[service.title]}
                         alt={service.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
@@ -188,17 +190,17 @@ export default function Home() {
               <StackedCardsInteraction
                 cards={[
                   {
-                    image: placeholderImage("15+ Years", "Experience across 4 continents"),
+                    image: images.controlPanel,
                     title: "15+ Years Experience",
                     description: "Across airlines, regulators, and investment firms on four continents.",
                   },
                   {
-                    image: placeholderImage("40+ Clients", "Global portfolio", "0A0F1A,111827"),
+                    image: images.wingClouds,
                     title: "40+ Global Clients",
                     description: "From startups to established carriers across commercial and business aviation.",
                   },
                   {
-                    image: placeholderImage("$2.8B+", "Fleet value managed", "05080F,1F2937"),
+                    image: images.wingWindow,
                     title: "$2.8B+ Fleet Value",
                     description: "Advised on fleet acquisition and asset management strategies worldwide.",
                   },
@@ -223,40 +225,29 @@ export default function Home() {
             </h2>
           </Reveal>
           <StaggerReveal className="grid md:grid-cols-3 gap-8 justify-items-center">
-            <StaggerItem>
-              <GlassBlogCard
-                title="The State of Global Fleet Management in 2026"
-                excerpt="An analysis of fleet utilization trends, lease rates, and emerging market dynamics shaping aerospace investment decisions."
-                image={placeholderImage("Fleet Management", "Market analysis 2026", "05080F,1A2D4A")}
-                author={{ name: "Richard Kyereh", avatar: "" }}
-                date="May 2026"
-                readTime="6 min read"
-                tags={["Fleet", "Markets"]}
-              />
-            </StaggerItem>
-            <StaggerItem>
-              <GlassBlogCard
-                title="Safety Management Systems Beyond Compliance"
-                excerpt="How leading carriers are transforming SMS from a regulatory requirement into a competitive advantage in operations."
-                image={placeholderImage("Safety Systems", "Beyond compliance", "0A0F1A,111827")}
-                author={{ name: "Richard Kyereh", avatar: "" }}
-                date="Apr 2026"
-                readTime="4 min read"
-                tags={["Safety", "Compliance"]}
-              />
-            </StaggerItem>
-            <StaggerItem>
-              <GlassBlogCard
-                title="Sustainable Aviation Fuel: Realities & Roadmap"
-                excerpt="A practical assessment of SAF adoption timelines, infrastructure requirements, and cost trajectories for airlines."
-                image={placeholderImage("SAF Adoption", "Realities & roadmap", "05080F,1F2937")}
-                author={{ name: "Richard Kyereh", avatar: "" }}
-                date="Mar 2026"
-                readTime="5 min read"
-                tags={["Sustainability", "Fuel"]}
-              />
-            </StaggerItem>
+            {articles.slice(0, 3).map((article) => (
+              <StaggerItem key={article.title}>
+                <GlassBlogCard
+                  title={article.title}
+                  excerpt={article.excerpt}
+                  image={article.image}
+                  author={article.author}
+                  date={article.date}
+                  readTime={article.readTime}
+                  tags={article.tags}
+                />
+              </StaggerItem>
+            ))}
           </StaggerReveal>
+
+          <Reveal className="text-center mt-12">
+            <Button asChild variant="outline">
+              <Link href="/newsroom">
+                View All Articles
+                <ArrowRight className="size-4 ml-2" />
+              </Link>
+            </Button>
+          </Reveal>
         </div>
       </section>
 

@@ -13,13 +13,13 @@ interface DotPatternProps {
 }
 
 export function DotPattern({
-  width = 24,
-  height = 24,
+  width = 28,
+  height = 28,
   x = 0,
   y = 0,
-  cx = 0.5,
-  cy = 0.5,
-  cr = 0.5,
+  cx = 1,
+  cy = 1,
+  cr = 1,
   className,
 }: DotPatternProps) {
   const id = useId();
@@ -28,10 +28,9 @@ export function DotPattern({
     <svg
       aria-hidden="true"
       className={cn(
-        "pointer-events-none fixed inset-0 h-full w-full",
+        "pointer-events-none fixed inset-0 h-full w-full z-0",
         className,
       )}
-      style={{ fill: "var(--dot-color)" }}
     >
       <defs>
         <pattern
@@ -43,7 +42,12 @@ export function DotPattern({
           x={x}
           y={y}
         >
-          <circle id="pattern-circle" cx={cx} cy={cy} r={cr} />
+          <circle
+            cx={cx}
+            cy={cy}
+            r={cr}
+            fill="var(--dot-color)"
+          />
         </pattern>
       </defs>
       <rect width="100%" height="100%" strokeWidth={0} fill={`url(#${id})`} />

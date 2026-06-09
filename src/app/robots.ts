@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://richardkyereh.com/sitemap.xml",
+    sitemap: "https://richardkyereh.vercel.app/sitemap.xml",
   };
 }

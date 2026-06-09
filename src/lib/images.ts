@@ -81,42 +81,64 @@ export function heroBg(gradient: string = "05080F,0A0F1A"): string {
   );
 }
 
-export function awardImage(
-  title: string,
-  year: string,
-  gradient: string = "0A0F1A,1A2D4A"
-): string {
-  const colors = gradient.split(",").map((c) => `#${c}`);
-  return svgData(
-    `<defs>
-      <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="${colors[0]}"/>
-        <stop offset="100%" stop-color="${colors[1]}"/>
-      </linearGradient>
-      <pattern id="grain" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
-        <rect x="0" y="0" width="1" height="1" fill="rgba(255,255,255,0.02)"/>
-        <rect x="2" y="2" width="1" height="1" fill="rgba(255,255,255,0.015)"/>
-      </pattern>
-      <linearGradient id="f" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="transparent"/>
-        <stop offset="100%" stop-color="rgba(0,0,0,0.6)"/>
-      </linearGradient>
-    </defs>
-    <rect width="800" height="600" fill="url(#g)"/>
-    <rect width="800" height="600" fill="url(#grain)"/>
-    <circle cx="400" cy="200" r="160" fill="rgba(255,255,255,0.03)"/>
-    <circle cx="300" cy="450" r="100" fill="rgba(255,255,255,0.02)"/>
-    <circle cx="580" cy="380" r="80" fill="rgba(255,255,255,0.02)"/>
-    <rect x="0" y="380" width="800" height="220" fill="url(#f)"/>
-    <text x="40" y="460" fill="rgba(255,255,255,0.5)" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" letter-spacing="2">${escapeXml(year)}</text>
-    <text x="40" y="490" fill="white" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="700">${escapeXml(title)}</text>`
-  );
+export const awardImages = [
+  unsplashUrl("1761813409957-681c1e4376ec"),
+  unsplashUrl("1683971113886-ca5883e598b6"),
+  unsplashUrl("1770620562966-8414ba9b1f77"),
+  unsplashUrl("1761813409478-91163f7100d7"),
+  unsplashUrl("1777360082567-6ee5ad429076"),
+  unsplashUrl("1778433610719-822331b4f369"),
+  unsplashUrl("1768886834010-c577b64ab8e0"),
+  unsplashUrl("1759979702262-71e15fa210d4"),
+  unsplashUrl("1684426268118-b9f828a96e1e"),
+  unsplashUrl("1768637229595-8291ad2b6856"),
+  unsplashUrl("1765305743880-c592b9a01756"),
+  unsplashUrl("1761813409570-ebc80a41c324"),
+];
+
+export function unsplashUrl(id: string, w = 1200): string {
+  return `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
 }
+
+export const serviceImageUrls: Record<string, string> = {
+  "Career Consultancy": unsplashUrl("1769678750254-fc938ce9da7a"),
+  "Speaking Engagement": unsplashUrl("1778433610719-822331b4f369"),
+  "Face To Face Meeting": unsplashUrl("1764304568191-172041e2e47c"),
+  "Mentorship": unsplashUrl("1761813409570-ebc80a41c324"),
+  "Aircraft Leases": unsplashUrl("1774698050881-4dc5c07c4d7d"),
+  "Charters Services": unsplashUrl("1774995842354-a87e489f45f3"),
+};
+
+export const images = {
+  // Hero / backgrounds
+  heroCockpitDusk: unsplashUrl("1761813409957-681c1e4376ec", 1920),
+  heroAerialRunway: unsplashUrl("1683971113886-ca5883e598b6", 1920),
+  heroPrivateJet: unsplashUrl("1770620562966-8414ba9b1f77", 1920),
+  heroCockpitRunway: unsplashUrl("1761813409478-91163f7100d7", 1920),
+
+  // Cockpit / control
+  cockpitInstruments: unsplashUrl("1769678750254-fc938ce9da7a"),
+  cockpitHand: unsplashUrl("1764304568191-172041e2e47c"),
+  controlPanel: unsplashUrl("1768554591368-292194a9f50c"),
+  cockpitRunway2: unsplashUrl("1761813409570-ebc80a41c324"),
+
+  // Aircraft
+  cargoPlane: unsplashUrl("1774698050881-4dc5c07c4d7d"),
+  emirates: unsplashUrl("1778433610719-822331b4f369"),
+  runwaySunset: unsplashUrl("1774995842354-a87e489f45f3"),
+  vintageCockpit: unsplashUrl("1777360082567-6ee5ad429076"),
+
+  // Wing / aerial
+  wingClouds: unsplashUrl("1768886834010-c577b64ab8e0"),
+  wingAbove: unsplashUrl("1684426268118-b9f828a96e1e"),
+  wingWindow: unsplashUrl("1759979702262-71e15fa210d4"),
+} as const;
 
 export const heroSlides = [
   {
     id: 0,
     gradient: "05080F,1A2D4A",
+    image: images.heroCockpitDusk,
     title: "Richard Kyereh",
     quote:
       "Every great achievement in aviation began with a single decision to fly higher.",
@@ -124,6 +146,7 @@ export const heroSlides = [
   {
     id: 1,
     gradient: "0A0F1A,1F2937",
+    image: images.heroAerialRunway,
     title: "Strategic Leadership",
     quote:
       "In the skies and in business, clarity of vision determines the altitude you reach.",
@@ -131,6 +154,7 @@ export const heroSlides = [
   {
     id: 2,
     gradient: "05080F,111827",
+    image: images.heroPrivateJet,
     title: "Global Perspective",
     quote:
       "Four continents of experience taught me that excellence has no borders.",
@@ -138,6 +162,7 @@ export const heroSlides = [
   {
     id: 3,
     gradient: "0A0F1A,1A2D4A",
+    image: images.heroCockpitRunway,
     title: "Safety First",
     quote:
       "The best risk is the one you anticipated. The safest flight is the one you planned for.",

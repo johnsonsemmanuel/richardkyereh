@@ -1,44 +1,13 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { GlassBlogCard } from "@/components/GlassBlogCard";
-import { placeholderImage } from "@/lib/images";
+import { articles } from "@/lib/articles";
+import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Newsroom",
   description: "Press releases, media coverage, and announcements from Richard Kyereh.",
 };
-
-const articles = [
-  {
-    title: "Richard Kyereh Speaks at Global Aviation Summit 2026",
-    excerpt:
-      "Keynote address on the future of fleet management and sustainable aviation in emerging markets.",
-    image: placeholderImage("Aviation Summit", "Keynote address", "05080F,1A2D4A"),
-    author: { name: "Press Team", avatar: "" },
-    date: "Jun 2026",
-    readTime: "3 min read",
-    tags: ["Speaking", "Industry"],
-  },
-  {
-    title: "New Advisory Framework for African Carriers Launched",
-    excerpt:
-      "A comprehensive framework designed to help African carriers meet international safety and operational standards.",
-    image: placeholderImage("Advisory Framework", "African carriers", "0A0F1A,111827"),
-    author: { name: "Press Team", avatar: "" },
-    date: "Apr 2026",
-    readTime: "4 min read",
-    tags: ["Advisory", "Africa"],
-  },
-  {
-    title: "Interview: The State of Aerospace in West Africa",
-    excerpt:
-      "An in-depth conversation on regional aviation growth, infrastructure challenges, and investment opportunities.",
-    image: placeholderImage("West Africa Aviation", "Market insights", "05080F,1F2937"),
-    author: { name: "Press Team", avatar: "" },
-    date: "Mar 2026",
-    readTime: "6 min read",
-    tags: ["Interview", "Markets"],
-  },
-];
 
 export default function NewsroomPage() {
   return (
@@ -49,10 +18,13 @@ export default function NewsroomPage() {
             Newsroom
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
-            Press &
+            Newsroom
             <br />
-            <span className="text-foreground/50">coverage.</span>
+            <span className="text-foreground/50">&amp; insights.</span>
           </h1>
+          <p className="mt-4 text-foreground/40 leading-relaxed">
+            Press coverage, industry analysis, and thought leadership from Richard Kyereh.
+          </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {articles.map((article) => (
