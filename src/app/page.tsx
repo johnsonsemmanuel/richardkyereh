@@ -5,6 +5,9 @@ import { GlassBlogCard } from "@/components/GlassBlogCard";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import { AviationBackground } from "@/components/AviationBackground";
 import { placeholderImage, serviceImage } from "@/lib/images";
+import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
+import { TiltCard } from "@/components/ui/tilt-card";
+import { CompassIcon, WingsIcon, AltitudeIcon, GlobeIcon, ShieldIcon } from "@/components/ui/aviation-icons";
 
 const services = [
   {
@@ -45,6 +48,8 @@ const services = [
   },
 ];
 
+const statIcons = [null, CompassIcon, GlobeIcon, ShieldIcon];
+
 export default function Home() {
   return (
     <>
@@ -53,8 +58,9 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary to-background" />
         <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="max-w-xl">
-              <p className="text-primary text-sm font-medium tracking-widest uppercase mb-6">
+            <Reveal direction="left" className="max-w-xl">
+              <p className="text-primary text-sm font-medium tracking-widest uppercase mb-6 flex items-center gap-2">
+                <CompassIcon className="size-4" />
                 Aerospace & Aviation Consultancy
               </p>
               <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-foreground">
@@ -74,40 +80,45 @@ export default function Home() {
                   <Link href="/services">Explore Services</Link>
                 </Button>
               </div>
-            </div>
-            <div className="hidden lg:block">
+            </Reveal>
+            <Reveal direction="right" delay={0.15} className="hidden lg:block">
               <HeroCarousel />
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       <section className="bg-secondary py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <StaggerReveal className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
               ["200+", "Projects Delivered"],
               ["15+", "Years Experience"],
               ["40+", "Global Clients"],
               ["99.7%", "Safety Record"],
-            ].map(([stat, label]) => (
-              <div key={stat}>
-                <p className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
-                  {stat}
-                </p>
-                <p className="mt-2 text-sm text-foreground/50 uppercase tracking-wider">
-                  {label}
-                </p>
-              </div>
-            ))}
-          </div>
+            ].map(([stat, label], i) => {
+              const Icon = statIcons[i];
+              return (
+                <StaggerItem key={stat} className="group">
+                  {Icon && <Icon className="size-6 text-primary/20 group-hover:text-primary/40 transition-colors mb-3" />}
+                  <p className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
+                    {stat}
+                  </p>
+                  <p className="mt-2 text-sm text-foreground/50 uppercase tracking-wider">
+                    {label}
+                  </p>
+                </StaggerItem>
+              );
+            })}
+          </StaggerReveal>
         </div>
       </section>
 
       <section className="bg-background py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-20">
-            <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4">
+          <Reveal className="text-center max-w-2xl mx-auto mb-20">
+            <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
+              <WingsIcon className="size-4" />
               Core Services
             </p>
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
@@ -115,40 +126,44 @@ export default function Home() {
               <br />
               <span className="text-foreground/50">delivered.</span>
             </h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          </Reveal>
+          <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (
-              <Link
-                key={service.title}
-                href="/services"
-                className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input overflow-hidden"
-              >
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img
-                    src={serviceImage(service.title, service.gradient)}
-                    alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-foreground/40 leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-              </Link>
+              <StaggerItem key={service.title}>
+                <TiltCard>
+                  <Link
+                    href="/services"
+                    className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input overflow-hidden"
+                  >
+                    <div className="aspect-[16/10] overflow-hidden">
+                      <img
+                        src={serviceImage(service.title, service.gradient)}
+                        alt={service.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-foreground/40 leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                  </Link>
+                </TiltCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerReveal>
         </div>
       </section>
 
       <section className="bg-secondary py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4">
+            <Reveal direction="left">
+              <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4 flex items-center gap-2">
+                <GlobeIcon className="size-4" />
                 About
               </p>
               <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
@@ -165,8 +180,8 @@ export default function Home() {
               <Button asChild variant="link" className="mt-8 px-0">
                 <Link href="/about">Full Bio &rarr;</Link>
               </Button>
-            </div>
-            <div className="relative h-[420px]">
+            </Reveal>
+            <Reveal direction="right" delay={0.1} className="relative h-[420px]">
               <StackedCardsInteraction
                 cards={[
                   {
@@ -186,15 +201,16 @@ export default function Home() {
                   },
                 ]}
               />
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       <section className="bg-background py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4">
+          <Reveal className="text-center max-w-2xl mx-auto mb-16">
+            <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
+              <WingsIcon className="size-4" />
               Insights
             </p>
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
@@ -202,53 +218,62 @@ export default function Home() {
               <br />
               <span className="text-foreground/50">perspective.</span>
             </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8 justify-items-center">
-            <GlassBlogCard
-              title="The State of Global Fleet Management in 2026"
-              excerpt="An analysis of fleet utilization trends, lease rates, and emerging market dynamics shaping aerospace investment decisions."
-              image={placeholderImage("Fleet Management", "Market analysis 2026", "05080F,1A2D4A")}
-              author={{ name: "Richard Kyereh", avatar: "" }}
-              date="May 2026"
-              readTime="6 min read"
-              tags={["Fleet", "Markets"]}
-            />
-            <GlassBlogCard
-              title="Safety Management Systems Beyond Compliance"
-              excerpt="How leading carriers are transforming SMS from a regulatory requirement into a competitive advantage in operations."
-              image={placeholderImage("Safety Systems", "Beyond compliance", "0A0F1A,111827")}
-              author={{ name: "Richard Kyereh", avatar: "" }}
-              date="Apr 2026"
-              readTime="4 min read"
-              tags={["Safety", "Compliance"]}
-            />
-            <GlassBlogCard
-              title="Sustainable Aviation Fuel: Realities & Roadmap"
-              excerpt="A practical assessment of SAF adoption timelines, infrastructure requirements, and cost trajectories for airlines."
-              image={placeholderImage("SAF Adoption", "Realities & roadmap", "05080F,1F2937")}
-              author={{ name: "Richard Kyereh", avatar: "" }}
-              date="Mar 2026"
-              readTime="5 min read"
-              tags={["Sustainability", "Fuel"]}
-            />
-          </div>
+          </Reveal>
+          <StaggerReveal className="grid md:grid-cols-3 gap-8 justify-items-center">
+            <StaggerItem>
+              <GlassBlogCard
+                title="The State of Global Fleet Management in 2026"
+                excerpt="An analysis of fleet utilization trends, lease rates, and emerging market dynamics shaping aerospace investment decisions."
+                image={placeholderImage("Fleet Management", "Market analysis 2026", "05080F,1A2D4A")}
+                author={{ name: "Richard Kyereh", avatar: "" }}
+                date="May 2026"
+                readTime="6 min read"
+                tags={["Fleet", "Markets"]}
+              />
+            </StaggerItem>
+            <StaggerItem>
+              <GlassBlogCard
+                title="Safety Management Systems Beyond Compliance"
+                excerpt="How leading carriers are transforming SMS from a regulatory requirement into a competitive advantage in operations."
+                image={placeholderImage("Safety Systems", "Beyond compliance", "0A0F1A,111827")}
+                author={{ name: "Richard Kyereh", avatar: "" }}
+                date="Apr 2026"
+                readTime="4 min read"
+                tags={["Safety", "Compliance"]}
+              />
+            </StaggerItem>
+            <StaggerItem>
+              <GlassBlogCard
+                title="Sustainable Aviation Fuel: Realities & Roadmap"
+                excerpt="A practical assessment of SAF adoption timelines, infrastructure requirements, and cost trajectories for airlines."
+                image={placeholderImage("SAF Adoption", "Realities & roadmap", "05080F,1F2937")}
+                author={{ name: "Richard Kyereh", avatar: "" }}
+                date="Mar 2026"
+                readTime="5 min read"
+                tags={["Sustainability", "Fuel"]}
+              />
+            </StaggerItem>
+          </StaggerReveal>
         </div>
       </section>
 
       <section className="bg-secondary py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
-            Ready to elevate
-            <br />
-            <span className="text-foreground/50">your operations?</span>
-          </h2>
-          <p className="mt-6 text-foreground/40 max-w-lg mx-auto">
-            Book a confidential consultation. We will assess your needs and
-            outline a path forward.
-          </p>
-          <Button asChild size="lg" className="mt-10">
-            <Link href="/booking">Schedule a Consultation</Link>
-          </Button>
+          <Reveal>
+            <AltitudeIcon className="size-8 text-primary/20 mx-auto mb-6" />
+            <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
+              Ready to elevate
+              <br />
+              <span className="text-foreground/50">your operations?</span>
+            </h2>
+            <p className="mt-6 text-foreground/40 max-w-lg mx-auto">
+              Book a confidential consultation. We will assess your needs and
+              outline a path forward.
+            </p>
+            <Button asChild size="lg" className="mt-10">
+              <Link href="/booking">Schedule a Consultation</Link>
+            </Button>
+          </Reveal>
         </div>
       </section>
     </>

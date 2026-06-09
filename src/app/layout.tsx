@@ -5,6 +5,8 @@ import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { CookieConsent } from "@/components/CookieConsent";
+import { SupportAgent } from "@/components/SupportAgent";
+import { PageTransition } from "@/components/ui/page-transition";
 
 export const metadata: Metadata = {
   title: {
@@ -49,10 +51,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans antialiased">
         <ThemeProvider>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1"><PageTransition>{children}</PageTransition></main>
           <Footer />
           <NewsletterPopup />
           <CookieConsent />
+          <SupportAgent />
         </ThemeProvider>
       </body>
     </html>

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/reveal";
+import { PlaneIcon } from "@/components/ui/aviation-icons";
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -49,8 +51,9 @@ export default function ContactPage() {
       <section className="pt-32 pb-12 lg:pt-40 lg:pb-16 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
-            <div>
-              <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4">
+            <Reveal direction="left">
+              <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4 flex items-center gap-2">
+                <PlaneIcon className="size-4" />
                 Contact
               </p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
@@ -97,8 +100,9 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
+            <Reveal direction="right" delay={0.1}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
@@ -156,6 +160,7 @@ export default function ContactPage() {
               </div>
               <Button type="submit">Send Message</Button>
             </form>
+            </Reveal>
           </div>
         </div>
       </section>

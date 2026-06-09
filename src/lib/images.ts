@@ -50,6 +50,22 @@ export function serviceImage(
   );
 }
 
+export function portrait(label: string = "R", gradient: string = "05080F,1A2D4A"): string {
+  return svgData(
+    `<defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#${gradient.split(",")[0]}"/>
+      <stop offset="100%" stop-color="#${gradient.split(",")[1]}"/>
+    </linearGradient>
+    <clipPath id="c"><circle cx="300" cy="300" r="300"/></clipPath></defs>
+    <rect width="600" height="600" fill="url(#g)"/>
+    <g clip-path="url(#c)">
+      <circle cx="300" cy="240" r="100" fill="rgba(255,255,255,0.08)"/>
+      <ellipse cx="300" cy="430" rx="140" ry="80" fill="rgba(255,255,255,0.05)"/>
+    </g>
+    <text x="300" y="480" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-family="Inter,system-ui,sans-serif" font-size="120" font-weight="700">${escapeXml(label)}</text>`
+  );
+}
+
 export function heroBg(gradient: string = "05080F,0A0F1A"): string {
   return svgData(
     `<defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
