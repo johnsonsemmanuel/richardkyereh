@@ -99,7 +99,7 @@ export function Header() {
                               <Icon className="size-4 text-primary/60 mt-0.5 shrink-0" />
                               <div>
                                 <p className="text-sm font-medium">{sub.label}</p>
-                                <p className="text-xs text-foreground/40">{sub.desc}</p>
+                                <p className="text-xs text-foreground/50">{sub.desc}</p>
                               </div>
                             </Link>
                           </DropdownMenuItem>
@@ -168,7 +168,7 @@ export function Header() {
             >
               <ChevronRight
                 className={cn(
-                  "size-3.5 text-foreground/30 transition-transform",
+                  "size-3.5 text-foreground/40 transition-transform",
                   mobileSubmenu && "rotate-90"
                 )}
               />
@@ -188,8 +188,8 @@ export function Header() {
                     >
                       <Icon className="size-4 text-primary/40 shrink-0" />
                       <div>
-                        <p className="text-sm font-medium text-foreground/70">{sub.label}</p>
-                        <p className="text-xs text-foreground/30">{sub.desc}</p>
+                        <p className="text-sm font-medium text-foreground/80">{sub.label}</p>
+                        <p className="text-xs text-foreground/50">{sub.desc}</p>
                       </div>
                     </Link>
                   );
@@ -220,14 +220,14 @@ export function Header() {
             </Link>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-center gap-4 pt-2 border-t border-border">
-              <a href="https://linkedin.com/in/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground/40 hover:text-foreground transition-colors">
+              <div className="flex items-center justify-center gap-4 pt-2 border-t border-border">
+              <a href="https://linkedin.com/in/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground/50 hover:text-foreground transition-colors">
                 <LinkedInIcon className="size-5" />
               </a>
-              <a href="https://x.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-foreground/40 hover:text-foreground transition-colors">
+              <a href="https://x.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-foreground/50 hover:text-foreground transition-colors">
                 <XIcon className="size-5" />
               </a>
-              <a href="https://instagram.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-foreground/40 hover:text-foreground transition-colors">
+              <a href="https://instagram.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-foreground/50 hover:text-foreground transition-colors">
                 <InstagramIcon className="size-5" />
               </a>
             </div>

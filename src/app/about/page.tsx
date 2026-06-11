@@ -56,7 +56,7 @@ export default function AboutPage() {
 
       <section className="pb-24 lg:pb-32 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl space-y-5 text-foreground/40 leading-relaxed">
+          <div className="max-w-4xl space-y-5 text-foreground/60 leading-relaxed">
             <Reveal>
               <p>
                 With over 15 years of experience at various managerial levels of the aviation
@@ -152,7 +152,7 @@ export default function AboutPage() {
               const Icon = item.Icon;
               return (
                 <StaggerItem key={item.label}>
-                  <div className="p-8 bg-background/50 border border-input group hover:bg-secondary transition-colors">
+                  <div className="p-8 bg-background/50 border border-input group hover:bg-secondary transition-colors rounded-xl shadow-card">
                     <Icon className="size-6 text-primary/20 group-hover:text-primary/40 transition-colors mb-4" />
                     <p className="text-xs text-primary uppercase tracking-widest font-medium">
                       {item.label}
@@ -160,7 +160,7 @@ export default function AboutPage() {
                     <p className="mt-2 text-2xl font-bold text-foreground">
                       {item.value}
                     </p>
-                    <p className="mt-2 text-sm text-foreground/40">{item.desc}</p>
+                    <p className="mt-2 text-sm text-foreground/50">{item.desc}</p>
                   </div>
                 </StaggerItem>
               );

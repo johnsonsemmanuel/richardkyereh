@@ -3,8 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { heroSlides } from "@/lib/images";
 import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/social-icons";
+
+const footerBgImages = [
+  "/awards/routes-africa-accra-2018/routes-africa-accra-2018_9.jpeg",
+  "/awards/routes-africa-accra-2018/routes-africa-accra-2018_10.jpeg",
+  "/awards/apg-monaco-2018/apg-monaco-2018_9.jpeg",
+];
 
 const tape = (
   <svg xmlns="http://www.w3.org/2000/svg" width="95" height="80" viewBox="0 0 95 80" fill="none">
@@ -56,20 +61,20 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-background border-t border-input mt-20">
       <div className="absolute inset-0 overflow-hidden">
-        {heroSlides.slice(0, 3).map((slide, i) => (
+        {footerBgImages.map((src, i) => (
           <div
             key={i}
             className="absolute inset-0"
-            style={{ opacity: 0.15 + i * 0.05 }}
+            style={{ opacity: 0.12 + i * 0.04 }}
           >
             <img
-              src={slide.image}
+              src={src}
               alt=""
               className="w-full h-full object-cover"
             />
           </div>
         ))}
-        <div className="absolute inset-0 backdrop-blur-[80px] bg-background/70" />
+        <div className="absolute inset-0 backdrop-blur-[100px] bg-background/60" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-16 lg:py-20">
@@ -90,17 +95,17 @@ export function Footer() {
                   className="h-10 w-auto"
                 />
               </Link>
-              <p className="text-foreground/40 text-sm leading-relaxed">
+              <p className="text-foreground/60 text-sm leading-relaxed">
                 Aerospace and aviation consultancy delivering strategic excellence,
                 operational safety, and global impact.
               </p>
 
               <div className="mt-2">
-                <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground/30 mb-3">
+                <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground/50 mb-3">
                   Newsletter
                 </h4>
                 {subscribed ? (
-                  <p className="text-sm text-foreground/50">
+                  <p className="text-sm text-foreground/60">
                     You&apos;re subscribed. Watch for aviation insights.
                   </p>
                 ) : (
@@ -124,7 +129,7 @@ export function Footer() {
             <div className="flex flex-wrap gap-8 md:gap-16">
               {footerLinkGroups.map((group) => (
                 <div key={group.title} className="flex flex-col gap-3">
-                  <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground/30">
+                  <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground/50">
                     {group.title}
                   </h4>
                   <div className="flex flex-col gap-2">
@@ -132,7 +137,7 @@ export function Footer() {
                       <Link
                         key={link.label}
                         href={link.href}
-                        className="text-sm text-foreground/50 hover:text-foreground transition-colors"
+                        className="text-sm text-foreground/60 hover:text-foreground transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -145,25 +150,25 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-8 px-2">
-          <p className="text-xs text-foreground/30">
+          <p className="text-xs text-foreground/50">
             &copy; {new Date().getFullYear()} Richard Kyereh. All rights reserved.
           </p>
           <div className="flex gap-4">
-            <Link href="/privacy" className="text-xs text-foreground/30 hover:text-foreground transition-colors">
+            <Link href="/privacy" className="text-xs text-foreground/50 hover:text-foreground transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-xs text-foreground/30 hover:text-foreground transition-colors">
+            <Link href="/terms" className="text-xs text-foreground/50 hover:text-foreground transition-colors">
               Terms &amp; Conditions
             </Link>
           </div>
           <div className="flex gap-4">
-            <a href="https://linkedin.com/in/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground/30 hover:text-foreground transition-colors">
+            <a href="https://linkedin.com/in/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground/50 hover:text-foreground transition-colors">
               <LinkedInIcon className="w-4 h-4" />
             </a>
-            <a href="https://x.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-foreground/30 hover:text-foreground transition-colors">
+            <a href="https://x.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-foreground/50 hover:text-foreground transition-colors">
               <XIcon className="w-4 h-4" />
             </a>
-            <a href="https://instagram.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-foreground/30 hover:text-foreground transition-colors">
+            <a href="https://instagram.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-foreground/50 hover:text-foreground transition-colors">
               <InstagramIcon className="w-4 h-4" />
             </a>
           </div>

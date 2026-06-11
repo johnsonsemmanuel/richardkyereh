@@ -66,9 +66,9 @@ export default function Home() {
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
               Strategic Clarity
               <br />
-              <span className="text-foreground/40">for the skies.</span>
+              <span className="text-foreground/60">for the skies.</span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-foreground/40 leading-relaxed max-w-lg">
+            <p className="mt-6 text-lg sm:text-xl text-foreground/60 leading-relaxed max-w-lg">
               Richard Kyereh provides world-class aerospace advisory from
               fleet strategy and safety compliance to operational excellence.
             </p>
@@ -131,7 +131,7 @@ export default function Home() {
                 <TiltCard>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden"
+                    className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden shadow-card"
                   >
                     <div className="aspect-[16/10] overflow-hidden">
                       <img
@@ -144,7 +144,7 @@ export default function Home() {
                       <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                         {service.title}
                       </h3>
-                      <p className="mt-2 text-sm text-foreground/40 leading-relaxed">
+                      <p className="mt-2 text-sm text-foreground/50 leading-relaxed">
                         {service.description}
                       </p>
                     </div>
@@ -169,7 +169,7 @@ export default function Home() {
                 <br />
                 <span className="text-foreground/50">define the flight path.</span>
               </h2>
-              <p className="mt-6 text-foreground/40 leading-relaxed">
+              <p className="mt-6 text-foreground/60 leading-relaxed">
                 With over a decade and a half in aerospace and aviation, Richard
                 Kyereh has advised airlines, regulators, and investment firms
                 across four continents. His work bridges technical depth and
@@ -253,7 +253,7 @@ export default function Home() {
               <br />
               <span className="text-foreground/50">your operations?</span>
             </h2>
-            <p className="mt-6 text-foreground/40 max-w-lg mx-auto">
+            <p className="mt-6 text-foreground/60 max-w-lg mx-auto">
               Book a confidential consultation. We will assess your needs and
               outline a path forward.
             </p>

@@ -78,7 +78,7 @@ export default function ServicesPage() {
               <br />
               <span className="text-foreground/50">deliver.</span>
             </h1>
-            <p className="mt-6 text-foreground/40 leading-relaxed">
+            <p className="mt-6 text-foreground/60 leading-relaxed">
               Every engagement is tailored to the client&apos;s specific
               operating environment and objectives.
             </p>
@@ -96,7 +96,7 @@ export default function ServicesPage() {
                 <TiltCard>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden"
+                    className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden shadow-card"
                   >
                     <div className="aspect-[16/10] overflow-hidden">
                       <img
@@ -110,14 +110,14 @@ export default function ServicesPage() {
                         <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                           {service.title}
                         </h3>
-                        <span className="text-xs text-foreground/30 bg-background/50 px-2 py-1 rounded">
+                        <span className="text-xs text-foreground/50 bg-background/50 px-2 py-1 rounded">
                           {service.price}
                         </span>
                       </div>
-                      <p className="text-xs text-foreground/40 mb-2">
+                      <p className="text-xs text-foreground/50 mb-2">
                         Duration: {service.duration}
                       </p>
-                      <p className="text-sm text-foreground/40 leading-relaxed">
+                      <p className="text-sm text-foreground/50 leading-relaxed">
                         {service.description}
                       </p>
                       <div className="mt-4">
