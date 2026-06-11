@@ -124,6 +124,15 @@ export function getAllAwardHeroImages(): string[] {
   return awardImageFolders.map((f) => getAwardHeroImage(f));
 }
 
+// Homepage hero images - curated selection from event photos
+export const homeHeroImages = [
+  "/awards/african-union-saatm-2019/african-union-saatm-2019_4.jpeg",
+  "/awards/apg-monaco-2018/apg-monaco-2018_9.jpeg",
+  "/awards/iata-regional-forum-accra-2019/iata-regional-forum-accra-2019_5.jpeg",
+  "/awards/aviadev-cape-town-2019/aviadev-cape-town-2019_4.jpeg",
+  "/awards/routes-africa-accra-2018/routes-africa-accra-2018_10.jpeg",
+];
+
 // Map each award index to its event image folder
 export const awardToImageFolder: Record<number, string> = {
   0: "african-union-saatm-2019",

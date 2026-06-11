@@ -2,15 +2,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { StackedCardsInteraction } from "@/components/StackedCards";
 import { GlassBlogCard } from "@/components/GlassBlogCard";
-import { HeroCarousel } from "@/components/HeroCarousel";
-import { AviationBackground } from "@/components/AviationBackground";
-import { images, serviceImageUrls } from "@/lib/images";
+import { images, serviceImageUrls, homeHeroImages } from "@/lib/images";
 import { articles } from "@/lib/articles";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { ArrowRight } from "lucide-react";
 import { CompassIcon, WingsIcon, AltitudeIcon, GlobeIcon, ShieldIcon } from "@/components/ui/aviation-icons";
 import { WavePath } from "@/components/ui/wave-path";
+import { HeroBackground } from "@/components/HeroBackground";
 
 const services = [
   {
@@ -56,38 +55,32 @@ const statIcons = [null, CompassIcon, GlobeIcon, ShieldIcon];
 export default function Home() {
   return (
     <>
-      <section className="relative min-h-screen flex items-center bg-background overflow-hidden">
-        <AviationBackground />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary to-background" />
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        <HeroBackground images={homeHeroImages} />
         <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <Reveal direction="left" className="max-w-xl">
-              <p className="text-primary text-sm font-medium tracking-widest uppercase mb-6 flex items-center gap-2">
-                <CompassIcon className="size-4" />
-                Aerospace & Aviation Consultancy
-              </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-foreground">
-                Strategic Clarity
-                <br />
-                <span className="text-foreground/50">for the skies.</span>
-              </h1>
-              <p className="mt-6 text-lg sm:text-xl text-foreground/40 leading-relaxed">
-                Richard Kyereh provides world-class aerospace advisory from
-                fleet strategy and safety compliance to operational excellence.
-              </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg">
-                  <Link href="/booking">Book a Consultation</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/services">Explore Services</Link>
-                </Button>
-              </div>
-            </Reveal>
-            <Reveal direction="right" delay={0.15} className="hidden lg:block">
-              <HeroCarousel />
-            </Reveal>
-          </div>
+          <Reveal className="max-w-2xl">
+            <p className="text-foreground/40 text-sm font-medium tracking-[0.15em] uppercase mb-6 flex items-center gap-2">
+              <CompassIcon className="size-4" />
+              Aerospace & Aviation Consultancy
+            </p>
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
+              Strategic Clarity
+              <br />
+              <span className="text-foreground/40">for the skies.</span>
+            </h1>
+            <p className="mt-6 text-lg sm:text-xl text-foreground/40 leading-relaxed max-w-lg">
+              Richard Kyereh provides world-class aerospace advisory from
+              fleet strategy and safety compliance to operational excellence.
+            </p>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <Button asChild size="lg">
+                <Link href="/booking">Book a Consultation</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/services">Explore Services</Link>
+              </Button>
+            </div>
+          </Reveal>
         </div>
       </section>
 

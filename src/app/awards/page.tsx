@@ -149,6 +149,23 @@ function Lightbox({
           {idx + 1} / {images.length}
         </div>
       </motion.div>
+
+      {images.length > 1 && (
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={(e) => { e.stopPropagation(); setIdx(i); }}
+              className={`rounded-full transition-all duration-300 ${
+                i === idx
+                  ? "w-6 h-1.5 bg-foreground"
+                  : "w-1.5 h-1.5 bg-foreground/20 hover:bg-foreground/40"
+              }`}
+              aria-label={`Image ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </motion.div>
   );
 }
