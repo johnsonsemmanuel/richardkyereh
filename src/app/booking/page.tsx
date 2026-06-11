@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
@@ -8,6 +8,14 @@ import {
   PlaneIcon, CompassIcon, WingsIcon, ShieldIcon, RadarIcon, GlobeIcon,
 } from "@/components/ui/aviation-icons";
 import { ArrowLeft, Check, Send, Calendar, ArrowRight } from "lucide-react";
+const serviceParamMap: Record<string, string> = {
+  career: "Career Consultancy",
+  speaking: "Speaking Engagement",
+  meeting: "Face To Face Meeting",
+  mentorship: "Mentorship",
+  leases: "Aircraft Leases",
+  charters: "Charters Services",
+};
 
 const timeSlots = [
   "09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00",
@@ -105,6 +113,16 @@ export default function BookingPage() {
     date: "", time: "", message: "", videoCall: "",
   });
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const serviceParam = params.get("service");
+    if (serviceParam && serviceParamMap[serviceParam]) {
+      const svc = serviceParamMap[serviceParam];
+      setForm((prev) => ({ ...prev, service: svc }));
+      setStep(2);
+    }
+  }, []);
 
   function update(field: string, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }));

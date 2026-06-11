@@ -6,9 +6,12 @@ import { Button } from "@/components/ui/button";
 import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/social-icons";
 
 const footerBgImages = [
-  "/awards/routes-africa-accra-2018/routes-africa-accra-2018_9.jpeg",
-  "/awards/routes-africa-accra-2018/routes-africa-accra-2018_10.jpeg",
-  "/awards/apg-monaco-2018/apg-monaco-2018_9.jpeg",
+  "/awards/airline-business-summit-mauritius-2019/airline-business-summit-mauritius-2019_1.jpeg",
+  "/awards/aviadev-cape-town-2019/aviadev-cape-town-2019_1.jpeg",
+  "/awards/routes-africa-accra-2018/routes-africa-accra-2018_1.jpeg",
+  "/awards/iata-regional-forum-accra-2019/iata-regional-forum-accra-2019_1.jpeg",
+  "/awards/african-union-saatm-2019/african-union-saatm-2019_1.jpeg",
+  "/awards/apg-monaco-2018/apg-monaco-2018_1.jpeg",
 ];
 
 const tape = (
@@ -31,10 +34,10 @@ const footerLinkGroups = [
   {
     title: "Services",
     links: [
-      { label: "Strategic Advisory", href: "/services" },
-      { label: "Fleet Management", href: "/services" },
-      { label: "Safety & Compliance", href: "/services" },
-      { label: "Operations", href: "/services" },
+      { label: "Career Consultancy", href: "/services/career-consultancy" },
+      { label: "Speaking Engagement", href: "/services/speaking-engagement" },
+      { label: "Face To Face Meeting", href: "/services/face-to-face-meeting" },
+      { label: "Mentorship", href: "/services/mentorship" },
     ],
   },
   {
@@ -65,7 +68,7 @@ export function Footer() {
           <div
             key={i}
             className="absolute inset-0"
-            style={{ opacity: 0.12 + i * 0.04 }}
+            style={{ opacity: 0.15 + i * 0.03 }}
           >
             <img
               src={src}
@@ -74,7 +77,7 @@ export function Footer() {
             />
           </div>
         ))}
-        <div className="absolute inset-0 backdrop-blur-[100px] bg-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/60 to-background/80 backdrop-blur-[40px]" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-16 lg:py-20">
@@ -92,7 +95,7 @@ export function Footer() {
                 <img
                   src="/richardkyerehlogo.png"
                   alt="Richard Kyereh"
-                  className="h-10 w-auto"
+                  className="h-12 w-auto"
                 />
               </Link>
               <p className="text-foreground/60 text-sm leading-relaxed">
