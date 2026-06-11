@@ -81,20 +81,64 @@ export function heroBg(gradient: string = "05080F,0A0F1A"): string {
   );
 }
 
-export const awardImages = [
-  unsplashUrl("1761813409957-681c1e4376ec"),
-  unsplashUrl("1683971113886-ca5883e598b6"),
-  unsplashUrl("1770620562966-8414ba9b1f77"),
-  unsplashUrl("1761813409478-91163f7100d7"),
-  unsplashUrl("1777360082567-6ee5ad429076"),
-  unsplashUrl("1778433610719-822331b4f369"),
-  unsplashUrl("1768886834010-c577b64ab8e0"),
-  unsplashUrl("1759979702262-71e15fa210d4"),
-  unsplashUrl("1684426268118-b9f828a96e1e"),
-  unsplashUrl("1768637229595-8291ad2b6856"),
-  unsplashUrl("1765305743880-c592b9a01756"),
-  unsplashUrl("1761813409570-ebc80a41c324"),
+export function getAwardImagePaths(folder: string): string[] {
+  const count = folderImageCounts[folder] ?? 3;
+  return Array.from({ length: count }, (_, i) => `/awards/${folder}/${folder}_${i + 1}.jpeg`);
+}
+
+export function getAwardHeroImage(folder: string): string {
+  return getAwardImagePaths(folder)[0];
+}
+
+export const awardImageFolders = [
+  "aviadev-cape-town-2019",
+  "airline-business-summit-mauritius-2019",
+  "iata-regional-forum-accra-2019",
+  "african-union-saatm-2019",
+  "routes-africa-accra-2018",
+  "routes-africa-mombasa-2019",
+  "aviadev-cape-town-2018",
+  "media-engagement",
+  "accra-weizo-2018",
+  "apg-monaco-2018",
+  "airline-business-seminar-seychelles-2018",
+  "aviation-festival-africa-2017",
 ];
+
+const folderImageCounts: Record<string, number> = {
+  "accra-weizo-2018": 6,
+  "african-union-saatm-2019": 9,
+  "airline-business-seminar-seychelles-2018": 7,
+  "airline-business-summit-mauritius-2019": 11,
+  "apg-monaco-2018": 10,
+  "aviadev-cape-town-2018": 7,
+  "aviadev-cape-town-2019": 10,
+  "aviation-festival-africa-2017": 3,
+  "iata-regional-forum-accra-2019": 10,
+  "media-engagement": 8,
+  "routes-africa-accra-2018": 14,
+  "routes-africa-mombasa-2019": 3,
+};
+
+export function getAllAwardHeroImages(): string[] {
+  return awardImageFolders.map((f) => getAwardHeroImage(f));
+}
+
+// Map each award index to its event image folder
+export const awardToImageFolder: Record<number, string> = {
+  0: "african-union-saatm-2019",
+  1: "airline-business-summit-mauritius-2019",
+  2: "iata-regional-forum-accra-2019",
+  3: "accra-weizo-2018",
+  4: "routes-africa-accra-2018",
+  5: "aviadev-cape-town-2019",
+  6: "aviation-festival-africa-2017",
+  7: "media-engagement",
+  8: "aviadev-cape-town-2018",
+  9: "apg-monaco-2018",
+  10: "airline-business-seminar-seychelles-2018",
+  11: "routes-africa-mombasa-2019",
+};
 
 export function unsplashUrl(id: string, w = 1200): string {
   return `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
