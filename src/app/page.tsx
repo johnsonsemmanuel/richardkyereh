@@ -118,7 +118,7 @@ export default function Home() {
             <Reveal direction="left" className="lg:col-span-2">
               <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-input bg-secondary/50 shadow-2xl shadow-primary/5">
                 <img
-                  src="/photos/richard-single-portrait.jpeg"
+                  src="/photos/aviadev-profile.jpg"
                   alt="Richard Kyereh"
                   className="w-full h-full object-cover"
                 />

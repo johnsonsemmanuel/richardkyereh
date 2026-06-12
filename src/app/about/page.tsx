@@ -20,7 +20,7 @@ const highlights = [
 ];
 
 const aboutPhotos = [
-  "/photos/richard-portrait-1.jpeg",
+  "/photos/aviadev-profile.jpg",
   "/photos/richard-speaking-1.jpeg",
   "/photos/richard-media-2.jpeg",
   "/photos/richard-group-1.jpeg",
