@@ -19,13 +19,6 @@ const highlights = [
   { label: "Impact", value: "35x weekly", desc: "Grew Accra-Lagos route from 3x weekly to 35x weekly in 18 months.", Icon: ShieldIcon },
 ];
 
-const aboutPhotos = [
-  "/photos/aviadev-profile.jpg",
-  "/photos/richard-speaking-1.jpeg",
-  "/photos/richard-media-2.jpeg",
-  "/photos/richard-group-1.jpeg",
-];
-
 export default function AboutPage() {
   return (
     <>
@@ -33,21 +26,12 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
             <Reveal direction="left" className="lg:col-span-2">
-              <div className="grid grid-cols-2 gap-3">
-                {aboutPhotos.slice(0, 2).map((src, i) => (
-                  <div
-                    key={i}
-                    className={`rounded-2xl overflow-hidden border border-input bg-secondary/50 shadow-2xl shadow-primary/5 ${
-                      i === 0 ? "row-span-2" : ""
-                    }`}
-                  >
-                    <img
-                      src={src}
-                      alt={`Richard Kyereh ${i + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
+              <div className="relative rounded-2xl overflow-hidden border border-input bg-secondary/50 shadow-2xl shadow-primary/10 before:absolute before:inset-0 before:bg-gradient-to-t before:from-background/20 before:to-transparent before:z-10">
+                <img
+                  src="/photos/aviadev-profile.jpg"
+                  alt="Richard Kyereh"
+                  className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-700"
+                />
               </div>
             </Reveal>
             <Reveal direction="right" className="lg:col-span-3 space-y-4">

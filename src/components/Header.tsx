@@ -33,12 +33,12 @@ const navItems: NavItem[] = [
   {
     label: "Our Services",
     dropdown: [
-      { label: "Career Consultancy", desc: "Personalized career guidance", href: "/booking?service=career", icon: CompassIcon },
-      { label: "Speaking Engagement", desc: "Keynotes & panel participation", href: "/booking?service=speaking", icon: GlobeIcon },
-      { label: "Face To Face Meeting", desc: "Confidential strategic discussions", href: "/booking?service=meeting", icon: WingsIcon },
-      { label: "Mentorship", desc: "Leadership development programs", href: "/booking?service=mentorship", icon: ShieldIcon },
-      { label: "Aircraft Leases", desc: "Fleet strategy & lease analysis", href: "/booking?service=leases", icon: RadarIcon },
-      { label: "Charters Services", desc: "Charter operations consulting", href: "/booking?service=charters", icon: PlaneIcon },
+      { label: "Career Consultancy", desc: "Personalized career guidance", href: "/services/career-consultancy", icon: CompassIcon },
+      { label: "Speaking Engagement", desc: "Keynotes & panel participation", href: "/services/speaking-engagement", icon: GlobeIcon },
+      { label: "Face To Face Meeting", desc: "Confidential strategic discussions", href: "/services/face-to-face-meeting", icon: WingsIcon },
+      { label: "Mentorship", desc: "Leadership development programs", href: "/services/mentorship", icon: ShieldIcon },
+      { label: "Aircraft Leases", desc: "Fleet strategy & lease analysis", href: "/services/aircraft-leases", icon: RadarIcon },
+      { label: "Charters Services", desc: "Charter operations consulting", href: "/services/charters-services", icon: PlaneIcon },
     ],
   },
   { label: "Our Awards", href: "/awards" },
