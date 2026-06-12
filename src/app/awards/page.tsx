@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  getAwardImagePaths,
+  getAwardMediaPaths,
   getAllAwardHeroImages,
 } from "@/lib/images";
 import { X, ChevronLeft, ChevronRight, Award } from "lucide-react";
@@ -42,7 +42,7 @@ function AwardCard({ award, index, onSelect }: {
   index: number;
   onSelect: () => void;
 }) {
-  const images = getAwardImagePaths(award.folder);
+  const media = getAwardMediaPaths(award.folder);
 
   return (
     <motion.button
@@ -55,7 +55,7 @@ function AwardCard({ award, index, onSelect }: {
       className="group relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-secondary/50 border border-border hover:border-foreground/20 transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/30 text-left shadow-card"
     >
       <motion.img
-        src={images[0]}
+        src={media[0].src}
         alt={`${award.title} - ${award.org}, ${award.year}`}
         loading="lazy"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -82,18 +82,20 @@ function Lightbox({
   award: Award;
   onClose: () => void;
 }) {
-  const images = getAwardImagePaths(award.folder);
+  const media = getAwardMediaPaths(award.folder);
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") setIdx((i) => (i > 0 ? i - 1 : images.length - 1));
-      if (e.key === "ArrowRight") setIdx((i) => (i < images.length - 1 ? i + 1 : 0));
+      if (e.key === "ArrowLeft") setIdx((i) => (i > 0 ? i - 1 : media.length - 1));
+      if (e.key === "ArrowRight") setIdx((i) => (i < media.length - 1 ? i + 1 : 0));
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [onClose, images.length]);
+  }, [onClose, media.length]);
+
+  const current = media[idx];
 
   return (
     <motion.div
@@ -123,7 +125,7 @@ function Lightbox({
           <ChevronLeft className="size-5 text-foreground" />
         </button>
       )}
-      {idx < images.length - 1 && (
+      {idx < media.length - 1 && (
         <button
           onClick={(e) => { e.stopPropagation(); setIdx(idx + 1); }}
           className="absolute right-4 top-1/2 -translate-y-1/2 z-20 size-10 rounded-full bg-foreground/10 hover:bg-foreground/20 flex items-center justify-center transition-colors"
@@ -138,15 +140,24 @@ function Lightbox({
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative z-10 max-w-5xl w-full max-h-[85vh] mx-4 rounded-2xl overflow-hidden"
+        className="relative z-10 max-w-5xl w-full max-h-[85vh] mx-4 rounded-2xl overflow-hidden flex items-center justify-center bg-black/10"
         onClick={(e) => e.stopPropagation()}
       >
-        <img
-          src={images[idx]}
-          alt={`${award.title} - ${award.org}`}
-          className="w-full h-full max-h-[85vh] object-contain bg-background"
-        />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/80 to-transparent p-6 pt-16">
+        {current.type === "video" ? (
+          <video
+            src={current.src}
+            controls
+            className="w-full max-h-[85vh] object-contain"
+            style={{ maxHeight: "85vh" }}
+          />
+        ) : (
+          <img
+            src={current.src}
+            alt={`${award.title} - ${award.org}`}
+            className="w-full h-full max-h-[85vh] object-contain bg-background"
+          />
+        )}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/80 to-transparent p-6 pt-16 pointer-events-none">
           <span className="text-xs font-semibold text-foreground/50 tracking-[0.15em] uppercase">
             {award.year} &middot; {award.org}
           </span>
@@ -155,23 +166,35 @@ function Lightbox({
           </h2>
         </div>
         <div className="absolute top-4 left-4 text-xs text-foreground/50 tabular-nums">
-          {idx + 1} / {images.length}
+          {idx + 1} / {media.length}
+          {current.type === "video" && (
+            <span className="ml-2 inline-flex items-center gap-1 text-primary">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="size-3"><path d="M8 5v14l11-7z"/></svg>
+              Video
+            </span>
+          )}
         </div>
       </motion.div>
 
-      {images.length > 1 && (
+      {media.length > 1 && (
         <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
-          {images.map((_, i) => (
+          {media.map((item, i) => (
             <button
               key={i}
               onClick={(e) => { e.stopPropagation(); setIdx(i); }}
-              className={`rounded-full transition-all duration-300 ${
+              className={`rounded-full transition-all duration-300 flex items-center justify-center ${
                 i === idx
                   ? "w-6 h-1.5 bg-foreground"
-                  : "w-1.5 h-1.5 bg-foreground/20 hover:bg-foreground/40"
+                  : item.type === "video"
+                    ? "size-2 bg-primary/40 hover:bg-primary/60"
+                    : "w-1.5 h-1.5 bg-foreground/20 hover:bg-foreground/40"
               }`}
-              aria-label={`Image ${i + 1}`}
-            />
+              aria-label={`Media ${i + 1}`}
+            >
+              {item.type === "video" && i !== idx && (
+                <svg viewBox="0 0 24 24" fill="currentColor" className="size-1.5"><path d="M8 5v14l11-7z"/></svg>
+              )}
+            </button>
           ))}
         </div>
       )}

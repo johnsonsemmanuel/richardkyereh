@@ -86,6 +86,17 @@ export function getAwardImagePaths(folder: string): string[] {
   return Array.from({ length: count }, (_, i) => `/awards/${folder}/${folder}_${i + 1}.jpeg`);
 }
 
+export function getAwardVideoPaths(folder: string): string[] {
+  const count = folderVideoCounts[folder] ?? 0;
+  return Array.from({ length: count }, (_, i) => `/awards/${folder}/${folder}_video_${i + 1}.mp4`);
+}
+
+export function getAwardMediaPaths(folder: string): { src: string; type: "image" | "video" }[] {
+  const images = getAwardImagePaths(folder).map((src) => ({ src, type: "image" as const }));
+  const videos = getAwardVideoPaths(folder).map((src) => ({ src, type: "video" as const }));
+  return [...images, ...videos];
+}
+
 export function getAwardHeroImage(folder: string): string {
   return getAwardImagePaths(folder)[0];
 }
@@ -104,6 +115,10 @@ export const awardImageFolders = [
   "airline-business-seminar-seychelles-2018",
   "aviation-festival-africa-2017",
 ];
+
+const folderVideoCounts: Record<string, number> = {
+  "iata-regional-forum-accra-2019": 1,
+};
 
 const folderImageCounts: Record<string, number> = {
   "accra-weizo-2018": 6,
