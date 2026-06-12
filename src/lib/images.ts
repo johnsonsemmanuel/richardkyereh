@@ -133,12 +133,12 @@ export const homeHeroImages = [
   "/awards/routes-africa-accra-2018/routes-africa-accra-2018_10.jpeg",
 ];
 
-// Map each award index to its event image folder
+// Map each award index to its event image folder (chronologically aligned)
 export const awardToImageFolder: Record<number, string> = {
-  0: "african-union-saatm-2019",
+  0: "media-engagement",
   1: "airline-business-summit-mauritius-2019",
   2: "iata-regional-forum-accra-2019",
-  3: "accra-weizo-2018",
+  3: "media-engagement",
   4: "routes-africa-accra-2018",
   5: "aviadev-cape-town-2019",
   6: "aviation-festival-africa-2017",
@@ -146,7 +146,7 @@ export const awardToImageFolder: Record<number, string> = {
   8: "aviadev-cape-town-2018",
   9: "apg-monaco-2018",
   10: "airline-business-seminar-seychelles-2018",
-  11: "routes-africa-mombasa-2019",
+  11: "accra-weizo-2018",
 };
 
 export function unsplashUrl(id: string, w = 1200): string {

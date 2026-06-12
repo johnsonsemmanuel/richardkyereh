@@ -34,6 +34,7 @@ const navItems: NavItem[] = [
       { label: "Charters Services", desc: "Charter operations consulting", href: "/booking?service=charters", icon: PlaneIcon },
     ],
   },
+  { label: "Testimonials", href: "/testimonials" },
   { label: "Our Awards", href: "/awards" },
   { label: "Our Newsroom", href: "/newsroom" },
   { label: "Contact Us", href: "/contact" },
@@ -197,6 +198,13 @@ export function Header() {
               </div>
             )}
 
+            <Link
+              href="/testimonials"
+              onClick={() => setOpen(false)}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base" })}
+            >
+              Testimonials
+            </Link>
             <Link
               href="/awards"
               onClick={() => setOpen(false)}

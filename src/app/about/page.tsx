@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { GlassBlogCard } from "@/components/GlassBlogCard";
-import { images, portrait } from "@/lib/images";
+import { images } from "@/lib/images";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { GlobeIcon, WingsIcon, CompassIcon, ShieldIcon, PlaneIcon } from "@/components/ui/aviation-icons";
 import { WavePath } from "@/components/ui/wave-path";
@@ -19,6 +19,13 @@ const highlights = [
   { label: "Impact", value: "35x weekly", desc: "Grew Accra–Lagos route from 3x weekly to 35x weekly in 18 months.", Icon: ShieldIcon },
 ];
 
+const aboutPhotos = [
+  "/photos/richard-portrait-1.jpeg",
+  "/photos/richard-speaking-1.jpeg",
+  "/photos/richard-media-2.jpeg",
+  "/photos/richard-group-1.jpeg",
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -26,12 +33,21 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
             <Reveal direction="left" className="lg:col-span-2">
-              <div className="aspect-square w-full max-w-xs mx-auto lg:mx-0 rounded-2xl overflow-hidden border border-input bg-secondary/50 shadow-2xl shadow-primary/5">
-                <img
-                  src={portrait("RK")}
-                  alt="Richard Kyereh"
-                  className="w-full h-full object-cover"
-                />
+              <div className="grid grid-cols-2 gap-3">
+                {aboutPhotos.slice(0, 2).map((src, i) => (
+                  <div
+                    key={i}
+                    className={`rounded-2xl overflow-hidden border border-input bg-secondary/50 shadow-2xl shadow-primary/5 ${
+                      i === 0 ? "row-span-2" : ""
+                    }`}
+                  >
+                    <img
+                      src={src}
+                      alt={`Richard Kyereh ${i + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
               </div>
             </Reveal>
             <Reveal direction="right" className="lg:col-span-3 space-y-4">

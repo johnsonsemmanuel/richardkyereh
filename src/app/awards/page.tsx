@@ -11,10 +11,10 @@ import { X, ChevronLeft, ChevronRight, Award } from "lucide-react";
 type Award = { year: string; title: string; org: string; folder: string };
 
 const awards: Award[] = [
-  { year: "2024", title: "Aviation Leadership Award", org: "African Aviation Summit", folder: "african-union-saatm-2019" },
+  { year: "2024", title: "Aviation Leadership Award", org: "African Aviation Summit", folder: "media-engagement" },
   { year: "2024", title: "Excellence in Aerospace Consulting", org: "Global Aviation Awards", folder: "airline-business-summit-mauritius-2019" },
   { year: "2023", title: "Safety Innovation Recognition", org: "ICAO Regional Forum", folder: "iata-regional-forum-accra-2019" },
-  { year: "2023", title: "Outstanding Contribution to Aviation", org: "West African Aviation Conference", folder: "accra-weizo-2018" },
+  { year: "2023", title: "Outstanding Contribution to Aviation", org: "West African Aviation Conference", folder: "media-engagement" },
   { year: "2022", title: "Best Airline Route Development", org: "African Airlines Association", folder: "routes-africa-accra-2018" },
   { year: "2022", title: "Young Aviation Professional Award", org: "Youth in Aviation Summit", folder: "aviadev-cape-town-2019" },
   { year: "2021", title: "Operational Excellence Award", org: "Ghana Aviation Awards", folder: "aviation-festival-africa-2017" },
@@ -22,7 +22,7 @@ const awards: Award[] = [
   { year: "2020", title: "Pandemic Response Leadership", org: "ICAO Regional Office", folder: "aviadev-cape-town-2018" },
   { year: "2019", title: "Emerging Leader in Aviation", org: "African Business Aviation Association", folder: "apg-monaco-2018" },
   { year: "2019", title: "Passenger Experience Innovation", org: "World Aviation Summit", folder: "airline-business-seminar-seychelles-2018" },
-  { year: "2018", title: "Rising Star Award", org: "Ghana Aviation Excellence Awards", folder: "routes-africa-mombasa-2019" },
+  { year: "2018", title: "Rising Star Award", org: "Ghana Aviation Excellence Awards", folder: "accra-weizo-2018" },
 ];
 
 const years = [...new Set(awards.map((a) => a.year))].sort().reverse();

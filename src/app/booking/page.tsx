@@ -150,8 +150,21 @@ export default function BookingPage() {
     }
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    try {
+      const questions: Record<string, string> = {};
+      serviceQuestions[selectedService]?.forEach((q) => {
+        if (form[q.key]) questions[q.key] = form[q.key];
+      });
+      await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, questions }),
+      });
+    } catch (err) {
+      console.error("Booking submission error:", err);
+    }
     setSubmitted(true);
   }
 

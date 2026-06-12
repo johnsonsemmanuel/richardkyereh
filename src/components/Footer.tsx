@@ -27,6 +27,7 @@ const footerLinkGroups = [
     links: [
       { label: "Home", href: "/" },
       { label: "Services", href: "/services" },
+      { label: "Testimonials", href: "/testimonials" },
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" },
     ],
@@ -53,9 +54,18 @@ export function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-  function handleNewsletter(e: React.FormEvent) {
+  async function handleNewsletter(e: React.FormEvent) {
     e.preventDefault();
     if (email) {
+      try {
+        await fetch("/api/newsletter", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+      } catch (err) {
+        console.error("Newsletter submission error:", err);
+      }
       setSubscribed(true);
       setEmail("");
     }

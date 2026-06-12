@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
-import { PlaneIcon, CompassIcon, GlobeIcon, WingsIcon } from "@/components/ui/aviation-icons";
+import { PlaneIcon, CompassIcon, WingsIcon } from "@/components/ui/aviation-icons";
 import { MapPin, Phone, Clock, Send, Mail, ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 
@@ -41,8 +41,17 @@ export default function ContactPage() {
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+    } catch (err) {
+      console.error("Contact submission error:", err);
+    }
     setSubmitted(true);
   }
 
@@ -154,7 +163,7 @@ export default function ContactPage() {
                 </p>
                 <div className="flex items-center gap-3">
                   <a
-                    href="https://linkedin.com"
+                    href="https://linkedin.com/in/richardkyereh"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="size-9 rounded-lg bg-secondary/50 border border-input flex items-center justify-center text-foreground/40 hover:text-primary hover:border-primary/40 transition-all"
@@ -165,7 +174,7 @@ export default function ContactPage() {
                     </svg>
                   </a>
                   <a
-                    href="https://x.com"
+                    href="https://x.com/richardkyereh"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="size-9 rounded-lg bg-secondary/50 border border-input flex items-center justify-center text-foreground/40 hover:text-primary hover:border-primary/40 transition-all"

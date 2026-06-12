@@ -26,9 +26,18 @@ export function NewsletterPopup() {
     setShow(false);
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (email) {
+      try {
+        await fetch("/api/newsletter", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+      } catch (err) {
+        console.error("Newsletter submission error:", err);
+      }
       setSubscribed(true);
       setTimeout(dismiss, 2500);
     }
