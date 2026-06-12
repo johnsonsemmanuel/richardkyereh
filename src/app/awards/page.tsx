@@ -56,7 +56,7 @@ function AwardCard({ award, index, onSelect }: {
     >
       <motion.img
         src={images[0]}
-        alt={`${award.title} — ${award.org}, ${award.year}`}
+        alt={`${award.title} - ${award.org}, ${award.year}`}
         loading="lazy"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
       />
@@ -143,7 +143,7 @@ function Lightbox({
       >
         <img
           src={images[idx]}
-          alt={`${award.title} — ${award.org}`}
+          alt={`${award.title} - ${award.org}`}
           className="w-full h-full max-h-[85vh] object-contain bg-background"
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/80 to-transparent p-6 pt-16">
@@ -266,7 +266,7 @@ export default function AwardsPage() {
               <span className="text-foreground/60">honours.</span>
             </h1>
             <p className="mt-6 text-foreground/60 leading-relaxed max-w-lg">
-              A record of industry recognition spanning {Math.min(...awards.map((a) => +a.year))}&ndash;
+              A record of industry recognition spanning {Math.min(...awards.map((a) => +a.year))}-
               {Math.max(...awards.map((a) => +a.year))}.
             </p>
           </motion.div>

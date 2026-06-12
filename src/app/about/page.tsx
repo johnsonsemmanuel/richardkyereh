@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const highlights = [
   { label: "Experience", value: "15+ years", desc: "Across airlines, regulators, and investment firms across West Africa and beyond.", Icon: GlobeIcon },
   { label: "Expertise", value: "Full spectrum", desc: "From network development and route launches to safety management and aero politics.", Icon: CompassIcon },
-  { label: "Impact", value: "35x weekly", desc: "Grew Accra–Lagos route from 3x weekly to 35x weekly in 18 months.", Icon: ShieldIcon },
+  { label: "Impact", value: "35x weekly", desc: "Grew Accra-Lagos route from 3x weekly to 35x weekly in 18 months.", Icon: ShieldIcon },
 ];
 
 const aboutPhotos = [
@@ -106,14 +106,14 @@ export default function AboutPage() {
                 While at Africa World Airlines he spearheaded the growth in the regional network
                 from a single route in 2016 to five destinations across four countries by
                 February 2020 (Lagos, Abuja, Monrovia, Freetown and Abidjan) and the expansion
-                of some key domestic routes in Ghana&mdash;Kumasi to Tamale direct, Takoradi,
+                of some key domestic routes in Ghana - Kumasi to Tamale direct, Takoradi,
                 and Wa operations.
               </p>
             </Reveal>
             <Reveal delay={0.2}>
               <p>
                 Leading a team of highly trained and dedicated AWA staff, he exponentially grew
-                the Accra&ndash;Lagos-Accra dying route from 3x weekly flights to 35x weekly
+                the Accra-Lagos-Accra dying route from 3x weekly flights to 35x weekly
                 over 18 months. He diversified distribution channels and maximised revenue by
                 championing the implementation of commercial distributions such GDS, and
                 succeeded in seeking out eight (8) airline partners for SPAs and IET agreements
@@ -124,8 +124,8 @@ export default function AboutPage() {
             <Reveal delay={0.25}>
               <p>
                 He has also served as an Advisory Board Member for Aviation Development
-                (AviaDev) Africa from 2020 &ndash; 2021. He is an Aviation Consultant who
-                currently holds the following positions: Country Manager &ndash; Ghana for
+                (AviaDev) Africa from 2020 - 2021. He is an Aviation Consultant who
+                currently holds the following positions: Country Manager - Ghana for
                 Westair Aviation, African Representative for the Indonesian pilot training
                 school, Lombok Institute of Flight Technology (LIFT) and an Executive Director
                 for Centre for Aviation Policy &amp; Development, Africa (CAPD-Africa).
@@ -144,7 +144,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.35}>
               <p>
-                Mr Kyereh holds three IATA Diplomas&ndash;Airline Management, Airline Revenue
+                Mr Kyereh holds three IATA Diplomas - Airline Management, Airline Revenue
                 Accounting and Controls, and Airlines Business Development. He also holds an MBA
                 in Project Management from GIMPA and Alumni of the Kwame Nkrumah University of
                 Science and Technology (KNUST). He is a certified member of the Project

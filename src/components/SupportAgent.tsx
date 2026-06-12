@@ -24,7 +24,7 @@ function botReply(input: string): string {
   if (lower.includes("speak") || lower.includes("keynote") || lower.includes("event") || lower.includes("conference"))
     return "Richard is available for speaking engagements at conferences, corporate events, and panels. Check our [Speaking Engagement page](/services/speaking-engagement) or go ahead and [book a session](/booking).";
   if (lower.includes("meet") || lower.includes("face") || lower.includes("discuss") || lower.includes("strategy"))
-    return "You can schedule a confidential **Face To Face Meeting** — in person or via video call. Pick a time that works for you on our [booking page](/booking).";
+    return "You can schedule a confidential **Face To Face Meeting** - in person or via video call. Pick a time that works for you on our [booking page](/booking).";
   if (lower.includes("mentor") || lower.includes("mentorship") || lower.includes("guidance") || lower.includes("develop"))
     return "Our **Mentorship** program is designed for emerging aviation leaders. Learn more on the [Mentorship page](/services/mentorship) or [book a session](/booking).";
   if (lower.includes("lease") || lower.includes("aircraft") || lower.includes("fleet"))
@@ -128,7 +128,7 @@ export function SupportAgent() {
                   <div>
                     <p className="text-sm font-semibold text-foreground">Aviation Support</p>
                     <p className="text-[10px] text-foreground/40">
-                      {view === "chat" ? "Online — replies instantly" : "Guidance & Assistance"}
+                      {view === "chat" ? "Online - replies instantly" : "Guidance & Assistance"}
                     </p>
                   </div>
                 </div>

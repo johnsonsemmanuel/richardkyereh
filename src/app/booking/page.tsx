@@ -36,7 +36,7 @@ const serviceQuestions: Record<string, Question[]> = {
   "Career Consultancy": [
     { label: "What is your current role or title?", key: "currentRole", type: "text", placeholder: "e.g. First Officer, Ramp Supervisor" },
     { label: "How many years of aviation experience do you have?", key: "experience", type: "number", placeholder: "e.g. 5" },
-    { label: "Do you currently hold any type ratings?", key: "typeRatings", type: "text", placeholder: "e.g. A320, B737 — or None" },
+    { label: "Do you currently hold any type ratings?", key: "typeRatings", type: "text", placeholder: "e.g. A320, B737 - or None" },
     { label: "What is your primary career goal?", key: "careerGoal", type: "select", options: ["Command Upgrade", "Type Rating", "Management Transition", "Airline Entry", "Career Pivot", "Entrepreneurship", "Other"] },
     { label: "Which sector are you targeting?", key: "sector", type: "select", options: ["Commercial Airlines", "Business Aviation", "Cargo / Freight", "Aircraft Leasing", "Regulatory / Government", "Maintenance / MRO"] },
     { label: "What is your preferred timeline for this transition?", key: "timeline", type: "select", options: ["Within 3 months", "Within 6 months", "Within 12 months", "Flexible", "Just exploring"] },
@@ -50,15 +50,15 @@ const serviceQuestions: Record<string, Question[]> = {
     { label: "What is the expected audience size?", key: "audienceSize", type: "number", placeholder: "e.g. 500" },
     { label: "How long would you like the session to be?", key: "sessionDuration", type: "select", options: ["30 minutes", "45 minutes", "60 minutes", "90 minutes", "Half-day", "Full-day", "Flexible"] },
     { label: "What topic or theme would you like addressed?", key: "topic", type: "textarea", placeholder: "Tell us about the theme or specific topic..." },
-    { label: "Will there be a Q&A session?", key: "qAndA", type: "select", options: ["Yes — as part of the session", "Yes — a dedicated Q&A segment", "No Q&A planned", "Not sure yet"] },
-    { label: "Do you require travel arrangements?", key: "travelRequired", type: "select", options: ["Yes — domestic", "Yes — international", "No, travel not needed", "Not sure yet"] },
+    { label: "Will there be a Q&A session?", key: "qAndA", type: "select", options: ["Yes - as part of the session", "Yes - a dedicated Q&A segment", "No Q&A planned", "Not sure yet"] },
+    { label: "Do you require travel arrangements?", key: "travelRequired", type: "select", options: ["Yes - domestic", "Yes - international", "No, travel not needed", "Not sure yet"] },
     { label: "Any additional requirements or AV needs?", key: "speakingNotes", type: "textarea", placeholder: "AV equipment, panel format, recording permission, etc." },
   ],
   "Face To Face Meeting": [
     { label: "Where would you like to meet?", key: "location", type: "text", placeholder: "e.g. Accra, Ghana or Virtual" },
     { label: "What topics would you like to discuss?", key: "topics", type: "textarea", placeholder: "Briefly outline what you want to discuss..." },
     { label: "How urgent is this meeting?", key: "urgency", type: "select", options: ["This week", "Within 2 weeks", "Within a month", "No rush"] },
-    { label: "Are you representing an organization?", key: "representing", type: "select", options: ["Yes — Company / Institution", "Yes — Government Agency", "No — Personal Capacity"] },
+    { label: "Are you representing an organization?", key: "representing", type: "select", options: ["Yes - Company / Institution", "Yes - Government Agency", "No - Personal Capacity"] },
     { label: "How long do you expect the meeting to last?", key: "meetingDuration", type: "select", options: ["30 minutes", "1 hour", "2 hours", "Flexible"] },
     { label: "Would you like this meeting to be confidential?", key: "confidential", type: "select", options: ["Yes, confidential", "No, not required"] },
   ],
@@ -76,13 +76,13 @@ const serviceQuestions: Record<string, Question[]> = {
     { label: "What region will the aircraft operate in?", key: "region", type: "select", options: ["Africa", "Middle East", "Asia Pacific", "Europe", "North America", "Latin America", "Global"] },
     { label: "What lease type do you prefer?", key: "leaseType", type: "select", options: ["Dry Lease", "Wet Lease (ACMI)", "Both / Not Sure", "Sale & Leaseback"] },
     { label: "How many aircraft are you looking to acquire?", key: "fleetSize", type: "number", placeholder: "e.g. 3" },
-    { label: "What is your expected timeline?", key: "leaseTimeline", type: "select", options: ["Immediate", "3–6 months", "6–12 months", "Just exploring"] },
+    { label: "What is your expected timeline?", key: "leaseTimeline", type: "select", options: ["Immediate", "3-6 months", "6-12 months", "Just exploring"] },
     { label: "Do you have financing in place?", key: "financing", type: "select", options: ["Yes, financing secured", "In progress", "Not yet", "Not applicable"] },
     { label: "Is this a new operation or an expansion?", key: "operationType", type: "select", options: ["New operation", "Fleet expansion", "Fleet replacement", "Consulting for a client"] },
   ],
   "Charters Services": [
-    { label: "What routes or regions do you operate?", key: "routes", type: "text", placeholder: "e.g. West Africa, ACC–LOS" },
-    { label: "What passenger capacity do you need?", key: "capacity", type: "select", options: ["Under 20", "20–50", "50–100", "100+", "Not sure yet"] },
+    { label: "What routes or regions do you operate?", key: "routes", type: "text", placeholder: "e.g. West Africa, ACC-LOS" },
+    { label: "What passenger capacity do you need?", key: "capacity", type: "select", options: ["Under 20", "20-50", "50-100", "100+", "Not sure yet"] },
     { label: "What service level are you targeting?", key: "serviceLevel", type: "select", options: ["Standard", "Premium / VIP", "Both", "Not sure yet"] },
     { label: "Are you currently operating charters?", key: "operating", type: "select", options: ["Yes, actively operating", "Yes, planning to expand", "No, exploring entry", "Consulting for a client"] },
     { label: "What is your expected launch timeline?", key: "charterTimeline", type: "select", options: ["Already operating", "Within 3 months", "Within 6 months", "Within 12 months", "Just exploring"] },
@@ -268,7 +268,7 @@ export default function BookingPage() {
 
             <form onSubmit={handleSubmit}>
               <AnimatePresence mode="wait" custom={direction}>
-                {/* STEP 1 — Contact + Service */}
+                {/* STEP 1 - Contact + Service */}
                 {step === 1 && (
                   <motion.div
                     key="step1"
@@ -394,7 +394,7 @@ export default function BookingPage() {
                   </motion.div>
                 )}
 
-                {/* STEP 2 — Conversational questions */}
+                {/* STEP 2 - Conversational questions */}
                 {step === 2 && currentQ && (
                   <motion.div
                     key="step2"
@@ -517,7 +517,7 @@ export default function BookingPage() {
                   </motion.div>
                 )}
 
-                {/* STEP 3 — Date, time, review */}
+                {/* STEP 3 - Date, time, review */}
                 {step === 3 && (
                   <motion.div
                     key="step3"

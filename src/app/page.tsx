@@ -118,7 +118,7 @@ export default function Home() {
             <Reveal direction="left" className="lg:col-span-2">
               <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-input bg-secondary/50 shadow-2xl shadow-primary/5">
                 <img
-                  src="/photos/richard-portrait-1.jpeg"
+                  src="/photos/richard-single-portrait.jpeg"
                   alt="Richard Kyereh"
                   className="w-full h-full object-cover"
                 />
@@ -130,21 +130,21 @@ export default function Home() {
                 Profile
               </p>
               <blockquote className="text-xl sm:text-2xl lg:text-3xl font-medium leading-snug text-foreground/80 border-l-4 border-primary pl-6 py-2">
-                &ldquo;Aviation is not just a career &mdash; it demands absolute mastery, strategic vision, and the courage to pioneer where others have not dared.&rdquo;
+                &ldquo;Aviation is not just a career - it demands absolute mastery, strategic vision, and the courage to pioneer where others have not dared.&rdquo;
               </blockquote>
               <div className="mt-8 space-y-4 text-foreground/60 leading-relaxed">
                 <p>
                   Richard Kyereh is one of West Africa&apos;s most respected aviation professionals, with over 15 years at various managerial levels across Ghana and the West Africa sub-region. He has held executive roles at Africa World Airlines and Antrak Air, and currently serves as Ghana Country Manager for Westair Aviation.
                 </p>
                 <p>
-                  At Africa World Airlines, he single-handedly grew the Accra&ndash;Lagos route from 3x weekly to 35x weekly over just 18 months &mdash; a landmark achievement in regional aviation connectivity. He spearheaded regional network expansion to 5 destinations across 4 countries.
+                    At Africa World Airlines, he single-handedly grew the Accra-Lagos route from 3x weekly to 35x weekly over just 18 months - a landmark achievement in regional aviation connectivity. He spearheaded regional network expansion to 5 destinations across 4 countries.
                 </p>
                 <p>
                   He is also African Representative for Lombok Institute of Flight Technology (LIFT), Indonesia, and Executive Director of the Centre for Aviation Policy &amp; Development, Africa (CAPD-Africa).
                 </p>
               </div>
               <p className="mt-6 text-sm text-foreground/40">
-                &mdash; Richard Kyereh, MBA, PMI | Accra, Ghana
+                - Richard Kyereh, MBA, PMI | Accra, Ghana
               </p>
               <div className="mt-6">
                 <Button asChild variant="outline" size="sm">

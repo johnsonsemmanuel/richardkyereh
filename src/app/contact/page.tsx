@@ -106,7 +106,7 @@ export default function ContactPage() {
               </h1>
               <p className="mt-6 text-foreground/40 leading-relaxed max-w-md">
                 For general inquiries, speaking requests, partnership proposals,
-                or media enquiries — send us a message and we will get back to
+                 or media enquiries - send us a message and we will get back to
                 you within 24 hours.
               </p>
 
@@ -150,7 +150,7 @@ export default function ContactPage() {
                   </div>
                   <div className="text-sm">
                     <p className="text-foreground/60 font-medium">Business Hours</p>
-                    <p className="text-foreground/40 mt-0.5">Monday – Friday: 8am – 5pm GMT</p>
+                    <p className="text-foreground/40 mt-0.5">Monday - Friday: 8am - 5pm GMT</p>
                     <p className="text-foreground/30 text-xs mt-0.5">Weekend inquiries answered on Monday</p>
                   </div>
                 </div>
