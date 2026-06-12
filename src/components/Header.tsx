@@ -24,6 +24,13 @@ type NavItem = { label: string; href: string } | { label: string; dropdown: { la
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   {
+    label: "About Us",
+    dropdown: [
+      { label: "Full Biography", desc: "Richard Kyereh's story & credentials", href: "/about", icon: CompassIcon },
+      { label: "Testimonials", desc: "What clients and partners say", href: "/testimonials", icon: GlobeIcon },
+    ],
+  },
+  {
     label: "Our Services",
     dropdown: [
       { label: "Career Consultancy", desc: "Personalized career guidance", href: "/booking?service=career", icon: CompassIcon },
@@ -34,7 +41,6 @@ const navItems: NavItem[] = [
       { label: "Charters Services", desc: "Charter operations consulting", href: "/booking?service=charters", icon: PlaneIcon },
     ],
   },
-  { label: "Testimonials", href: "/testimonials" },
   { label: "Our Awards", href: "/awards" },
   { label: "Our Newsroom", href: "/newsroom" },
   { label: "Contact Us", href: "/contact" },
@@ -42,13 +48,16 @@ const navItems: NavItem[] = [
 
 type DropdownItem = Extract<NavItem, { dropdown: unknown[] }>["dropdown"][number];
 
+const aboutSubItems = (navItems.find((n) => "dropdown" in n && n.label === "About Us") as Extract<NavItem, { dropdown: unknown[] }>).dropdown;
+const servicesSubItems = (navItems.find((n) => "dropdown" in n && n.label === "Our Services") as Extract<NavItem, { dropdown: unknown[] }>).dropdown;
+
 function isDropdown(item: NavItem): item is Extract<NavItem, { dropdown: unknown[] }> {
   return "dropdown" in item;
 }
 
 export function Header() {
   const [open, setOpen] = React.useState(false);
-  const [mobileSubmenu, setMobileSubmenu] = React.useState(false);
+  const [mobileSubmenu, setMobileSubmenu] = React.useState<string | null>(null);
   const scrolled = useScroll(10);
   const { theme, toggle } = useTheme();
 
@@ -164,21 +173,21 @@ export function Header() {
             </Link>
 
             <button
-              onClick={() => setMobileSubmenu(!mobileSubmenu)}
+              onClick={() => setMobileSubmenu(mobileSubmenu === "services" ? null : "services")}
               className={buttonVariants({ variant: "ghost", className: "justify-start text-base gap-2 w-full" })}
             >
               <ChevronRight
                 className={cn(
                   "size-3.5 text-foreground/40 transition-transform",
-                  mobileSubmenu && "rotate-90"
+                  mobileSubmenu === "services" && "rotate-90"
                 )}
               />
               Our Services
             </button>
 
-            {mobileSubmenu && (
+            {mobileSubmenu === "services" && (
               <div className="pl-8 grid gap-y-0.5 mb-1 overflow-hidden">
-                {(navItems.find((n) => "dropdown" in n && n.label === "Our Services") as Extract<NavItem, { dropdown: unknown[] }>).dropdown.map((sub) => {
+                {servicesSubItems.map((sub) => {
                   const Icon = sub.icon;
                   return (
                     <Link
@@ -198,13 +207,41 @@ export function Header() {
               </div>
             )}
 
-            <Link
-              href="/testimonials"
-              onClick={() => setOpen(false)}
-              className={buttonVariants({ variant: "ghost", className: "justify-start text-base" })}
+            <button
+              onClick={() => setMobileSubmenu(mobileSubmenu === "about" ? null : "about")}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base gap-2 w-full" })}
             >
-              Testimonials
-            </Link>
+              <ChevronRight
+                className={cn(
+                  "size-3.5 text-foreground/40 transition-transform",
+                  mobileSubmenu === "about" && "rotate-90"
+                )}
+              />
+              About Us
+            </button>
+
+            {mobileSubmenu === "about" && (
+              <div className="pl-8 grid gap-y-0.5 mb-1 overflow-hidden">
+                {aboutSubItems.map((sub) => {
+                  const Icon = sub.icon;
+                  return (
+                    <Link
+                      key={sub.label}
+                      href={sub.href}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-secondary/50 transition-colors"
+                    >
+                      <Icon className="size-4 text-primary/40 shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-foreground/80">{sub.label}</p>
+                        <p className="text-xs text-foreground/50">{sub.desc}</p>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+
             <Link
               href="/awards"
               onClick={() => setOpen(false)}
