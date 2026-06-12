@@ -17,7 +17,7 @@ import {
 import {
   CompassIcon, GlobeIcon, WingsIcon, ShieldIcon, RadarIcon, PlaneIcon,
 } from "@/components/ui/aviation-icons";
-import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/social-icons";
+import { LinkedInIcon, XIcon, InstagramIcon, FacebookIcon } from "@/components/ui/social-icons";
 
 type NavItem = { label: string; href: string } | { label: string; dropdown: { label: string; desc: string; href: string; icon: React.ComponentType<{ className?: string }> }[] };
 
@@ -266,8 +266,11 @@ export function Header() {
           </div>
           <div className="flex flex-col gap-4">
               <div className="flex items-center justify-center gap-4 pt-2 border-t border-border">
-              <a href="https://linkedin.com/in/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground/50 hover:text-foreground transition-colors">
+              <a href="https://gh.linkedin.com/in/richard-kyereh-mba-pmp-7726bb1b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground/50 hover:text-foreground transition-colors">
                 <LinkedInIcon className="size-5" />
+              </a>
+              <a href="https://web.facebook.com/richardkwabena.kyereh" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-foreground/50 hover:text-foreground transition-colors">
+                <FacebookIcon className="size-5" />
               </a>
               <a href="https://x.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-foreground/50 hover:text-foreground transition-colors">
                 <XIcon className="size-5" />

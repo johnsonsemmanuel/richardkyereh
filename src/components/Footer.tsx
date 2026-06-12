@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { LinkedInIcon, XIcon, InstagramIcon } from "@/components/ui/social-icons";
+import { LinkedInIcon, XIcon, InstagramIcon, FacebookIcon } from "@/components/ui/social-icons";
 
 const footerBgImages = [
   "/awards/airline-business-summit-mauritius-2019/airline-business-summit-mauritius-2019_1.jpeg",
@@ -175,8 +175,11 @@ export function Footer() {
             </Link>
           </div>
           <div className="flex gap-4">
-            <a href="https://linkedin.com/in/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground/50 hover:text-foreground transition-colors">
+            <a href="https://gh.linkedin.com/in/richard-kyereh-mba-pmp-7726bb1b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground/50 hover:text-foreground transition-colors">
               <LinkedInIcon className="w-4 h-4" />
+            </a>
+            <a href="https://web.facebook.com/richardkwabena.kyereh" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-foreground/50 hover:text-foreground transition-colors">
+              <FacebookIcon className="w-4 h-4" />
             </a>
             <a href="https://x.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-foreground/50 hover:text-foreground transition-colors">
               <XIcon className="w-4 h-4" />
