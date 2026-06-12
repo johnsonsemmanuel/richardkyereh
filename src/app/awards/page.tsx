@@ -7,6 +7,15 @@ import {
   getAllAwardHeroImages,
 } from "@/lib/images";
 import { X, ChevronLeft, ChevronRight, Award } from "lucide-react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
 
 type Award = { year: string; title: string; org: string; folder: string };
 
@@ -203,9 +212,12 @@ function HeroBackground({ images }: { images: string[] }) {
   );
 }
 
+const PAGE_SIZE = 8;
+
 export default function AwardsPage() {
   const [yearFilter, setYearFilter] = useState<string | null>(null);
   const [lightboxAward, setLightboxAward] = useState<Award | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
 
@@ -218,6 +230,17 @@ export default function AwardsPage() {
   const filtered = yearFilter
     ? awards.filter((a) => a.year === yearFilter)
     : awards;
+
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  const paginated = filtered.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE
+  );
+
+  function handleYearFilter(year: string | null) {
+    setYearFilter(year);
+    setCurrentPage(1);
+  }
 
   return (
     <>
@@ -260,7 +283,7 @@ export default function AwardsPage() {
             className="flex items-center gap-2 mb-10 overflow-x-auto pb-2 scrollbar-none"
           >
             <button
-              onClick={() => setYearFilter(null)}
+              onClick={() => handleYearFilter(null)}
               className={`shrink-0 px-5 py-2 rounded-full text-xs font-medium border transition-all duration-300 ${
                 yearFilter === null
                   ? "bg-foreground text-background border-foreground"
@@ -272,7 +295,7 @@ export default function AwardsPage() {
             {years.map((y) => (
               <button
                 key={y}
-                onClick={() => setYearFilter(y)}
+                onClick={() => handleYearFilter(y)}
                 className={`shrink-0 px-5 py-2 rounded-full text-xs font-medium border transition-all duration-300 ${
                   yearFilter === y
                     ? "bg-foreground text-background border-foreground"
@@ -293,7 +316,7 @@ export default function AwardsPage() {
               transition={{ duration: 0.25 }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
             >
-              {filtered.map((award, i) => (
+              {paginated.map((award, i) => (
                 <AwardCard
                   key={`${award.year}-${award.title}`}
                   award={award}
@@ -303,6 +326,47 @@ export default function AwardsPage() {
               ))}
             </motion.div>
           </AnimatePresence>
+
+          {totalPages > 1 && (
+            <Pagination className="mt-12">
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentPage((p) => Math.max(1, p - 1));
+                    }}
+                    className={currentPage <= 1 ? "pointer-events-none opacity-30" : ""}
+                  />
+                </PaginationItem>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <PaginationItem key={page}>
+                    <PaginationLink
+                      href="#"
+                      isActive={page === currentPage}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setCurrentPage(page);
+                      }}
+                    >
+                      {page}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
+                <PaginationItem>
+                  <PaginationNext
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentPage((p) => Math.min(totalPages, p + 1));
+                    }}
+                    className={currentPage >= totalPages ? "pointer-events-none opacity-30" : ""}
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          )}
 
           {filtered.length === 0 && (
             <motion.p
