@@ -5,6 +5,24 @@ import { createClient } from "@sanity/client";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// Load .env.local manually
+function loadEnv() {
+  try {
+    const envPath = join(__dirname, "..", ".env.local");
+    const content = readFileSync(envPath, "utf-8");
+    for (const line of content.split("\n")) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) continue;
+      const eqIdx = trimmed.indexOf("=");
+      if (eqIdx === -1) continue;
+      const key = trimmed.slice(0, eqIdx).trim();
+      const value = trimmed.slice(eqIdx + 1).trim();
+      if (!process.env[key]) process.env[key] = value;
+    }
+  } catch { /* no .env.local */ }
+}
+loadEnv();
+
 const projectId = process.env.SANITY_PROJECT_ID;
 const dataset = process.env.SANITY_DATASET || "production";
 const token = process.env.SANITY_WRITE_TOKEN;
@@ -189,6 +207,15 @@ function parseReadTime(readTimeStr) {
   return match ? parseInt(match[1], 10) : 3;
 }
 
+function sanitizeId(slug) {
+  return slug
+    .replace(/%[0-9a-fA-F]{2}/g, "")
+    .replace(/[^a-zA-Z0-9_-]/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/(^-|-$)/g, "")
+    .slice(0, 96);
+}
+
 // ─── Sanity operations ───────────────────────────────────────────────────────
 
 let richardAuthorId = null;
@@ -303,7 +330,7 @@ async function main() {
 
         const doc = {
           _type: "post",
-          _id: `post-${article.slug}`,
+          _id: `post-${sanitizeId(article.slug)}`,
           title: decodeHtmlEntities(article.title),
           slug: { _type: "slug", current: article.slug },
           excerpt: decodeHtmlEntities(article.excerpt || "").slice(0, 500),
@@ -315,14 +342,6 @@ async function main() {
           readTime: parseReadTime(article.readTime || "3 min read"),
           featured: false,
         };
-
-        if (article.image) {
-          doc.featuredImage = {
-            _type: "image",
-            asset: { _type: "reference", _ref: `image-placeholder-${article.slug}` },
-            alt: article.title,
-          };
-        }
 
         transaction.createOrReplace(doc);
         imported++;
