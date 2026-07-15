@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
-import { NewsletterPopup } from "@/components/NewsletterPopup";
-import { CookieConsent } from "@/components/CookieConsent";
-import { SupportAgent } from "@/components/SupportAgent";
-import { PageTransition } from "@/components/ui/page-transition";
+import { LayoutWrapper } from "@/components/LayoutWrapper";
 import { DotPattern } from "@/components/ui/dot-pattern";
 
 const siteUrl = "https://richardkyereh.vercel.app";
@@ -118,12 +113,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans antialiased relative">
         <DotPattern />
         <ThemeProvider>
-          <Header />
-          <main className="flex-1"><PageTransition>{children}</PageTransition></main>
-          <Footer />
-          <NewsletterPopup />
-          <CookieConsent />
-          <SupportAgent />
+          <LayoutWrapper>{children}</LayoutWrapper>
         </ThemeProvider>
       </body>
     </html>
