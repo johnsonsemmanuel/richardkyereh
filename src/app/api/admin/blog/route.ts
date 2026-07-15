@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { title, slug, excerpt, content, featured, readTime } = body;
+    const { title, slug, excerpt, content, featured, readTime, featuredImage } = body;
 
     if (!title || !slug || !content) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Sanity not configured" }, { status: 500 });
     }
 
-    const doc = {
+    const doc: Record<string, unknown> = {
       _type: "post",
       title,
       slug: { _type: "slug", current: slug },
@@ -48,8 +48,15 @@ export async function POST(request: Request) {
       publishedAt: new Date().toISOString(),
     };
 
+    if (featuredImage) {
+      doc.featuredImage = featuredImage;
+    }
+
     const result = await client.create(doc);
-    return NextResponse.json({ post: { ...result, slug: slug } });
+    const imageUrl = doc.featuredImage
+      ? `https://cdn.sanity.io/images/${process.env.SANITY_PROJECT_ID}/${process.env.SANITY_DATASET || "production"}/${doc.featuredImage._ref}`
+      : null;
+    return NextResponse.json({ post: { ...result, slug, image: imageUrl } });
   } catch (error) {
     console.error("Create post error:", error);
     return NextResponse.json({ error: "Failed to create post" }, { status: 500 });
@@ -64,7 +71,7 @@ export async function PUT(request: Request) {
     }
 
     const body = await request.json();
-    const { _id, title, slug, excerpt, content, featured, readTime } = body;
+    const { _id, title, slug, excerpt, content, featured, readTime, featuredImage } = body;
 
     if (!_id || !title) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -91,9 +98,16 @@ export async function PUT(request: Request) {
     if (readTime) {
       update.readTime = parseInt(readTime);
     }
+    if (featuredImage) {
+      update.featuredImage = featuredImage;
+    }
 
     const result = await client.patch(_id).set(update).commit();
-    return NextResponse.json({ post: { ...result, slug: slug || result.slug?.current || result.slug } });
+    const imageRef = update.featuredImage?._ref || result.featuredImage?.asset?._ref;
+    const imageUrl = imageRef
+      ? `https://cdn.sanity.io/images/${process.env.SANITY_PROJECT_ID}/${process.env.SANITY_DATASET || "production"}/${imageRef}`
+      : null;
+    return NextResponse.json({ post: { ...result, slug: slug || result.slug?.current || result.slug, image: imageUrl } });
   } catch (error) {
     console.error("Update post error:", error);
     return NextResponse.json({ error: "Failed to update post" }, { status: 500 });

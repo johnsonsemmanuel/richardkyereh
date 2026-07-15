@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { Plus, Edit, Trash2, X } from "lucide-react";
+import { useState, useTransition, useRef } from "react";
+import { Plus, Edit, Trash2, X, Upload, Image } from "lucide-react";
 
 interface Post {
   _id: string;
@@ -11,6 +11,7 @@ interface Post {
   publishedAt: string;
   featured: boolean;
   readTime: number | null;
+  image?: string | null;
 }
 
 interface BlogManagerProps {
@@ -22,6 +23,11 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
   const [isPending, startTransition] = useTransition();
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imageAlt, setImageAlt] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
@@ -31,14 +37,51 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
     readTime: "",
   });
 
+  function handleImageSelect(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImageFile(file);
+    const reader = new FileReader();
+    reader.onload = (ev) => setImagePreview(ev.target?.result as string);
+    reader.readAsDataURL(file);
+  }
+
+  function removeImage() {
+    setImageFile(null);
+    setImagePreview(null);
+    setImageAlt("");
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
+  async function uploadImage(): Promise<{ asset: { _type: string; _ref: string }; url: string } | null> {
+    if (!imageFile) return null;
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", imageFile);
+      fd.append("alt", imageAlt);
+      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      if (!res.ok) return null;
+      return await res.json();
+    } finally {
+      setUploading(false);
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     startTransition(async () => {
-      const url = editingId ? "/api/admin/blog" : "/api/admin/blog";
-      const method = editingId ? "PUT" : "POST";
-      const body = editingId ? { _id: editingId, ...formData } : formData;
+      let imageData: { asset: { _type: string; _ref: string }; url: string } | null = null;
+      if (imageFile) {
+        imageData = await uploadImage();
+      }
 
-      const res = await fetch(url, {
+      const method = editingId ? "PUT" : "POST";
+      const body = editingId
+        ? { _id: editingId, ...formData, featuredImage: imageData?.asset || undefined }
+        : { ...formData, featuredImage: imageData?.asset || undefined };
+
+      const res = await fetch("/api/admin/blog", {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -46,10 +89,14 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
 
       if (res.ok) {
         const data = await res.json();
+        const newPost = {
+          ...data.post,
+          image: imageData?.url || data.post.image || null,
+        };
         if (editingId) {
-          setPosts(posts.map((p) => (p._id === editingId ? { ...p, ...data.post } : p)));
+          setPosts(posts.map((p) => (p._id === editingId ? { ...p, ...newPost } : p)));
         } else {
-          setPosts([data.post, ...posts]);
+          setPosts([newPost, ...posts]);
         }
         resetForm();
       }
@@ -71,6 +118,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
 
   function resetForm() {
     setFormData({ title: "", slug: "", excerpt: "", content: "", featured: false, readTime: "" });
+    removeImage();
     setShowForm(false);
     setEditingId(null);
   }
@@ -84,6 +132,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
       featured: post.featured,
       readTime: post.readTime?.toString() || "",
     });
+    setImagePreview(post.image || null);
     setEditingId(post._id);
     setShowForm(true);
   }
@@ -112,6 +161,51 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
             </div>
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div>
+                <label className="block text-sm font-medium text-foreground/70 mb-1">Featured Image</label>
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  className="relative w-full h-48 border-2 border-dashed border-input rounded-xl cursor-pointer hover:border-foreground/30 transition-colors overflow-hidden bg-secondary/30 flex items-center justify-center"
+                >
+                  {imagePreview ? (
+                    <>
+                      <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                      <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); removeImage(); }}
+                        className="absolute top-2 right-2 p-1.5 bg-background/80 backdrop-blur-sm rounded-full text-foreground/70 hover:text-foreground transition-colors"
+                      >
+                        <X className="size-4" />
+                      </button>
+                    </>
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 text-foreground/40">
+                      <Upload className="size-8" />
+                      <span className="text-sm">Click to upload image</span>
+                      <span className="text-xs">JPG, PNG, WebP</span>
+                    </div>
+                  )}
+                </div>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageSelect}
+                  className="hidden"
+                />
+                {imagePreview && (
+                  <div className="mt-2">
+                    <label className="block text-xs font-medium text-foreground/50 mb-1">Alt text</label>
+                    <input
+                      type="text"
+                      value={imageAlt}
+                      onChange={(e) => setImageAlt(e.target.value)}
+                      placeholder="Describe the image"
+                      className="w-full px-3 py-1.5 text-sm bg-background border border-input rounded-lg focus:outline-none focus:border-ring"
+                    />
+                  </div>
+                )}
+              </div>
+              <div>
                 <label className="block text-sm font-medium text-foreground/70 mb-1">Title</label>
                 <input
                   type="text"
@@ -125,7 +219,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                 <label className="block text-sm font-medium text-foreground/70 mb-1">Slug</label>
                 <input
                   type="text"
-                  value={formData.title}
+                  value={formData.slug}
                   onChange={(e) => setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") })}
                   required
                   className="w-full px-4 py-2 bg-background border border-input rounded-lg focus:outline-none focus:border-ring"
@@ -175,8 +269,12 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                 <button type="button" onClick={resetForm} className="px-4 py-2 text-sm bg-secondary border border-input rounded-lg hover:bg-secondary/80 transition-colors">
                   Cancel
                 </button>
-                <button type="submit" disabled={isPending} className="px-4 py-2 text-sm bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50">
-                  {isPending ? "Saving..." : editingId ? "Update Post" : "Create Post"}
+                <button
+                  type="submit"
+                  disabled={isPending || uploading}
+                  className="px-4 py-2 text-sm bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
+                >
+                  {uploading ? "Uploading..." : isPending ? "Saving..." : editingId ? "Update Post" : "Create Post"}
                 </button>
               </div>
             </form>
@@ -189,6 +287,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
           <table className="w-full">
             <thead className="bg-secondary/50">
               <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-foreground/50 uppercase tracking-wider">Image</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-foreground/50 uppercase tracking-wider">Title</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-foreground/50 uppercase tracking-wider">Slug</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-foreground/50 uppercase tracking-wider">Featured</th>
@@ -200,13 +299,22 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
             <tbody className="divide-y divide-input">
               {posts.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-6 py-8 text-center text-sm text-foreground/50">
+                  <td colSpan={7} className="px-6 py-8 text-center text-sm text-foreground/50">
                     No blog posts yet
                   </td>
                 </tr>
               ) : (
                 posts.map((post) => (
                   <tr key={post._id} className="hover:bg-secondary/30 transition-colors">
+                    <td className="px-6 py-4">
+                      {post.image ? (
+                        <img src={post.image} alt={post.title} className="w-12 h-12 rounded-lg object-cover" />
+                      ) : (
+                        <div className="w-12 h-12 rounded-lg bg-secondary/50 flex items-center justify-center">
+                          <Image className="size-5 text-foreground/20" />
+                        </div>
+                      )}
+                    </td>
                     <td className="px-6 py-4 text-sm font-medium text-foreground">{post.title}</td>
                     <td className="px-6 py-4 text-sm text-foreground/70">{post.slug}</td>
                     <td className="px-6 py-4 text-sm text-foreground/70">{post.featured ? "Yes" : "No"}</td>
