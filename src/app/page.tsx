@@ -5,7 +5,7 @@ import { serviceImageUrls, homeHeroImages } from "@/lib/images";
 import { articles } from "@/lib/articles";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import { CompassIcon, WingsIcon, AltitudeIcon, GlobeIcon, ShieldIcon } from "@/components/ui/aviation-icons";
 import { WavePath } from "@/components/ui/wave-path";
 import { HeroBackground } from "@/components/HeroBackground";
@@ -49,7 +49,7 @@ const services = [
   },
 ];
 
-const statIcons = [null, CompassIcon, GlobeIcon, ShieldIcon];
+const statIcons = [CheckCircle, CompassIcon, GlobeIcon, ShieldIcon];
 
 export default function Home() {
   return (
