@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "migrate:sanity": "node scripts/migrate-to-sanity.mjs",
+    "migrate:sanity:skip": "node scripts/migrate-to-sanity.mjs --skip-existing"
   },
   "dependencies": {
     "@portabletext/react": "^6.2.0",

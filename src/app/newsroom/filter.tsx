@@ -54,7 +54,9 @@ export function NewsroomFilter({ articles, allTags }: Props) {
   const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
   const paginated = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleFilterChange(setter: (...args: any[]) => void) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (...args: any[]) => {
       setter(...args);
       setPage(1);

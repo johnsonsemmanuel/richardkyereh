@@ -9,6 +9,19 @@ export interface WordPressPost {
   featuredImage: string | null;
 }
 
+interface WpApiPost {
+  slug: string;
+  date: string;
+  title?: { rendered?: string };
+  excerpt?: { rendered?: string };
+  content?: { rendered?: string };
+  _embedded?: {
+    author?: Array<{ name?: string }>;
+    "wp:term"?: Array<Array<{ taxonomy?: string; name?: string }>>;
+    "wp:featuredmedia"?: Array<{ source_url?: string }>;
+  };
+}
+
 export async function fetchWordPressPosts(wpUrl: string): Promise<WordPressPost[]> {
   try {
     const res = await fetch(`${wpUrl}/wp-json/wp/v2/posts?per_page=100&_embed=1`, {
@@ -20,9 +33,9 @@ export async function fetchWordPressPosts(wpUrl: string): Promise<WordPressPost[
       return [];
     }
 
-    const posts = await res.json();
+    const posts: WpApiPost[] = await res.json();
 
-    return posts.map((post: any) => ({
+    return posts.map((post) => ({
       slug: post.slug,
       title: post.title?.rendered ?? "Untitled",
       excerpt: stripHtml(post.excerpt?.rendered ?? ""),
@@ -32,7 +45,7 @@ export async function fetchWordPressPosts(wpUrl: string): Promise<WordPressPost[
         month: "short",
       }),
       author: post._embedded?.author?.[0]?.name ?? "Richard Kyereh",
-      tags: post._embedded?.["wp:term"]?.flat()?.map((t: any) => t.name) ?? [],
+      tags: post._embedded?.["wp:term"]?.flat()?.map((t) => t.name ?? "") ?? [],
       featuredImage: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ?? null,
     }));
   } catch (err) {

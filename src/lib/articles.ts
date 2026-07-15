@@ -26,12 +26,17 @@ function ensureImage(image: string | null | undefined): string {
   return image ?? FALLBACK_IMAGE;
 }
 
-export const articles: Article[] = (data as Article[]).map((a) => ({
+interface RawArticle extends Article {
+  categories?: { title: string; slug: string }[];
+  imageCaption?: string | null;
+}
+
+export const articles: Article[] = (data as RawArticle[]).map((a) => ({
   ...a,
   image: ensureImage(a.image),
   author: typeof a.author === "object" && a.author ? a.author : { name: "Richard Kyereh", avatar: "" },
-  categories: (a as any).categories ?? [],
-  imageCaption: (a as any).imageCaption ?? null,
+  categories: a.categories ?? [],
+  imageCaption: a.imageCaption ?? null,
 }));
 
 export function getArticleBySlug(slug: string): Article | undefined {

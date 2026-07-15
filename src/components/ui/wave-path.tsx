@@ -4,6 +4,8 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { useRef, useEffect, useCallback } from "react";
 
+const lerp = (a: number, b: number, t: number) => a * (1 - t) + b * t;
+
 type WavePathProps = React.ComponentProps<"div">;
 
 export function WavePath({ className, ...props }: WavePathProps) {
@@ -27,8 +29,6 @@ export function WavePath({ className, ...props }: WavePathProps) {
       );
     }
   }, []);
-
-  const lerp = (a: number, b: number, t: number) => a * (1 - t) + b * t;
 
   const animateOut = useCallback(() => {
     const newProgress = progress.current * Math.sin(time.current);
