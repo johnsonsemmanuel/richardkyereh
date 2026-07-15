@@ -176,7 +176,7 @@ export default function Home() {
                 <TiltCard>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden shadow-card"
+                    className="group flex flex-col h-full bg-secondary/50 hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden shadow-card"
                   >
                     <div className="aspect-[16/10] overflow-hidden">
                       <img
@@ -185,11 +185,11 @@ export default function Home() {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <div className="p-6">
+                    <div className="p-6 flex flex-col flex-1">
                       <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                         {service.title}
                       </h3>
-                      <p className="mt-2 text-sm text-foreground/50 leading-relaxed">
+                      <p className="mt-2 text-sm text-foreground/50 leading-relaxed line-clamp-4">
                         {service.description}
                       </p>
                     </div>
