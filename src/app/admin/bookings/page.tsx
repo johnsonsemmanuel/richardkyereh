@@ -30,7 +30,7 @@ async function getBookings() {
 
 export default async function AdminBookingsPage() {
   if (!await isAdminAuthenticated()) {
-    redirect("/admin/login");
+    redirect("/login");
   }
 
   const bookings = await getBookings();

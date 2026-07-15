@@ -30,7 +30,7 @@ async function getContacts() {
 
 export default async function AdminContactsPage() {
   if (!await isAdminAuthenticated()) {
-    redirect("/admin/login");
+    redirect("/login");
   }
 
   const contacts = await getContacts();

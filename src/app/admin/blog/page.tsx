@@ -31,7 +31,7 @@ async function getPosts() {
 
 export default async function AdminBlogPage() {
   if (!await isAdminAuthenticated()) {
-    redirect("/admin/login");
+    redirect("/login");
   }
 
   const posts = await getPosts();

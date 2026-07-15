@@ -158,7 +158,7 @@ async function RecentContacts() {
 
 export default async function AdminDashboard() {
   if (!await isAdminAuthenticated()) {
-    redirect("/admin/login");
+    redirect("/login");
   }
 
   return (

@@ -30,7 +30,7 @@ async function getNewsletters() {
 
 export default async function AdminNewsletterPage() {
   if (!await isAdminAuthenticated()) {
-    redirect("/admin/login");
+    redirect("/login");
   }
 
   const newsletters = await getNewsletters();
