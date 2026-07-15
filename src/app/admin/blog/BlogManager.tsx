@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition, useRef } from "react";
-import { Plus, Edit, Trash2, X, Upload, Image } from "lucide-react";
+import { Plus, Edit, Trash2, X, Upload, Image, FileText } from "lucide-react";
 
 interface Post {
   _id: string;
@@ -17,6 +17,8 @@ interface Post {
 interface BlogManagerProps {
   initialPosts: Post[];
 }
+
+const BLOG_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225'%3E%3Crect fill='%2305080F' width='400' height='225'/%3E%3Ctext x='50%25' y='45%25' fill='%23ffffff12' font-family='system-ui' font-size='14' text-anchor='middle' dominant-baseline='middle'%3EBlog Post%3C/text%3E%3Ctext x='50%25' y='60%25' fill='%23ffffff08' font-family='system-ui' font-size='28' text-anchor='middle' dominant-baseline='middle'%3E%3C/tspan%3E%3C/svg%3E";
 
 export function BlogManager({ initialPosts }: BlogManagerProps) {
   const [posts, setPosts] = useState<Post[]>(initialPosts);
@@ -146,7 +148,8 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
           className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
         >
           <Plus className="size-4" />
-          New Post
+          <span className="hidden sm:inline">New Post</span>
+          <span className="sm:hidden">New</span>
         </button>
       </div>
 
@@ -282,7 +285,8 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
         </div>
       )}
 
-      <div className="bg-card rounded-xl border border-input shadow-card overflow-hidden">
+      {/* Desktop table */}
+      <div className="hidden md:block bg-card rounded-xl border border-input shadow-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-secondary/50">
@@ -345,6 +349,64 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* Mobile cards */}
+      <div className="md:hidden space-y-3">
+        {posts.length === 0 ? (
+          <div className="bg-card rounded-xl border border-input shadow-card p-8 text-center">
+            <FileText className="size-8 text-foreground/20 mx-auto mb-2" />
+            <p className="text-sm text-foreground/50">No blog posts yet</p>
+          </div>
+        ) : (
+          posts.map((post) => (
+            <div key={post._id} className="bg-card rounded-xl border border-input shadow-card overflow-hidden">
+              <div className="aspect-[16/9] relative bg-secondary/30">
+                {post.image ? (
+                  <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="text-center">
+                      <FileText className="size-8 text-foreground/15 mx-auto mb-1" />
+                      <span className="text-xs text-foreground/30">No image</span>
+                    </div>
+                  </div>
+                )}
+                {post.featured && (
+                  <span className="absolute top-2 left-2 text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary/90 text-primary-foreground">
+                    Featured
+                  </span>
+                )}
+              </div>
+              <div className="p-4">
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <h3 className="text-sm font-semibold text-foreground line-clamp-2">{post.title}</h3>
+                </div>
+                <div className="flex items-center gap-3 text-xs text-foreground/50 mb-3">
+                  <span>{post.readTime ? `${post.readTime} min` : "-"}</span>
+                  <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
+                </div>
+                <div className="flex items-center gap-2 pt-2 border-t border-input">
+                  <button
+                    onClick={() => startEdit(post)}
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-foreground/70 hover:text-foreground bg-secondary/50 rounded-lg transition-colors"
+                  >
+                    <Edit className="size-3.5" />
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(post._id)}
+                    disabled={isPending}
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-red-500 hover:text-red-600 bg-red-500/5 rounded-lg transition-colors disabled:opacity-50"
+                  >
+                    <Trash2 className="size-3.5" />
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

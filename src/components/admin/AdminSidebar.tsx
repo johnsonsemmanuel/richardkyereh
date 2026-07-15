@@ -9,11 +9,11 @@ import {
   LayoutDashboard,
   Calendar,
   Mail,
-  Users,
   FileText,
   LogOut,
   Menu,
   X,
+  Users,
 } from "lucide-react";
 
 const navItems = [
@@ -23,6 +23,8 @@ const navItems = [
   { label: "Newsletter", href: "/admin/newsletter", icon: Users },
   { label: "Blog", href: "/admin/blog", icon: FileText },
 ];
+
+const mobileTabs = navItems.slice(0, 5);
 
 export function AdminSidebar() {
   const pathname = usePathname();
@@ -53,6 +55,7 @@ export function AdminSidebar() {
         />
       )}
 
+      {/* Mobile slide-in drawer */}
       <aside
         className={cn(
           "fixed inset-y-0 left-0 w-64 bg-card border-r border-input z-50 flex flex-col transition-transform duration-300 md:translate-x-0",
@@ -114,6 +117,34 @@ export function AdminSidebar() {
           </form>
         </div>
       </aside>
+
+      {/* Mobile bottom tab bar */}
+      <nav className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-card border-t border-input safe-area-bottom">
+        <div className="flex items-center justify-around h-16">
+          {mobileTabs.map((item) => {
+            const Icon = item.icon;
+            const active =
+              item.href === "/admin"
+                ? pathname === "/admin"
+                : pathname.startsWith(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg transition-colors min-w-[56px]",
+                  active
+                    ? "text-primary"
+                    : "text-foreground/50"
+                )}
+              >
+                <Icon className="size-5" />
+                <span className="text-[10px] font-medium">{item.label}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
     </>
   );
 }
