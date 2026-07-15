@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LayoutWrapper } from "@/components/LayoutWrapper";
@@ -78,7 +79,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark h-full" suppressHydrationWarning>
-      <head>
+      <body className="min-h-full flex flex-col font-sans antialiased relative">
         <script dangerouslySetInnerHTML={{
           __html: `
             try {
@@ -87,7 +88,7 @@ export default function RootLayout({
             } catch(e) {}
           `
         }} />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" strategy="afterInteractive" />
         <script dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -113,8 +114,6 @@ export default function RootLayout({
             },
           }),
         }} />
-      </head>
-      <body className="min-h-full flex flex-col font-sans antialiased relative">
         <DotPattern />
         <ThemeProvider>
           <LayoutWrapper>{children}</LayoutWrapper>
