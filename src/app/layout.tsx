@@ -13,16 +13,15 @@ const siteUrl = "https://richardkyereh.vercel.app";
 
 export const metadata: Metadata = {
   title: {
-    default: "Richard Kyereh | Aerospace Aviation Consultancy",
+    default: "Aviation Expert in Africa | Richard Kyereh",
     template: "%s | Richard Kyereh",
   },
   description:
-    "World-class aerospace and aviation consultancy by Richard Kyereh (MBA, PMP). Strategic advisory, fleet management, safety compliance, and operational excellence across Africa and beyond.",
+    "Aviation expert in Africa specializing in airline strategy, fleet management, aero-politics, and operational excellence across Ghana and West Africa.",
   keywords: [
-    "aerospace consultancy",
-    "aviation consultant",
-    "fleet management",
-    "aviation safety",
+    "aviation expert",
+    "airline consultant",
+    "aviation consultant Africa",
     "Richard Kyereh",
     "airline advisory",
     "aircraft leasing",
@@ -32,20 +31,20 @@ export const metadata: Metadata = {
     "Africa aviation expert",
     "Ghana aviation consultant",
     "Accra aviation",
-    "West Africa aerospace",
+    "West Africa aviation",
     "aviation leadership",
     "airline operations",
-    "safety management systems",
-    "IATA certified consultant",
+    "fleet strategy",
+    "aero-politics",
   ],
   authors: [{ name: "Richard Kyereh" }],
   creator: "Richard Kyereh",
   publisher: "Richard Kyereh",
   metadataBase: new URL(siteUrl),
   openGraph: {
-    title: "Richard Kyereh | Aerospace Aviation Consultancy",
+    title: "Aviation Expert in Africa | Richard Kyereh",
     description:
-      "World-class aerospace and aviation consultancy. Strategic advisory, fleet management, safety compliance, operational excellence.",
+      "Aviation expert in Africa specializing in airline strategy, fleet management, aero-politics, and operational excellence.",
     url: siteUrl,
     siteName: "Richard Kyereh",
     locale: "en_US",
@@ -53,9 +52,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Richard Kyereh | Aerospace Aviation Consultancy",
+    title: "Aviation Expert in Africa | Richard Kyereh",
     description:
-      "World-class aerospace and aviation consultancy by Richard Kyereh (MBA, PMP).",
+      "Aviation expert in Africa specializing in airline strategy, fleet management, and operational excellence.",
   },
   robots: {
     index: true,
@@ -103,8 +102,8 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "Richard Kyereh",
-            "jobTitle": "Aviation Consultant",
-            "description": "World-class aerospace and aviation consultancy. Strategic advisory, fleet management, safety compliance, operational excellence.",
+            "jobTitle": "Aviation Expert",
+            "description": "Aviation expert in Africa specializing in airline strategy, fleet management, aero-politics, and operational excellence.",
             "url": siteUrl,
             "telephone": "+233243681135",
             "address": {

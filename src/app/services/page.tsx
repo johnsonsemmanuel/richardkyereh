@@ -16,50 +16,44 @@ const services = [
   {
     title: "Career Consultancy",
     slug: "career-consultancy",
-    duration: "1 hr",
-    price: "Free",
+    rate: "RATE: 10mins Free / $20 per 30mins",
     gradient: "05080F,1A2D4A",
-    description: "Personalized career guidance for aviation professionals seeking to advance in the aerospace industry.",
+    description: "Whether you are pursuing a career upgrade, transitioning into management, or entering the industry for the first time, we provide structured, one-on-one coaching tailored to your goals.",
   },
   {
     title: "Speaking Engagement",
     slug: "speaking-engagement",
-    duration: "1 hr",
-    price: "Free",
+    rate: "RATE: Free or paid depending on location and logistics",
     gradient: "0A0F1A,111827",
-    description: "Expert keynote speaking and panel participation for conferences, corporate events, and industry summits.",
+    description: "Expert keynote speaking and panel participation for conferences, media discussions, corporate events, industry summits, and academic institutions. Richard brings decades of operational experience, strategic insight, and a compelling personal story that resonates with any audience.",
   },
   {
     title: "Face To Face Meeting",
     slug: "face-to-face-meeting",
-    duration: "30 mins",
-    price: "Free",
+    rate: "RATE: Negotiable",
     gradient: "05080F,1F2937",
-    description: "Confidential one-on-one meetings for strategic discussions, partnership exploration, or advisory sessions.",
+    description: "Confidential one-on-one meetings for strategic discussions, partnership exploration, airline start-up development or executive advisory sessions. These private engagements are designed for decision-makers who need direct, unfiltered access to Richard's expertise.",
   },
   {
     title: "Mentorship",
     slug: "mentorship",
-    duration: "1 hr",
-    price: "Free",
+    rate: "RATE: 10mins Free / $20 per 30mins",
     gradient: "0A0F1A,1A2D4A",
     description: "Structured mentorship for emerging aviation leaders, covering technical and leadership development.",
   },
   {
     title: "Aircraft Leases",
     slug: "aircraft-leases",
-    duration: "1 hr",
-    price: "Free",
+    rate: "RATE: Free or paid depending on location and logistics",
     gradient: "05080F,111827",
-    description: "Advisory on aircraft leasing strategies, lease vs. buy analysis, and portfolio optimization.",
+    description: "Advisory on aircraft leasing strategies, wet lease vs dry lease, fleet optimization, and portfolio management. Whether you are a startup airline or an established operator, we help you make informed, data-driven decisions.",
   },
   {
     title: "Charters Services",
     slug: "charters-services",
-    duration: "1 hr",
-    price: "Free",
+    rate: "RATE: Free or paid depending on location and logistics",
     gradient: "0A0F1A,1F2937",
-    description: "Consulting on charter operations, fleet configuration, and premium service delivery standards.",
+    description: "Amongst our range of available aircraft is a Beech 1900 to support charters operators, corporate clients and individuals.",
   },
 ];
 
@@ -110,12 +104,9 @@ export default function ServicesPage() {
                         <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                           {service.title}
                         </h3>
-                        <span className="text-xs text-foreground/50 bg-background/50 px-2 py-1 rounded">
-                          {service.price}
-                        </span>
                       </div>
-                      <p className="text-xs text-foreground/50 mb-2">
-                        Duration: {service.duration}
+                      <p className={`text-xs mb-2 ${service.slug === "career-consultancy" || service.slug === "face-to-face-meeting" || service.slug === "mentorship" ? "text-red-500 font-bold" : "text-foreground/50"}`}>
+                        {service.rate}
                       </p>
                       <p className="text-sm text-foreground/50 leading-relaxed">
                         {service.description}

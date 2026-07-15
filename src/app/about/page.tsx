@@ -10,13 +10,13 @@ import { WavePath } from "@/components/ui/wave-path";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn about Richard Kyereh, aerospace and aviation consultant with 15+ years of global experience.",
+    "Learn about Richard Kyereh, aviation expert with 20+ years of experience across Africa's airline industry.",
 };
 
 const highlights = [
-  { label: "Experience", value: "15+ years", desc: "Across airlines, regulators, and investment firms across West Africa and beyond.", Icon: GlobeIcon },
+  { label: "Experience", value: "20+ years", desc: "Across airlines, regulators, and investment firms across West Africa and beyond.", Icon: GlobeIcon },
   { label: "Expertise", value: "Full spectrum", desc: "From network development and route launches to safety management and aero politics.", Icon: CompassIcon },
-  { label: "Impact", value: "35x weekly", desc: "Grew Accra-Lagos route from 3x weekly to 35x weekly in 18 months.", Icon: ShieldIcon },
+  { label: "Impact", value: "35x weekly", desc: "Grew Accra-Lagos route from 3x weekly to 35x weekly in 18 months and introduced Passenger Re-Protection Agreements.", Icon: ShieldIcon },
 ];
 
 export default function AboutPage() {
@@ -59,81 +59,79 @@ export default function AboutPage() {
           <div className="max-w-4xl space-y-5 text-foreground/60 leading-relaxed">
             <Reveal>
               <p>
-                With over 15 years of experience at various managerial levels of the aviation
-                industry in Ghana and the West Africa Sub-region, he is well-placed to coach,
-                mentor and guide young people with a passion for aviation or those who just would
-                like to know if the world of aviation holds any promise for the degrees they
-                acquired in school.
+                Richard Kyereh is an aviation expert, aircraft broker, and aero-politics specialist based in Ghana, with 20 years of senior leadership experience across Africa&apos;s airline industry. A certified project manager, he brings deep expertise in commercial airline strategy, network development, and aviation consulting for West Africa&apos;s fast-growing travel market and Africa at large.
               </p>
             </Reveal>
             <Reveal delay={0.05}>
               <p>
-                For five years, he worked for Africa World Airlines (AWA) as the Head of
-                Commercial, having joined AWA in December 2015 as the Deputy Head of Commercial.
-                He also served in various capacities during his 8-year stint with Antrak Air,
-                starting as a Project/Safety Officer in 2007 and exiting as the Head of
-                Commercial in 2015.
+                He is well-placed to coach, mentor, and guide young people with a passion for aviation or anyone simply wondering whether the aviation industry holds any promise for the degree they earned in school.
               </p>
             </Reveal>
+
             <Reveal delay={0.1}>
+              <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Airline Leadership Experience</h2>
               <p>
-                During those periods, he mastered a repertoire of airline business functions
-                particularly in network development and route launches, hub operations, project
-                management, sales &amp; marketing strategies, interline, aero politics and
-                diplomacy in industry affairs. He is a man of many hats and has a firm
-                understanding of the West African travel market; knowledge that is priceless in
-                Africa World Airlines&apos; strategy for regional network expansion.
+                Richard has led commercial teams at Africa World Airlines, Antrak Air, Westair Aviation, and Turkish Airlines. He has also served as Brand Ambassador for major aviation brands across Africa, including Hitit CS, the third-largest passenger service system in the world.
+              </p>
+              <p className="mt-4">
+                He currently sits within the Corporate Sales and Marketing team at Turkish Airlines, while also serving as Country Manager, Ghana for Westair Aviation. For five years, he served as Head of Commercial at Africa World Airlines (AWA), joining in December 2015 as Deputy Head of Commercial. Before that, he spent eight years at Antrak Air, starting as a Project/Safety Officer in 2007 and rising to Head of Commercial by 2015.
               </p>
             </Reveal>
+
             <Reveal delay={0.15}>
+              <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Aviation Consulting Expertise</h2>
               <p>
-                While at Africa World Airlines he spearheaded the growth in the regional network
-                from a single route in 2016 to five destinations across four countries by
-                February 2020 (Lagos, Abuja, Monrovia, Freetown and Abidjan) and the expansion
-                of some key domestic routes in Ghana - Kumasi to Tamale direct, Takoradi,
-                and Wa operations.
+                Across these roles, Richard has built a deep repertoire of airline business functions, including:
+              </p>
+              <ul className="list-disc pl-6 mt-4 space-y-2">
+                <li>Network Development and Route launches</li>
+                <li>Hub Operations</li>
+                <li>Project Management</li>
+                <li>Sales &amp; Marketing Strategy</li>
+                <li>Interline Agreements</li>
+                <li>Aero-politics and Industry Diplomacy</li>
+              </ul>
+              <p className="mt-4">
+                His firm grasp of the African travel market is a rare asset; knowledge that has proven invaluable in growing airlines from startups into regional players.
               </p>
             </Reveal>
+
             <Reveal delay={0.2}>
+              <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Route Development &amp; Network Growth in Ghana and West Africa</h2>
               <p>
-                Leading a team of highly trained and dedicated AWA staff, he exponentially grew
-                the Accra-Lagos-Accra dying route from 3x weekly flights to 35x weekly
-                over 18 months. He diversified distribution channels and maximised revenue by
-                championing the implementation of commercial distributions such GDS, and
-                succeeded in seeking out eight (8) airline partners for SPAs and IET agreements
-                and successful membership application to IATA, ICH and MITA while at Africa
-                World Airlines.
+                While at Africa World Airlines, Richard spearheaded the growth of the regional network from a single route in 2016 to five destinations across four African cities. That&apos;s Lagos, Abuja, Monrovia, Freetown, and Abidjan — alongside expansion of key domestic Ghana routes: Kumasi –Tamale direct, Takoradi, and Wa.
+              </p>
+              <p className="mt-4">
+                Leading a team of dedicated AWA staff, he grew the once-struggling Accra–Lagos–Accra route from 3 weekly flights to 35 weekly flights within 18 months. He diversified distribution channels and maximized revenue by championing GDS implementation, securing eight airline partners for SPA and IET agreements, and leading successful membership applications to IATA, ICH, and MITA.
               </p>
             </Reveal>
+
             <Reveal delay={0.25}>
-              <p>
-                He has also served as an Advisory Board Member for Aviation Development
-                (AviaDev) Africa from 2020 - 2021. He is an Aviation Consultant who
-                currently holds the following positions: Country Manager - Ghana for
-                Westair Aviation, African Representative for the Indonesian pilot training
-                school, Lombok Institute of Flight Technology (LIFT) and an Executive Director
-                for Centre for Aviation Policy &amp; Development, Africa (CAPD-Africa).
-                Additionally, he is the CEO of iCount Aerospace Limited.
-              </p>
+              <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Industry Roles &amp; Affiliations</h2>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Advisory Board Member, Aviation Development (AviaDev) Africa (2020–2021)</li>
+                <li>African Representative, Lombok Institute of Flight Technology (LIFT), Indonesia</li>
+                <li>Executive Director, Centre for Aviation Policy &amp; Development, Africa (CAPD-Africa)</li>
+                <li>CEO, iCount Aerospace Limited</li>
+              </ul>
             </Reveal>
+
             <Reveal delay={0.3}>
+              <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">A Legacy of Industry Innovation</h2>
               <p>
-                Mr Kyereh&apos;s notable contribution to the aviation industry in Ghana is the
-                introduction and establishment of the Passenger Re-Protection Agreements among
-                airline competitors to cut down operational losses during downtime which has
-                come to stay. He actively shares his expertise and manages an active speaking
-                portfolio as a guest speaker and panelist at aviation conferences on the
-                continent.
+                Richard&apos;s most notable contribution to Ghana&apos;s aviation industry is the introduction of Passenger Re-Protection Agreements among competing airlines. A framework that reduced operational losses during downtime and remains in use today. He is a regular guest speaker and panelist at aviation conferences across the continent speaking on commercial strategy.
               </p>
             </Reveal>
+
             <Reveal delay={0.35}>
-              <p>
-                Mr Kyereh holds three IATA Diplomas - Airline Management, Airline Revenue
-                Accounting and Controls, and Airlines Business Development. He also holds an MBA
-                in Project Management from GIMPA and Alumni of the Kwame Nkrumah University of
-                Science and Technology (KNUST). He is a certified member of the Project
-                Management Institute (PMI), USA.
-              </p>
+              <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Education &amp; Certifications</h2>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Three IATA Diplomas: Airline Management, Airline Revenue Accounting and Controls, and Airline Business Development</li>
+                <li>MBA in Project Management from the Ghana Institute of Management and Public Administration (GIMPA)</li>
+                <li>Alumnus, Kwame Nkrumah University of Science and Technology (KNUST)</li>
+                <li>Certified member, Project Management Institute (PMI), USA</li>
+                <li>Flight Dispatch Certification from the Ghana Civil Aviation Authority</li>
+              </ul>
             </Reveal>
 
             <Reveal delay={0.4}>

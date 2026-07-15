@@ -109,8 +109,7 @@ export function Footer() {
                 />
               </Link>
               <p className="text-foreground/60 text-sm leading-relaxed">
-                Aerospace and aviation consultancy delivering strategic excellence,
-                operational safety, and global impact.
+                African aviation expert delivering strategic direction, operational safety, and results that reach a global stage.
               </p>
 
               <div className="mt-2">

@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   getAwardMediaPaths,
-  getAllAwardHeroImages,
 } from "@/lib/images";
 import { X, ChevronLeft, ChevronRight, Award } from "lucide-react";
 import {
@@ -14,7 +13,6 @@ import {
   PaginationLink,
   PaginationPrevious,
   PaginationNext,
-  PaginationEllipsis,
 } from "@/components/ui/pagination";
 
 type Award = { year: string; title: string; org: string; folder: string };
@@ -35,7 +33,6 @@ const awards: Award[] = [
 ];
 
 const years = [...new Set(awards.map((a) => a.year))].sort().reverse();
-const heroImages = getAllAwardHeroImages();
 
 function AwardCard({ award, index, onSelect }: {
   award: Award;
@@ -202,39 +199,6 @@ function Lightbox({
   );
 }
 
-function HeroBackground({ images }: { images: string[] }) {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((c) => (c + 1) % images.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [images.length]);
-
-  return (
-    <div className="absolute inset-0 overflow-hidden">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={current}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-          className="absolute inset-0"
-        >
-          <img
-            src={images[current]}
-            alt=""
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-      </AnimatePresence>
-      <div className="absolute inset-0 bg-background/80" />
-    </div>
-  );
-}
-
 const PAGE_SIZE = 8;
 
 export default function AwardsPage() {
@@ -268,7 +232,6 @@ export default function AwardsPage() {
   return (
     <>
       <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-background">
-        <HeroBackground images={heroImages} />
         <div
           className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40"
           style={{ transform: `translateY(${scrollY * 0.15}px)` }}
@@ -284,14 +247,10 @@ export default function AwardsPage() {
               Recognition
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
-              Awards &
+              Events &
               <br />
               <span className="text-foreground/60">honours.</span>
             </h1>
-            <p className="mt-6 text-foreground/60 leading-relaxed max-w-lg">
-              A record of industry recognition spanning {Math.min(...awards.map((a) => +a.year))}-
-              {Math.max(...awards.map((a) => +a.year))}.
-            </p>
           </motion.div>
         </div>
       </section>

@@ -35,9 +35,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-lg font-semibold text-foreground mb-3">3. Intellectual Property</h2>
             <p>
-              All content on this website, including text, graphics, logos, and analysis, is the
-              intellectual property of Richard Kyereh unless otherwise stated. Unauthorized use
-              is prohibited.
+              Unless otherwise credited, all content on this website including text, graphics, logos, and analysis is the intellectual property of Richard Kyereh. Certain material, such as news references and stock or free-use images, is sourced from third parties and remains the property of its respective owners, used here under applicable license or fair use terms. Unauthorized use of original content is prohibited.
             </p>
           </section>
 

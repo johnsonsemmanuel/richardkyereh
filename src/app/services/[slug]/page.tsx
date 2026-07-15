@@ -17,9 +17,9 @@ const services = [
     icon: CompassIcon,
     gradient: "05080F,1A2D4A",
     duration: "1 hr",
-    price: "Free",
+    price: "RATE: 10mins Free / $20 per 30mins",
     description:
-      "Personalized career guidance for aviation professionals seeking to advance in the aerospace industry. Whether you are pursuing a command upgrade, transitioning into management, or entering the industry for the first time, we provide structured, one-on-one coaching tailored to your goals.",
+      "Whether you are pursuing a career upgrade, transitioning into management, or entering the industry for the first time, we provide structured, one-on-one coaching tailored to your goals.",
     features: [
       "Career path assessment and action planning",
       "Resume and interview preparation",
@@ -35,11 +35,11 @@ const services = [
     title: "Speaking Engagement",
     subtitle: "Keynotes that inspire action",
     icon: GlobeIcon,
-    gradient: "0A0F1A,1F2937",
+    gradient: "0A0F1A,111827",
     duration: "1 hr",
-    price: "Free",
+    price: "RATE: Free or paid depending on location and logistics",
     description:
-      "Expert keynote speaking and panel participation for conferences, corporate events, industry summits, and academic institutions. Richard brings decades of operational experience, strategic insight, and a compelling personal story that resonates with any audience.",
+      "Expert keynote speaking and panel participation for conferences, media discussions, corporate events, industry summits, and academic institutions. Richard brings decades of operational experience, strategic insight, and a compelling personal story that resonates with any audience.",
     features: [
       "Customized keynote tailored to your theme",
       "Panel moderation and participant engagement",
@@ -57,9 +57,9 @@ const services = [
     icon: WingsIcon,
     gradient: "05080F,111827",
     duration: "30 mins",
-    price: "Free",
+    price: "RATE: Negotiable",
     description:
-      "Confidential one-on-one meetings for strategic discussions, partnership exploration, or executive advisory sessions. These private engagements are designed for decision-makers who need direct, unfiltered access to Richard's expertise.",
+      "Confidential one-on-one meetings for strategic discussions, partnership exploration, airline start-up development or executive advisory sessions. These private engagements are designed for decision-makers who need direct, unfiltered access to Richard's expertise.",
     features: [
       "Private, confidential setting",
       "Pre-meeting brief to align on agenda",
@@ -77,7 +77,7 @@ const services = [
     icon: ShieldIcon,
     gradient: "0A0F1A,1A2D4A",
     duration: "1 hr",
-    price: "Free",
+    price: "RATE: 10mins Free / $20 per 30mins",
     description:
       "Structured mentorship for emerging aviation leaders, covering both technical excellence and leadership development. Our mentorship program is designed to build competence, confidence, and connections in the aviation industry.",
     features: [
@@ -88,7 +88,7 @@ const services = [
       "Network expansion introductions",
       "Progress reviews and milestone tracking",
     ],
-    ideal: "Mid-career aviation professionals, aspiring managers, and young leaders committed to long-term growth in the aerospace sector.",
+    ideal: "Mid-career aviation professionals, aspiring managers, and young leaders committed to long-term growth in the aviation sector.",
   },
   {
     slug: "aircraft-leases",
@@ -97,9 +97,9 @@ const services = [
     icon: RadarIcon,
     gradient: "05080F,1F2937",
     duration: "1 hr",
-    price: "Free",
+    price: "RATE: Free or paid depending on location and logistics",
     description:
-      "Advisory on aircraft leasing strategies, lease-versus-buy analysis, fleet optimization, and portfolio management. Whether you are a startup airline or an established operator, we help you make informed, data-driven decisions.",
+      "Advisory on aircraft leasing strategies, wet lease vs dry lease, fleet optimization, and portfolio management. Whether you are a startup airline or an established operator, we help you make informed, data-driven decisions.",
     features: [
       "Lease vs. buy financial analysis",
       "Dry lease, wet lease, and sale-leaseback structuring",
@@ -117,9 +117,9 @@ const services = [
     icon: PlaneIcon,
     gradient: "0A0F1A,1F2937",
     duration: "1 hr",
-    price: "Free",
+    price: "RATE: Free or paid depending on location and logistics",
     description:
-      "Consulting on charter operations, fleet configuration, premium service delivery standards, and operational efficiency. We help charter operators and aspiring entrants build world-class operations from the ground up.",
+      "Amongst our range of available aircraft is a Beech 1900 to support charters operators, corporate clients and individuals.",
     features: [
       "Charter operation feasibility study",
       "Fleet configuration and cabin layout advisory",
@@ -168,7 +168,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               <div className="flex items-center gap-3 mb-4">
                 <Icon className="size-5 text-primary" />
                 <span className="text-primary text-sm font-medium tracking-widest uppercase">
-                  {service.duration} &middot; {service.price}
+                  {service.price}
                 </span>
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">

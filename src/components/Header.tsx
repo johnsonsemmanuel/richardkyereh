@@ -41,7 +41,7 @@ const navItems: NavItem[] = [
       { label: "Charters Services", desc: "Charter operations consulting", href: "/services/charters-services", icon: PlaneIcon },
     ],
   },
-  { label: "Our Awards", href: "/awards" },
+  { label: "Our Events", href: "/awards" },
   { label: "Our Newsroom", href: "/newsroom" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -247,7 +247,7 @@ export function Header() {
               onClick={() => setOpen(false)}
               className={buttonVariants({ variant: "ghost", className: "justify-start text-base" })}
             >
-              Our Awards
+              Our Events
             </Link>
             <Link
               href="/newsroom"

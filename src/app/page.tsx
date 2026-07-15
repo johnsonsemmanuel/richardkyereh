@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { StackedCardsInteraction } from "@/components/StackedCards";
 import { GlassBlogCard } from "@/components/GlassBlogCard";
-import { images, serviceImageUrls, homeHeroImages } from "@/lib/images";
+import { serviceImageUrls, homeHeroImages } from "@/lib/images";
 import { articles } from "@/lib/articles";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
@@ -15,19 +14,19 @@ const services = [
   {
     title: "Career Consultancy",
     slug: "career-consultancy",
-    description: "Personalized career guidance for aviation professionals seeking to advance in the aerospace industry.",
+    description: "Whether you are pursuing a career upgrade, transitioning into management, or entering the industry for the first time, we provide structured, one-on-one coaching tailored to your goals.",
     gradient: "05080F,1A2D4A",
   },
   {
     title: "Speaking Engagement",
     slug: "speaking-engagement",
-    description: "Expert keynote speaking and panel participation for conferences, corporate events, and industry summits.",
+    description: "Expert keynote speaking and panel participation for conferences, media discussions, corporate events, industry summits, and academic institutions. Richard brings decades of operational experience, strategic insight, and a compelling personal story that resonates with any audience.",
     gradient: "0A0F1A,111827",
   },
   {
     title: "Face To Face Meeting",
     slug: "face-to-face-meeting",
-    description: "Confidential one-on-one meetings for strategic discussions, partnership exploration, or advisory sessions.",
+    description: "Confidential one-on-one meetings for strategic discussions, partnership exploration, airline start-up development or executive advisory sessions. These private engagements are designed for decision-makers who need direct, unfiltered access to Richard's expertise.",
     gradient: "05080F,1F2937",
   },
   {
@@ -39,13 +38,13 @@ const services = [
   {
     title: "Aircraft Leases",
     slug: "aircraft-leases",
-    description: "Advisory on aircraft leasing strategies, lease vs. buy analysis, and portfolio optimization.",
+    description: "Advisory on aircraft leasing strategies, wet lease vs dry lease, fleet optimization, and portfolio management. Whether you are a startup airline or an established operator, we help you make informed, data-driven decisions.",
     gradient: "05080F,111827",
   },
   {
     title: "Charters Services",
     slug: "charters-services",
-    description: "Consulting on charter operations, fleet configuration, and premium service delivery standards.",
+    description: "Amongst our range of available aircraft is a Beech 1900 to support charters operators, corporate clients and individuals.",
     gradient: "0A0F1A,1F2937",
   },
 ];
@@ -56,21 +55,20 @@ export default function Home() {
   return (
     <>
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        <HeroBackground images={homeHeroImages} />
+        <HeroBackground images={[homeHeroImages[0]]} />
         <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
           <Reveal className="max-w-2xl">
             <p className="text-foreground/40 text-sm font-medium tracking-[0.15em] uppercase mb-6 flex items-center gap-2">
               <CompassIcon className="size-4" />
-              Aerospace & Aviation Consultancy
+              Airline & Aviation Expert | Africa
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
               Strategic Clarity
               <br />
-              <span className="text-foreground/60">for the skies.</span>
+              <span className="text-foreground/60">for the skies</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-foreground/60 leading-relaxed max-w-lg">
-              Richard Kyereh provides world-class aerospace advisory from
-              fleet strategy and safety compliance to operational excellence.
+              Richard Kyereh advises on aviation policy, aero-politics, aircraft brokerage, and airline start-ups — bringing deep expertise in fleet strategy and operational excellence to airlines and operators across Africa.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg">
@@ -90,10 +88,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <StaggerReveal className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
-              ["200+", "Projects Delivered"],
-              ["15+", "Years Experience"],
+              ["30+", "Projects Delivered"],
+              ["20+", "Years of Experience"],
               ["40+", "Global Clients"],
-              ["99.7%", "Safety Record"],
+              ["99.7%", "IATA, GCAA Certified"],
             ].map(([stat, label], i) => {
               const Icon = statIcons[i];
               return (
@@ -134,18 +132,21 @@ export default function Home() {
               </blockquote>
               <div className="mt-8 space-y-4 text-foreground/60 leading-relaxed">
                 <p>
-                  Richard Kyereh is one of West Africa&apos;s most respected aviation professionals, with over 15 years at various managerial levels across Ghana and the West Africa sub-region. He has held executive roles at Africa World Airlines and Antrak Air, and currently serves as Ghana Country Manager for Westair Aviation.
+                  Richard Kyereh is a leading expert consultant in Africa with two decades of experience across international and African airlines. He has held key commercial and leadership roles at Turkish Airlines (Corporate Sales & Marketing), Africa World Airlines (Head of Commercial), Antrak Air (Head of Commercial & Projects and Safety Officer initially), and Westair Aviation (Ghana Country Manager).
                 </p>
                 <p>
-                    At Africa World Airlines, he single-handedly grew the Accra-Lagos route from 3x weekly to 35x weekly over just 18 months - a landmark achievement in regional aviation connectivity. He spearheaded regional network expansion to 5 destinations across 4 countries.
+                  At Africa World Airlines, he led the airline&apos;s regional expansion strategy and grew the Accra-Lagos route from 3x weekly to 35x weekly in just 18 months — a landmark achievement in regional aviation connectivity. He also spearheaded network expansion to 5 destinations across 4 countries.
                 </p>
                 <p>
-                  He is also African Representative for Lombok Institute of Flight Technology (LIFT), Indonesia, and Executive Director of the Centre for Aviation Policy &amp; Development, Africa (CAPD-Africa).
+                  He is also the African Representative for Lombok Institute of Flight Technology (LIFT), Indonesia, Executive Director of the Centre for Aviation Policy &amp; Development, Africa (CAPD-Africa), and Brand Ambassador for major aviation brands across Africa, including Hitit CS, the world&apos;s third-largest passenger service system.
+                </p>
+                <p>
+                  Richard harnesses his experience in these markets to provide aviation advisory to airlines, operators and persons seeking career inputs across Ghana and Africa at large.
+                </p>
+                <p className="text-sm text-foreground/40">
+                  - Richard Kyereh, MBA, PMP | Accra, Ghana, West Africa
                 </p>
               </div>
-              <p className="mt-6 text-sm text-foreground/40">
-                - Richard Kyereh, MBA, PMI | Accra, Ghana
-              </p>
               <div className="mt-6">
                 <Button asChild variant="outline" size="sm">
                   <Link href="/about">Full Biography</Link>
@@ -164,7 +165,7 @@ export default function Home() {
               Core Services
             </p>
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
-              Aerospace expertise,
+              Aviation expertise,
               <br />
               <span className="text-foreground/50">delivered.</span>
             </h2>
@@ -214,35 +215,23 @@ export default function Home() {
                 <span className="text-foreground/50">define the flight path.</span>
               </h2>
               <p className="mt-6 text-foreground/60 leading-relaxed">
-                With over a decade and a half in aerospace and aviation, Richard
-                Kyereh has advised airlines, regulators, and investment firms
-                across four continents. His work bridges technical depth and
-                strategic foresight.
+                With almost two decades in aviation, Richard Kyereh has advised airlines, regulators, operators and mentees across the African continent. His work bridges technical depth and strategic foresight.
               </p>
               <Button asChild variant="link" className="mt-8 px-0">
                 <Link href="/about">Full Bio &rarr;</Link>
               </Button>
             </Reveal>
             <Reveal direction="right" delay={0.1} className="relative h-[420px]">
-              <StackedCardsInteraction
-                cards={[
-                  {
-                    image: images.controlPanel,
-                    title: "15+ Years Experience",
-                    description: "Across airlines, regulators, and investment firms on four continents.",
-                  },
-                  {
-                    image: images.wingClouds,
-                    title: "40+ Global Clients",
-                    description: "From startups to established carriers across commercial and business aviation.",
-                  },
-                  {
-                    image: images.wingWindow,
-                    title: "$2.8B+ Fleet Value",
-                    description: "Advised on fleet acquisition and asset management strategies worldwide.",
-                  },
-                ]}
-              />
+              <div className="absolute inset-0 flex flex-col justify-center">
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-4xl font-bold text-foreground">20 Years Experience</p>
+                    <p className="mt-2 text-foreground/60 leading-relaxed">
+                      Across airlines, regulators and professionals on the continent.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </Reveal>
           </div>
         </div>
