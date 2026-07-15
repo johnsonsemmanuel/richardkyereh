@@ -5,6 +5,7 @@ import { articles, getArticleBySlug } from "@/lib/articles";
 import { ArrowLeft, Clock, User, Globe } from "lucide-react";
 import { ArticleReadingProgress } from "./reading-progress";
 import { ArticleShare } from "./share";
+import { FallbackImage } from "@/components/FallbackImage";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -53,14 +54,10 @@ export default async function ArticlePage({ params }: Props) {
 
       <section className="relative min-h-[60vh] flex items-end overflow-hidden bg-background">
         <div className="absolute inset-0">
-          <img
+          <FallbackImage
             src={article.image}
             alt=""
             className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect fill='%2305080F' width='1920' height='1080'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff10' font-family='system-ui' font-size='32' text-anchor='middle' dominant-baseline='middle'%3EArticle%3C/text%3E%3C/svg%3E";
-            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
         </div>
@@ -185,14 +182,10 @@ export default async function ArticlePage({ params }: Props) {
                   className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-border rounded-xl overflow-hidden shadow-card"
                 >
                   <div className="aspect-[16/9] overflow-hidden">
-                    <img
+                    <FallbackImage
                       src={r.image}
                       alt={r.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect fill='%2305080F' width='800' height='450'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff15' font-family='system-ui' font-size='24' text-anchor='middle' dominant-baseline='middle'%3EArticle%3C/text%3E%3C/svg%3E";
-                      }}
                     />
                   </div>
                   <div className="p-5">
