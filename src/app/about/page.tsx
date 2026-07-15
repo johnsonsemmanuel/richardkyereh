@@ -47,6 +47,14 @@ export default function AboutPage() {
               <p className="text-foreground/60 leading-relaxed text-lg mt-4">
                 Richard Kyereh exemplifies everything good about the business side of aviation.
               </p>
+              <div className="space-y-4 text-foreground/60 leading-relaxed">
+                <p>
+                  Richard Kyereh is an aviation expert, aircraft broker, and aero-politics specialist based in Ghana, with 20 years of senior leadership experience across Africa&apos;s airline industry. A certified project manager, he brings deep expertise in commercial airline strategy, network development, and aviation consulting for West Africa&apos;s fast-growing travel market and Africa at large.
+                </p>
+                <p>
+                  He is well-placed to coach, mentor, and guide young people with a passion for aviation or anyone simply wondering whether the aviation industry holds any promise for the degree they earned in school.
+                </p>
+              </div>
             </Reveal>
           </div>
         </div>
@@ -57,17 +65,6 @@ export default function AboutPage() {
       <section className="pb-24 lg:pb-32 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-4xl space-y-5 text-foreground/60 leading-relaxed">
-            <Reveal>
-              <p>
-                Richard Kyereh is an aviation expert, aircraft broker, and aero-politics specialist based in Ghana, with 20 years of senior leadership experience across Africa&apos;s airline industry. A certified project manager, he brings deep expertise in commercial airline strategy, network development, and aviation consulting for West Africa&apos;s fast-growing travel market and Africa at large.
-              </p>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <p>
-                He is well-placed to coach, mentor, and guide young people with a passion for aviation or anyone simply wondering whether the aviation industry holds any promise for the degree they earned in school.
-              </p>
-            </Reveal>
-
             <Reveal delay={0.1}>
               <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Airline Leadership Experience</h2>
               <p>
