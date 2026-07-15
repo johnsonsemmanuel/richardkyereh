@@ -58,6 +58,10 @@ export function GlassBlogCard({
             src={image}
             alt={title}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect fill='%2305080F' width='800' height='450'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff15' font-family='system-ui' font-size='24' text-anchor='middle' dominant-baseline='middle'%3EArticle%3C/text%3E%3C/svg%3E";
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
 
