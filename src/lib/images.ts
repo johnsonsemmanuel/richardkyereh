@@ -141,10 +141,10 @@ export function getAllAwardHeroImages(): string[] {
 
 // Homepage hero images - curated selection from event photos
 export const homeHeroImages = [
+  "/awards/aviadev-cape-town-2019/aviadev-cape-town-2019_1.jpeg",
   "/awards/african-union-saatm-2019/african-union-saatm-2019_4.jpeg",
   "/awards/apg-monaco-2018/apg-monaco-2018_9.jpeg",
   "/awards/iata-regional-forum-accra-2019/iata-regional-forum-accra-2019_5.jpeg",
-  "/awards/aviadev-cape-town-2019/aviadev-cape-town-2019_4.jpeg",
   "/awards/routes-africa-accra-2018/routes-africa-accra-2018_10.jpeg",
 ];
 
