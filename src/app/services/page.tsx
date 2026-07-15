@@ -105,7 +105,7 @@ export default function ServicesPage() {
                           {service.title}
                         </h3>
                       </div>
-                      <p className={`text-xs mb-2 ${service.slug === "career-consultancy" || service.slug === "face-to-face-meeting" || service.slug === "mentorship" ? "text-red-500 font-bold" : "text-foreground/50"}`}>
+                      <p className="text-xs mb-2 text-red-500 font-bold">
                         {service.rate}
                       </p>
                       <p className="text-sm text-foreground/50 leading-relaxed">

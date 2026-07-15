@@ -8,6 +8,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "richardkyereh.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.richardkyereh.com",
+      },
     ],
   },
   async redirects() {
