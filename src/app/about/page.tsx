@@ -99,17 +99,17 @@ export default function AboutPage() {
             <Reveal delay={0.2}>
               <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Route Development &amp; Network Growth in Ghana and West Africa</h2>
               <p>
-                While at Africa World Airlines, Richard spearheaded the growth of the regional network from a single route in 2016 to five destinations across four African cities. That&apos;s Lagos, Abuja, Monrovia, Freetown, and Abidjan — alongside expansion of key domestic Ghana routes: Kumasi –Tamale direct, Takoradi, and Wa.
+                While at Africa World Airlines, Richard spearheaded the growth of the regional network from a single route in 2016 to five destinations across four African cities. That&apos;s Lagos, Abuja, Monrovia, Freetown, and Abidjan - alongside expansion of key domestic Ghana routes: Kumasi-Tamale direct, Takoradi, and Wa.
               </p>
               <p className="mt-4">
-                Leading a team of dedicated AWA staff, he grew the once-struggling Accra–Lagos–Accra route from 3 weekly flights to 35 weekly flights within 18 months. He diversified distribution channels and maximized revenue by championing GDS implementation, securing eight airline partners for SPA and IET agreements, and leading successful membership applications to IATA, ICH, and MITA.
+                Leading a team of dedicated AWA staff, he grew the once-struggling Accra-Lagos-Accra route from 3 weekly flights to 35 weekly flights within 18 months. He diversified distribution channels and maximized revenue by championing GDS implementation, securing eight airline partners for SPA and IET agreements, and leading successful membership applications to IATA, ICH, and MITA.
               </p>
             </Reveal>
 
             <Reveal delay={0.25}>
               <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Industry Roles &amp; Affiliations</h2>
               <ul className="list-disc pl-6 space-y-2">
-                <li>Advisory Board Member, Aviation Development (AviaDev) Africa (2020–2021)</li>
+                <li>Advisory Board Member, Aviation Development (AviaDev) Africa (2020-2021)</li>
                 <li>African Representative, Lombok Institute of Flight Technology (LIFT), Indonesia</li>
                 <li>Executive Director, Centre for Aviation Policy &amp; Development, Africa (CAPD-Africa)</li>
                 <li>CEO, iCount Aerospace Limited</li>

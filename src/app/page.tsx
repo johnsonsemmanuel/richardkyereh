@@ -68,7 +68,7 @@ export default function Home() {
               <span className="text-foreground/60">for the skies</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-foreground/60 leading-relaxed max-w-lg">
-              Richard Kyereh advises on aviation policy, aero-politics, aircraft brokerage, and airline start-ups — bringing deep expertise in fleet strategy and operational excellence to airlines and operators across Africa.
+              Richard Kyereh advises on aviation policy, aero-politics, aircraft brokerage, and airline start-ups - bringing deep expertise in fleet strategy and operational excellence to airlines and operators across Africa.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg">
@@ -135,7 +135,7 @@ export default function Home() {
                   Richard Kyereh is a leading expert consultant in Africa with two decades of experience across international and African airlines. He has held key commercial and leadership roles at Turkish Airlines (Corporate Sales & Marketing), Africa World Airlines (Head of Commercial), Antrak Air (Head of Commercial & Projects and Safety Officer initially), and Westair Aviation (Ghana Country Manager).
                 </p>
                 <p>
-                  At Africa World Airlines, he led the airline&apos;s regional expansion strategy and grew the Accra-Lagos route from 3x weekly to 35x weekly in just 18 months — a landmark achievement in regional aviation connectivity. He also spearheaded network expansion to 5 destinations across 4 countries.
+                  At Africa World Airlines, he led the airline&apos;s regional expansion strategy and grew the Accra-Lagos route from 3x weekly to 35x weekly in just 18 months - a landmark achievement in regional aviation connectivity. He also spearheaded network expansion to 5 destinations across 4 countries.
                 </p>
                 <p>
                   He is also the African Representative for Lombok Institute of Flight Technology (LIFT), Indonesia, Executive Director of the Centre for Aviation Policy &amp; Development, Africa (CAPD-Africa), and Brand Ambassador for major aviation brands across Africa, including Hitit CS, the world&apos;s third-largest passenger service system.
