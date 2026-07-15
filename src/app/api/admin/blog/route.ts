@@ -103,7 +103,7 @@ export async function PUT(request: Request) {
     }
 
     const result = await client.patch(_id).set(update).commit();
-    const imageRef = update.featuredImage?._ref || result.featuredImage?.asset?._ref;
+    const imageRef = (update.featuredImage as any)?._ref || result.featuredImage?.asset?._ref;
     const imageUrl = imageRef
       ? `https://cdn.sanity.io/images/${process.env.SANITY_PROJECT_ID}/${process.env.SANITY_DATASET || "production"}/${imageRef}`
       : null;
