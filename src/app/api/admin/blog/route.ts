@@ -49,7 +49,7 @@ export async function POST(request: Request) {
     };
 
     const result = await client.create(doc);
-    return NextResponse.json({ post: result });
+    return NextResponse.json({ post: { ...result, slug: slug } });
   } catch (error) {
     console.error("Create post error:", error);
     return NextResponse.json({ error: "Failed to create post" }, { status: 500 });
@@ -93,7 +93,7 @@ export async function PUT(request: Request) {
     }
 
     const result = await client.patch(_id).set(update).commit();
-    return NextResponse.json({ post: result });
+    return NextResponse.json({ post: { ...result, slug: slug || result.slug?.current || result.slug } });
   } catch (error) {
     console.error("Update post error:", error);
     return NextResponse.json({ error: "Failed to update post" }, { status: 500 });

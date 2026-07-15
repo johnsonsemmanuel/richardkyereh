@@ -22,7 +22,7 @@ async function getPosts() {
   if (!client) return [];
   return client.fetch(
     `*[_type == "post"] | order(publishedAt desc) {
-      _id, title, slug, excerpt, publishedAt, featured, readTime
+      _id, title, "slug": slug.current, excerpt, publishedAt, featured, readTime
     }`
   );
 }
