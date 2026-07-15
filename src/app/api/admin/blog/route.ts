@@ -52,7 +52,7 @@ export async function POST(request: Request) {
       doc.featuredImage = featuredImage;
     }
 
-    const result = await client.create(doc);
+    const result = await client.create(doc as any);
     const imageUrl = doc.featuredImage
       ? `https://cdn.sanity.io/images/${process.env.SANITY_PROJECT_ID}/${process.env.SANITY_DATASET || "production"}/${doc.featuredImage._ref}`
       : null;
