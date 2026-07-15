@@ -53,8 +53,8 @@ export async function POST(request: Request) {
     }
 
     const result = await client.create(doc as any);
-    const imageUrl = doc.featuredImage
-      ? `https://cdn.sanity.io/images/${process.env.SANITY_PROJECT_ID}/${process.env.SANITY_DATASET || "production"}/${doc.featuredImage._ref}`
+    const imageUrl = (doc.featuredImage as any)?._ref
+      ? `https://cdn.sanity.io/images/${process.env.SANITY_PROJECT_ID}/${process.env.SANITY_DATASET || "production"}/${(doc.featuredImage as any)._ref}`
       : null;
     return NextResponse.json({ post: { ...result, slug, image: imageUrl } });
   } catch (error) {
