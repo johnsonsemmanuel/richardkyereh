@@ -3,14 +3,14 @@ import { redirect } from "next/navigation";
 import { isAdminAuthenticated, verifyAdminPassword, setAdminSession } from "@/lib/admin-auth";
 
 async function LoginForm() {
-async function loginAction(formData: FormData) {
-  "use server";
-  const password = formData.get("password") as string;
-  if (await verifyAdminPassword(password)) {
-    await setAdminSession();
-    redirect("/admin");
+  async function loginAction(formData: FormData) {
+    "use server";
+    const password = formData.get("password") as string;
+    if (await verifyAdminPassword(password)) {
+      await setAdminSession();
+      redirect("/admin");
+    }
   }
-}
 
   return (
     <form action={loginAction} className="space-y-4">

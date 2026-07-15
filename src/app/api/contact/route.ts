@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createSubmission } from "@/lib/sanity";
+import { sendWeb3FormsEmail } from "@/lib/web3forms";
 
 export async function POST(request: Request) {
   try {
@@ -23,6 +24,19 @@ export async function POST(request: Request) {
     };
 
     const result = await createSubmission(doc);
+
+    sendWeb3FormsEmail({
+      name,
+      email,
+      phone,
+      company,
+      inquiryType,
+      subject,
+      message,
+      form_type: "Contact Form",
+      submitted_at: new Date().toISOString(),
+    }).catch((err) => console.error("Web3Forms notification error:", err));
+
     return NextResponse.json(result);
   } catch (error) {
     console.error("Contact form error:", error);
