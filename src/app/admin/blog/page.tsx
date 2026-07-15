@@ -6,14 +6,12 @@ import { BlogManager } from "./BlogManager";
 function getSanityClient() {
   const projectId = process.env.SANITY_PROJECT_ID;
   const dataset = process.env.SANITY_DATASET || "production";
-  const token = process.env.SANITY_WRITE_TOKEN;
 
-  if (!projectId || !token) return null;
+  if (!projectId) return null;
 
   return createClient({
     projectId,
     dataset,
-    token,
     apiVersion: "2024-01-01",
     useCdn: false,
   });
