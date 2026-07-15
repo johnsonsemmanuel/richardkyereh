@@ -22,7 +22,7 @@ const timeSlots = [
 ];
 
 const services = [
-  { id: "Career Consultancy", icon: CompassIcon, desc: "Personalized career guidance for aviation professionals", duration: "1 hr" },
+  { id: "Career Consultancy", icon: CompassIcon, desc: "Personalized career guidance for aviation professionals", duration: "1 hr", rate: "RATE: 10mins Free / $20 per 30mins" },
   { id: "Speaking Engagement", icon: GlobeIcon, desc: "Keynote speaking and panel participation", duration: "1 hr" },
   { id: "Face To Face Meeting", icon: WingsIcon, desc: "Confidential one-on-one strategic discussions", duration: "30 mins" },
   { id: "Mentorship", icon: ShieldIcon, desc: "Structured leadership development for emerging leaders", duration: "1 hr" },
@@ -374,9 +374,15 @@ export default function BookingPage() {
                               <p className="text-xs text-foreground/40 mt-1 leading-relaxed">
                                 {s.desc}
                               </p>
-                              <span className="text-[10px] text-foreground/30 mt-2 block">
-                                {s.duration} &middot; Free
-                              </span>
+                              {s.rate ? (
+                                <span className="text-[10px] text-red-500 font-bold mt-2 block">
+                                  {s.rate}
+                                </span>
+                              ) : (
+                                <span className="text-[10px] text-foreground/30 mt-2 block">
+                                  {s.duration} &middot; Free
+                                </span>
+                              )}
                             </button>
                           );
                         })}

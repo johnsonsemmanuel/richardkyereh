@@ -167,7 +167,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               </div>
               <div className="flex items-center gap-3 mb-4">
                 <Icon className="size-5 text-primary" />
-                <span className="text-primary text-sm font-medium tracking-widest uppercase">
+                <span className={`text-sm font-medium tracking-widest uppercase ${service.slug === "career-consultancy" ? "text-red-500 font-bold" : "text-primary"}`}>
                   {service.price}
                 </span>
               </div>
