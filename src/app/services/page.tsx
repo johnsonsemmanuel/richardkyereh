@@ -92,11 +92,11 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (
-              <StaggerItem key={service.title}>
-                <TiltCard>
+              <StaggerItem key={service.title} className="h-full">
+                <TiltCard className="h-full">
                   <Link
                     href={`/services/${service.slug}`}
-                    className="group block bg-secondary/50 hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden shadow-card"
+                    className="group h-full flex flex-col bg-secondary/50 hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden shadow-card"
                   >
                     <div className="aspect-[16/10] overflow-hidden">
                       <img
@@ -105,7 +105,7 @@ export default function ServicesPage() {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <div className="p-6">
+                    <div className="p-6 flex flex-col flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                           {service.title}
@@ -121,7 +121,7 @@ export default function ServicesPage() {
                       <p className="text-xs mb-2 text-red-500 font-bold">
                         {service.rate}
                       </p>
-                      <p className="text-sm text-foreground/50 leading-relaxed">
+                      <p className="text-sm text-foreground/50 leading-relaxed flex-1">
                         {service.description}
                       </p>
                       <div className="mt-4">
