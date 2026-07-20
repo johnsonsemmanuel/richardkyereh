@@ -174,7 +174,7 @@ export const serviceImageUrls: Record<string, string> = {
   "Face To Face Meeting": "/photos/face-to-face.jpg",
   "Mentorship": "/photos/mentorship.jpg",
   "Aircraft Leases": unsplashUrl("1774698050881-4dc5c07c4d7d"),
-  "Charters Services": unsplashUrl("1774995842354-a87e489f45f3"),
+  "Charters Services": "/charter.jpg",
 };
 
 export const images = {
