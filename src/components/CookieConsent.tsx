@@ -40,7 +40,7 @@ export function CookieConsent() {
           className="fixed bottom-4 left-4 z-40 w-10 h-10 rounded-full bg-card border border-border shadow-lg flex items-center justify-center hover:border-primary/50 transition-colors"
           aria-label="Cookie settings"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-4 text-foreground/60">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-4 text-muted-foreground">
             <circle cx="12" cy="12" r="10" />
             <path d="M12 2a7.3 7.3 0 0 1 3.5 1.5 4.5 4.5 0 0 0-1.5 6 4.5 4.5 0 0 0 6 1.5A7 7 0 0 1 12 22a7 7 0 0 1 0-14z" />
             <circle cx="9" cy="9" r=".5" fill="currentColor" />
@@ -63,7 +63,7 @@ export function CookieConsent() {
                 <p className="text-sm font-semibold text-foreground">
                   Cookie Notice
                 </p>
-                <p className="text-xs text-foreground/50 mt-1 leading-relaxed">
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
                   This site uses cookies to improve your experience. By continuing,
                   you agree to our{" "}
                   <Link href="/privacy" className="text-primary hover:underline">

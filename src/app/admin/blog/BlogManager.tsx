@@ -158,7 +158,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
           <div className="bg-card rounded-xl border border-input shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between p-6 border-b border-input">
               <h3 className="text-lg font-semibold text-foreground">{editingId ? "Edit Post" : "New Post"}</h3>
-              <button onClick={resetForm} className="text-foreground/50 hover:text-foreground">
+              <button onClick={resetForm} className="text-muted-foreground hover:text-foreground">
                 <X className="size-5" />
               </button>
             </div>
@@ -167,7 +167,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                 <label className="block text-sm font-medium text-foreground/70 mb-1">Featured Image</label>
                 <div
                   onClick={() => fileInputRef.current?.click()}
-                  className="relative w-full h-48 border-2 border-dashed border-input rounded-xl cursor-pointer hover:border-foreground/30 transition-colors overflow-hidden bg-secondary/30 flex items-center justify-center"
+                  className="relative w-full h-48 border-2 border-dashed border-input rounded-xl cursor-pointer hover:border-foreground/30 transition-colors overflow-hidden bg-secondary flex items-center justify-center"
                 >
                   {imagePreview ? (
                     <>
@@ -181,7 +181,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                       </button>
                     </>
                   ) : (
-                    <div className="flex flex-col items-center gap-2 text-foreground/40">
+                    <div className="flex flex-col items-center gap-2 text-muted-foreground">
                       <Upload className="size-8" />
                       <span className="text-sm">Click to upload image</span>
                       <span className="text-xs">JPG, PNG, WebP</span>
@@ -197,7 +197,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                 />
                 {imagePreview && (
                   <div className="mt-2">
-                    <label className="block text-xs font-medium text-foreground/50 mb-1">Alt text</label>
+                    <label className="block text-xs font-medium text-muted-foreground mb-1">Alt text</label>
                     <input
                       type="text"
                       value={imageAlt}
@@ -289,32 +289,32 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
       <div className="hidden md:block bg-card rounded-xl border border-input shadow-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-secondary/50">
+            <thead className="bg-secondary">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-foreground/50 uppercase tracking-wider">Image</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-foreground/50 uppercase tracking-wider">Title</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-foreground/50 uppercase tracking-wider">Slug</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-foreground/50 uppercase tracking-wider">Featured</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-foreground/50 uppercase tracking-wider">Read Time</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-foreground/50 uppercase tracking-wider">Published</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-foreground/50 uppercase tracking-wider">Actions</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Image</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Title</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Slug</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Featured</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Read Time</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Published</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-input">
               {posts.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-8 text-center text-sm text-foreground/50">
+                  <td colSpan={7} className="px-6 py-8 text-center text-sm text-muted-foreground">
                     No blog posts yet
                   </td>
                 </tr>
               ) : (
                 posts.map((post) => (
-                  <tr key={post._id} className="hover:bg-secondary/30 transition-colors">
+                  <tr key={post._id} className="hover:bg-secondary transition-colors">
                     <td className="px-6 py-4">
                       {post.image ? (
                         <img src={post.image} alt={post.title} className="w-12 h-12 rounded-lg object-cover" />
                       ) : (
-                        <div className="w-12 h-12 rounded-lg bg-secondary/50 flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center">
                           <Image className="size-5 text-foreground/20" />
                         </div>
                       )}
@@ -323,14 +323,14 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                     <td className="px-6 py-4 text-sm text-foreground/70">{post.slug}</td>
                     <td className="px-6 py-4 text-sm text-foreground/70">{post.featured ? "Yes" : "No"}</td>
                     <td className="px-6 py-4 text-sm text-foreground/70">{post.readTime || "-"}</td>
-                    <td className="px-6 py-4 text-sm text-foreground/50">
+                    <td className="px-6 py-4 text-sm text-muted-foreground">
                       {new Date(post.publishedAt).toLocaleDateString()}
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => startEdit(post)}
-                          className="p-1.5 text-foreground/50 hover:text-foreground transition-colors"
+                          className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
                         >
                           <Edit className="size-4" />
                         </button>
@@ -356,19 +356,19 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
         {posts.length === 0 ? (
           <div className="bg-card rounded-xl border border-input shadow-card p-8 text-center">
             <FileText className="size-8 text-foreground/20 mx-auto mb-2" />
-            <p className="text-sm text-foreground/50">No blog posts yet</p>
+            <p className="text-sm text-muted-foreground">No blog posts yet</p>
           </div>
         ) : (
           posts.map((post) => (
             <div key={post._id} className="bg-card rounded-xl border border-input shadow-card overflow-hidden">
-              <div className="aspect-[16/9] relative bg-secondary/30">
+              <div className="aspect-[16/9] relative bg-secondary">
                 {post.image ? (
                   <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
                     <div className="text-center">
                       <FileText className="size-8 text-foreground/15 mx-auto mb-1" />
-                      <span className="text-xs text-foreground/30">No image</span>
+                      <span className="text-xs text-muted-foreground">No image</span>
                     </div>
                   </div>
                 )}
@@ -382,14 +382,14 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <h3 className="text-sm font-semibold text-foreground line-clamp-2">{post.title}</h3>
                 </div>
-                <div className="flex items-center gap-3 text-xs text-foreground/50 mb-3">
+                <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
                   <span>{post.readTime ? `${post.readTime} min` : "-"}</span>
                   <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
                 </div>
                 <div className="flex items-center gap-2 pt-2 border-t border-input">
                   <button
                     onClick={() => startEdit(post)}
-                    className="flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-foreground/70 hover:text-foreground bg-secondary/50 rounded-lg transition-colors"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-foreground/70 hover:text-foreground bg-secondary rounded-lg transition-colors"
                   >
                     <Edit className="size-3.5" />
                     Edit

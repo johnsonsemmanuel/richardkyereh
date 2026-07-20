@@ -118,7 +118,7 @@ export function SupportAgent() {
               <div className="flex items-center justify-between p-4 border-b border-border/60 shrink-0">
                 <div className="flex items-center gap-3">
                   {view === "chat" && (
-                    <button onClick={() => setView("menu")} className="text-foreground/30 hover:text-foreground transition-colors">
+                    <button onClick={() => setView("menu")} className="text-muted-foreground hover:text-foreground transition-colors">
                       <ArrowLeft className="size-4" />
                     </button>
                   )}
@@ -127,12 +127,12 @@ export function SupportAgent() {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-foreground">Aviation Support</p>
-                    <p className="text-[10px] text-foreground/40">
+                    <p className="text-[10px] text-muted-foreground">
                       {view === "chat" ? "Online - replies instantly" : "Guidance & Assistance"}
                     </p>
                   </div>
                 </div>
-                <button onClick={() => { setOpen(false); setView("menu"); }} className="text-foreground/30 hover:text-foreground transition-colors" aria-label="Close">
+                <button onClick={() => { setOpen(false); setView("menu"); }} className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Close">
                   <X className="size-4" />
                 </button>
               </div>
@@ -148,37 +148,37 @@ export function SupportAgent() {
                       exit={{ opacity: 0 }}
                       className="space-y-4"
                     >
-                      <p className="text-xs text-foreground/50 leading-relaxed">
+                      <p className="text-xs text-muted-foreground leading-relaxed">
                         Need help deciding? Our support team can guide you to the right service or connect you directly with Mr. Kyereh.
                       </p>
 
                       <div className="grid gap-2">
-                        <button onClick={() => window.location.href = PHONE_HREF} className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50 hover:bg-secondary border border-transparent hover:border-border transition-all group text-left">
+                        <button onClick={() => window.location.href = PHONE_HREF} className="flex items-center gap-3 p-3 rounded-xl bg-secondary hover:bg-secondary border border-transparent hover:border-border transition-all group text-left">
                           <PhoneCall className="size-5 text-primary/40 group-hover:text-primary transition-colors shrink-0" />
                           <div className="min-w-0">
                             <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">Call Us Directly</p>
-                            <p className="text-[10px] text-foreground/40">Speak with us on {PHONE}</p>
+                            <p className="text-[10px] text-muted-foreground">Speak with us on {PHONE}</p>
                           </div>
                         </button>
-                        <Link href="/booking?service=meeting" onClick={() => setOpen(false)} className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50 hover:bg-secondary border border-transparent hover:border-border transition-all group">
+                        <Link href="/booking?service=meeting" onClick={() => setOpen(false)} className="flex items-center gap-3 p-3 rounded-xl bg-secondary hover:bg-secondary border border-transparent hover:border-border transition-all group">
                           <Video className="size-5 text-primary/40 group-hover:text-primary transition-colors shrink-0" />
                           <div className="min-w-0">
                             <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">Video Consultation</p>
-                            <p className="text-[10px] text-foreground/40">Face-to-face guidance via video call</p>
+                            <p className="text-[10px] text-muted-foreground">Face-to-face guidance via video call</p>
                           </div>
                         </Link>
-                        <button onClick={() => openChat("I need help deciding which service is right for me")} className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50 hover:bg-secondary border border-transparent hover:border-border transition-all group text-left">
+                        <button onClick={() => openChat("I need help deciding which service is right for me")} className="flex items-center gap-3 p-3 rounded-xl bg-secondary hover:bg-secondary border border-transparent hover:border-border transition-all group text-left">
                           <CompassIcon className="size-5 text-primary/40 group-hover:text-primary transition-colors shrink-0" />
                           <div className="min-w-0">
                             <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">Pre-Booking Guidance</p>
-                            <p className="text-[10px] text-foreground/40">Chat with us to find the right service</p>
+                            <p className="text-[10px] text-muted-foreground">Chat with us to find the right service</p>
                           </div>
                         </button>
-                        <button onClick={() => openChat()} className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50 hover:bg-secondary border border-transparent hover:border-border transition-all group text-left">
+                        <button onClick={() => openChat()} className="flex items-center gap-3 p-3 rounded-xl bg-secondary hover:bg-secondary border border-transparent hover:border-border transition-all group text-left">
                           <MessageCircle className="size-5 text-primary/40 group-hover:text-primary transition-colors shrink-0" />
                           <div className="min-w-0">
                             <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">Quick Question</p>
-                            <p className="text-[10px] text-foreground/40">Instant answers from our assistant</p>
+                            <p className="text-[10px] text-muted-foreground">Instant answers from our assistant</p>
                           </div>
                         </button>
                       </div>
@@ -202,18 +202,18 @@ export function SupportAgent() {
                       {messages.map((msg, i) => (
                         <div key={i} className={`flex gap-3 ${msg.role === "user" ? "flex-row-reverse" : ""}`}>
                           <div className={`size-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                            msg.role === "user" ? "bg-primary/10" : "bg-secondary/50"
+                            msg.role === "user" ? "bg-primary/10" : "bg-secondary"
                           }`}>
                             {msg.role === "user" ? (
                               <User className="size-3.5 text-primary/60" />
                             ) : (
-                              <Bot className="size-3.5 text-foreground/40" />
+                              <Bot className="size-3.5 text-muted-foreground" />
                             )}
                           </div>
                           <div className={`max-w-[85%] rounded-xl px-3.5 py-2.5 text-xs leading-relaxed whitespace-pre-line ${
                             msg.role === "user"
                               ? "bg-primary text-primary-foreground"
-                              : "bg-secondary/50 text-foreground/70 border border-input/40"
+                              : "bg-secondary text-foreground/70 border border-border"
                           }`}>
                             {msg.text}
                           </div>
@@ -226,7 +226,7 @@ export function SupportAgent() {
                             <button
                               key={qr}
                               onClick={() => sendMessage(qr)}
-                              className="text-[11px] px-3 py-1.5 rounded-full border border-input/50 text-foreground/50 hover:border-primary/40 hover:text-primary transition-all"
+                              className="text-[11px] px-3 py-1.5 rounded-full border border-border text-muted-foreground hover:border-primary/40 hover:text-primary transition-all"
                             >
                               {qr}
                             </button>
@@ -251,7 +251,7 @@ export function SupportAgent() {
                       onChange={(e) => setInput(e.target.value)}
                       onKeyDown={handleKeyDown}
                       placeholder="Type your message..."
-                      className="flex-1 bg-secondary/50 border border-input rounded-lg px-3 py-2 text-xs text-foreground focus:outline-none focus:border-primary/50 transition-colors"
+                      className="flex-1 bg-secondary border border-input rounded-lg px-3 py-2 text-xs text-foreground focus:outline-none focus:border-primary/50 transition-colors"
                     />
                     <button
                       onClick={() => sendMessage(input)}

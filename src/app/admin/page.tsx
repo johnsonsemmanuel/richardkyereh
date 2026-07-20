@@ -55,7 +55,7 @@ async function AdminStats() {
   const stats = await getStats();
   if (!stats) {
     return (
-      <div className="text-center text-foreground/60 py-12">
+      <div className="text-center text-muted-foreground py-12">
         <p>Unable to load statistics. Please check your Sanity configuration.</p>
       </div>
     );
@@ -76,7 +76,7 @@ async function AdminStats() {
           href={stat.href}
           className="bg-card p-6 rounded-xl border border-input shadow-card hover:border-foreground/20 transition-colors"
         >
-          <p className="text-sm text-foreground/50 mb-1">{stat.label}</p>
+          <p className="text-sm text-muted-foreground mb-1">{stat.label}</p>
           <p className={`text-3xl font-bold ${stat.color}`}>{stat.value}</p>
         </Link>
       ))}
@@ -95,13 +95,13 @@ async function RecentBookings() {
       </div>
       <div className="divide-y divide-input">
         {stats.recentBookings.length === 0 ? (
-          <p className="px-6 py-4 text-sm text-foreground/50">No bookings yet</p>
+          <p className="px-6 py-4 text-sm text-muted-foreground">No bookings yet</p>
         ) : (
           stats.recentBookings.map((booking: { _id: string; name: string; service: string; status: string }) => (
             <div key={booking._id} className="px-6 py-3 flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-foreground">{booking.name}</p>
-                <p className="text-xs text-foreground/50">{booking.service}</p>
+                <p className="text-xs text-muted-foreground">{booking.service}</p>
               </div>
               <span className={`text-xs px-2 py-1 rounded-full ${
                 booking.status === "new" ? "bg-blue-500/10 text-blue-500" :
@@ -130,13 +130,13 @@ async function RecentContacts() {
       </div>
       <div className="divide-y divide-input">
         {stats.recentContacts.length === 0 ? (
-          <p className="px-6 py-4 text-sm text-foreground/50">No submissions yet</p>
+          <p className="px-6 py-4 text-sm text-muted-foreground">No submissions yet</p>
         ) : (
           stats.recentContacts.map((contact: { _id: string; name: string; subject: string; status: string }) => (
             <div key={contact._id} className="px-6 py-3 flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-foreground">{contact.name}</p>
-                <p className="text-xs text-foreground/50">{contact.subject}</p>
+                <p className="text-xs text-muted-foreground">{contact.subject}</p>
               </div>
               <span className={`text-xs px-2 py-1 rounded-full ${
                 contact.status === "new" ? "bg-blue-500/10 text-blue-500" :
@@ -163,18 +163,18 @@ export default async function AdminDashboard() {
     <div className="max-w-7xl mx-auto px-6 py-8">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
-        <p className="text-sm text-foreground/60">Welcome back, Richard</p>
+        <p className="text-sm text-muted-foreground">Welcome back, Richard</p>
       </div>
 
-      <Suspense fallback={<div className="text-center text-foreground/60 py-12">Loading stats...</div>}>
+      <Suspense fallback={<div className="text-center text-muted-foreground py-12">Loading stats...</div>}>
         <AdminStats />
       </Suspense>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Suspense fallback={<div className="text-center text-foreground/60 py-12">Loading bookings...</div>}>
+        <Suspense fallback={<div className="text-center text-muted-foreground py-12">Loading bookings...</div>}>
           <RecentBookings />
         </Suspense>
-        <Suspense fallback={<div className="text-center text-foreground/60 py-12">Loading contacts...</div>}>
+        <Suspense fallback={<div className="text-center text-muted-foreground py-12">Loading contacts...</div>}>
           <RecentContacts />
         </Suspense>
       </div>

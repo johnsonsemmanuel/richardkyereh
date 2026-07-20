@@ -32,7 +32,7 @@ const components = {
           className="w-full rounded-xl"
         />
         {value.caption && (
-          <figcaption className="text-sm text-foreground/40 text-center mt-2">{value.caption}</figcaption>
+          <figcaption className="text-sm text-muted-foreground text-center mt-2">{value.caption}</figcaption>
         )}
       </figure>
     ),

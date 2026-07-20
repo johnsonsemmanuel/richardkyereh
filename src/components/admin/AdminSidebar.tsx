@@ -38,7 +38,7 @@ export function AdminSidebar() {
           type="button"
           onClick={() => setOpen(true)}
           aria-label="Open menu"
-          className="p-2 -ml-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-secondary/50 transition-colors"
+          className="p-2 -ml-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-secondary transition-colors"
         >
           <Menu className="size-5" />
         </button>
@@ -73,7 +73,7 @@ export function AdminSidebar() {
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close menu"
-            className="md:hidden p-1.5 rounded-lg text-foreground/60 hover:text-foreground hover:bg-secondary/50 transition-colors"
+            className="md:hidden p-1.5 rounded-lg text-foreground/60 hover:text-foreground hover:bg-secondary transition-colors"
           >
             <X className="size-5" />
           </button>
@@ -95,7 +95,7 @@ export function AdminSidebar() {
                   "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors",
                   active
                     ? "bg-secondary text-foreground font-medium"
-                    : "text-foreground/70 hover:text-foreground hover:bg-secondary/50"
+                    : "text-foreground/70 hover:text-foreground hover:bg-secondary"
                 )}
               >
                 <Icon className="size-4 shrink-0" />
@@ -109,7 +109,7 @@ export function AdminSidebar() {
           <form action={logoutAction}>
             <button
               type="submit"
-              className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-foreground/70 hover:text-foreground hover:bg-secondary/50 transition-colors"
+              className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-foreground/70 hover:text-foreground hover:bg-secondary transition-colors"
             >
               <LogOut className="size-4 shrink-0" />
               Sign Out
@@ -135,7 +135,7 @@ export function AdminSidebar() {
                   "flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg transition-colors min-w-[56px]",
                   active
                     ? "text-primary"
-                    : "text-foreground/50"
+                    : "text-muted-foreground"
                 )}
               >
                 <Icon className="size-5" />

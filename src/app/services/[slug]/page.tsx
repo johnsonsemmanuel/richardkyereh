@@ -17,7 +17,9 @@ const services = [
     icon: CompassIcon,
     gradient: "05080F,1A2D4A",
     duration: "1 hr",
-    price: "RATE: 10mins Free / $20 per 30mins",
+    price: "10mins Free / $20 per 30mins",
+    isFree: false,
+    priceNote: "Paid service",
     description:
       "Whether you are pursuing a career upgrade, transitioning into management, or entering the industry for the first time, we provide structured, one-on-one coaching tailored to your goals.",
     features: [
@@ -37,7 +39,9 @@ const services = [
     icon: GlobeIcon,
     gradient: "0A0F1A,111827",
     duration: "1 hr",
-    price: "RATE: Free or paid depending on location and logistics",
+    price: "Free or paid depending on location",
+    isFree: true,
+    priceNote: "Typically free",
     description:
       "Expert keynote speaking and panel participation for conferences, media discussions, corporate events, industry summits, and academic institutions. Richard brings decades of operational experience, strategic insight, and a compelling personal story that resonates with any audience.",
     features: [
@@ -57,7 +61,9 @@ const services = [
     icon: WingsIcon,
     gradient: "05080F,111827",
     duration: "30 mins",
-    price: "RATE: Negotiable",
+    price: "Negotiable",
+    isFree: false,
+    priceNote: "Paid service",
     description:
       "Confidential one-on-one meetings for strategic discussions, partnership exploration, airline start-up development or executive advisory sessions. These private engagements are designed for decision-makers who need direct, unfiltered access to Richard's expertise.",
     features: [
@@ -77,7 +83,9 @@ const services = [
     icon: ShieldIcon,
     gradient: "0A0F1A,1A2D4A",
     duration: "1 hr",
-    price: "RATE: 10mins Free / $20 per 30mins",
+    price: "10mins Free / $20 per 30mins",
+    isFree: false,
+    priceNote: "Paid service",
     description:
       "Structured mentorship for emerging aviation leaders, covering both technical excellence and leadership development. Our mentorship program is designed to build competence, confidence, and connections in the aviation industry.",
     features: [
@@ -97,7 +105,9 @@ const services = [
     icon: RadarIcon,
     gradient: "05080F,1F2937",
     duration: "1 hr",
-    price: "RATE: Free or paid depending on location and logistics",
+    price: "Free or paid depending on location",
+    isFree: true,
+    priceNote: "Typically free",
     description:
       "Advisory on aircraft leasing strategies, wet lease vs dry lease, fleet optimization, and portfolio management. Whether you are a startup airline or an established operator, we help you make informed, data-driven decisions.",
     features: [
@@ -117,7 +127,9 @@ const services = [
     icon: PlaneIcon,
     gradient: "0A0F1A,1F2937",
     duration: "1 hr",
-    price: "RATE: Free or paid depending on location and logistics",
+    price: "Free or paid depending on location",
+    isFree: true,
+    priceNote: "Typically free",
     description:
       "Amongst our range of available aircraft is a Beech 1900 to support charters operators, corporate clients and individuals.",
     features: [
@@ -160,23 +172,34 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <Reveal>
-              <div className="flex items-center gap-2 text-xs text-foreground/30 mb-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">
                 <Link href="/services" className="hover:text-primary transition-colors">Services</Link>
                 <span>/</span>
-                <span className="text-foreground/50">{service.title}</span>
+                <span className="text-foreground">{service.title}</span>
               </div>
               <div className="flex items-center gap-3 mb-4">
                 <Icon className="size-5 text-primary" />
-                <span className="text-sm font-medium tracking-widest uppercase text-red-500 font-bold">
-                  {service.price}
-                </span>
+                <div className="flex items-center gap-2">
+                  {service.isFree ? (
+                    <span className="inline-flex items-center text-xs font-semibold text-success bg-success/10 px-2.5 py-1 rounded-full">
+                      Free
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center text-xs font-semibold text-gold bg-gold/10 px-2.5 py-1 rounded-full">
+                      Paid
+                    </span>
+                  )}
+                  <span className="text-sm font-medium tracking-wider text-muted-foreground">
+                    {service.price}
+                  </span>
+                </div>
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
                 {service.title}
                 <br />
-                <span className="text-foreground/50">{service.subtitle}.</span>
+                <span className="text-muted-foreground">{service.subtitle}.</span>
               </h1>
-              <p className="mt-6 text-foreground/40 leading-relaxed max-w-lg">
+              <p className="mt-6 text-muted-foreground leading-relaxed max-w-lg">
                 {service.description}
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -215,9 +238,9 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
                 What you get
                 <br />
-                <span className="text-foreground/50">with this service.</span>
+                <span className="text-muted-foreground">with this service.</span>
               </h2>
-              <p className="mt-4 text-foreground/40 leading-relaxed">
+              <p className="mt-4 text-muted-foreground leading-relaxed">
                 Every engagement is structured around your specific needs. Our
                 goal is to deliver actionable value from the very first session.
               </p>
@@ -225,9 +248,9 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             <Reveal delay={0.1}>
               <div className="grid gap-3">
                 {service.features.map((f, i) => (
-                  <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-secondary/30 border border-input/50">
-                    <CheckCircle className="size-4 text-primary/60 mt-0.5 shrink-0" />
-                    <span className="text-sm text-foreground/60">{f}</span>
+                  <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-secondary/50 border border-border">
+                    <CheckCircle className="size-4 text-primary mt-0.5 shrink-0" />
+                    <span className="text-sm text-foreground">{f}</span>
                   </div>
                 ))}
               </div>
@@ -236,8 +259,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
           <Reveal delay={0.15}>
             <div className="mt-16 p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-primary/5 to-transparent border border-primary/10">
-              <p className="text-xs text-foreground/30 font-semibold tracking-wider uppercase mb-2">Ideal For</p>
-              <p className="text-sm text-foreground/60 leading-relaxed">{service.ideal}</p>
+              <p className="text-xs text-muted-foreground font-semibold tracking-wider uppercase mb-2">Ideal For</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{service.ideal}</p>
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <Button asChild>
                   <Link href="/booking">

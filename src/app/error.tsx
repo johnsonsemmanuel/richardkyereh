@@ -26,9 +26,9 @@ export default function Error({
         <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-foreground">
           System
           <br />
-          <span className="text-foreground/50">anomaly.</span>
+          <span className="text-muted-foreground">anomaly.</span>
         </h1>
-        <p className="mt-6 text-foreground/50 leading-relaxed">
+        <p className="mt-6 text-muted-foreground leading-relaxed">
           An unexpected error has occurred. Our team has been notified.
           Please try again or return to the homepage.
         </p>

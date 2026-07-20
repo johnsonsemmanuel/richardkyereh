@@ -85,13 +85,13 @@ export function NewsroomFilter({ articles, allTags }: Props) {
         <div className="flex flex-col gap-4 mb-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div className="relative flex-1 max-w-sm">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-foreground/30" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
               <input
                 type="text"
                 value={search}
                 onChange={handleFilterChange(setSearch)}
                 placeholder="Search articles..."
-                className="w-full bg-secondary/50 border border-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-foreground/30 transition-colors"
+                className="w-full bg-secondary border border-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground/30 transition-colors"
               />
             </div>
             <div className="flex flex-wrap gap-2">
@@ -100,7 +100,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
                 className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
                   !activeTag
                     ? "bg-foreground text-background border-foreground"
-                    : "border-border text-foreground/50 hover:border-foreground/30"
+                    : "border-border text-muted-foreground hover:border-foreground/30"
                 }`}
               >
                 All
@@ -112,7 +112,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
                   className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
                     activeTag === tag
                       ? "bg-foreground text-background border-foreground"
-                      : "border-border text-foreground/50 hover:border-foreground/30"
+                      : "border-border text-muted-foreground hover:border-foreground/30"
                   }`}
                 >
                   {tag}
@@ -121,7 +121,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs text-foreground/40 font-medium uppercase tracking-wider mr-1">
+            <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider mr-1">
               Year:
             </span>
             <button
@@ -129,7 +129,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
               className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
                 !activeYear
                   ? "bg-foreground text-background border-foreground"
-                  : "border-border text-foreground/50 hover:border-foreground/30"
+                  : "border-border text-muted-foreground hover:border-foreground/30"
               }`}
             >
               All
@@ -141,7 +141,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
                 className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
                   activeYear === year
                     ? "bg-foreground text-background border-foreground"
-                    : "border-border text-foreground/50 hover:border-foreground/30"
+                    : "border-border text-muted-foreground hover:border-foreground/30"
                 }`}
               >
                 {year}
@@ -159,7 +159,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
             transition={{ duration: 0.2 }}
           >
             {filtered.length === 0 ? (
-              <p className="text-center text-foreground/50 text-sm py-20">
+              <p className="text-center text-muted-foreground text-sm py-20">
                 No articles match your search.
               </p>
             ) : (
@@ -169,7 +169,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
                     <Link
                       key={article.slug}
                       href={`/newsroom/${article.slug}`}
-                      className="group block bg-secondary/50 hover:bg-secondary transition-all duration-500 border border-border hover:border-foreground/20 rounded-xl overflow-hidden shadow-card"
+                      className="group block bg-secondary hover:bg-secondary transition-all duration-500 border border-border hover:border-foreground/20 rounded-xl overflow-hidden shadow-card"
                     >
                       <div className="aspect-[16/9] overflow-hidden">
                         <img
@@ -183,7 +183,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
                         />
                       </div>
                       <div className="p-5">
-                        <div className="flex flex-wrap items-center gap-2 text-[10px] text-foreground/50 uppercase tracking-[0.1em] font-semibold mb-3">
+                        <div className="flex flex-wrap items-center gap-2 text-[10px] text-muted-foreground uppercase tracking-[0.1em] font-semibold mb-3">
                           {article.tags.map((t) => (
                             <span key={t} className="border border-border px-2 py-0.5 rounded-full">
                               {t}
@@ -193,10 +193,10 @@ export function NewsroomFilter({ articles, allTags }: Props) {
                         <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug mb-2">
                           {article.title}
                         </h3>
-                        <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2">
+                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
                           {article.excerpt}
                         </p>
-                        <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border text-xs text-foreground/50">
+                        <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border text-xs text-muted-foreground">
                           <span className="flex items-center gap-1">
                             <User className="size-3" />
                             {article.author.name}

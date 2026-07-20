@@ -55,7 +55,7 @@ export function NewsletterPopup() {
           <div className="bg-card border border-border rounded-2xl p-6 shadow-2xl">
             <button
               onClick={dismiss}
-              className="absolute top-4 right-4 text-foreground/40 hover:text-foreground"
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
               aria-label="Close"
             >
               <X className="size-4" />
@@ -65,7 +65,7 @@ export function NewsletterPopup() {
               <div className="text-center py-4">
                 <Mail className="size-8 text-primary mx-auto mb-3" />
                 <h3 className="text-lg font-semibold text-foreground">You&apos;re in!</h3>
-                <p className="text-sm text-foreground/50 mt-1">
+                <p className="text-sm text-muted-foreground mt-1">
                   Watch for industry insights from Richard Kyereh.
                 </p>
               </div>
@@ -77,7 +77,7 @@ export function NewsletterPopup() {
                   </div>
                   <div>
                     <h3 className="text-base font-semibold text-foreground">Aviation Insights</h3>
-                    <p className="text-xs text-foreground/50">
+                    <p className="text-xs text-muted-foreground">
                       Exclusive analysis from Richard Kyereh
                     </p>
                   </div>
@@ -89,13 +89,13 @@ export function NewsletterPopup() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="flex-1 bg-secondary/50 border border-input rounded-lg px-3 py-2 text-sm text-foreground focus:outline-none focus:border-ring/50"
+                    className="flex-1 bg-secondary border border-input rounded-lg px-3 py-2 text-sm text-foreground focus:outline-none focus:border-ring/50"
                   />
                   <Button type="submit" size="sm">
                     Subscribe
                   </Button>
                 </form>
-                <p className="text-[10px] text-foreground/30 mt-3">
+                <p className="text-[10px] text-muted-foreground mt-3">
                   No spam. Unsubscribe anytime.
                 </p>
               </>

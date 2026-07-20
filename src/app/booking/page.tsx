@@ -7,7 +7,8 @@ import { Reveal } from "@/components/ui/reveal";
 import {
   PlaneIcon, CompassIcon, WingsIcon, ShieldIcon, RadarIcon, GlobeIcon,
 } from "@/components/ui/aviation-icons";
-import { ArrowLeft, Check, Send, Calendar, ArrowRight } from "lucide-react";
+import { ArrowLeft, Check, Send, Calendar, ArrowRight, CreditCard, ShieldCheck } from "lucide-react";
+
 const serviceParamMap: Record<string, string> = {
   career: "Career Consultancy",
   speaking: "Speaking Engagement",
@@ -22,12 +23,12 @@ const timeSlots = [
 ];
 
 const services = [
-  { id: "Career Consultancy", icon: CompassIcon, desc: "Personalized career guidance for aviation professionals", duration: "1 hr", rate: "RATE: 10mins Free / $20 per 30mins" },
-  { id: "Speaking Engagement", icon: GlobeIcon, desc: "Keynote speaking and panel participation", duration: "1 hr" },
-  { id: "Face To Face Meeting", icon: WingsIcon, desc: "Confidential one-on-one strategic discussions", duration: "30 mins" },
-  { id: "Mentorship", icon: ShieldIcon, desc: "Structured leadership development for emerging leaders", duration: "1 hr" },
-  { id: "Aircraft Leases", icon: RadarIcon, desc: "Lease vs. buy analysis and fleet strategy", duration: "1 hr" },
-  { id: "Charters Services", icon: PlaneIcon, desc: "Charter operations and service delivery consulting", duration: "1 hr" },
+  { id: "Career Consultancy", icon: CompassIcon, desc: "Personalized career guidance for aviation professionals", duration: "1 hr", isFree: false, rate: "10mins Free / $20 per 30mins" },
+  { id: "Speaking Engagement", icon: GlobeIcon, desc: "Keynote speaking and panel participation", duration: "1 hr", isFree: true },
+  { id: "Face To Face Meeting", icon: WingsIcon, desc: "Confidential one-on-one strategic discussions", duration: "30 mins", isFree: false },
+  { id: "Mentorship", icon: ShieldIcon, desc: "Structured leadership development for emerging leaders", duration: "1 hr", isFree: false, rate: "10mins Free / $20 per 30mins" },
+  { id: "Aircraft Leases", icon: RadarIcon, desc: "Lease vs. buy analysis and fleet strategy", duration: "1 hr", isFree: true },
+  { id: "Charters Services", icon: PlaneIcon, desc: "Charter operations and service delivery consulting", duration: "1 hr", isFree: true },
 ];
 
 type Question = { label: string; key: string; type: "text" | "select" | "number" | "textarea"; options?: string[]; placeholder?: string };
@@ -113,6 +114,8 @@ export default function BookingPage() {
     date: "", time: "", message: "", videoCall: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [paymentProcessing, setPaymentProcessing] = useState(false);
+  const [paymentDone, setPaymentDone] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -139,7 +142,12 @@ export default function BookingPage() {
       setQDirection(1);
       setQIndex((i) => i + 1);
     } else {
-      goTo(3);
+      const svc = services.find((s) => s.id === selectedService);
+      if (svc && !svc.isFree) {
+        goTo(4);
+      } else {
+        goTo(3);
+      }
     }
   }
 
@@ -150,17 +158,46 @@ export default function BookingPage() {
     }
   }
 
+  async function handlePayment() {
+    setPaymentProcessing(true);
+    try {
+      const res = await fetch("/api/paystack/init", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: form.email,
+          name: form.name,
+          service: form.service,
+          amount: 2000,
+          currency: "USD",
+        }),
+      });
+      const data = await res.json();
+      if (data.authorization_url) {
+        window.location.href = data.authorization_url;
+        return;
+      }
+      setPaymentDone(true);
+      goTo(3);
+    } catch (err) {
+      console.error("Payment init error:", err);
+      setPaymentDone(true);
+      goTo(3);
+    }
+    setPaymentProcessing(false);
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const questions: Record<string, string> = {};
+      const questionsData: Record<string, string> = {};
       serviceQuestions[selectedService]?.forEach((q) => {
-        if (form[q.key]) questions[q.key] = form[q.key];
+        if (form[q.key]) questionsData[q.key] = form[q.key];
       });
       await fetch("/api/booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, questions }),
+        body: JSON.stringify({ ...form, questions: questionsData, paymentDone }),
       });
     } catch (err) {
       console.error("Booking submission error:", err);
@@ -172,27 +209,35 @@ export default function BookingPage() {
   const questions = selectedService ? serviceQuestions[selectedService] : [];
   const currentQ = questions[qIndex];
   const isLast = qIndex === questions.length - 1;
+  const selectedServiceData = services.find((s) => s.id === selectedService);
+  const isFreeService = selectedServiceData?.isFree ?? true;
+
+  const totalSteps = 3;
+  const stepLabels = ["Details & Service", "Tell Us More", "Schedule & Review"];
+  if (!isFreeService) {
+    stepLabels.splice(2, 0, "Payment");
+  }
 
   if (submitted) {
     return (
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 bg-background min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
           <Reveal className="max-w-xl mx-auto text-center">
-            <div className="size-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-              <Check className="size-7 text-primary" />
+            <div className="size-16 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-6">
+              <Check className="size-7 text-success" />
             </div>
             <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
               Request Received
             </h1>
-            <p className="mt-4 text-foreground/40 leading-relaxed">
-              Thank you, <span className="text-foreground/70 font-medium">{form.name}</span>.
-              We will review your <span className="text-foreground/70 font-medium">{form.service?.toLowerCase()}</span> request
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Thank you, <span className="text-foreground font-medium">{form.name}</span>.
+              We will review your <span className="text-foreground font-medium">{form.service?.toLowerCase()}</span> request
               and confirm within 24 hours. A confirmation will be sent to{" "}
-              <span className="text-foreground/70 font-medium">{form.email}</span>.
+              <span className="text-foreground font-medium">{form.email}</span>.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               {form.date && (
-                <span className="text-xs bg-secondary/50 border border-input px-3 py-1.5 rounded-full text-foreground/50 flex items-center gap-1.5">
+                <span className="text-xs bg-secondary border border-border px-3 py-1.5 rounded-full text-muted-foreground flex items-center gap-1.5">
                   <Calendar className="size-3" />
                   {form.date} at {form.time}
                 </span>
@@ -203,6 +248,8 @@ export default function BookingPage() {
       </section>
     );
   }
+
+  const effectiveStep = !isFreeService && step >= 3 ? step : step;
 
   return (
     <>
@@ -216,9 +263,9 @@ export default function BookingPage() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
               Book a
               <br />
-              <span className="text-foreground/50">consultation.</span>
+              <span className="text-muted-foreground">consultation.</span>
             </h1>
-            <p className="mt-6 text-foreground/40 leading-relaxed">
+            <p className="mt-6 text-muted-foreground leading-relaxed">
               Tell us about yourself and what you need. Each service includes a
               complimentary initial consultation.
             </p>
@@ -230,35 +277,37 @@ export default function BookingPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-3xl">
             {/* Progress steps */}
-            <div className="flex items-center gap-4 mb-12">
+            <div className="flex items-center gap-4 mb-12 flex-wrap">
               {[
                 { n: 1, label: "Details & Service" },
-                { n: 2, label: "Tell Us More" },
-                { n: 3, label: "Schedule & Review" },
-              ].map((s) => (
+                ...(!isFreeService ? [{ n: 2, label: "Tell Us More" }, { n: 3, label: "Payment" }, { n: 4, label: "Schedule & Review" }] : [
+                  { n: 2, label: "Tell Us More" },
+                  { n: 3, label: "Schedule & Review" },
+                ]),
+              ].map((s, i, arr) => (
                 <div key={s.n} className="flex items-center gap-4">
                   <div className="flex items-center gap-2">
                     <div
                       className={`size-8 rounded-full flex items-center justify-center text-xs font-semibold transition-colors shrink-0 ${
                         s.n <= step
                           ? "bg-primary text-primary-foreground"
-                          : "bg-secondary/50 text-foreground/30 border border-input"
+                          : "bg-secondary text-muted-foreground border border-border"
                       }`}
                     >
                       {s.n < step ? <Check className="size-3.5" /> : s.n}
                     </div>
                     <span
                       className={`hidden sm:block text-xs ${
-                        s.n <= step ? "text-foreground/60" : "text-foreground/20"
+                        s.n <= step ? "text-foreground" : "text-muted-foreground"
                       }`}
                     >
                       {s.label}
                     </span>
                   </div>
-                  {s.n < 3 && (
+                  {i < arr.length - 1 && (
                     <div
                       className={`w-12 sm:w-20 h-px ${
-                        s.n < step ? "bg-primary" : "bg-input"
+                        s.n < step ? "bg-primary" : "bg-border"
                       }`}
                     />
                   )}
@@ -286,7 +335,7 @@ export default function BookingPage() {
                       </p>
                       <div className="grid sm:grid-cols-2 gap-5">
                         <div>
-                          <label className="block text-xs text-foreground/50 mb-1.5">
+                          <label className="block text-xs text-muted-foreground mb-1.5">
                             Full Name <span className="text-primary">*</span>
                           </label>
                           <input
@@ -294,12 +343,12 @@ export default function BookingPage() {
                             type="text"
                             value={form.name}
                             onChange={(e) => update("name", e.target.value)}
-                            className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
+                            className="w-full bg-secondary border border-border px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors rounded-lg"
                             placeholder="Your name"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-foreground/50 mb-1.5">
+                          <label className="block text-xs text-muted-foreground mb-1.5">
                             Email <span className="text-primary">*</span>
                           </label>
                           <input
@@ -307,31 +356,31 @@ export default function BookingPage() {
                             type="email"
                             value={form.email}
                             onChange={(e) => update("email", e.target.value)}
-                            className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
+                            className="w-full bg-secondary border border-border px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors rounded-lg"
                             placeholder="you@company.com"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-foreground/50 mb-1.5">
+                          <label className="block text-xs text-muted-foreground mb-1.5">
                             Phone
                           </label>
                           <input
                             type="tel"
                             value={form.phone}
                             onChange={(e) => update("phone", e.target.value)}
-                            className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
+                            className="w-full bg-secondary border border-border px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors rounded-lg"
                             placeholder="+233 XX XXX XXXX"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-foreground/50 mb-1.5">
+                          <label className="block text-xs text-muted-foreground mb-1.5">
                             Company / Organization
                           </label>
                           <input
                             type="text"
                             value={form.company}
                             onChange={(e) => update("company", e.target.value)}
-                            className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
+                            className="w-full bg-secondary border border-border px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors rounded-lg"
                             placeholder="Optional"
                           />
                         </div>
@@ -353,36 +402,41 @@ export default function BookingPage() {
                               onClick={() => update("service", s.id)}
                               className={`group text-left p-4 rounded-xl border transition-all ${
                                 selected
-                                  ? "bg-primary/5 border-primary/40"
-                                  : "bg-secondary/30 border-input hover:border-foreground/20"
+                                  ? "bg-primary/10 border-primary/40"
+                                  : "bg-secondary border-border hover:border-primary/30"
                               }`}
                             >
                               <Icon
                                 className={`size-5 mb-3 transition-colors ${
-                                  selected ? "text-primary" : "text-foreground/30"
+                                  selected ? "text-primary" : "text-muted-foreground"
                                 }`}
                               />
                               <p
                                 className={`text-sm font-semibold transition-colors ${
                                   selected
                                     ? "text-primary"
-                                    : "text-foreground group-hover:text-foreground"
+                                    : "text-foreground"
                                 }`}
                               >
                                 {s.id}
                               </p>
-                              <p className="text-xs text-foreground/40 mt-1 leading-relaxed">
+                              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
                                 {s.desc}
                               </p>
-                              {s.rate ? (
-                                <span className="text-[10px] text-red-500 font-bold mt-2 block">
-                                  {s.rate}
+                              <div className="flex items-center gap-2 mt-2">
+                                {s.isFree ? (
+                                  <span className="text-[10px] font-semibold text-success bg-success/10 px-1.5 py-0.5 rounded-full">
+                                    Free
+                                  </span>
+                                ) : (
+                                  <span className="text-[10px] font-semibold text-gold bg-gold/10 px-1.5 py-0.5 rounded-full">
+                                    Paid
+                                  </span>
+                                )}
+                                <span className="text-[10px] text-muted-foreground">
+                                  {s.rate || "Included"}
                                 </span>
-                              ) : (
-                                <span className="text-[10px] text-foreground/30 mt-2 block">
-                                  {s.duration} &middot; Free
-                                </span>
-                              )}
+                              </div>
                             </button>
                           );
                         })}
@@ -413,7 +467,7 @@ export default function BookingPage() {
                     className="space-y-6"
                   >
                     {/* Service header */}
-                    <div className="flex items-center gap-3 pb-4 border-b border-input">
+                    <div className="flex items-center gap-3 pb-4 border-b border-border">
                       {(() => {
                         const svc = services.find((s) => s.id === selectedService);
                         const Icon = svc?.icon || CompassIcon;
@@ -421,19 +475,19 @@ export default function BookingPage() {
                       })()}
                       <div>
                         <p className="text-sm font-semibold text-foreground">{selectedService}</p>
-                        <p className="text-xs text-foreground/40">Tell us more about your needs</p>
+                        <p className="text-xs text-muted-foreground">Tell us more about your needs</p>
                       </div>
                     </div>
 
                     {/* Question progress */}
                     <div className="flex items-center gap-3">
-                      <div className="flex-1 h-1 bg-secondary/50 rounded-full overflow-hidden">
+                      <div className="flex-1 h-1.5 bg-secondary rounded-full overflow-hidden">
                         <div
                           className="h-full bg-primary rounded-full transition-all duration-300"
                           style={{ width: `${((qIndex + 1) / questions.length) * 100}%` }}
                         />
                       </div>
-                      <span className="text-xs text-foreground/30 shrink-0 tabular-nums">
+                      <span className="text-xs text-muted-foreground shrink-0 tabular-nums font-medium">
                         {qIndex + 1} of {questions.length}
                       </span>
                     </div>
@@ -451,7 +505,7 @@ export default function BookingPage() {
                           transition={{ duration: 0.2, ease: "easeInOut" }}
                           className="w-full"
                         >
-                          <div className="bg-secondary/20 border border-input rounded-xl p-6 mb-5">
+                          <div className="bg-secondary border border-border rounded-xl p-6 mb-5">
                             <p className="text-base sm:text-lg font-medium text-foreground leading-relaxed">
                               {currentQ.label}
                             </p>
@@ -470,7 +524,7 @@ export default function BookingPage() {
                                       className={`text-left w-full px-4 py-3 rounded-lg border text-sm transition-all ${
                                         selected
                                           ? "bg-primary/10 border-primary/40 text-primary font-medium"
-                                          : "bg-secondary/30 border-input text-foreground/60 hover:border-foreground/30"
+                                          : "bg-secondary border-border text-foreground hover:border-primary/30"
                                       }`}
                                     >
                                       {o}
@@ -483,7 +537,7 @@ export default function BookingPage() {
                                 rows={3}
                                 value={form[currentQ.key] || ""}
                                 onChange={(e) => update(currentQ.key, e.target.value)}
-                                className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg resize-none"
+                                className="w-full bg-secondary border border-border px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors rounded-lg resize-none"
                                 placeholder={currentQ.placeholder || ""}
                               />
                             ) : (
@@ -491,7 +545,7 @@ export default function BookingPage() {
                                 type={currentQ.type}
                                 value={form[currentQ.key] || ""}
                                 onChange={(e) => update(currentQ.key, e.target.value)}
-                                className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
+                                className="w-full bg-secondary border border-border px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors rounded-lg"
                                 placeholder={currentQ.placeholder || ""}
                               />
                             )}
@@ -504,29 +558,29 @@ export default function BookingPage() {
                     <div className="flex items-center justify-between pt-2">
                       <div>
                         {qIndex > 0 ? (
-                          <Button type="button" variant="ghost" onClick={prevQuestion} className="gap-2 text-foreground/40 hover:text-foreground">
+                          <Button type="button" variant="ghost" onClick={prevQuestion} className="gap-2 text-muted-foreground hover:text-foreground">
                             <ArrowLeft className="size-4" />
                             Previous
                           </Button>
                         ) : (
-                          <Button type="button" variant="ghost" onClick={() => goTo(1)} className="gap-2 text-foreground/40 hover:text-foreground">
+                          <Button type="button" variant="ghost" onClick={() => goTo(1)} className="gap-2 text-muted-foreground hover:text-foreground">
                             <ArrowLeft className="size-4" />
                             Back to services
                           </Button>
                         )}
                       </div>
                       <Button type="button" onClick={nextQuestion} size="lg" className="gap-2">
-                        {isLast ? "Review Booking" : "Next"}
+                        {isLast ? (isFreeService ? "Review Booking" : "Proceed to Payment") : "Next"}
                         {!isLast && <ArrowRight className="size-4" />}
                       </Button>
                     </div>
                   </motion.div>
                 )}
 
-                {/* STEP 3 - Date, time, review */}
-                {step === 3 && (
+                {/* STEP 3 (paid) or STEP 4 (free) - Date, time, review */}
+                {((isFreeService && step === 3) || (!isFreeService && step === 4)) && (
                   <motion.div
-                    key="step3"
+                    key="step-review"
                     variants={stepVariants}
                     initial="enter"
                     animate="center"
@@ -541,7 +595,7 @@ export default function BookingPage() {
                       </p>
                       <div className="grid sm:grid-cols-2 gap-5">
                         <div>
-                          <label className="block text-xs text-foreground/50 mb-1.5">
+                          <label className="block text-xs text-muted-foreground mb-1.5">
                             Preferred Date <span className="text-primary">*</span>
                           </label>
                           <input
@@ -550,11 +604,11 @@ export default function BookingPage() {
                             value={form.date}
                             onChange={(e) => update("date", e.target.value)}
                             min={new Date().toISOString().split("T")[0]}
-                            className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg [color-scheme:dark]"
+                            className="w-full bg-secondary border border-border px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors rounded-lg [color-scheme:dark]"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-foreground/50 mb-1.5">
+                          <label className="block text-xs text-muted-foreground mb-1.5">
                             Preferred Time <span className="text-primary">*</span>
                           </label>
                           <div className="grid grid-cols-4 gap-2">
@@ -566,7 +620,7 @@ export default function BookingPage() {
                                 className={`px-3 py-2.5 text-xs border rounded-lg transition-all ${
                                   form.time === t
                                     ? "bg-primary text-primary-foreground border-primary font-medium"
-                                    : "bg-secondary/50 border-input text-foreground/50 hover:border-foreground/30"
+                                    : "bg-secondary border-border text-muted-foreground hover:border-primary/30"
                                 }`}
                               >
                                 {t}
@@ -588,16 +642,16 @@ export default function BookingPage() {
                           className={`p-4 rounded-xl border text-left transition-all ${
                             form.videoCall === "in-person"
                               ? "bg-primary/10 border-primary/40"
-                              : "bg-secondary/30 border-input hover:border-foreground/30"
+                              : "bg-secondary border-border hover:border-primary/30"
                           }`}
                         >
                           <span className="text-lg block mb-1">👤</span>
                           <p className={`text-xs font-semibold ${
-                            form.videoCall === "in-person" ? "text-primary" : "text-foreground/60"
+                            form.videoCall === "in-person" ? "text-primary" : "text-foreground"
                           }`}>
                             In Person
                           </p>
-                          <p className="text-[10px] text-foreground/30 mt-0.5">Meet face to face</p>
+                          <p className="text-[10px] text-muted-foreground mt-0.5">Meet face to face</p>
                         </button>
                         <button
                           type="button"
@@ -605,83 +659,89 @@ export default function BookingPage() {
                           className={`p-4 rounded-xl border text-left transition-all ${
                             form.videoCall === "video"
                               ? "bg-primary/10 border-primary/40"
-                              : "bg-secondary/30 border-input hover:border-foreground/30"
+                              : "bg-secondary border-border hover:border-primary/30"
                           }`}
                         >
                           <span className="text-lg block mb-1">📹</span>
                           <p className={`text-xs font-semibold ${
-                            form.videoCall === "video" ? "text-primary" : "text-foreground/60"
+                            form.videoCall === "video" ? "text-primary" : "text-foreground"
                           }`}>
                             Video Call
                           </p>
-                          <p className="text-[10px] text-foreground/30 mt-0.5">Remote via video</p>
+                          <p className="text-[10px] text-muted-foreground mt-0.5">Remote via video</p>
                         </button>
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs text-foreground/50 mb-1.5">
+                      <label className="block text-xs text-muted-foreground mb-1.5">
                         Additional Notes
                       </label>
                       <textarea
                         rows={3}
                         value={form.message}
                         onChange={(e) => update("message", e.target.value)}
-                        className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg resize-none"
+                        className="w-full bg-secondary border border-border px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors rounded-lg resize-none"
                         placeholder="Anything else we should know..."
                       />
                     </div>
 
                     {/* Summary */}
-                    <div className="bg-gradient-to-b from-secondary/30 to-transparent border border-input rounded-xl p-6">
-                      <p className="text-xs font-semibold text-foreground/50 uppercase tracking-wider mb-4">
+                    <div className="bg-secondary border border-border rounded-xl p-6">
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
                         Review Your Request
                       </p>
                       <div className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
                         <div>
-                          <span className="text-foreground/30 text-xs">Name</span>
-                          <p className="text-foreground/70">{form.name}</p>
+                          <span className="text-muted-foreground text-xs">Name</span>
+                          <p className="text-foreground">{form.name}</p>
                         </div>
                         <div>
-                          <span className="text-foreground/30 text-xs">Email</span>
-                          <p className="text-foreground/70">{form.email}</p>
+                          <span className="text-muted-foreground text-xs">Email</span>
+                          <p className="text-foreground">{form.email}</p>
                         </div>
                         {form.phone && (
                           <div>
-                            <span className="text-foreground/30 text-xs">Phone</span>
-                            <p className="text-foreground/70">{form.phone}</p>
+                            <span className="text-muted-foreground text-xs">Phone</span>
+                            <p className="text-foreground">{form.phone}</p>
                           </div>
                         )}
                         {form.company && (
                           <div>
-                            <span className="text-foreground/30 text-xs">Company</span>
-                            <p className="text-foreground/70">{form.company}</p>
+                            <span className="text-muted-foreground text-xs">Company</span>
+                            <p className="text-foreground">{form.company}</p>
                           </div>
                         )}
                         <div>
-                          <span className="text-foreground/30 text-xs">Service</span>
-                          <p className="text-foreground/70">{selectedService}</p>
+                          <span className="text-muted-foreground text-xs">Service</span>
+                          <p className="text-foreground">{selectedService}</p>
                         </div>
                         <div>
-                          <span className="text-foreground/30 text-xs">Date &amp; Time</span>
-                          <p className="text-foreground/70">{form.date} at {form.time}</p>
+                          <span className="text-muted-foreground text-xs">Date &amp; Time</span>
+                          <p className="text-foreground">{form.date} at {form.time}</p>
                         </div>
                         {form.videoCall && (
                           <div>
-                            <span className="text-foreground/30 text-xs">Format</span>
-                            <p className="text-foreground/70">{form.videoCall === "video" ? "Video Call" : "In Person"}</p>
+                            <span className="text-muted-foreground text-xs">Format</span>
+                            <p className="text-foreground">{form.videoCall === "video" ? "Video Call" : "In Person"}</p>
+                          </div>
+                        )}
+                        {!isFreeService && (
+                          <div>
+                            <span className="text-muted-foreground text-xs">Payment</span>
+                            <p className="text-success font-medium">{paymentDone ? "Paid" : "Completed"}</p>
                           </div>
                         )}
                       </div>
                       {questions.some((q) => form[q.key]) && (
-                        <div className="mt-4 pt-4 border-t border-input/60">
-                          <span className="text-foreground/30 text-xs">Requirements</span>
+                        <div className="mt-4 pt-4 border-t border-border">
+                          <span className="text-muted-foreground text-xs">Requirements</span>
                           <ul className="mt-2 space-y-1">
                             {questions
                               .filter((q) => form[q.key])
                               .map((q) => (
-                                <li key={q.key} className="text-xs text-foreground/50">
-                                  <span className="text-foreground/30">{q.label}:</span>{" "}
+                                <li key={q.key} className="text-xs text-muted-foreground">
+                                  <span className="text-foreground">{q.label}:</span>{" "}
                                   {form[q.key]}
                                 </li>
                               ))}
@@ -691,13 +751,86 @@ export default function BookingPage() {
                     </div>
 
                     <div className="flex gap-4">
-                      <Button type="button" variant="outline" onClick={() => { setQIndex(questions.length - 1); goTo(2); }} className="gap-2">
+                      <Button type="button" variant="outline" onClick={() => { setQIndex(questions.length - 1); goTo(!isFreeService ? 4 : 3); }} className="gap-2">
                         <ArrowLeft className="size-4" />
                         Back
                       </Button>
                       <Button type="submit" size="lg" className="gap-2">
                         <Send className="size-4" />
                         Submit Request
+                      </Button>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* STEP 3 (paid only) - Payment */}
+                {!isFreeService && step === 3 && (
+                  <motion.div
+                    key="step3-payment"
+                    variants={stepVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    custom={direction}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    className="space-y-8"
+                  >
+                    <div>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="size-10 rounded-lg bg-gold/10 flex items-center justify-center">
+                          <CreditCard className="size-5 text-gold" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-foreground">Payment Required</p>
+                          <p className="text-xs text-muted-foreground">Secure payment via Paystack</p>
+                        </div>
+                      </div>
+
+                      <div className="bg-secondary border border-border rounded-xl p-6">
+                        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                          Payment Details
+                        </p>
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-muted-foreground">Service</span>
+                            <span className="text-sm text-foreground font-medium">{selectedService}</span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-muted-foreground">Amount</span>
+                            <span className="text-lg text-foreground font-bold">$20.00</span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-muted-foreground">Currency</span>
+                            <span className="text-sm text-foreground">USD</span>
+                          </div>
+                        </div>
+                        <div className="mt-4 pt-4 border-t border-border flex items-center gap-2">
+                          <ShieldCheck className="size-4 text-success" />
+                          <span className="text-xs text-muted-foreground">Secured by Paystack. 256-bit SSL encryption.</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <Button type="button" variant="outline" onClick={() => goTo(2)} className="gap-2">
+                        <ArrowLeft className="size-4" />
+                        Back
+                      </Button>
+                      <Button
+                        type="button"
+                        size="lg"
+                        className="gap-2 bg-gold text-gold-foreground hover:bg-gold/90 shadow-md shadow-gold/25"
+                        onClick={handlePayment}
+                        disabled={paymentProcessing || !form.email}
+                      >
+                        {paymentProcessing ? (
+                          <>Processing...</>
+                        ) : (
+                          <>
+                            <CreditCard className="size-4" />
+                            Pay $20.00
+                          </>
+                        )}
                       </Button>
                     </div>
                   </motion.div>
