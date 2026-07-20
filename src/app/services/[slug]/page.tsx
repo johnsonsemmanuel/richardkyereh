@@ -127,7 +127,7 @@ const services = [
     icon: PlaneIcon,
     gradient: "0A0F1A,1F2937",
     duration: "1 hr",
-    price: "RATE: Free or paid depending on location and logistics",
+    price: "RATE: NEGOTIABLE",
     isFree: true,
     amount: 0,
     description:

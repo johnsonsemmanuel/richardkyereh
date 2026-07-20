@@ -56,7 +56,7 @@ const services = [
   {
     title: "Charters Services",
     slug: "charters-services",
-    rate: "RATE: Free or paid depending on location and logistics",
+    rate: "RATE: NEGOTIABLE",
     gradient: "0A0F1A,1F2937",
     isFree: true,
     description: "Amongst our range of available aircraft is a Beech 1900 to support charters operators, corporate clients and individuals.",
