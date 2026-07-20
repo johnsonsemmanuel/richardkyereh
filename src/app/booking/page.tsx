@@ -832,7 +832,7 @@ export default function BookingPage() {
                         <div className="mt-4 pt-4 border-t border-input/60">
                           <span className="text-foreground/30 text-xs">Payment</span>
                           <p className="text-foreground/70 text-sm font-medium">
-                            ${paidService?.amount} — Paid via Paystack
+                            ${paidService?.amount} - Paid via Paystack
                           </p>
                         </div>
                       )}
@@ -854,7 +854,7 @@ export default function BookingPage() {
                     </div>
 
                     <div className="flex gap-4">
-                      <Button type="button" variant="outline" onClick={() => { setQIndex(questions.length - 1); goTo(2); }} className="gap-2">
+                      <Button type="button" variant="outline" onClick={() => { if (hasPaymentStep) { goTo(paymentStep!); } else { setQIndex(questions.length - 1); goTo(2); } }} className="gap-2">
                         <ArrowLeft className="size-4" />
                         Back
                       </Button>
