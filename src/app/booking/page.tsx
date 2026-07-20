@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/reveal";
 import {
   PlaneIcon, CompassIcon, WingsIcon, ShieldIcon, RadarIcon, GlobeIcon,
 } from "@/components/ui/aviation-icons";
-import { ArrowLeft, Check, Send, Calendar, ArrowRight } from "lucide-react";
+import { ArrowLeft, Check, Send, Calendar, ArrowRight, CreditCard, Loader2 } from "lucide-react";
 const serviceParamMap: Record<string, string> = {
   career: "Career Consultancy",
   speaking: "Speaking Engagement",
@@ -22,12 +22,12 @@ const timeSlots = [
 ];
 
 const services = [
-  { id: "Career Consultancy", icon: CompassIcon, desc: "Personalized career guidance for aviation professionals", duration: "1 hr", rate: "RATE: 10mins Free / $20 per 30mins" },
-  { id: "Speaking Engagement", icon: GlobeIcon, desc: "Keynote speaking and panel participation", duration: "1 hr" },
-  { id: "Face To Face Meeting", icon: WingsIcon, desc: "Confidential one-on-one strategic discussions", duration: "30 mins" },
-  { id: "Mentorship", icon: ShieldIcon, desc: "Structured leadership development for emerging leaders", duration: "1 hr" },
-  { id: "Aircraft Leases", icon: RadarIcon, desc: "Lease vs. buy analysis and fleet strategy", duration: "1 hr" },
-  { id: "Charters Services", icon: PlaneIcon, desc: "Charter operations and service delivery consulting", duration: "1 hr" },
+  { id: "Career Consultancy", icon: CompassIcon, desc: "Personalized career guidance for aviation professionals", duration: "1 hr", rate: "RATE: 10mins Free / $20 per 30mins", isFree: false, amount: 20 },
+  { id: "Speaking Engagement", icon: GlobeIcon, desc: "Keynote speaking and panel participation", duration: "1 hr", isFree: true, amount: 0 },
+  { id: "Face To Face Meeting", icon: WingsIcon, desc: "Confidential one-on-one strategic discussions", duration: "30 mins", isFree: false, amount: 20 },
+  { id: "Mentorship", icon: ShieldIcon, desc: "Structured leadership development for emerging leaders", duration: "1 hr", isFree: false, amount: 20 },
+  { id: "Aircraft Leases", icon: RadarIcon, desc: "Lease vs. buy analysis and fleet strategy", duration: "1 hr", isFree: true, amount: 0 },
+  { id: "Charters Services", icon: PlaneIcon, desc: "Charter operations and service delivery consulting", duration: "1 hr", isFree: true, amount: 0 },
 ];
 
 type Question = { label: string; key: string; type: "text" | "select" | "number" | "textarea"; options?: string[]; placeholder?: string };
@@ -113,6 +113,19 @@ export default function BookingPage() {
     date: "", time: "", message: "", videoCall: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [paying, setPaying] = useState(false);
+  const [paymentVerifying, setPaymentVerifying] = useState(false);
+
+  const selectedService = form.service;
+  const questions = selectedService ? serviceQuestions[selectedService] : [];
+  const currentQ = questions[qIndex];
+  const isLast = qIndex === questions.length - 1;
+  const paidService = services.find((s) => s.id === selectedService);
+  const isPaidService = paidService && !paidService.isFree && paidService.amount > 0;
+  const hasPaymentStep = isPaidService;
+  const totalSteps = hasPaymentStep ? 4 : 3;
+  const schedulingStep = hasPaymentStep ? 4 : 3;
+  const paymentStep = hasPaymentStep ? 3 : null;
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -123,6 +136,29 @@ export default function BookingPage() {
       setStep(2);
     }
   }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const payStatus = params.get("payment");
+    const ref = params.get("ref");
+    if (payStatus === "success" && ref) {
+      setPaymentVerifying(true);
+      fetch(`/api/paystack/verify?reference=${ref}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status && data.data.status === "success") {
+            const svcName = data.data.metadata?.service || data.data.metadata?.custom_fields?.[0]?.value;
+            if (svcName && !form.service) setForm((prev) => ({ ...prev, service: svcName }));
+            window.history.replaceState({}, "", "/booking");
+            setStep(schedulingStep);
+          } else {
+            alert("Payment could not be verified. Please try again.");
+          }
+        })
+        .catch(() => alert("Payment verification failed. Please try again."))
+        .finally(() => setPaymentVerifying(false));
+    }
+  }, [schedulingStep]);
 
   function update(field: string, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -138,8 +174,10 @@ export default function BookingPage() {
     if (qIndex < questions.length - 1) {
       setQDirection(1);
       setQIndex((i) => i + 1);
+    } else if (hasPaymentStep) {
+      goTo(paymentStep!);
     } else {
-      goTo(3);
+      goTo(schedulingStep);
     }
   }
 
@@ -150,17 +188,45 @@ export default function BookingPage() {
     }
   }
 
+  async function handlePaystackPayment() {
+    if (!form.email || !selectedService || !paidService) return;
+    setPaying(true);
+    try {
+      const res = await fetch("/api/paystack/init", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: form.email,
+          name: form.name,
+          service: selectedService,
+          amount: paidService.amount,
+          currency: "USD",
+        }),
+      });
+      const data = await res.json();
+      if (data.status && data.authorization_url) {
+        window.location.href = data.authorization_url;
+      } else {
+        alert(data.error || "Failed to initialize payment. Please try again.");
+        setPaying(false);
+      }
+    } catch {
+      alert("Payment initialization failed. Please try again.");
+      setPaying(false);
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const questions: Record<string, string> = {};
+      const questionsPayload: Record<string, string> = {};
       serviceQuestions[selectedService]?.forEach((q) => {
-        if (form[q.key]) questions[q.key] = form[q.key];
+        if (form[q.key]) questionsPayload[q.key] = form[q.key];
       });
       await fetch("/api/booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, questions }),
+        body: JSON.stringify({ ...form, questions: questionsPayload }),
       });
     } catch (err) {
       console.error("Booking submission error:", err);
@@ -168,10 +234,36 @@ export default function BookingPage() {
     setSubmitted(true);
   }
 
-  const selectedService = form.service;
-  const questions = selectedService ? serviceQuestions[selectedService] : [];
-  const currentQ = questions[qIndex];
-  const isLast = qIndex === questions.length - 1;
+  const steps = hasPaymentStep
+    ? [
+        { n: 1, label: "Details & Service" },
+        { n: 2, label: "Tell Us More" },
+        { n: 3, label: "Payment" },
+        { n: 4, label: "Schedule & Review" },
+      ]
+    : [
+        { n: 1, label: "Details & Service" },
+        { n: 2, label: "Tell Us More" },
+        { n: 3, label: "Schedule & Review" },
+      ];
+
+  if (paymentVerifying) {
+    return (
+      <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 bg-background min-h-screen flex items-center">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+          <div className="max-w-xl mx-auto text-center">
+            <Loader2 className="size-8 text-primary animate-spin mx-auto mb-4" />
+            <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
+              Verifying Payment
+            </h1>
+            <p className="mt-4 text-foreground/40">
+              Please wait while we confirm your payment...
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (submitted) {
     return (
@@ -231,11 +323,7 @@ export default function BookingPage() {
           <div className="max-w-3xl">
             {/* Progress steps */}
             <div className="flex items-center gap-4 mb-12">
-              {[
-                { n: 1, label: "Details & Service" },
-                { n: 2, label: "Tell Us More" },
-                { n: 3, label: "Schedule & Review" },
-              ].map((s) => (
+              {steps.map((s) => (
                 <div key={s.n} className="flex items-center gap-4">
                   <div className="flex items-center gap-2">
                     <div
@@ -255,7 +343,7 @@ export default function BookingPage() {
                       {s.label}
                     </span>
                   </div>
-                  {s.n < 3 && (
+                  {s.n < totalSteps && (
                     <div
                       className={`w-12 sm:w-20 h-px ${
                         s.n < step ? "bg-primary" : "bg-input"
@@ -362,15 +450,24 @@ export default function BookingPage() {
                                   selected ? "text-primary" : "text-foreground/30"
                                 }`}
                               />
-                              <p
-                                className={`text-sm font-semibold transition-colors ${
-                                  selected
-                                    ? "text-primary"
-                                    : "text-foreground group-hover:text-foreground"
-                                }`}
-                              >
-                                {s.id}
-                              </p>
+                              <div className="flex items-center justify-between mb-1">
+                                <p
+                                  className={`text-sm font-semibold transition-colors ${
+                                    selected
+                                      ? "text-primary"
+                                      : "text-foreground group-hover:text-foreground"
+                                  }`}
+                                >
+                                  {s.id}
+                                </p>
+                                <span className={`text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full ${
+                                  s.isFree
+                                    ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                                    : "bg-primary/10 text-primary border border-primary/20"
+                                }`}>
+                                  {s.isFree ? "Free" : "Paid"}
+                                </span>
+                              </div>
                               <p className="text-xs text-foreground/40 mt-1 leading-relaxed">
                                 {s.desc}
                               </p>
@@ -516,17 +613,75 @@ export default function BookingPage() {
                         )}
                       </div>
                       <Button type="button" onClick={nextQuestion} size="lg" className="gap-2">
-                        {isLast ? "Review Booking" : "Next"}
+                        {isLast ? (hasPaymentStep ? "Proceed to Payment" : "Review Booking") : "Next"}
                         {!isLast && <ArrowRight className="size-4" />}
                       </Button>
                     </div>
                   </motion.div>
                 )}
 
-                {/* STEP 3 - Date, time, review */}
-                {step === 3 && (
+                {/* STEP 3 - Payment (paid services only) */}
+                {step === 3 && hasPaymentStep && (
                   <motion.div
-                    key="step3"
+                    key="step3-payment"
+                    variants={stepVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    custom={direction}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    className="space-y-8"
+                  >
+                    <div>
+                      <p className="text-sm font-semibold text-foreground mb-5 flex items-center gap-2">
+                        <CreditCard className="size-4 text-primary" />
+                        Complete Payment
+                      </p>
+                      <div className="bg-secondary/20 border border-input rounded-xl p-6 space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-foreground/50">Service</span>
+                          <span className="text-sm text-foreground/80 font-medium">{selectedService}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-foreground/50">Amount</span>
+                          <span className="text-lg text-foreground font-bold">${paidService?.amount}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-foreground/50">Email</span>
+                          <span className="text-sm text-foreground/70">{form.email}</span>
+                        </div>
+                      </div>
+                      <p className="mt-4 text-xs text-foreground/30">
+                        You will be redirected to Paystack to complete your payment securely.
+                      </p>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <Button type="button" variant="outline" onClick={() => { setQIndex(questions.length - 1); goTo(2); }} className="gap-2">
+                        <ArrowLeft className="size-4" />
+                        Back
+                      </Button>
+                      <Button type="button" size="lg" onClick={handlePaystackPayment} disabled={paying} className="gap-2">
+                        {paying ? (
+                          <>
+                            <Loader2 className="size-4 animate-spin" />
+                            Initializing...
+                          </>
+                        ) : (
+                          <>
+                            Pay ${paidService?.amount}
+                            <ArrowRight className="size-4" />
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* STEP 3/4 - Date, time, review */}
+                {step === schedulingStep && (
+                  <motion.div
+                    key="step-scheduling"
                     variants={stepVariants}
                     initial="enter"
                     animate="center"
@@ -673,6 +828,14 @@ export default function BookingPage() {
                           </div>
                         )}
                       </div>
+                      {isPaidService && (
+                        <div className="mt-4 pt-4 border-t border-input/60">
+                          <span className="text-foreground/30 text-xs">Payment</span>
+                          <p className="text-foreground/70 text-sm font-medium">
+                            ${paidService?.amount} — Paid via Paystack
+                          </p>
+                        </div>
+                      )}
                       {questions.some((q) => form[q.key]) && (
                         <div className="mt-4 pt-4 border-t border-input/60">
                           <span className="text-foreground/30 text-xs">Requirements</span>

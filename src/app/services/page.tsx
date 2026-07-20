@@ -18,6 +18,7 @@ const services = [
     slug: "career-consultancy",
     rate: "RATE: 10mins Free / $20 per 30mins",
     gradient: "05080F,1A2D4A",
+    isFree: false,
     description: "Whether you are pursuing a career upgrade, transitioning into management, or entering the industry for the first time, we provide structured, one-on-one coaching tailored to your goals.",
   },
   {
@@ -25,6 +26,7 @@ const services = [
     slug: "speaking-engagement",
     rate: "RATE: Free or paid depending on location and logistics",
     gradient: "0A0F1A,111827",
+    isFree: true,
     description: "Expert keynote speaking and panel participation for conferences, media discussions, corporate events, industry summits, and academic institutions. Richard brings decades of operational experience, strategic insight, and a compelling personal story that resonates with any audience.",
   },
   {
@@ -32,6 +34,7 @@ const services = [
     slug: "face-to-face-meeting",
     rate: "RATE: Negotiable",
     gradient: "05080F,1F2937",
+    isFree: false,
     description: "Confidential one-on-one meetings for strategic discussions, partnership exploration, airline start-up development or executive advisory sessions. These private engagements are designed for decision-makers who need direct, unfiltered access to Richard's expertise.",
   },
   {
@@ -39,6 +42,7 @@ const services = [
     slug: "mentorship",
     rate: "RATE: 10mins Free / $20 per 30mins",
     gradient: "0A0F1A,1A2D4A",
+    isFree: false,
     description: "Structured mentorship for emerging aviation leaders, covering technical and leadership development.",
   },
   {
@@ -46,6 +50,7 @@ const services = [
     slug: "aircraft-leases",
     rate: "RATE: Free or paid depending on location and logistics",
     gradient: "05080F,111827",
+    isFree: true,
     description: "Advisory on aircraft leasing strategies, wet lease vs dry lease, fleet optimization, and portfolio management. Whether you are a startup airline or an established operator, we help you make informed, data-driven decisions.",
   },
   {
@@ -53,6 +58,7 @@ const services = [
     slug: "charters-services",
     rate: "RATE: Free or paid depending on location and logistics",
     gradient: "0A0F1A,1F2937",
+    isFree: true,
     description: "Amongst our range of available aircraft is a Beech 1900 to support charters operators, corporate clients and individuals.",
   },
 ];
@@ -104,6 +110,13 @@ export default function ServicesPage() {
                         <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                           {service.title}
                         </h3>
+                        <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                          service.isFree
+                            ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                            : "bg-primary/10 text-primary border border-primary/20"
+                        }`}>
+                          {service.isFree ? "Free" : "Paid"}
+                        </span>
                       </div>
                       <p className="text-xs mb-2 text-red-500 font-bold">
                         {service.rate}
