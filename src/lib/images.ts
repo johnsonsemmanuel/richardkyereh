@@ -170,10 +170,10 @@ export function unsplashUrl(id: string, w = 1200): string {
 
 export const serviceImageUrls: Record<string, string> = {
   "Career Consultancy": "/photos/richard-career-consultancy.jpg",
-  "Speaking Engagement": "/photos/richard-speaking-1.jpeg",
+  "Speaking Engagement": "/awards/aviadev-cape-town-2019/aviadev-cape-town-2019_8.jpeg",
   "Face To Face Meeting": "/photos/face-to-face.jpg",
   "Mentorship": "/photos/mentorship.jpg",
-  "Aircraft Leases": "/photos/richard-media-1.jpeg",
+  "Aircraft Leases": unsplashUrl("1774698050881-4dc5c07c4d7d"),
   "Charters Services": "/charter.jpg",
 };
 
