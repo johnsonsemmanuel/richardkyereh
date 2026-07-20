@@ -112,7 +112,7 @@ export default function ServicesPage() {
                         </h3>
                         <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
                           service.isFree
-                            ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                            ? "bg-emerald-500 text-white"
                             : "bg-primary/10 text-primary border border-primary/20"
                         }`}>
                           {service.isFree ? "Free" : "Paid"}
