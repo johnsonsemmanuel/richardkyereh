@@ -9,6 +9,8 @@ async function LoginForm() {
     if (await verifyAdminPassword(password)) {
       await setAdminSession();
       redirect("/admin");
+    } else {
+      redirect("/login?error=1");
     }
   }
 
@@ -34,10 +36,12 @@ async function LoginForm() {
   );
 }
 
-export default async function AdminLoginPage() {
+export default async function AdminLoginPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   if (await isAdminAuthenticated()) {
     redirect("/admin");
   }
+
+  const { error } = await searchParams;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
@@ -46,6 +50,11 @@ export default async function AdminLoginPage() {
           <h1 className="text-2xl font-bold text-foreground">Admin Dashboard</h1>
           <p className="text-foreground/60 mt-2">Sign in to manage your site</p>
         </div>
+        {error && (
+          <div className="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 text-sm text-center">
+            Incorrect password. Please try again.
+          </div>
+        )}
         <div className="bg-card p-6 rounded-xl border border-input shadow-card">
           <Suspense fallback={<div className="text-center text-foreground/60">Loading...</div>}>
             <LoginForm />

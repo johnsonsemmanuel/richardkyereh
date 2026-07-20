@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
 import { createSubmission } from "@/lib/sanity";
 import { sendWeb3FormsEmail } from "@/lib/web3forms";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
+  const ip = getClientIp(request);
+  if (!checkRateLimit(`booking:${ip}`, 5, 60000)) {
+    return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+  }
+
   try {
     const body = await request.json();
     const { name, email, phone, company, service, date, time, videoCall, message, questions } = body;

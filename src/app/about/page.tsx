@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { GlassBlogCard } from "@/components/GlassBlogCard";
-import { images } from "@/lib/images";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
-import { GlobeIcon, WingsIcon, CompassIcon, ShieldIcon, PlaneIcon } from "@/components/ui/aviation-icons";
+import { GlobeIcon, CompassIcon, ShieldIcon, PlaneIcon } from "@/components/ui/aviation-icons";
 import { WavePath } from "@/components/ui/wave-path";
 
 export const metadata: Metadata = {
@@ -160,57 +158,6 @@ export default function AboutPage() {
                 </StaggerItem>
               );
             })}
-          </StaggerReveal>
-        </div>
-      </section>
-
-      <section className="bg-secondary py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <Reveal className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
-              <WingsIcon className="size-4" />
-              Press & Media
-            </p>
-            <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
-              Featured
-              <br />
-              <span className="text-foreground/50">coverage.</span>
-            </h2>
-          </Reveal>
-          <StaggerReveal className="grid md:grid-cols-3 gap-8 justify-items-center">
-            <StaggerItem>
-              <GlassBlogCard
-                title="Aviation Safety in a Growing Market"
-                excerpt="Richard Kyereh shares insights on safety management challenges facing rapidly expanding African carriers."
-                image={images.controlPanel}
-                author={{ name: "Aviation Week", avatar: "" }}
-                date="Feb 2026"
-                readTime="Featured"
-                tags={["Safety", "Interview"]}
-              />
-            </StaggerItem>
-            <StaggerItem>
-              <GlassBlogCard
-                title="The Future of Fleet Financing in Africa"
-                excerpt="An in-depth look at emerging lease structures and investment vehicles for the continent's airlines."
-                image={images.cargoPlane}
-                author={{ name: "Airline Economics", avatar: "" }}
-                date="Jan 2026"
-                readTime="Featured"
-                tags={["Fleet", "Finance"]}
-              />
-            </StaggerItem>
-            <StaggerItem>
-              <GlassBlogCard
-                title="Sustainability Targets: Realistic Pathways"
-                excerpt="Richard Kyereh on what realistic carbon reduction looks like for airlines in emerging markets."
-                image={images.wingAbove}
-                author={{ name: "Green Aviation", avatar: "" }}
-                date="Dec 2025"
-                readTime="Featured"
-                tags={["Sustainability", "Analysis"]}
-              />
-            </StaggerItem>
           </StaggerReveal>
         </div>
       </section>

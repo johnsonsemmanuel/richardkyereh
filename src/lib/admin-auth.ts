@@ -1,8 +1,12 @@
 import { cookies } from "next/headers";
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 export async function verifyAdminPassword(password: string): Promise<boolean> {
+  if (!ADMIN_PASSWORD) {
+    console.error("ADMIN_PASSWORD env var is not set");
+    return false;
+  }
   return password === ADMIN_PASSWORD;
 }
 

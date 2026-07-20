@@ -2,24 +2,10 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import Link from "next/link";
-import { createClient } from "@sanity/client";
-
-function getSanityClient() {
-  const projectId = process.env.SANITY_PROJECT_ID;
-  const dataset = process.env.SANITY_DATASET || "production";
-
-  if (!projectId) return null;
-
-  return createClient({
-    projectId,
-    dataset,
-    apiVersion: "2024-01-01",
-    useCdn: false,
-  });
-}
+import { getReadOnlyClient } from "@/lib/sanity";
 
 async function getStats() {
-  const client = getSanityClient();
+  const client = getReadOnlyClient();
   if (!client) return null;
 
   const [bookings, contacts, newsletters, posts] = await Promise.all([

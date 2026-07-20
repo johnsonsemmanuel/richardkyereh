@@ -33,7 +33,7 @@ export function NewsletterPopup() {
         await fetch("/api/newsletter", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ email, source: "popup" }),
         });
       } catch (err) {
         console.error("Newsletter submission error:", err);

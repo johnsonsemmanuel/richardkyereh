@@ -18,6 +18,20 @@ function getClient() {
   });
 }
 
+export function getReadOnlyClient() {
+  const projectId = process.env.SANITY_PROJECT_ID;
+  const dataset = process.env.SANITY_DATASET || "production";
+
+  if (!projectId) return null;
+
+  return createClient({
+    projectId,
+    dataset,
+    apiVersion: "2024-01-01",
+    useCdn: false,
+  });
+}
+
 interface SanityDoc {
   _type: string;
   [key: string]: unknown;

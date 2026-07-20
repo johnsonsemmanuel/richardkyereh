@@ -1,24 +1,10 @@
 import { redirect } from "next/navigation";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
-import { createClient } from "@sanity/client";
+import { getReadOnlyClient } from "@/lib/sanity";
 import { BlogManager } from "./BlogManager";
 
-function getSanityClient() {
-  const projectId = process.env.SANITY_PROJECT_ID;
-  const dataset = process.env.SANITY_DATASET || "production";
-
-  if (!projectId) return null;
-
-  return createClient({
-    projectId,
-    dataset,
-    apiVersion: "2024-01-01",
-    useCdn: false,
-  });
-}
-
 async function getPosts() {
-  const client = getSanityClient();
+  const client = getReadOnlyClient();
   if (!client) return [];
   return client.fetch(
     `*[_type == "post"] | order(publishedAt desc) {
