@@ -44,10 +44,10 @@ export default async function AdminLoginPage() {
       <div className="w-full max-w-md p-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-foreground">Admin Dashboard</h1>
-          <p className="text-muted-foreground mt-2">Sign in to manage your site</p>
+          <p className="text-foreground/60 mt-2">Sign in to manage your site</p>
         </div>
         <div className="bg-card p-6 rounded-xl border border-input shadow-card">
-          <Suspense fallback={<div className="text-center text-foreground/70">Loading...</div>}>
+          <Suspense fallback={<div className="text-center text-foreground/60">Loading...</div>}>
             <LoginForm />
           </Suspense>
         </div>

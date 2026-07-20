@@ -39,7 +39,7 @@ export default async function AdminBlogPage() {
     <div className="max-w-7xl mx-auto px-6 py-8">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-foreground">Blog Management</h1>
-        <p className="text-sm text-muted-foreground">Create and manage blog posts</p>
+        <p className="text-sm text-foreground/60">Create and manage blog posts</p>
       </div>
       <BlogManager initialPosts={posts} />
     </div>

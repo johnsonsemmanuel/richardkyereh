@@ -26,7 +26,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
             <Reveal direction="left" className="lg:col-span-2">
-              <div className="relative rounded-2xl overflow-hidden border border-input bg-secondary shadow-2xl shadow-primary/10 before:absolute before:inset-0 before:bg-gradient-to-t before:from-background/20 before:to-transparent before:z-10">
+              <div className="relative rounded-2xl overflow-hidden border border-input bg-secondary/50 shadow-2xl shadow-primary/10 before:absolute before:inset-0 before:bg-gradient-to-t before:from-background/20 before:to-transparent before:z-10">
                 <img
                   src="/photos/aviadev-profile.jpg"
                   alt="Richard Kyereh"
@@ -42,12 +42,12 @@ export default function AboutPage() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
                 Richard Kyereh
                 <br />
-                <span className="text-muted-foreground text-2xl lg:text-3xl font-medium">MBA, PMP</span>
+                <span className="text-foreground/50 text-2xl lg:text-3xl font-medium">MBA, PMP</span>
               </h1>
-              <p className="text-muted-foreground leading-relaxed text-lg mt-4">
+              <p className="text-foreground/60 leading-relaxed text-lg mt-4">
                 Richard Kyereh exemplifies everything good about the business side of aviation.
               </p>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <div className="space-y-4 text-foreground/60 leading-relaxed">
                 <p>
                   Richard Kyereh is an aviation expert, aircraft broker, and aero-politics specialist based in Ghana, with 20 years of senior leadership experience across Africa&apos;s airline industry. A certified project manager, he brings deep expertise in commercial airline strategy, network development, and aviation consulting for West Africa&apos;s fast-growing travel market and Africa at large.
                 </p>
@@ -64,7 +64,7 @@ export default function AboutPage() {
 
       <section className="pb-24 lg:pb-32 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl space-y-5 text-muted-foreground leading-relaxed">
+          <div className="max-w-4xl space-y-5 text-foreground/60 leading-relaxed">
             <Reveal delay={0.1}>
               <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Airline Leadership Experience</h2>
               <p>
@@ -140,7 +140,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-secondary py-24 lg:py-32">
+      <section className="bg-secondary/50 py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <StaggerReveal className="grid md:grid-cols-3 gap-6">
             {highlights.map((item) => {
@@ -155,7 +155,7 @@ export default function AboutPage() {
                     <p className="mt-2 text-2xl font-bold text-foreground">
                       {item.value}
                     </p>
-                    <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
+                    <p className="mt-2 text-sm text-foreground/50">{item.desc}</p>
                   </div>
                 </StaggerItem>
               );
@@ -174,7 +174,7 @@ export default function AboutPage() {
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
               Featured
               <br />
-              <span className="text-muted-foreground">coverage.</span>
+              <span className="text-foreground/50">coverage.</span>
             </h2>
           </Reveal>
           <StaggerReveal className="grid md:grid-cols-3 gap-8 justify-items-center">

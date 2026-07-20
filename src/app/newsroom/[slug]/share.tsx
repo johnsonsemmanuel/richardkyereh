@@ -24,7 +24,7 @@ export function ArticleShare({ title, slug }: Props) {
 
   return (
     <div className="flex items-center gap-3">
-      <span className="text-xs font-semibold tracking-[0.15em] uppercase text-muted-foreground">
+      <span className="text-xs font-semibold tracking-[0.15em] uppercase text-foreground/30">
         Share
       </span>
       <div className="flex items-center gap-1.5">
@@ -35,7 +35,7 @@ export function ArticleShare({ title, slug }: Props) {
           className="size-8 rounded-full bg-foreground/5 hover:bg-foreground/10 flex items-center justify-center transition-colors"
           aria-label="Share on LinkedIn"
         >
-          <LinkedInIcon className="size-3.5 text-muted-foreground" />
+          <LinkedInIcon className="size-3.5 text-foreground/40" />
         </a>
         <a
           href={`https://x.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`}
@@ -44,7 +44,7 @@ export function ArticleShare({ title, slug }: Props) {
           className="size-8 rounded-full bg-foreground/5 hover:bg-foreground/10 flex items-center justify-center transition-colors"
           aria-label="Share on X"
         >
-          <XIcon className="size-3.5 text-muted-foreground" />
+          <XIcon className="size-3.5 text-foreground/40" />
         </a>
         <button
           onClick={copyLink}
@@ -52,9 +52,9 @@ export function ArticleShare({ title, slug }: Props) {
           aria-label="Copy link"
         >
           {copied ? (
-            <Check className="size-3.5 text-muted-foreground" />
+            <Check className="size-3.5 text-foreground/40" />
           ) : (
-            <ClipboardCopy className="size-3.5 text-muted-foreground" />
+            <ClipboardCopy className="size-3.5 text-foreground/40" />
           )}
         </button>
       </div>

@@ -60,8 +60,8 @@ export default function ContactPage() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 bg-background min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
           <Reveal className="max-w-xl mx-auto text-center">
-            <div className="size-16 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-6">
-              <Check className="size-7 text-success" />
+            <div className="size-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+              <Check className="size-7 text-primary" />
             </div>
             <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
               Message Sent
@@ -102,9 +102,9 @@ export default function ContactPage() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
                 Get in
                 <br />
-                <span className="text-muted-foreground">touch.</span>
+                <span className="text-foreground/50">touch.</span>
               </h1>
-              <p className="mt-6 text-muted-foreground leading-relaxed max-w-md">
+              <p className="mt-6 text-foreground/40 leading-relaxed max-w-md">
                 For general inquiries, speaking requests, partnership proposals,
                  or media enquiries - send us a message and we will get back to
                 you within 24 hours.
@@ -116,9 +116,9 @@ export default function ContactPage() {
                     <MapPin className="size-4 text-primary" />
                   </div>
                   <div className="text-sm">
-                    <p className="text-foreground font-medium">Office Address</p>
-                    <p className="text-muted-foreground mt-0.5">No 9 Airport Residential Area</p>
-                    <p className="text-muted-foreground">Accra, Ghana</p>
+                    <p className="text-foreground/60 font-medium">Office Address</p>
+                    <p className="text-foreground/40 mt-0.5">No 9 Airport Residential Area</p>
+                    <p className="text-foreground/40">Accra, Ghana</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -126,12 +126,12 @@ export default function ContactPage() {
                     <Phone className="size-4 text-primary" />
                   </div>
                   <div className="text-sm">
-                    <p className="text-foreground font-medium">Phone</p>
-                    <a href="tel:+233243681135" className="text-muted-foreground mt-0.5 hover:text-primary transition-colors">+233 24 368 1135</a>
-                    <p className="text-muted-foreground text-xs mt-0.5">
+                    <p className="text-foreground/60 font-medium">Phone</p>
+                    <a href="tel:+233243681135" className="text-foreground/40 mt-0.5 hover:text-primary transition-colors">+233 24 368 1135</a>
+                    <p className="text-foreground/30 text-xs mt-0.5">
                       <a href="tel:+233243681135" className="hover:text-primary transition-colors">Click to call</a> using your device&apos;s dialer
                     </p>
-                    <p className="text-muted-foreground text-xs mt-0.5">Available during business hours</p>
+                    <p className="text-foreground/30 text-xs mt-0.5">Available during business hours</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -139,9 +139,9 @@ export default function ContactPage() {
                     <Mail className="size-4 text-primary" />
                   </div>
                   <div className="text-sm">
-                    <p className="text-foreground font-medium">Email</p>
-                    <p className="text-muted-foreground mt-0.5">contact@richardkyereh.com</p>
-                    <p className="text-muted-foreground text-xs mt-0.5">We reply within 24 hours</p>
+                    <p className="text-foreground/60 font-medium">Email</p>
+                    <p className="text-foreground/40 mt-0.5">contact@richardkyereh.com</p>
+                    <p className="text-foreground/30 text-xs mt-0.5">We reply within 24 hours</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -149,16 +149,16 @@ export default function ContactPage() {
                     <Clock className="size-4 text-primary" />
                   </div>
                   <div className="text-sm">
-                    <p className="text-foreground font-medium">Business Hours</p>
-                    <p className="text-muted-foreground mt-0.5">Monday - Friday: 8am - 5pm GMT</p>
-                    <p className="text-muted-foreground text-xs mt-0.5">Weekend inquiries answered on Monday</p>
+                    <p className="text-foreground/60 font-medium">Business Hours</p>
+                    <p className="text-foreground/40 mt-0.5">Monday - Friday: 8am - 5pm GMT</p>
+                    <p className="text-foreground/30 text-xs mt-0.5">Weekend inquiries answered on Monday</p>
                   </div>
                 </div>
               </div>
 
               {/* Social */}
               <div className="mt-10 pt-8 border-t border-input/60">
-                <p className="text-xs text-muted-foreground font-semibold tracking-wider uppercase mb-4">
+                <p className="text-xs text-foreground/30 font-semibold tracking-wider uppercase mb-4">
                   Connect with Richard
                 </p>
                 <div className="flex items-center gap-3">
@@ -166,7 +166,7 @@ export default function ContactPage() {
                     href="https://gh.linkedin.com/in/richard-kyereh-mba-pmp-7726bb1b"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="size-9 rounded-lg bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
+                    className="size-9 rounded-lg bg-secondary/50 border border-input flex items-center justify-center text-foreground/40 hover:text-primary hover:border-primary/40 transition-all"
                     aria-label="LinkedIn"
                   >
                     <svg viewBox="0 0 24 24" fill="currentColor" className="size-3.5">
@@ -177,7 +177,7 @@ export default function ContactPage() {
                     href="https://web.facebook.com/richardkwabena.kyereh"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="size-9 rounded-lg bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
+                    className="size-9 rounded-lg bg-secondary/50 border border-input flex items-center justify-center text-foreground/40 hover:text-primary hover:border-primary/40 transition-all"
                     aria-label="Facebook"
                   >
                     <svg viewBox="0 0 24 24" fill="currentColor" className="size-3.5">
@@ -188,7 +188,7 @@ export default function ContactPage() {
                     href="https://x.com/richardkyereh"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="size-9 rounded-lg bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
+                    className="size-9 rounded-lg bg-secondary/50 border border-input flex items-center justify-center text-foreground/40 hover:text-primary hover:border-primary/40 transition-all"
                     aria-label="X (Twitter)"
                   >
                     <svg viewBox="0 0 24 24" fill="currentColor" className="size-3.5">
@@ -197,7 +197,7 @@ export default function ContactPage() {
                   </a>
                   <a
                     href="mailto:contact@richardkyereh.com"
-                    className="size-9 rounded-lg bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
+                    className="size-9 rounded-lg bg-secondary/50 border border-input flex items-center justify-center text-foreground/40 hover:text-primary hover:border-primary/40 transition-all"
                     aria-label="Email"
                   >
                     <Mail className="size-4" />
@@ -213,14 +213,14 @@ export default function ContactPage() {
                   <WingsIcon className="size-5 text-primary" />
                   <div>
                     <p className="text-sm font-semibold text-foreground">Send a Message</p>
-                    <p className="text-xs text-muted-foreground">All fields are welcome, none required</p>
+                    <p className="text-xs text-foreground/40">All fields are welcome, none required</p>
                   </div>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs text-muted-foreground mb-1.5">
+                      <label className="block text-xs text-foreground/50 mb-1.5">
                         Full Name
                       </label>
                       <input
@@ -228,12 +228,12 @@ export default function ContactPage() {
                         type="text"
                         value={form.name}
                         onChange={(e) => update("name", e.target.value)}
-                        className="w-full bg-secondary border border-border px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors rounded-lg"
+                        className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
                         placeholder="Your name"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-muted-foreground mb-1.5">
+                      <label className="block text-xs text-foreground/50 mb-1.5">
                         Email
                       </label>
                       <input
@@ -241,7 +241,7 @@ export default function ContactPage() {
                         type="email"
                         value={form.email}
                         onChange={(e) => update("email", e.target.value)}
-                        className="w-full bg-secondary border border-border px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors rounded-lg"
+                        className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
                         placeholder="you@company.com"
                       />
                     </div>
@@ -249,26 +249,26 @@ export default function ContactPage() {
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs text-muted-foreground mb-1.5">
+                      <label className="block text-xs text-foreground/50 mb-1.5">
                         Phone
                       </label>
                       <input
                         type="tel"
                         value={form.phone}
                         onChange={(e) => update("phone", e.target.value)}
-                        className="w-full bg-secondary border border-border px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors rounded-lg"
+                        className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
                         placeholder="+233 XX XXX XXXX"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-muted-foreground mb-1.5">
+                      <label className="block text-xs text-foreground/50 mb-1.5">
                         Company / Organization
                       </label>
                       <input
                         type="text"
                         value={form.company}
                         onChange={(e) => update("company", e.target.value)}
-                        className="w-full bg-secondary border border-border px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors rounded-lg"
+                        className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
                         placeholder="Optional"
                       />
                     </div>
@@ -340,7 +340,7 @@ export default function ContactPage() {
                     <CompassIcon className="size-4 text-primary" />
                     Quick Navigation
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-xs text-foreground/40 mt-1">
                     Explore more of what Richard Kyereh offers
                   </p>
                 </div>
@@ -349,7 +349,7 @@ export default function ContactPage() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary px-3 py-1.5 rounded-full border border-border hover:border-primary/40 transition-all"
+                      className="inline-flex items-center gap-1.5 text-xs text-foreground/50 hover:text-primary px-3 py-1.5 rounded-full border border-input hover:border-primary/40 transition-all"
                     >
                       {link.label}
                       <ArrowRight className="size-3" />

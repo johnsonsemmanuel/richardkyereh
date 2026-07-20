@@ -52,7 +52,7 @@ export function GlassBlogCard({
       transition={{ duration: 0.4 }}
       className={cn("w-full max-w-[400px]", className)}
     >
-      <Card className="group relative h-full overflow-hidden rounded-2xl border-border bg-card/60 backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10">
+      <Card className="group relative h-full overflow-hidden rounded-2xl border-border/50 bg-card/30 backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10">
         <div className="relative aspect-[16/9] overflow-hidden">
           <motion.img
             src={image}
@@ -99,9 +99,9 @@ export function GlassBlogCard({
             </p>
           </div>
 
-          <div className="flex items-center justify-between border-t border-border pt-4">
+          <div className="flex items-center justify-between border-t border-border/50 pt-4">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-secondary">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border/50 bg-muted">
                 <User className="h-4 w-4 text-muted-foreground" />
               </div>
               <div className="flex flex-col text-xs">

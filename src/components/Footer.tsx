@@ -108,16 +108,16 @@ export function Footer() {
                   className="h-12 w-auto"
                 />
               </Link>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-foreground/60 text-sm leading-relaxed">
                 African aviation expert delivering strategic direction, operational safety, and results that reach a global stage.
               </p>
 
               <div className="mt-2">
-                <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground/50 mb-3">
                   Newsletter
                 </h4>
                 {subscribed ? (
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-foreground/60">
                     You&apos;re subscribed. Watch for aviation insights.
                   </p>
                 ) : (
@@ -141,7 +141,7 @@ export function Footer() {
             <div className="flex flex-wrap gap-8 md:gap-16">
               {footerLinkGroups.map((group) => (
                 <div key={group.title} className="flex flex-col gap-3">
-                  <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground/50">
                     {group.title}
                   </h4>
                   <div className="flex flex-col gap-2">
@@ -149,7 +149,7 @@ export function Footer() {
                       <Link
                         key={link.label}
                         href={link.href}
-                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                        className="text-sm text-foreground/60 hover:text-foreground transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -162,28 +162,28 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-8 px-2">
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-foreground/50">
             &copy; {new Date().getFullYear()} Richard Kyereh. All rights reserved.
           </p>
           <div className="flex gap-4">
-            <Link href="/privacy" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+            <Link href="/privacy" className="text-xs text-foreground/50 hover:text-foreground transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+            <Link href="/terms" className="text-xs text-foreground/50 hover:text-foreground transition-colors">
               Terms &amp; Conditions
             </Link>
           </div>
           <div className="flex gap-4">
-            <a href="https://gh.linkedin.com/in/richard-kyereh-mba-pmp-7726bb1b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="https://gh.linkedin.com/in/richard-kyereh-mba-pmp-7726bb1b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground/50 hover:text-foreground transition-colors">
               <LinkedInIcon className="w-4 h-4" />
             </a>
-            <a href="https://web.facebook.com/richardkwabena.kyereh" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="https://web.facebook.com/richardkwabena.kyereh" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-foreground/50 hover:text-foreground transition-colors">
               <FacebookIcon className="w-4 h-4" />
             </a>
-            <a href="https://x.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="https://x.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-foreground/50 hover:text-foreground transition-colors">
               <XIcon className="w-4 h-4" />
             </a>
-            <a href="https://instagram.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="https://instagram.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-foreground/50 hover:text-foreground transition-colors">
               <InstagramIcon className="w-4 h-4" />
             </a>
           </div>

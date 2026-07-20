@@ -16,48 +16,42 @@ const services = [
   {
     title: "Career Consultancy",
     slug: "career-consultancy",
-    rate: "10mins Free / $20 per 30mins",
-    isFree: false,
+    rate: "RATE: 10mins Free / $20 per 30mins",
     gradient: "05080F,1A2D4A",
     description: "Whether you are pursuing a career upgrade, transitioning into management, or entering the industry for the first time, we provide structured, one-on-one coaching tailored to your goals.",
   },
   {
     title: "Speaking Engagement",
     slug: "speaking-engagement",
-    rate: "Free or paid depending on location",
-    isFree: true,
+    rate: "RATE: Free or paid depending on location and logistics",
     gradient: "0A0F1A,111827",
     description: "Expert keynote speaking and panel participation for conferences, media discussions, corporate events, industry summits, and academic institutions. Richard brings decades of operational experience, strategic insight, and a compelling personal story that resonates with any audience.",
   },
   {
     title: "Face To Face Meeting",
     slug: "face-to-face-meeting",
-    rate: "Negotiable",
-    isFree: false,
+    rate: "RATE: Negotiable",
     gradient: "05080F,1F2937",
     description: "Confidential one-on-one meetings for strategic discussions, partnership exploration, airline start-up development or executive advisory sessions. These private engagements are designed for decision-makers who need direct, unfiltered access to Richard's expertise.",
   },
   {
     title: "Mentorship",
     slug: "mentorship",
-    rate: "10mins Free / $20 per 30mins",
-    isFree: false,
+    rate: "RATE: 10mins Free / $20 per 30mins",
     gradient: "0A0F1A,1A2D4A",
     description: "Structured mentorship for emerging aviation leaders, covering technical and leadership development.",
   },
   {
     title: "Aircraft Leases",
     slug: "aircraft-leases",
-    rate: "Free or paid depending on location",
-    isFree: true,
+    rate: "RATE: Free or paid depending on location and logistics",
     gradient: "05080F,111827",
     description: "Advisory on aircraft leasing strategies, wet lease vs dry lease, fleet optimization, and portfolio management. Whether you are a startup airline or an established operator, we help you make informed, data-driven decisions.",
   },
   {
     title: "Charters Services",
     slug: "charters-services",
-    rate: "Free or paid depending on location",
-    isFree: true,
+    rate: "RATE: Free or paid depending on location and logistics",
     gradient: "0A0F1A,1F2937",
     description: "Amongst our range of available aircraft is a Beech 1900 to support charters operators, corporate clients and individuals.",
   },
@@ -76,9 +70,9 @@ export default function ServicesPage() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
               What we
               <br />
-              <span className="text-muted-foreground">deliver.</span>
+              <span className="text-foreground/50">deliver.</span>
             </h1>
-            <p className="mt-6 text-muted-foreground leading-relaxed">
+            <p className="mt-6 text-foreground/60 leading-relaxed">
               Every engagement is tailored to the client&apos;s specific
               operating environment and objectives.
             </p>
@@ -111,19 +105,10 @@ export default function ServicesPage() {
                           {service.title}
                         </h3>
                       </div>
-                      <div className="flex items-center gap-2 mb-2">
-                        {service.isFree ? (
-                          <span className="inline-flex items-center text-xs font-semibold text-success bg-success/10 px-2 py-0.5 rounded-full">
-                            Free
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center text-xs font-semibold text-gold bg-gold/10 px-2 py-0.5 rounded-full">
-                            Paid
-                          </span>
-                        )}
-                        <span className="text-xs text-muted-foreground">{service.rate}</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
+                      <p className="text-xs mb-2 text-red-500 font-bold">
+                        {service.rate}
+                      </p>
+                      <p className="text-sm text-foreground/50 leading-relaxed">
                         {service.description}
                       </p>
                       <div className="mt-4">

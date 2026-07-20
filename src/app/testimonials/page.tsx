@@ -72,9 +72,9 @@ export default function TestimonialsPage() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
               Trusted by
               <br />
-              <span className="text-muted-foreground">industry leaders.</span>
+              <span className="text-foreground/50">industry leaders.</span>
             </h1>
-            <p className="mt-6 text-muted-foreground leading-relaxed">
+            <p className="mt-6 text-foreground/40 leading-relaxed">
               Hear from the airlines, regulators, and organisations that have
               partnered with Richard Kyereh to elevate their operations.
             </p>

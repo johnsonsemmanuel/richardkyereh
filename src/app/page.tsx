@@ -58,16 +58,16 @@ export default function Home() {
         <HeroBackground images={[homeHeroImages[0]]} />
         <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
           <Reveal className="max-w-2xl">
-            <p className="text-primary text-sm font-medium tracking-[0.15em] uppercase mb-6 flex items-center gap-2">
+            <p className="text-foreground/40 text-sm font-medium tracking-[0.15em] uppercase mb-6 flex items-center gap-2">
               <CompassIcon className="size-4" />
               Airline & Aviation Expert | Africa
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
               Strategic Clarity
               <br />
-              <span className="text-muted-foreground">for the skies</span>
+              <span className="text-foreground/60">for the skies</span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-lg">
+            <p className="mt-6 text-lg sm:text-xl text-foreground/60 leading-relaxed max-w-lg">
               Richard Kyereh advises on aviation policy, aero-politics, aircraft brokerage, and airline start-ups - bringing deep expertise in fleet strategy and operational excellence to airlines and operators across Africa.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
@@ -96,11 +96,11 @@ export default function Home() {
               const Icon = statIcons[i];
               return (
                 <StaggerItem key={stat} className="group">
-                  {Icon && <Icon className="size-6 text-primary/40 group-hover:text-primary transition-colors mb-3" />}
+                  {Icon && <Icon className="size-6 text-primary/20 group-hover:text-primary/40 transition-colors mb-3" />}
                   <p className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
                     {stat}
                   </p>
-                  <p className="mt-2 text-sm text-muted-foreground uppercase tracking-wider">
+                  <p className="mt-2 text-sm text-foreground/50 uppercase tracking-wider">
                     {label}
                   </p>
                 </StaggerItem>
@@ -127,10 +127,10 @@ export default function Home() {
                 <CompassIcon className="size-4" />
                 Profile
               </p>
-              <blockquote className="text-xl sm:text-2xl lg:text-3xl font-medium leading-snug text-foreground border-l-4 border-primary pl-6 py-2">
+              <blockquote className="text-xl sm:text-2xl lg:text-3xl font-medium leading-snug text-foreground/80 border-l-4 border-primary pl-6 py-2">
                 &ldquo;Aviation is not just a career - it demands absolute mastery, strategic vision, and the courage to pioneer where others have not dared.&rdquo;
               </blockquote>
-              <div className="mt-8 space-y-4 text-muted-foreground leading-relaxed">
+              <div className="mt-8 space-y-4 text-foreground/60 leading-relaxed">
                 <p>
                   Richard Kyereh is a leading expert consultant in Africa with two decades of experience across international and African airlines. He has held key commercial and leadership roles at Turkish Airlines (Corporate Sales & Marketing), Africa World Airlines (Head of Commercial), Antrak Air (Head of Commercial & Projects and Safety Officer initially), and Westair Aviation (Ghana Country Manager).
                 </p>
@@ -143,7 +143,7 @@ export default function Home() {
                 <p>
                   Richard harnesses his experience in these markets to provide aviation advisory to airlines, operators and persons seeking career inputs across Ghana and Africa at large.
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-foreground/40">
                   - Richard Kyereh, MBA, PMP | Accra, Ghana, West Africa
                 </p>
               </div>
@@ -167,7 +167,7 @@ export default function Home() {
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
               Aviation expertise,
               <br />
-              <span className="text-muted-foreground">delivered.</span>
+              <span className="text-foreground/50">delivered.</span>
             </h2>
           </Reveal>
           <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -189,7 +189,7 @@ export default function Home() {
                       <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                         {service.title}
                       </h3>
-                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-4">
+                      <p className="mt-2 text-sm text-foreground/50 leading-relaxed line-clamp-4">
                         {service.description}
                       </p>
                     </div>
@@ -212,9 +212,9 @@ export default function Home() {
               <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
                 Decisions that
                 <br />
-                <span className="text-muted-foreground">define the flight path.</span>
+                <span className="text-foreground/50">define the flight path.</span>
               </h2>
-              <p className="mt-6 text-muted-foreground leading-relaxed">
+              <p className="mt-6 text-foreground/60 leading-relaxed">
                 With almost two decades in aviation, Richard Kyereh has advised airlines, regulators, operators and mentees across the African continent. His work bridges technical depth and strategic foresight.
               </p>
               <Button asChild variant="link" className="mt-8 px-0">
@@ -226,7 +226,7 @@ export default function Home() {
                 <div className="space-y-6">
                   <div>
                     <p className="text-4xl font-bold text-foreground">20 Years Experience</p>
-                    <p className="mt-2 text-muted-foreground leading-relaxed">
+                    <p className="mt-2 text-foreground/60 leading-relaxed">
                       Across airlines, regulators and professionals on the continent.
                     </p>
                   </div>
@@ -247,7 +247,7 @@ export default function Home() {
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
               Analysis &
               <br />
-              <span className="text-muted-foreground">perspective.</span>
+              <span className="text-foreground/50">perspective.</span>
             </h2>
           </Reveal>
           <StaggerReveal className="grid md:grid-cols-3 gap-8 justify-items-center">
@@ -280,13 +280,13 @@ export default function Home() {
       <section className="bg-secondary py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <Reveal>
-            <AltitudeIcon className="size-8 text-primary/30 mx-auto mb-6" />
+            <AltitudeIcon className="size-8 text-primary/20 mx-auto mb-6" />
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
               Ready to elevate
               <br />
-              <span className="text-muted-foreground">your operations?</span>
+              <span className="text-foreground/50">your operations?</span>
             </h2>
-            <p className="mt-6 text-muted-foreground max-w-lg mx-auto">
+            <p className="mt-6 text-foreground/60 max-w-lg mx-auto">
               Book a confidential consultation. We will assess your needs and
               outline a path forward.
             </p>
