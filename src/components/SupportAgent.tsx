@@ -9,6 +9,7 @@ import { PlaneIcon, CompassIcon } from "@/components/ui/aviation-icons";
 
 const PHONE = "+233 24 368 1135";
 const PHONE_HREF = "tel:+233243681135";
+const WHATSAPP = "https://wa.me/233243681135";
 
 type View = "menu" | "chat";
 
@@ -34,10 +35,12 @@ function botReply(input: string): string {
   if (lower.includes("price") || lower.includes("cost") || lower.includes("fee") || lower.includes("free") || lower.includes("pay"))
     return "All initial consultations are **free of charge**. Select your service on our [booking page](/booking) to get started with no commitment.";
   if (lower.includes("call") || lower.includes("phone") || lower.includes("speak") || lower.includes("talk"))
-    return `You can reach us directly at **${PHONE}** or schedule a call via our [booking page](/booking).`;
+    return `You can reach us directly at **${PHONE}**, [chat on WhatsApp](https://wa.me/233243681135), or schedule a call via our [booking page](/booking).`;
   if (lower.includes("video") || lower.includes("zoom") || lower.includes("remote"))
     return "Video consultations are available for all services. When booking, select **Video Call** as your preferred format.";
-  return "Thank you for your message. I can help you with bookings, service information, or connect you with Richard directly. Would you like to:\n\n• [Browse our services](/services)\n• [Book a consultation](/booking)\n• [Call us](tel:+233243681135)\n• Or just keep chatting?";
+  if (lower.includes("whatsapp") || lower.includes("chat") || lower.includes("message"))
+    return `You can reach us on WhatsApp anytime. [Click here to start a chat](https://wa.me/233243681135?text=Hello%2C%20I%27d%20like%20to%20inquire%20about%20your%20aviation%20services).`;
+  return "Thank you for your message. I can help you with bookings, service information, or connect you with Richard directly. Would you like to:\n\n• [Browse our services](/services)\n• [Book a consultation](/booking)\n• [Call us](tel:+233243681135)\n• [Chat on WhatsApp](https://wa.me/233243681135)\n• Or just keep chatting?";
 }
 
 const quickReplies = [
@@ -160,6 +163,13 @@ export function SupportAgent() {
                             <p className="text-[10px] text-foreground/40">Speak with us on {PHONE}</p>
                           </div>
                         </button>
+                        <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50 hover:bg-secondary border border-transparent hover:border-border transition-all group">
+                          <MessageCircle className="size-5 text-emerald-500/60 group-hover:text-emerald-500 transition-colors shrink-0" />
+                          <div className="min-w-0">
+                            <p className="text-sm font-medium text-foreground group-hover:text-emerald-500 transition-colors">WhatsApp</p>
+                            <p className="text-[10px] text-foreground/40">Chat with us on WhatsApp</p>
+                          </div>
+                        </a>
                         <Link href="/booking?service=meeting" onClick={() => setOpen(false)} className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50 hover:bg-secondary border border-transparent hover:border-border transition-all group">
                           <Video className="size-5 text-primary/40 group-hover:text-primary transition-colors shrink-0" />
                           <div className="min-w-0">

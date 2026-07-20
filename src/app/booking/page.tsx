@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/reveal";
 import {
   PlaneIcon, CompassIcon, WingsIcon, ShieldIcon, RadarIcon, GlobeIcon,
 } from "@/components/ui/aviation-icons";
-import { ArrowLeft, Check, Send, Calendar, ArrowRight, CreditCard, Loader2 } from "lucide-react";
+import { ArrowLeft, Check, Send, Calendar, ArrowRight, CreditCard, Loader2, Video } from "lucide-react";
 const serviceParamMap: Record<string, string> = {
   career: "Career Consultancy",
   speaking: "Speaking Engagement",
@@ -287,6 +287,12 @@ export default function BookingPage() {
                 <span className="text-xs bg-secondary/50 border border-input px-3 py-1.5 rounded-full text-foreground/50 flex items-center gap-1.5">
                   <Calendar className="size-3" />
                   {form.date} at {form.time}
+                </span>
+              )}
+              {form.videoCall === "video" && (
+                <span className="text-xs bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full text-primary flex items-center gap-1.5">
+                  <Video className="size-3" />
+                  Video Call - A meeting link will be sent to your email
                 </span>
               )}
             </div>

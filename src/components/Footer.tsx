@@ -39,6 +39,8 @@ const footerLinkGroups = [
       { label: "Speaking Engagement", href: "/services/speaking-engagement" },
       { label: "Face To Face Meeting", href: "/services/face-to-face-meeting" },
       { label: "Mentorship", href: "/services/mentorship" },
+      { label: "Aircraft Leases", href: "/services/aircraft-leases" },
+      { label: "Charters Services", href: "/services/charters-services" },
     ],
   },
   {
