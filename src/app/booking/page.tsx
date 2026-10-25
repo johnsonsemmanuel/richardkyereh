@@ -22,12 +22,78 @@ const timeSlots = [
 ];
 
 const services = [
-  { id: "Career Consultancy", icon: CompassIcon, desc: "Personalized career guidance for aviation professionals", duration: "1 hr", rate: "RATE: 10mins Free / $20 per 30mins", isFree: false, amount: 20 },
-  { id: "Speaking Engagement", icon: GlobeIcon, desc: "Keynote speaking and panel participation", duration: "1 hr", isFree: true, amount: 0 },
-  { id: "Face To Face Meeting", icon: WingsIcon, desc: "Confidential one-on-one strategic discussions", duration: "30 mins", isFree: false, amount: 20 },
-  { id: "Mentorship", icon: ShieldIcon, desc: "Structured leadership development for emerging leaders", duration: "1 hr", isFree: false, amount: 20 },
-  { id: "Aircraft Leases", icon: RadarIcon, desc: "Lease vs. buy analysis and fleet strategy", duration: "1 hr", isFree: true, amount: 0 },
-  { id: "Charters Services", icon: PlaneIcon, desc: "Charter operations and service delivery consulting", duration: "1 hr", isFree: true, amount: 0 },
+  {
+    id: "Career Consultancy", icon: CompassIcon, desc: "Personalized career guidance for aviation professionals",
+    duration: "1 hr", rate: "RATE: 10mins Free / $20 per 30mins", isFree: false, amount: 20,
+    headerTitle: "Book a Career Consultation",
+    headerDesc: "Tell us about your aviation career goals. We will match you with the right guidance for your next move.",
+    step2Subtitle: "Tell us about your career goals",
+    questionsStepLabel: "Your Goals",
+    schedulingLabel: "Pick a Date & Time",
+    meetingLabel: "Session Format",
+    confirmationTitle: "Consultation Request Received",
+    confirmationDesc: "We will review your career consultation request and reach out within 24 hours to confirm your session.",
+  },
+  {
+    id: "Speaking Engagement", icon: GlobeIcon, desc: "Keynote speaking and panel participation",
+    duration: "1 hr", isFree: true, amount: 0,
+    headerTitle: "Book a Speaking Engagement",
+    headerDesc: "Invite Richard to speak at your next event. Share the details and we will be in touch.",
+    step2Subtitle: "Tell us about your event",
+    questionsStepLabel: "Event Details",
+    schedulingLabel: "Pick a Preferred Date & Time",
+    meetingLabel: "Session Format",
+    confirmationTitle: "Speaking Request Received",
+    confirmationDesc: "Thank you for the invitation. We will review your event details and respond within 24 hours.",
+  },
+  {
+    id: "Face To Face Meeting", icon: WingsIcon, desc: "Confidential one-on-one strategic discussions",
+    duration: "30 mins", isFree: false, amount: 20,
+    headerTitle: "Book a Face to Face Meeting",
+    headerDesc: "Schedule a private one-on-one meeting to discuss matters that matter most to you.",
+    step2Subtitle: "Tell us what you would like to discuss",
+    questionsStepLabel: "Meeting Purpose",
+    schedulingLabel: "Pick a Date & Time",
+    meetingLabel: "Meeting Format",
+    confirmationTitle: "Meeting Request Received",
+    confirmationDesc: "Your meeting request has been received. We will confirm your preferred time within 24 hours.",
+  },
+  {
+    id: "Mentorship", icon: ShieldIcon, desc: "Structured leadership development for emerging leaders",
+    duration: "1 hr", isFree: false, amount: 20,
+    headerTitle: "Book a Mentorship Session",
+    headerDesc: "Begin your mentorship journey. Share where you are and where you want to be.",
+    step2Subtitle: "Tell us about your development goals",
+    questionsStepLabel: "Your Goals",
+    schedulingLabel: "Pick a Date & Time",
+    meetingLabel: "Session Format",
+    confirmationTitle: "Mentorship Request Received",
+    confirmationDesc: "We have received your mentorship request. We will review your goals and confirm your session within 24 hours.",
+  },
+  {
+    id: "Aircraft Leases", icon: RadarIcon, desc: "Lease vs. buy analysis and fleet strategy",
+    duration: "1 hr", isFree: true, amount: 0,
+    headerTitle: "Book an Aircraft Leasing Consultation",
+    headerDesc: "Get expert guidance on fleet strategy, lease structures, and acquisition planning.",
+    step2Subtitle: "Tell us about your leasing needs",
+    questionsStepLabel: "Your Requirements",
+    schedulingLabel: "Pick a Date & Time",
+    meetingLabel: "Session Format",
+    confirmationTitle: "Leasing Request Received",
+    confirmationDesc: "Thank you for your interest. We will review your aircraft leasing requirements and respond within 24 hours.",
+  },
+  {
+    id: "Charters Services", icon: PlaneIcon, desc: "Charter operations and service delivery consulting",
+    duration: "1 hr", isFree: true, amount: 0,
+    headerTitle: "Book a Charters Consultation",
+    headerDesc: "Explore charter operations, route planning, and service delivery strategy with expert guidance.",
+    step2Subtitle: "Tell us about your charter needs",
+    questionsStepLabel: "Your Requirements",
+    schedulingLabel: "Pick a Date & Time",
+    meetingLabel: "Session Format",
+    confirmationTitle: "Charter Request Received",
+    confirmationDesc: "We have received your charter consultation request. We will be in touch within 24 hours.",
+  },
 ];
 
 type Question = { label: string; key: string; type: "text" | "select" | "number" | "textarea"; options?: string[]; placeholder?: string };
@@ -256,7 +322,7 @@ export default function BookingPage() {
             <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
               Verifying Payment
             </h1>
-            <p className="mt-4 text-foreground/40">
+            <p className="mt-4 text-muted-foreground">
               Please wait while we confirm your payment...
             </p>
           </div>
@@ -270,27 +336,27 @@ export default function BookingPage() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 bg-background min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
           <Reveal className="max-w-xl mx-auto text-center">
-            <div className="size-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+            <div className="size-16 rounded-full bg-primary flex items-center justify-center mx-auto mb-6">
               <Check className="size-7 text-primary" />
             </div>
             <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
               Request Received
             </h1>
-            <p className="mt-4 text-foreground/40 leading-relaxed">
-              Thank you, <span className="text-foreground/70 font-medium">{form.name}</span>.
-              We will review your <span className="text-foreground/70 font-medium">{form.service?.toLowerCase()}</span> request
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Thank you, <span className="text-foreground font-medium">{form.name}</span>.
+              We will review your <span className="text-foreground font-medium">{form.service?.toLowerCase()}</span> request
               and confirm within 24 hours. A confirmation will be sent to{" "}
-              <span className="text-foreground/70 font-medium">{form.email}</span>.
+              <span className="text-foreground font-medium">{form.email}</span>.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               {form.date && (
-                <span className="text-xs bg-secondary/50 border border-input px-3 py-1.5 rounded-full text-foreground/50 flex items-center gap-1.5">
+                <span className="text-xs bg-secondary border border-input px-3 py-1.5 rounded-full text-muted-foreground flex items-center gap-1.5">
                   <Calendar className="size-3" />
                   {form.date} at {form.time}
                 </span>
               )}
               {form.videoCall === "video" && (
-                <span className="text-xs bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full text-primary flex items-center gap-1.5">
+                <span className="text-xs bg-primary border border-primary px-3 py-1.5 rounded-full text-primary flex items-center gap-1.5">
                   <Video className="size-3" />
                   Video Call - A meeting link will be sent to your email
                 </span>
@@ -314,9 +380,9 @@ export default function BookingPage() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
               Book a
               <br />
-              <span className="text-foreground/50">consultation.</span>
+              <span className="text-muted-foreground">consultation.</span>
             </h1>
-            <p className="mt-6 text-foreground/40 leading-relaxed">
+            <p className="mt-6 text-muted-foreground leading-relaxed">
               Tell us about yourself and what you need. Each service includes a
               complimentary initial consultation.
             </p>
@@ -336,14 +402,14 @@ export default function BookingPage() {
                       className={`size-8 rounded-full flex items-center justify-center text-xs font-semibold transition-colors shrink-0 ${
                         s.n <= step
                           ? "bg-primary text-primary-foreground"
-                          : "bg-secondary/50 text-foreground/30 border border-input"
+                          : "bg-secondary text-muted-foreground border border-input"
                       }`}
                     >
                       {s.n < step ? <Check className="size-3.5" /> : s.n}
                     </div>
                     <span
                       className={`hidden sm:block text-xs ${
-                        s.n <= step ? "text-foreground/60" : "text-foreground/20"
+                        s.n <= step ? "text-muted-foreground" : "text-muted-foreground"
                       }`}
                     >
                       {s.label}
@@ -380,7 +446,7 @@ export default function BookingPage() {
                       </p>
                       <div className="grid sm:grid-cols-2 gap-5">
                         <div>
-                          <label className="block text-xs text-foreground/50 mb-1.5">
+                          <label className="block text-xs text-muted-foreground mb-1.5">
                             Full Name <span className="text-primary">*</span>
                           </label>
                           <input
@@ -388,12 +454,12 @@ export default function BookingPage() {
                             type="text"
                             value={form.name}
                             onChange={(e) => update("name", e.target.value)}
-                            className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
+                            className="w-full bg-secondary border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors rounded-lg"
                             placeholder="Your name"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-foreground/50 mb-1.5">
+                          <label className="block text-xs text-muted-foreground mb-1.5">
                             Email <span className="text-primary">*</span>
                           </label>
                           <input
@@ -401,31 +467,31 @@ export default function BookingPage() {
                             type="email"
                             value={form.email}
                             onChange={(e) => update("email", e.target.value)}
-                            className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
+                            className="w-full bg-secondary border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors rounded-lg"
                             placeholder="you@company.com"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-foreground/50 mb-1.5">
+                          <label className="block text-xs text-muted-foreground mb-1.5">
                             Phone
                           </label>
                           <input
                             type="tel"
                             value={form.phone}
                             onChange={(e) => update("phone", e.target.value)}
-                            className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
+                            className="w-full bg-secondary border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors rounded-lg"
                             placeholder="+233 XX XXX XXXX"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-foreground/50 mb-1.5">
+                          <label className="block text-xs text-muted-foreground mb-1.5">
                             Company / Organization
                           </label>
                           <input
                             type="text"
                             value={form.company}
                             onChange={(e) => update("company", e.target.value)}
-                            className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
+                            className="w-full bg-secondary border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors rounded-lg"
                             placeholder="Optional"
                           />
                         </div>
@@ -445,36 +511,36 @@ export default function BookingPage() {
                               key={s.id}
                               type="button"
                               onClick={() => update("service", s.id)}
-                              className={`group text-left p-4 rounded-xl border transition-all ${
-                                selected
-                                  ? "bg-primary/5 border-primary/40"
-                                  : "bg-secondary/30 border-input hover:border-foreground/20"
-                              }`}
-                            >
-                              <Icon
-                                className={`size-5 mb-3 transition-colors ${
-                                  selected ? "text-primary" : "text-foreground/30"
+                                className={`group text-left p-4 rounded-xl border transition-all ${
+                                  selected
+                                    ? "bg-primary text-primary-foreground border-primary"
+                                    : "bg-secondary border-input hover:border-foreground"
                                 }`}
-                              />
-                              <div className="flex items-center justify-between mb-1">
-                                <p
-                                  className={`text-sm font-semibold transition-colors ${
-                                    selected
-                                      ? "text-primary"
-                                      : "text-foreground group-hover:text-foreground"
+                              >
+                                <Icon
+                                  className={`size-5 mb-3 transition-colors ${
+                                    selected ? "text-primary-foreground" : "text-muted-foreground"
                                   }`}
-                                >
-                                  {s.id}
-                                </p>
-                                <span className={`text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full ${
-                                  s.isFree
-                                    ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                                    : "bg-primary/10 text-primary border border-primary/20"
-                                }`}>
-                                  {s.isFree ? "Free" : "Paid"}
-                                </span>
-                              </div>
-                              <p className="text-xs text-foreground/40 mt-1 leading-relaxed">
+                                />
+                                <div className="flex items-center justify-between mb-1">
+                                  <p
+                                    className={`text-sm font-semibold transition-colors ${
+                                      selected
+                                        ? "text-primary-foreground group-hover:text-primary-foreground"
+                                        : "text-foreground group-hover:text-foreground"
+                                    }`}
+                                  >
+                                    {s.id}
+                                  </p>
+                                  <span className={`text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full ${
+                                    s.isFree
+                                      ? "bg-emerald-500 text-emerald-400 border border-emerald-500"
+                                      : "bg-primary text-primary-foreground border border-primary"
+                                  }`}>
+                                    {s.isFree ? "Free" : "Paid"}
+                                  </span>
+                                </div>
+                              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
                                 {s.desc}
                               </p>
                               {s.rate ? (
@@ -482,7 +548,7 @@ export default function BookingPage() {
                                   {s.rate}
                                 </span>
                               ) : (
-                                <span className="text-[10px] text-foreground/30 mt-2 block">
+                                <span className="text-[10px] text-muted-foreground mt-2 block">
                                   {s.duration} &middot; Free
                                 </span>
                               )}
@@ -524,19 +590,19 @@ export default function BookingPage() {
                       })()}
                       <div>
                         <p className="text-sm font-semibold text-foreground">{selectedService}</p>
-                        <p className="text-xs text-foreground/40">Tell us more about your needs</p>
+                        <p className="text-xs text-muted-foreground">Tell us more about your needs</p>
                       </div>
                     </div>
 
                     {/* Question progress */}
                     <div className="flex items-center gap-3">
-                      <div className="flex-1 h-1 bg-secondary/50 rounded-full overflow-hidden">
+                      <div className="flex-1 h-1 bg-secondary rounded-full overflow-hidden">
                         <div
                           className="h-full bg-primary rounded-full transition-all duration-300"
                           style={{ width: `${((qIndex + 1) / questions.length) * 100}%` }}
                         />
                       </div>
-                      <span className="text-xs text-foreground/30 shrink-0 tabular-nums">
+                      <span className="text-xs text-muted-foreground shrink-0 tabular-nums">
                         {qIndex + 1} of {questions.length}
                       </span>
                     </div>
@@ -554,7 +620,7 @@ export default function BookingPage() {
                           transition={{ duration: 0.2, ease: "easeInOut" }}
                           className="w-full"
                         >
-                          <div className="bg-secondary/20 border border-input rounded-xl p-6 mb-5">
+                          <div className="bg-secondary border border-input rounded-xl p-6 mb-5">
                             <p className="text-base sm:text-lg font-medium text-foreground leading-relaxed">
                               {currentQ.label}
                             </p>
@@ -572,8 +638,8 @@ export default function BookingPage() {
                                       onClick={() => update(currentQ.key, o)}
                                       className={`text-left w-full px-4 py-3 rounded-lg border text-sm transition-all ${
                                         selected
-                                          ? "bg-primary/10 border-primary/40 text-primary font-medium"
-                                          : "bg-secondary/30 border-input text-foreground/60 hover:border-foreground/30"
+                                          ? "bg-primary border-primary text-primary font-medium"
+                                          : "bg-secondary border-input text-muted-foreground hover:border-foreground"
                                       }`}
                                     >
                                       {o}
@@ -586,7 +652,7 @@ export default function BookingPage() {
                                 rows={3}
                                 value={form[currentQ.key] || ""}
                                 onChange={(e) => update(currentQ.key, e.target.value)}
-                                className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg resize-none"
+                                className="w-full bg-secondary border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors rounded-lg resize-none"
                                 placeholder={currentQ.placeholder || ""}
                               />
                             ) : (
@@ -594,7 +660,7 @@ export default function BookingPage() {
                                 type={currentQ.type}
                                 value={form[currentQ.key] || ""}
                                 onChange={(e) => update(currentQ.key, e.target.value)}
-                                className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg"
+                                className="w-full bg-secondary border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors rounded-lg"
                                 placeholder={currentQ.placeholder || ""}
                               />
                             )}
@@ -607,12 +673,12 @@ export default function BookingPage() {
                     <div className="flex items-center justify-between pt-2">
                       <div>
                         {qIndex > 0 ? (
-                          <Button type="button" variant="ghost" onClick={prevQuestion} className="gap-2 text-foreground/40 hover:text-foreground">
+                          <Button type="button" variant="ghost" onClick={prevQuestion} className="gap-2 text-muted-foreground hover:text-foreground">
                             <ArrowLeft className="size-4" />
                             Previous
                           </Button>
                         ) : (
-                          <Button type="button" variant="ghost" onClick={() => goTo(1)} className="gap-2 text-foreground/40 hover:text-foreground">
+                          <Button type="button" variant="ghost" onClick={() => goTo(1)} className="gap-2 text-muted-foreground hover:text-foreground">
                             <ArrowLeft className="size-4" />
                             Back to services
                           </Button>
@@ -643,21 +709,21 @@ export default function BookingPage() {
                         <CreditCard className="size-4 text-primary" />
                         Complete Payment
                       </p>
-                      <div className="bg-secondary/20 border border-input rounded-xl p-6 space-y-4">
+                      <div className="bg-secondary border border-input rounded-xl p-6 space-y-4">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-foreground/50">Service</span>
-                          <span className="text-sm text-foreground/80 font-medium">{selectedService}</span>
+                          <span className="text-sm text-muted-foreground">Service</span>
+                          <span className="text-sm text-foreground font-medium">{selectedService}</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-foreground/50">Amount</span>
+                          <span className="text-sm text-muted-foreground">Amount</span>
                           <span className="text-lg text-foreground font-bold">${paidService?.amount}</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-foreground/50">Email</span>
-                          <span className="text-sm text-foreground/70">{form.email}</span>
+                          <span className="text-sm text-muted-foreground">Email</span>
+                          <span className="text-sm text-foreground">{form.email}</span>
                         </div>
                       </div>
-                      <p className="mt-4 text-xs text-foreground/30">
+                      <p className="mt-4 text-xs text-muted-foreground">
                         You will be redirected to Paystack to complete your payment securely.
                       </p>
                     </div>
@@ -702,7 +768,7 @@ export default function BookingPage() {
                       </p>
                       <div className="grid sm:grid-cols-2 gap-5">
                         <div>
-                          <label className="block text-xs text-foreground/50 mb-1.5">
+                          <label className="block text-xs text-muted-foreground mb-1.5">
                             Preferred Date <span className="text-primary">*</span>
                           </label>
                           <input
@@ -711,11 +777,11 @@ export default function BookingPage() {
                             value={form.date}
                             onChange={(e) => update("date", e.target.value)}
                             min={new Date().toISOString().split("T")[0]}
-                            className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg [color-scheme:dark]"
+                            className="w-full bg-secondary border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors rounded-lg [color-scheme:dark]"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-foreground/50 mb-1.5">
+                          <label className="block text-xs text-muted-foreground mb-1.5">
                             Preferred Time <span className="text-primary">*</span>
                           </label>
                           <div className="grid grid-cols-4 gap-2">
@@ -727,7 +793,7 @@ export default function BookingPage() {
                                 className={`px-3 py-2.5 text-xs border rounded-lg transition-all ${
                                   form.time === t
                                     ? "bg-primary text-primary-foreground border-primary font-medium"
-                                    : "bg-secondary/50 border-input text-foreground/50 hover:border-foreground/30"
+                                    : "bg-secondary border-input text-muted-foreground hover:border-foreground"
                                 }`}
                               >
                                 {t}
@@ -748,109 +814,109 @@ export default function BookingPage() {
                           onClick={() => update("videoCall", "in-person")}
                           className={`p-4 rounded-xl border text-left transition-all ${
                             form.videoCall === "in-person"
-                              ? "bg-primary/10 border-primary/40"
-                              : "bg-secondary/30 border-input hover:border-foreground/30"
+                              ? "bg-primary border-primary"
+                              : "bg-secondary border-input hover:border-foreground"
                           }`}
                         >
                           <span className="text-lg block mb-1">👤</span>
                           <p className={`text-xs font-semibold ${
-                            form.videoCall === "in-person" ? "text-primary" : "text-foreground/60"
+                            form.videoCall === "in-person" ? "text-primary" : "text-muted-foreground"
                           }`}>
                             In Person
                           </p>
-                          <p className="text-[10px] text-foreground/30 mt-0.5">Meet face to face</p>
+                          <p className="text-[10px] text-muted-foreground mt-0.5">Meet face to face</p>
                         </button>
                         <button
                           type="button"
                           onClick={() => update("videoCall", "video")}
                           className={`p-4 rounded-xl border text-left transition-all ${
                             form.videoCall === "video"
-                              ? "bg-primary/10 border-primary/40"
-                              : "bg-secondary/30 border-input hover:border-foreground/30"
+                              ? "bg-primary border-primary"
+                              : "bg-secondary border-input hover:border-foreground"
                           }`}
                         >
                           <span className="text-lg block mb-1">📹</span>
                           <p className={`text-xs font-semibold ${
-                            form.videoCall === "video" ? "text-primary" : "text-foreground/60"
+                            form.videoCall === "video" ? "text-primary" : "text-muted-foreground"
                           }`}>
                             Video Call
                           </p>
-                          <p className="text-[10px] text-foreground/30 mt-0.5">Remote via video</p>
+                          <p className="text-[10px] text-muted-foreground mt-0.5">Remote via video</p>
                         </button>
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs text-foreground/50 mb-1.5">
+                      <label className="block text-xs text-muted-foreground mb-1.5">
                         Additional Notes
                       </label>
                       <textarea
                         rows={3}
                         value={form.message}
                         onChange={(e) => update("message", e.target.value)}
-                        className="w-full bg-secondary/50 border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary/50 transition-colors rounded-lg resize-none"
+                        className="w-full bg-secondary border border-input px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors rounded-lg resize-none"
                         placeholder="Anything else we should know..."
                       />
                     </div>
 
                     {/* Summary */}
-                    <div className="bg-gradient-to-b from-secondary/30 to-transparent border border-input rounded-xl p-6">
-                      <p className="text-xs font-semibold text-foreground/50 uppercase tracking-wider mb-4">
+                    <div className="bg-secondary border border-input rounded-xl p-6">
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
                         Review Your Request
                       </p>
                       <div className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
                         <div>
-                          <span className="text-foreground/30 text-xs">Name</span>
-                          <p className="text-foreground/70">{form.name}</p>
+                          <span className="text-muted-foreground text-xs">Name</span>
+                          <p className="text-foreground">{form.name}</p>
                         </div>
                         <div>
-                          <span className="text-foreground/30 text-xs">Email</span>
-                          <p className="text-foreground/70">{form.email}</p>
+                          <span className="text-muted-foreground text-xs">Email</span>
+                          <p className="text-foreground">{form.email}</p>
                         </div>
                         {form.phone && (
                           <div>
-                            <span className="text-foreground/30 text-xs">Phone</span>
-                            <p className="text-foreground/70">{form.phone}</p>
+                            <span className="text-muted-foreground text-xs">Phone</span>
+                            <p className="text-foreground">{form.phone}</p>
                           </div>
                         )}
                         {form.company && (
                           <div>
-                            <span className="text-foreground/30 text-xs">Company</span>
-                            <p className="text-foreground/70">{form.company}</p>
+                            <span className="text-muted-foreground text-xs">Company</span>
+                            <p className="text-foreground">{form.company}</p>
                           </div>
                         )}
                         <div>
-                          <span className="text-foreground/30 text-xs">Service</span>
-                          <p className="text-foreground/70">{selectedService}</p>
+                          <span className="text-muted-foreground text-xs">Service</span>
+                          <p className="text-foreground">{selectedService}</p>
                         </div>
                         <div>
-                          <span className="text-foreground/30 text-xs">Date &amp; Time</span>
-                          <p className="text-foreground/70">{form.date} at {form.time}</p>
+                          <span className="text-muted-foreground text-xs">Date &amp; Time</span>
+                          <p className="text-foreground">{form.date} at {form.time}</p>
                         </div>
                         {form.videoCall && (
                           <div>
-                            <span className="text-foreground/30 text-xs">Format</span>
-                            <p className="text-foreground/70">{form.videoCall === "video" ? "Video Call" : "In Person"}</p>
+                            <span className="text-muted-foreground text-xs">Format</span>
+                            <p className="text-foreground">{form.videoCall === "video" ? "Video Call" : "In Person"}</p>
                           </div>
                         )}
                       </div>
                       {isPaidService && (
-                        <div className="mt-4 pt-4 border-t border-input/60">
-                          <span className="text-foreground/30 text-xs">Payment</span>
-                          <p className="text-foreground/70 text-sm font-medium">
+                        <div className="mt-4 pt-4 border-t border-input">
+                          <span className="text-muted-foreground text-xs">Payment</span>
+                          <p className="text-foreground text-sm font-medium">
                             ${paidService?.amount} - Paid via Paystack
                           </p>
                         </div>
                       )}
                       {questions.some((q) => form[q.key]) && (
-                        <div className="mt-4 pt-4 border-t border-input/60">
-                          <span className="text-foreground/30 text-xs">Requirements</span>
+                        <div className="mt-4 pt-4 border-t border-input">
+                          <span className="text-muted-foreground text-xs">Requirements</span>
                           <ul className="mt-2 space-y-1">
                             {questions
                               .filter((q) => form[q.key])
                               .map((q) => (
-                                <li key={q.key} className="text-xs text-foreground/50">
-                                  <span className="text-foreground/30">{q.label}:</span>{" "}
+                                <li key={q.key} className="text-xs text-muted-foreground">
+                                  <span className="text-muted-foreground">{q.label}:</span>{" "}
                                   {form[q.key]}
                                 </li>
                               ))}

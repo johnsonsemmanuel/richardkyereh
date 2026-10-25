@@ -42,7 +42,7 @@ export function ElitePlanCard({
           alt={title}
           className="h-full w-full object-cover"
         />
-        <div className="absolute bottom-0 h-32 w-full bg-gradient-to-t from-black via-black/80 to-transparent" />
+        <div className="absolute bottom-0 h-32 w-full bg-black" />
       </motion.div>
 
       <div className="relative z-10 p-6 bg-black text-white">
@@ -59,7 +59,7 @@ export function ElitePlanCard({
             {highlights.map((item, idx) => (
               <li
                 key={idx}
-                className="flex items-center gap-2 rounded-md bg-gray-800/50 px-2 py-1"
+                className="flex items-center gap-2 rounded-md bg-gray-800 px-2 py-1"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-white" />
                 {item}

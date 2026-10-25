@@ -76,9 +76,9 @@ export default function ServicesPage() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
               What we
               <br />
-              <span className="text-foreground/50">deliver.</span>
+              <span className="text-muted-foreground">deliver.</span>
             </h1>
-            <p className="mt-6 text-foreground/60 leading-relaxed">
+            <p className="mt-6 text-muted-foreground leading-relaxed">
               Every engagement is tailored to the client&apos;s specific
               operating environment and objectives.
             </p>
@@ -94,36 +94,36 @@ export default function ServicesPage() {
             {services.map((service) => (
               <StaggerItem key={service.title} className="h-full">
                 <TiltCard className="h-full">
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="group h-full flex flex-col bg-secondary/50 hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden shadow-card"
-                  >
-                    <div className="aspect-[16/10] overflow-hidden">
-                      <img
-                        src={serviceImageUrls[service.title]}
-                        alt={service.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-6 flex flex-col flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                          {service.title}
-                        </h3>
-                        <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                          service.isFree
-                            ? "bg-emerald-500 text-white"
-                            : "bg-primary/10 text-primary border border-primary/20"
-                        }`}>
-                          {service.isFree ? "Free" : "Paid"}
-                        </span>
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="group h-full flex flex-col bg-secondary hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden shadow-card"
+                    >
+                      <div className="aspect-[16/10] overflow-hidden">
+                        <img
+                          src={serviceImageUrls[service.title]}
+                          alt={service.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
-                      <p className="text-xs mb-2 text-red-500 font-bold">
-                        {service.rate}
-                      </p>
-                      <p className="text-sm text-foreground/50 leading-relaxed flex-1">
-                        {service.description}
-                      </p>
+                      <div className="p-6 flex flex-col flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                            {service.title}
+                          </h3>
+                          <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                            service.isFree
+                              ? "bg-emerald-500 text-white"
+                              : "bg-primary text-primary-foreground border border-primary"
+                          }`}>
+                            {service.isFree ? "Free" : "Paid"}
+                          </span>
+                        </div>
+                        <p className="text-xs mb-2 text-red-500 font-bold">
+                          {service.rate}
+                        </p>
+                        <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+                          {service.description}
+                        </p>
                       <div className="mt-4">
                         <Button size="sm" variant="outline" className="group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors">
                           Book

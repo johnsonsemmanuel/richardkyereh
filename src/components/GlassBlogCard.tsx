@@ -52,7 +52,7 @@ export function GlassBlogCard({
       transition={{ duration: 0.4 }}
       className={cn("w-full max-w-[400px]", className)}
     >
-      <Card className="group relative h-full overflow-hidden rounded-2xl border-border/50 bg-card/30 backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10">
+      <Card className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card shadow">
         <div className="relative aspect-[16/9] overflow-hidden">
           <motion.img
             src={image}
@@ -60,24 +60,22 @@ export function GlassBlogCard({
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect fill='%2305080F' width='800' height='450'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff15' font-family='system-ui' font-size='24' text-anchor='middle' dominant-baseline='middle'%3EArticle%3C/text%3E%3C/svg%3E";
+              target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect fill='%2305080F' width='800' height='450'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-family='system-ui' font-size='24' text-anchor='middle' dominant-baseline='middle'%3EArticle%3C/text%3E%3C/svg%3E";
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
-
           <div className="absolute bottom-3 left-3 flex gap-2">
             {tags?.map((tag, index) => (
               <Badge
                 key={index}
                 variant="secondary"
-                className="bg-background/50 backdrop-blur-sm hover:bg-background/80"
+                className="bg-secondary hover:bg-secondary/80"
               >
                 {tag}
               </Badge>
             ))}
           </div>
 
-          <div className="absolute inset-0 flex items-center justify-center bg-background/20 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <div className="absolute inset-0 flex items-center justify-center bg-card/95 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -91,7 +89,7 @@ export function GlassBlogCard({
 
         <div className="flex flex-col gap-4 p-5">
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold leading-tight tracking-tight text-foreground transition-colors group-hover:text-primary">
+            <h3 className="text-xl font-semibold leading-tight tracking-tight text-foreground">
               {title}
             </h3>
             <p className="line-clamp-2 text-sm text-muted-foreground">
@@ -99,9 +97,9 @@ export function GlassBlogCard({
             </p>
           </div>
 
-          <div className="flex items-center justify-between border-t border-border/50 pt-4">
+          <div className="flex items-center justify-between border-t border-border pt-4">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border/50 bg-muted">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-muted">
                 <User className="h-4 w-4 text-muted-foreground" />
               </div>
               <div className="flex flex-col text-xs">

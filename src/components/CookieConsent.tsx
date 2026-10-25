@@ -37,7 +37,7 @@ export function CookieConsent() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           onClick={expand}
-          className="fixed bottom-4 left-4 z-40 w-10 h-10 rounded-full bg-card border border-border shadow-lg flex items-center justify-center hover:border-primary/50 transition-colors"
+          className="fixed bottom-4 left-4 z-40 w-10 h-10 rounded-full bg-card border border-border shadow-lg flex items-center justify-center hover:border-primary transition-colors"
           aria-label="Cookie settings"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-4 text-foreground/60">
@@ -57,13 +57,13 @@ export function CookieConsent() {
           exit={{ opacity: 0, y: 20, x: "-50%" }}
           className="fixed bottom-4 left-1/2 z-40 w-[calc(100%-2rem)] max-w-lg"
         >
-          <div className="bg-card border border-border/60 rounded-2xl p-5 shadow-2xl backdrop-blur-xl">
+          <div className="bg-card border border-border rounded-2xl p-5 shadow-2xl">
             <div className="flex items-start gap-4">
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-foreground">
                   Cookie Notice
                 </p>
-                <p className="text-xs text-foreground/50 mt-1 leading-relaxed">
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
                   This site uses cookies to improve your experience. By continuing,
                   you agree to our{" "}
                   <Link href="/privacy" className="text-primary hover:underline">

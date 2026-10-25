@@ -11,7 +11,7 @@ interface HeroBackgroundProps {
 
 export function HeroBackground({
   images,
-  overlay = "bg-background/80",
+  overlay = "bg-background",
   interval = 5000,
 }: HeroBackgroundProps) {
   const [current, setCurrent] = useState(0);

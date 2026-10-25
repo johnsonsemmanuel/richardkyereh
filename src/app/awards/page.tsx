@@ -49,7 +49,7 @@ function AwardCard({ award, index, onSelect }: {
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.4, delay: index * 0.04, ease: [0.25, 0.1, 0.25, 1] }}
       onClick={onSelect}
-      className="group relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-secondary/50 border border-border hover:border-foreground/20 transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/30 text-left shadow-card"
+      className="group relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-secondary border border-border hover:border-foreground transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground text-left shadow-card"
     >
       <motion.img
         src={media[0].src}
@@ -57,17 +57,16 @@ function AwardCard({ award, index, onSelect }: {
         loading="lazy"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
       <div className="absolute bottom-0 left-0 right-0 p-5">
-        <span className="text-[10px] font-semibold text-foreground/50 tracking-[0.15em] uppercase">
+        <span className="text-[10px] font-semibold text-muted-foreground tracking-[0.15em] uppercase">
           {award.year}
         </span>
         <h3 className="text-sm font-semibold text-foreground mt-1 leading-tight">
           {award.title}
         </h3>
-        <p className="text-xs text-foreground/50 mt-0.5">{award.org}</p>
+        <p className="text-xs text-muted-foreground mt-0.5">{award.org}</p>
       </div>
-      <div className="absolute inset-0 ring-1 ring-inset ring-white/0 group-hover:ring-white/10 transition-all duration-500 rounded-2xl pointer-events-none" />
+      <div className="absolute inset-0 ring-1 ring-inset ring-transparent rounded-2xl pointer-events-none" />
     </motion.button>
   );
 }
@@ -107,7 +106,7 @@ function Lightbox({
 
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-20 size-10 rounded-full bg-foreground/10 hover:bg-foreground/20 flex items-center justify-center transition-colors"
+        className="absolute top-4 right-4 z-20 size-10 rounded-full bg-foreground hover:bg-foreground/80 flex items-center justify-center transition-colors"
         aria-label="Close lightbox"
       >
         <X className="size-5 text-foreground" />
@@ -116,7 +115,7 @@ function Lightbox({
       {idx > 0 && (
         <button
           onClick={(e) => { e.stopPropagation(); setIdx(idx - 1); }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 size-10 rounded-full bg-foreground/10 hover:bg-foreground/20 flex items-center justify-center transition-colors"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 size-10 rounded-full bg-foreground hover:bg-foreground/80 flex items-center justify-center transition-colors"
           aria-label="Previous"
         >
           <ChevronLeft className="size-5 text-foreground" />
@@ -125,7 +124,7 @@ function Lightbox({
       {idx < media.length - 1 && (
         <button
           onClick={(e) => { e.stopPropagation(); setIdx(idx + 1); }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 size-10 rounded-full bg-foreground/10 hover:bg-foreground/20 flex items-center justify-center transition-colors"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 size-10 rounded-full bg-foreground hover:bg-foreground/80 flex items-center justify-center transition-colors"
           aria-label="Next"
         >
           <ChevronRight className="size-5 text-foreground" />
@@ -137,7 +136,7 @@ function Lightbox({
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative z-10 max-w-5xl w-full max-h-[85vh] mx-4 rounded-2xl overflow-hidden flex items-center justify-center bg-black/10"
+        className="relative z-10 max-w-5xl w-full max-h-[85vh] mx-4 rounded-2xl overflow-hidden flex items-center justify-center bg-black"
         onClick={(e) => e.stopPropagation()}
       >
         {current.type === "video" ? (
@@ -154,15 +153,15 @@ function Lightbox({
             className="w-full h-full max-h-[85vh] object-contain bg-background"
           />
         )}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/80 to-transparent p-6 pt-16 pointer-events-none">
-          <span className="text-xs font-semibold text-foreground/50 tracking-[0.15em] uppercase">
+        <div className="absolute bottom-0 left-0 right-0 bg-card p-6 pt-16 pointer-events-none">
+          <span className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase">
             {award.year} &middot; {award.org}
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-1">
             {award.title}
           </h2>
         </div>
-        <div className="absolute top-4 left-4 text-xs text-foreground/50 tabular-nums">
+        <div className="absolute top-4 left-4 text-xs text-muted-foreground tabular-nums">
           {idx + 1} / {media.length}
           {current.type === "video" && (
             <span className="ml-2 inline-flex items-center gap-1 text-primary">
@@ -183,8 +182,8 @@ function Lightbox({
                 i === idx
                   ? "w-6 h-1.5 bg-foreground"
                   : item.type === "video"
-                    ? "size-2 bg-primary/40 hover:bg-primary/60"
-                    : "w-1.5 h-1.5 bg-foreground/20 hover:bg-foreground/40"
+                    ? "size-2 bg-primary hover:bg-primary/80"
+                    : "w-1.5 h-1.5 bg-foreground hover:bg-foreground/80"
               }`}
               aria-label={`Media ${i + 1}`}
             >
@@ -242,14 +241,14 @@ export default function AwardsPage() {
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
             className="max-w-2xl"
           >
-            <p className="text-foreground/60 text-sm font-medium tracking-[0.15em] uppercase mb-4 flex items-center gap-2">
+            <p className="text-muted-foreground text-sm font-medium tracking-[0.15em] uppercase mb-4 flex items-center gap-2">
               <Award className="size-4" />
               Recognition
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
               Events &
               <br />
-              <span className="text-foreground/60">honours.</span>
+              <span className="text-muted-foreground">honours.</span>
             </h1>
           </motion.div>
         </div>
@@ -269,7 +268,7 @@ export default function AwardsPage() {
               className={`shrink-0 px-5 py-2 rounded-full text-xs font-medium border transition-all duration-300 ${
                 yearFilter === null
                   ? "bg-foreground text-background border-foreground"
-                  : "bg-transparent border-border text-foreground/50 hover:border-foreground/30 hover:text-foreground/70"
+                  : "bg-transparent border-border text-muted-foreground hover:border-foreground hover:text-foreground"
               }`}
             >
               All
@@ -281,7 +280,7 @@ export default function AwardsPage() {
                 className={`shrink-0 px-5 py-2 rounded-full text-xs font-medium border transition-all duration-300 ${
                   yearFilter === y
                     ? "bg-foreground text-background border-foreground"
-                    : "bg-transparent border-border text-foreground/50 hover:border-foreground/30 hover:text-foreground/70"
+                    : "bg-transparent border-border text-muted-foreground hover:border-foreground hover:text-foreground"
                 }`}
               >
                 {y}
@@ -354,7 +353,7 @@ export default function AwardsPage() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center text-foreground/50 text-sm py-20"
+              className="text-center text-muted-foreground text-sm py-20"
             >
               No awards found for {yearFilter}.
             </motion.p>

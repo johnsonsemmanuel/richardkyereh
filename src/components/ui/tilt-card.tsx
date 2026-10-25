@@ -7,13 +7,11 @@ interface TiltCardProps {
   children: React.ReactNode;
   className?: string;
   maxTilt?: number;
-  glare?: boolean;
 }
 
-export function TiltCard({ children, className, maxTilt = 8, glare = true }: TiltCardProps) {
+export function TiltCard({ children, className, maxTilt = 8 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
-  const [glow, setGlow] = useState({ x: 50, y: 50 });
   const [hovered, setHovered] = useState(false);
 
   function handleMouseMove(e: React.MouseEvent) {
@@ -22,10 +20,6 @@ export function TiltCard({ children, className, maxTilt = 8, glare = true }: Til
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     setRotate({ x: -y * maxTilt, y: x * maxTilt });
-    setGlow({
-      x: ((e.clientX - rect.left) / rect.width) * 100,
-      y: ((e.clientY - rect.top) / rect.height) * 100,
-    });
     setHovered(true);
   }
 
@@ -46,15 +40,6 @@ export function TiltCard({ children, className, maxTilt = 8, glare = true }: Til
       }}
     >
       {children}
-      {glare && (
-        <div
-          className="pointer-events-none absolute inset-0 rounded-[inherit] transition-opacity duration-300"
-          style={{
-            opacity: hovered ? 1 : 0,
-            background: `radial-gradient(circle at ${glow.x}% ${glow.y}%, rgba(255,255,255,0.06) 0%, transparent 60%)`,
-          }}
-        />
-      )}
     </div>
   );
 }
