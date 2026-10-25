@@ -4,7 +4,7 @@ import { CompassIcon } from "@/components/ui/aviation-icons";
 
 export default function NotFound() {
   return (
-    <section className="min-h-screen flex items-center justify-center bg-background">
+    <section className="section-bg-light min-h-screen flex items-center justify-center section-padding">
       <div className="max-w-md mx-auto px-6 text-center">
         <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
           <CompassIcon className="size-4" />
@@ -12,9 +12,9 @@ export default function NotFound() {
         </p>
         <h1 className="text-6xl sm:text-7xl font-bold tracking-tight text-foreground">
           Off
-          <span className="text-foreground/50"> course.</span>
+          <span className="text-muted-foreground"> course.</span>
         </h1>
-        <p className="mt-6 text-foreground/50 leading-relaxed">
+        <p className="mt-6 text-muted-foreground leading-relaxed">
           The page you are looking for does not exist or has been moved.
           Let us navigate you back to familiar airspace.
         </p>

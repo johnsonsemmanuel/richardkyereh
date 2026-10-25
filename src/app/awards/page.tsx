@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   getAwardMediaPaths,
@@ -14,6 +14,8 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "@/components/ui/pagination";
+import { Card } from "@/components/ui/card";
+import { SectionHeader } from "@/components/ui/section-header";
 
 type Award = { year: string; title: string; org: string; folder: string };
 
@@ -42,32 +44,34 @@ function AwardCard({ award, index, onSelect }: {
   const media = getAwardMediaPaths(award.folder);
 
   return (
-    <motion.button
-      layout
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.4, delay: index * 0.04, ease: [0.25, 0.1, 0.25, 1] }}
-      onClick={onSelect}
-      className="group relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-secondary border border-border hover:border-foreground transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground text-left shadow-card"
-    >
-      <motion.img
-        src={media[0].src}
-        alt={`${award.title} - ${award.org}, ${award.year}`}
-        loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-      />
-      <div className="absolute bottom-0 left-0 right-0 p-5">
-        <span className="text-[10px] font-semibold text-muted-foreground tracking-[0.15em] uppercase">
-          {award.year}
-        </span>
-        <h3 className="text-sm font-semibold text-foreground mt-1 leading-tight">
-          {award.title}
-        </h3>
-        <p className="text-xs text-muted-foreground mt-0.5">{award.org}</p>
-      </div>
-      <div className="absolute inset-0 ring-1 ring-inset ring-transparent rounded-2xl pointer-events-none" />
-    </motion.button>
+    <Card variant="outlined" className="h-full overflow-hidden group">
+      <motion.button
+        layout
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ duration: 0.4, delay: index * 0.04, ease: [0.25, 0.1, 0.25, 1] }}
+        onClick={onSelect}
+        className="block h-full w-full rounded-xl border-transparent bg-transparent shadow-none transition-none"
+      >
+        <motion.img
+          src={media[0].src}
+          alt={`${award.title} - ${award.org}, ${award.year}`}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="absolute bottom-0 left-0 right-0 p-5">
+          <span className="text-[10px] font-semibold text-muted-foreground tracking-[0.15em] uppercase">
+            {award.year}
+          </span>
+          <h3 className="text-sm font-semibold text-foreground mt-1 leading-tight">
+            {award.title}
+          </h3>
+          <p className="text-xs text-muted-foreground mt-0.5">{award.org}</p>
+        </div>
+        <div className="absolute inset-0 ring-1 ring-inset ring-transparent rounded-xl pointer-events-none" />
+      </motion.button>
+    </Card>
   );
 }
 
@@ -204,14 +208,6 @@ export default function AwardsPage() {
   const [yearFilter, setYearFilter] = useState<string | null>(null);
   const [lightboxAward, setLightboxAward] = useState<Award | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handler = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
 
   const filtered = yearFilter
     ? awards.filter((a) => a.year === yearFilter)
@@ -230,31 +226,17 @@ export default function AwardsPage() {
 
   return (
     <>
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-background">
-        <div
-          className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40"
-          style={{ transform: `translateY(${scrollY * 0.15}px)` }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-            className="max-w-2xl"
-          >
-            <p className="text-muted-foreground text-sm font-medium tracking-[0.15em] uppercase mb-4 flex items-center gap-2">
-              <Award className="size-4" />
-              Recognition
-            </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
-              Events &
-              <br />
-              <span className="text-muted-foreground">honours.</span>
-            </h1>
-          </motion.div>
+      <section className="section-bg-light section-padding">
+        <div className="premium-container">
+          <SectionHeader
+            title="Events &"
+            subtitle="honours."
+            icon={Award}
+          />
         </div>
       </section>
 
-      <section ref={scrollRef} className="relative pb-24 lg:pb-32 bg-background">
+      <section className="relative pb-24 lg:pb-32 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

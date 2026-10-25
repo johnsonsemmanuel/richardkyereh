@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { SectionHeader } from "@/components/ui/section-header";
+import { PlaneIcon } from "@/components/ui/aviation-icons";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
@@ -6,14 +8,15 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="pt-32 pb-24 lg:pt-40 lg:pb-32 bg-background">
-      <div className="max-w-3xl mx-auto px-6 lg:px-8">
-        <h1 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground mb-4">
-          Terms & Conditions
-        </h1>
-        <p className="text-foreground/40 text-sm mb-12">Last updated: June 2026</p>
+    <section className="section-bg-light section-padding">
+      <div className="premium-container">
+        <SectionHeader
+          title="Terms & Conditions"
+          description="Last updated: June 2026"
+          icon={PlaneIcon}
+        />
 
-        <div className="space-y-8 text-sm text-foreground/60 leading-relaxed">
+        <div className="space-y-8 text-sm text-muted-foreground leading-relaxed mt-10">
           <section>
             <h2 className="text-lg font-semibold text-foreground mb-3">1. Services</h2>
             <p>
@@ -81,6 +84,6 @@ export default function TermsPage() {
           </section>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

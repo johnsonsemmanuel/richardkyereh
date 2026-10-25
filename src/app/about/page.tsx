@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
+import { SectionHeader } from "@/components/ui/section-header";
 import { GlobeIcon, CompassIcon, ShieldIcon, PlaneIcon } from "@/components/ui/aviation-icons";
 import { WavePath } from "@/components/ui/wave-path";
 
@@ -20,32 +22,26 @@ const highlights = [
 export default function AboutPage() {
   return (
     <>
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 bg-background">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="section-bg-light section-padding">
+        <div className="premium-container">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
             <Reveal direction="left" className="lg:col-span-2">
-              <div className="relative rounded-2xl overflow-hidden border border-input bg-secondary/50 shadow-2xl shadow-primary/10 before:absolute before:inset-0 before:bg-gradient-to-t before:from-background/20 before:to-transparent before:z-10">
+              <Card variant="outlined" className="overflow-hidden">
                 <img
                   src="/photos/aviadev-profile.jpg"
                   alt="Richard Kyereh"
                   className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-700"
                 />
-              </div>
+              </Card>
             </Reveal>
             <Reveal direction="right" className="lg:col-span-3 space-y-4">
-              <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4 flex items-center gap-2">
-                <PlaneIcon className="size-4" />
-                About
-              </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
-                Richard Kyereh
-                <br />
-                <span className="text-foreground/50 text-2xl lg:text-3xl font-medium">MBA, PMP</span>
-              </h1>
-              <p className="text-foreground/60 leading-relaxed text-lg mt-4">
-                Richard Kyereh exemplifies everything good about the business side of aviation.
-              </p>
-              <div className="space-y-4 text-foreground/60 leading-relaxed">
+              <SectionHeader
+                title="Richard Kyereh"
+                subtitle="MBA, PMP"
+                description="Richard Kyereh exemplifies everything good about the business side of aviation."
+                icon={PlaneIcon}
+              />
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   Richard Kyereh is an aviation expert, aircraft broker, and aero-politics specialist based in Ghana, with 20 years of senior leadership experience across Africa&apos;s airline industry. A certified project manager, he brings deep expertise in commercial airline strategy, network development, and aviation consulting for West Africa&apos;s fast-growing travel market and Africa at large.
                 </p>
@@ -60,9 +56,9 @@ export default function AboutPage() {
 
       <WavePath />
 
-      <section className="pb-24 lg:pb-32 bg-background">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl space-y-5 text-foreground/60 leading-relaxed">
+      <section className="section-bg-light section-padding">
+        <div className="premium-container">
+          <div className="max-w-4xl space-y-5 text-muted-foreground leading-relaxed">
             <Reveal delay={0.1}>
               <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Airline Leadership Experience</h2>
               <p>
@@ -130,7 +126,7 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.4}>
-              <Button asChild size="lg" className="mt-8">
+              <Button asChild size="lg" className="mt-8 w-full sm:w-auto">
                 <Link href="/booking">Book a Consultation</Link>
               </Button>
             </Reveal>
@@ -138,14 +134,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-secondary/50 py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="section-bg-secondary section-padding">
+        <div className="premium-container">
           <StaggerReveal className="grid md:grid-cols-3 gap-6">
             {highlights.map((item) => {
               const Icon = item.Icon;
               return (
                 <StaggerItem key={item.label}>
-                  <div className="p-8 bg-background/50 border border-input group hover:bg-secondary transition-colors rounded-xl shadow-card">
+                  <Card variant="outlined" className="h-full">
                     <Icon className="size-6 text-primary/20 group-hover:text-primary/40 transition-colors mb-4" />
                     <p className="text-xs text-primary uppercase tracking-widest font-medium">
                       {item.label}
@@ -153,8 +149,8 @@ export default function AboutPage() {
                     <p className="mt-2 text-2xl font-bold text-foreground">
                       {item.value}
                     </p>
-                    <p className="mt-2 text-sm text-foreground/50">{item.desc}</p>
-                  </div>
+                    <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
+                  </Card>
                 </StaggerItem>
               );
             })}

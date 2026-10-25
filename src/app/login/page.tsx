@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { isAdminAuthenticated, verifyAdminPassword, setAdminSession } from "@/lib/admin-auth";
+import { Card, CardContent } from "@/components/ui/card";
+import { PlaneIcon } from "@/components/ui/aviation-icons";
 
 async function LoginForm() {
   async function loginAction(formData: FormData) {
@@ -17,12 +19,12 @@ async function LoginForm() {
   return (
     <form action={loginAction} className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-foreground/70 mb-1">Password</label>
+        <label className="block text-sm font-medium text-muted-foreground mb-1">Password</label>
         <input
           type="password"
           name="password"
           required
-          className="w-full px-4 py-2 bg-background border border-input rounded-lg focus:outline-none focus:border-ring"
+          className="w-full px-4 py-2 bg-background border border-input rounded-lg focus:outline-none focus:border-ring focus:ring-1 focus:ring-ring"
           placeholder="Enter admin password"
         />
       </div>
@@ -44,23 +46,28 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: P
   const { error } = await searchParams;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="w-full max-w-md p-8">
+    <section className="section-bg-light min-h-screen flex items-center justify-center section-padding">
+      <div className="w-full max-w-md px-6">
         <div className="text-center mb-8">
+          <div className="size-12 rounded-lg bg-secondary flex items-center justify-center mx-auto mb-4">
+            <PlaneIcon className="size-5 text-primary" />
+          </div>
           <h1 className="text-2xl font-bold text-foreground">Admin Dashboard</h1>
-          <p className="text-foreground/60 mt-2">Sign in to manage your site</p>
+          <p className="text-muted-foreground mt-2">Sign in to manage your site</p>
         </div>
         {error && (
           <div className="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 text-sm text-center">
             Incorrect password. Please try again.
           </div>
         )}
-        <div className="bg-card p-6 rounded-xl border border-input shadow-card">
-          <Suspense fallback={<div className="text-center text-foreground/60">Loading...</div>}>
-            <LoginForm />
-          </Suspense>
-        </div>
+        <Card variant="outlined">
+          <CardContent>
+            <Suspense fallback={<div className="text-center text-muted-foreground">Loading...</div>}>
+              <LoginForm />
+            </Suspense>
+          </CardContent>
+        </Card>
       </div>
-    </div>
+    </section>
   );
 }

@@ -17,7 +17,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-background">
+    <section className="section-bg-light min-h-screen flex items-center justify-center section-padding">
       <div className="max-w-md mx-auto px-6 text-center">
         <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
           <CompassIcon className="size-4" />
@@ -26,9 +26,9 @@ export default function Error({
         <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-foreground">
           System
           <br />
-          <span className="text-foreground/50">anomaly.</span>
+          <span className="text-muted-foreground">anomaly.</span>
         </h1>
-        <p className="mt-6 text-foreground/50 leading-relaxed">
+        <p className="mt-6 text-muted-foreground leading-relaxed">
           An unexpected error has occurred. Our team has been notified.
           Please try again or return to the homepage.
         </p>

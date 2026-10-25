@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { articles } from "@/lib/articles";
 import { NewsroomFilter } from "./filter";
+import { SectionHeader } from "@/components/ui/section-header";
+import { WingsIcon } from "@/components/ui/aviation-icons";
 
 export const metadata: Metadata = {
   title: "Newsroom",
@@ -12,21 +14,14 @@ const allTags = [...new Set(articles.flatMap((a) => a.tags))];
 export default function NewsroomPage() {
   return (
     <>
-      <section className="relative min-h-[60vh] flex items-end overflow-hidden bg-background">
-        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 pb-16 lg:pb-20">
-          <div className="max-w-2xl">
-            <p className="text-foreground/60 text-sm font-medium tracking-[0.15em] uppercase mb-4">
-              Newsroom
-            </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-foreground">
-              Newsroom
-              <br />
-              <span className="text-foreground/60">&amp; insights.</span>
-            </h1>
-            <p className="mt-4 text-foreground/60 leading-relaxed">
-              Press coverage, industry analysis, and thought leadership from Richard Kyereh.
-            </p>
-          </div>
+      <section className="section-bg-light">
+        <div className="premium-container py-12 lg:pt-40 lg:pb-20">
+          <SectionHeader
+            title="Newsroom"
+            subtitle="&amp; insights."
+            description="Press coverage, industry analysis, and thought leadership from Richard Kyereh."
+            icon={WingsIcon}
+          />
         </div>
       </section>
 
