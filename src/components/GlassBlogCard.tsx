@@ -1,7 +1,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { BookOpen, Clock, User } from "lucide-react";
@@ -25,7 +25,7 @@ const defaultPost = {
   excerpt:
     "Exploring the latest trends in glassmorphism, 3D elements, and micro-interactions.",
   image:
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E%3Crect fill='%2305080F' width='800' height='400'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff20' font-family='system-ui' font-size='20' text-anchor='middle' dominant-baseline='middle'%3EArticle%3C/text%3E%3C/svg%3E",
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E%3Crect fill='%231c1308' width='800' height='400'/%3E%3Ctext x='50%25' y='50%25' fill='%23fef3c7' font-family='system-ui' font-size='20' text-anchor='middle' dominant-baseline='middle'%3EArticle%3C/text%3E%3C/svg%3E",
   author: {
     name: "Moumen Soliman",
     avatar: "https://github.com/shadcn.png",
@@ -52,34 +52,34 @@ export function GlassBlogCard({
       transition={{ duration: 0.4 }}
       className={cn("w-full max-w-[400px]", className)}
     >
-      <Card className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card shadow">
+      <Card className="group relative h-full overflow-hidden shadow-premium-hover hover:border-primary/50">
         <div className="relative aspect-[16/9] overflow-hidden">
           <motion.img
             src={image}
             alt={title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect fill='%2305080F' width='800' height='450'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-family='system-ui' font-size='24' text-anchor='middle' dominant-baseline='middle'%3EArticle%3C/text%3E%3C/svg%3E";
+              target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect fill='%231c1308' width='800' height='450'/%3E%3Ctext x='50%25' y='50%25' fill='%23fef3c7' font-family='system-ui' font-size='24' text-anchor='middle' dominant-baseline='middle'%3EArticle%3C/text%3E%3C/svg%3E";
             }}
           />
           <div className="absolute bottom-3 left-3 flex gap-2">
             {tags?.map((tag, index) => (
               <Badge
                 key={index}
-                variant="secondary"
-                className="bg-secondary hover:bg-secondary/80"
+                variant="outline"
+                className="bg-background/80 hover:bg-primary hover:text-primary-foreground"
               >
                 {tag}
               </Badge>
             ))}
           </div>
 
-          <div className="absolute inset-0 flex items-center justify-center bg-card/95 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <div className="absolute inset-0 flex items-center justify-center bg-card/90 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25"
+              className="flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-lg"
             >
               <BookOpen className="h-4 w-4" />
               Read Article
@@ -87,7 +87,7 @@ export function GlassBlogCard({
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 p-5">
+        <CardContent className="p-5">
           <div className="space-y-2">
             <h3 className="text-xl font-semibold leading-tight tracking-tight text-foreground">
               {title}
@@ -96,8 +96,10 @@ export function GlassBlogCard({
               {excerpt}
             </p>
           </div>
+        </CardContent>
 
-          <div className="flex items-center justify-between border-t border-border pt-4">
+        <CardFooter className="pt-4 pb-0">
+          <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-muted">
                 <User className="h-4 w-4 text-muted-foreground" />
@@ -115,7 +117,7 @@ export function GlassBlogCard({
               <span>{readTime}</span>
             </div>
           </div>
-        </div>
+        </CardFooter>
       </Card>
     </motion.div>
   );

@@ -6,50 +6,45 @@ import { articles } from "@/lib/articles";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import { CompassIcon, WingsIcon, AltitudeIcon, GlobeIcon, ShieldIcon } from "@/components/ui/aviation-icons";
+import { CompassIcon, WingsIcon, AltitudeIcon, GlobeIcon } from "@/components/ui/aviation-icons";
 import { WavePath } from "@/components/ui/wave-path";
 import { HeroBackground } from "@/components/HeroBackground";
+import { Card } from "@/components/ui/card";
 
 const services = [
   {
     title: "Career Consultancy",
     slug: "career-consultancy",
     description: "Whether you are pursuing a career upgrade, transitioning into management, or entering the industry for the first time, we provide structured, one-on-one coaching tailored to your goals.",
-    gradient: "05080F,1A2D4A",
   },
   {
     title: "Speaking Engagement",
     slug: "speaking-engagement",
     description: "Expert keynote speaking and panel participation for conferences, media discussions, corporate events, industry summits, and academic institutions. Richard brings decades of operational experience, strategic insight, and a compelling personal story that resonates with any audience.",
-    gradient: "0A0F1A,111827",
   },
   {
     title: "Face To Face Meeting",
     slug: "face-to-face-meeting",
     description: "Confidential one-on-one meetings for strategic discussions, partnership exploration, airline start-up development or executive advisory sessions. These private engagements are designed for decision-makers who need direct, unfiltered access to Richard's expertise.",
-    gradient: "05080F,1F2937",
   },
   {
     title: "Mentorship",
     slug: "mentorship",
     description: "Structured mentorship for emerging aviation leaders, covering technical and leadership development.",
-    gradient: "0A0F1A,1A2D4A",
   },
   {
     title: "Aircraft Leases",
     slug: "aircraft-leases",
     description: "Advisory on aircraft leasing strategies, wet lease vs dry lease, fleet optimization, and portfolio management. Whether you are a startup airline or an established operator, we help you make informed, data-driven decisions.",
-    gradient: "05080F,111827",
   },
   {
     title: "Charters Services",
     slug: "charters-services",
     description: "Amongst our range of available aircraft is a Beech 1900 to support charters operators, corporate clients and individuals.",
-    gradient: "0A0F1A,1F2937",
   },
 ];
 
-const statIcons = [CheckCircle, CompassIcon, GlobeIcon, ShieldIcon];
+const statIcons = [CheckCircle, CompassIcon, GlobeIcon];
 
 export default function Home() {
   return (
@@ -58,18 +53,18 @@ export default function Home() {
         <HeroBackground images={[homeHeroImages[0]]} />
         <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
           <Reveal className="max-w-2xl">
-              <p className="text-muted-foreground text-sm font-medium tracking-[0.15em] uppercase mb-6 flex items-center gap-2">
-                <CompassIcon className="size-4" />
-                Airline & Aviation Expert | Africa
-              </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
-                Strategic Clarity
-                <br />
-                <span className="text-muted-foreground">for the skies</span>
-              </h1>
-              <p className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-lg">
-                Richard Kyereh advises on aviation policy, aero-politics, aircraft brokerage, and airline start-ups - bringing deep expertise in fleet strategy and operational excellence to airlines and operators across Africa.
-              </p>
+            <p className="text-muted-foreground text-sm font-medium tracking-[0.15em] uppercase mb-6 flex items-center gap-2">
+              <CompassIcon className="size-4" />
+              Airline & Aviation Expert | Africa
+            </p>
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
+              Strategic Clarity
+              <br />
+              <span className="text-gradient">for the skies</span>
+            </h1>
+            <p className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-lg">
+              Richard Kyereh advises on aviation policy, aero-politics, aircraft brokerage, and airline start-ups - bringing deep expertise in fleet strategy and operational excellence to airlines and operators across Africa.
+            </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg">
                 <Link href="/booking">Book a Consultation</Link>
@@ -82,7 +77,7 @@ export default function Home() {
         </div>
       </section>
 
-      <WavePath />
+      <div className="border-t border-border/50" />
 
       <section className="bg-secondary py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -96,13 +91,15 @@ export default function Home() {
               const Icon = statIcons[i];
               return (
                 <StaggerItem key={stat} className="group">
-                  {Icon && <Icon className="size-6 text-primary group-hover:text-primary transition-colors mb-3" />}
-                  <p className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
-                    {stat}
-                  </p>
-                  <p className="mt-2 text-sm text-muted-foreground uppercase tracking-wider">
-                    {label}
-                  </p>
+                  <Card variant="outlined" className="p-6 hover:border-primary/50 transition-colors">
+                    {Icon && <Icon className="size-6 text-primary group-hover:text-primary transition-colors mb-3" />}
+                    <p className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
+                      {stat}
+                    </p>
+                    <p className="mt-2 text-sm text-muted-foreground uppercase tracking-wider">
+                      {label}
+                    </p>
+                  </Card>
                 </StaggerItem>
               );
             })}
@@ -110,11 +107,13 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="border-t border-border/50" />
+
       <section className="bg-background py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <Reveal direction="left" className="lg:col-span-2">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-input bg-secondary shadow-card">
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-input bg-secondary shadow-premium">
                 <img
                   src="/richardkyereh.jpg"
                   alt="Richard Kyereh"
@@ -157,6 +156,8 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="border-t border-border/50" />
+
       <section className="bg-background py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <Reveal className="text-center max-w-2xl mx-auto mb-20">
@@ -173,50 +174,52 @@ export default function Home() {
           <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (
               <StaggerItem key={service.title}>
-                <TiltCard>
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="group flex flex-col h-full bg-secondary hover:bg-secondary transition-colors border border-input rounded-xl overflow-hidden shadow-card"
-                    >
-                      <div className="aspect-[16/10] overflow-hidden">
-                        <img
-                          src={serviceImageUrls[service.title]}
-                          alt={service.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                      <div className="p-6 flex flex-col flex-1">
-                        <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                          {service.title}
-                        </h3>
-                        <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-4">
-                          {service.description}
-                        </p>
-                      </div>
-                    </Link>
-                </TiltCard>
+                <Card variant="elevated" className="h-full overflow-hidden">
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="block h-full"
+                  >
+                    <div className="aspect-[16/10] overflow-hidden">
+                      <img
+                        src={serviceImageUrls[service.title]}
+                        alt={service.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-6 flex flex-col flex-1">
+                      <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-4">
+                        {service.description}
+                      </p>
+                    </div>
+                  </Link>
+                </Card>
               </StaggerItem>
             ))}
           </StaggerReveal>
         </div>
       </section>
 
+      <div className="border-t border-border/50" />
+
       <section className="bg-secondary py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Reveal direction="left">
-            <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase mb-4 flex items-center gap-2">
-              <GlobeIcon className="size-4" />
-              About
-            </p>
-            <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
-              Decisions that
-              <br />
-              <span className="text-muted-foreground">define the flight path.</span>
-            </h2>
-            <p className="mt-6 text-muted-foreground leading-relaxed">
-              With almost two decades in aviation, Richard Kyereh has advised airlines, regulators, operators and mentees across the African continent. His work bridges technical depth and strategic foresight.
-            </p>
+              <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase mb-4 flex items-center gap-2">
+                <GlobeIcon className="size-4" />
+                About
+              </p>
+              <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
+                Decisions that
+                <br />
+                <span className="text-muted-foreground">define the flight path.</span>
+              </h2>
+              <p className="mt-6 text-muted-foreground leading-relaxed">
+                With almost two decades in aviation, Richard Kyereh has advised airlines, regulators, operators and mentees across the African continent. His work bridges technical depth and strategic foresight.
+              </p>
               <Button asChild variant="link" className="mt-8 px-0">
                 <Link href="/about">Full Bio &rarr;</Link>
               </Button>
@@ -236,6 +239,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="border-t border-border/50" />
 
       <section className="bg-background py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -276,6 +281,8 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      <div className="border-t border-border/50" />
 
       <section className="bg-secondary py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">

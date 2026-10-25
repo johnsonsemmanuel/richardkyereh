@@ -64,9 +64,9 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 w-full border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-300 ease-out",
+        "fixed top-0 left-0 right-0 z-50 w-full border-b border-transparent transition-[background-color,border-color] duration-300 ease-out",
         scrolled && !open
-          ? "bg-background/95 supports-[backdrop-filter]:bg-background/50 border-border backdrop-blur-lg"
+          ? "bg-background/80 supports-[backdrop-filter]:bg-background/60 border-border/50 backdrop-blur-md"
           : "",
         open ? "bg-background/90" : ""
       )}
@@ -78,11 +78,11 @@ export function Header() {
             scrolled ? "md:px-4" : "md:px-6"
           )}
         >
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center gap-2">
             <img
               src="/richardkyerehlogo.png"
               alt="Richard Kyereh"
-              className="h-12 w-auto"
+              className="h-10 w-auto"
             />
           </Link>
 
@@ -92,24 +92,24 @@ export function Header() {
                 return (
                   <DropdownMenu key={item.label}>
                     <DropdownMenuTrigger asChild>
-                      <button className={buttonVariants({ variant: "ghost", className: "gap-1" })}>
+                      <button className={buttonVariants({ variant: "ghost", className: "gap-1 px-3" })}>
                         {item.label}
                         <ChevronDown className="size-3 mt-0.5" />
                       </button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="center" className="w-64 p-1.5">
+                    <DropdownMenuContent align="center" className="w-72 p-2 border border-border/50 shadow-premium">
                       {item.dropdown.map((sub) => {
                         const Icon = sub.icon;
                         return (
                           <DropdownMenuItem key={sub.label} asChild className="p-0">
                             <Link
                               href={sub.href}
-                              className="flex items-start gap-3 px-3 py-2.5 rounded-lg"
+                              className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-secondary transition-colors"
                             >
                               <Icon className="size-4 text-primary/60 mt-0.5 shrink-0" />
                               <div>
                                 <p className="text-sm font-medium">{sub.label}</p>
-                                <p className="text-xs text-foreground/50">{sub.desc}</p>
+                                <p className="text-xs text-muted-foreground">{sub.desc}</p>
                               </div>
                             </Link>
                           </DropdownMenuItem>
@@ -123,7 +123,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={buttonVariants({ variant: "ghost" })}
+                  className={buttonVariants({ variant: "ghost", className: "px-3" })}
                 >
                   {item.label}
                 </Link>
@@ -131,7 +131,7 @@ export function Header() {
             })}
             <button
               onClick={toggle}
-              className={buttonVariants({ variant: "ghost", size: "icon" })}
+              className={buttonVariants({ variant: "ghost", size: "icon", className: "p-2" })}
               aria-label="Toggle theme"
             >
               {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
@@ -144,7 +144,7 @@ export function Header() {
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={toggle}
-              className={buttonVariants({ variant: "ghost", size: "icon" })}
+              className={buttonVariants({ variant: "ghost", size: "icon", className: "p-2" })}
               aria-label="Toggle theme"
             >
               {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
@@ -167,14 +167,14 @@ export function Header() {
             <Link
               href="/"
               onClick={() => setOpen(false)}
-              className={buttonVariants({ variant: "ghost", className: "justify-start text-base" })}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base px-3" })}
             >
               Home
             </Link>
 
             <button
               onClick={() => setMobileSubmenu(mobileSubmenu === "services" ? null : "services")}
-              className={buttonVariants({ variant: "ghost", className: "justify-start text-base gap-2 w-full" })}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base gap-2 w-full px-3" })}
             >
               <ChevronRight
                 className={cn(
@@ -199,7 +199,7 @@ export function Header() {
                       <Icon className="size-4 text-primary/40 shrink-0" />
                       <div>
                         <p className="text-sm font-medium text-foreground/80">{sub.label}</p>
-                        <p className="text-xs text-foreground/50">{sub.desc}</p>
+                        <p className="text-xs text-muted-foreground">{sub.desc}</p>
                       </div>
                     </Link>
                   );
@@ -209,7 +209,7 @@ export function Header() {
 
             <button
               onClick={() => setMobileSubmenu(mobileSubmenu === "about" ? null : "about")}
-              className={buttonVariants({ variant: "ghost", className: "justify-start text-base gap-2 w-full" })}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base gap-2 w-full px-3" })}
             >
               <ChevronRight
                 className={cn(
@@ -234,7 +234,7 @@ export function Header() {
                       <Icon className="size-4 text-primary/40 shrink-0" />
                       <div>
                         <p className="text-sm font-medium text-foreground/80">{sub.label}</p>
-                        <p className="text-xs text-foreground/50">{sub.desc}</p>
+                        <p className="text-xs text-muted-foreground">{sub.desc}</p>
                       </div>
                     </Link>
                   );
@@ -245,37 +245,37 @@ export function Header() {
             <Link
               href="/awards"
               onClick={() => setOpen(false)}
-              className={buttonVariants({ variant: "ghost", className: "justify-start text-base" })}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base px-3" })}
             >
               Our Events
             </Link>
             <Link
               href="/newsroom"
               onClick={() => setOpen(false)}
-              className={buttonVariants({ variant: "ghost", className: "justify-start text-base" })}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base px-3" })}
             >
               Our Newsroom
             </Link>
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className={buttonVariants({ variant: "ghost", className: "justify-start text-base" })}
+              className={buttonVariants({ variant: "ghost", className: "justify-start text-base px-3" })}
             >
               Contact Us
             </Link>
           </div>
           <div className="flex flex-col gap-4">
-              <div className="flex items-center justify-center gap-4 pt-2 border-t border-border">
-              <a href="https://gh.linkedin.com/in/richard-kyereh-mba-pmp-7726bb1b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground/50 hover:text-foreground transition-colors">
+            <div className="flex items-center justify-center gap-4 pt-2 border-t border-border/50">
+              <a href="https://gh.linkedin.com/in/richard-kyereh-mba-pmp-7726bb1b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-foreground transition-colors">
                 <LinkedInIcon className="size-5" />
               </a>
-              <a href="https://web.facebook.com/richardkwabena.kyereh" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-foreground/50 hover:text-foreground transition-colors">
+              <a href="https://web.facebook.com/richardkwabena.kyereh" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-muted-foreground hover:text-foreground transition-colors">
                 <FacebookIcon className="size-5" />
               </a>
-              <a href="https://x.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-foreground/50 hover:text-foreground transition-colors">
+              <a href="https://x.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-muted-foreground hover:text-foreground transition-colors">
                 <XIcon className="size-5" />
               </a>
-              <a href="https://instagram.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-foreground/50 hover:text-foreground transition-colors">
+              <a href="https://instagram.com/richardkyereh" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-foreground transition-colors">
                 <InstagramIcon className="size-5" />
               </a>
             </div>

@@ -91,7 +91,36 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Card rounding — bordered containers that act as cards */
+/* Premium focus ring */
+.focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring), 0 0 0 4px var(--ring) / 25%;
+}
+
+/* Premium card shadows */
+.shadow-premium {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.dark .shadow-premium {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.shadow-premium-hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.shadow-premium-hover:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.dark .shadow-premium-hover:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+}
+
+/* Card rounding */
 .border-card {
   border-radius: 0.75rem;
   border-width: 1px;
@@ -100,15 +129,6 @@ body {
 .border-card-lg {
   border-radius: 1rem;
   border-width: 1px;
-}
-
-/* Light card shadow for depth in light mode */
-.shadow-card {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
-}
-
-.dark .shadow-card {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 /* Solid card background */
@@ -123,7 +143,7 @@ body {
   border: 1px solid var(--border);
 }
 
-/* Subtle section separator - isometric wave overlay */
+/* Subtle section separator */
 .section-divider {
   position: relative;
 }
@@ -144,7 +164,7 @@ body {
   );
 }
 
-/* Always show scrollbar so users know they can scroll */
+/* Scrollbar */
 html {
   overflow-y: scroll;
   scrollbar-gutter: stable;
@@ -167,6 +187,7 @@ html {
   background: var(--muted-foreground);
 }
 
+/* Selection */
 ::selection {
   background-color: var(--primary);
   color: var(--primary-foreground);
@@ -174,4 +195,92 @@ html {
 
 .safe-area-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Premium section spacing */
+.section-padding {
+  @apply py-24 lg:py-32;
+}
+
+/* Container max width */
+.premium-container {
+  @apply max-w-7xl mx-auto px-6 lg:px-8;
+}
+
+/* Text gradient for headings */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hover underline animation */
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.2s ease;
+}
+
+.hover-underline:hover::after {
+  width: 100%;
+}
+
+/* Premium badge pulse */
+.badge-pulse {
+  animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Page transition fade */
+.page-fade {
+  animation: pageFade 0.4s ease-out;
+}
+
+@keyframes pageFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Soft glow for primary elements */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(217, 119, 6, 0.15);
+}
+
+.dark .glow-primary {
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.15);
+}
+
+/* Image loading state */
+.image-placeholder {
+  background: var(--muted);
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+/* Elevate on hover */
+.elevate {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.elevate:hover {
+  transform: translateY(-4px);
+}
+
+/* Smooth opacity for page transitions */
+.smooth-fade {
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
