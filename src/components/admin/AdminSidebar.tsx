@@ -33,16 +33,18 @@ export function AdminSidebar() {
   return (
     <>
       {/* Mobile top bar */}
-      <div className="md:hidden fixed top-0 inset-x-0 h-14 z-50 flex items-center justify-between px-4 bg-card border-b border-input">
+      <div className="md:hidden fixed top-0 inset-x-0 h-14 z-50 flex items-center justify-between px-3 bg-card border-b border-input">
         <button
           type="button"
           onClick={() => setOpen(true)}
           aria-label="Open menu"
-          className="p-2 -ml-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-secondary/50 transition-colors"
+          className="p-2 -ml-1 rounded-md text-foreground/70 hover:text-foreground hover:bg-secondary/50"
         >
-          <Menu className="size-5" />
+          <Menu className="size-4" />
         </button>
-        <span className="font-bold text-foreground">Admin</span>
+        <Link href="/" className="flex items-center">
+          <img src="/richardkyerehlogo.png" alt="Richard Kyereh" className="h-7 w-auto" />
+        </Link>
         <span className="size-8" />
       </div>
 
@@ -58,28 +60,25 @@ export function AdminSidebar() {
       {/* Mobile slide-in drawer */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 w-64 bg-card border-r border-input z-50 flex flex-col transition-transform duration-200 ease-out md:translate-x-0",
+          "fixed inset-y-0 left-0 w-64 bg-card border-r border-input z-50 flex flex-col md:translate-x-0",
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="flex items-center justify-between px-6 h-16 border-b border-input">
-          <div className="flex items-center gap-3">
-            <div className="size-8 rounded-lg bg-primary/10 flex items-center justify-center">
-              <LayoutDashboard className="size-4 text-primary" />
-            </div>
-            <span className="font-bold text-foreground">Admin</span>
-          </div>
+        <div className="flex items-center justify-between px-4 h-14 border-b border-input">
+          <Link href="/" className="flex items-center gap-2">
+            <img src="/richardkyerehlogo.png" alt="Richard Kyereh" className="h-7 w-auto" />
+          </Link>
           <button
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close menu"
-            className="md:hidden p-1.5 rounded-lg text-foreground/60 hover:text-foreground hover:bg-secondary/50 transition-colors"
+            className="md:hidden p-1 rounded-md text-foreground/60 hover:text-foreground hover:bg-secondary/50"
           >
-            <X className="size-5" />
+            <X className="size-4" />
           </button>
         </div>
 
-        <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+        <nav className="flex-1 px-2 py-3 space-y-0.5 overflow-y-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active =
@@ -92,7 +91,7 @@ export function AdminSidebar() {
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors",
+                  "flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm",
                   active
                     ? "bg-secondary text-foreground font-medium"
                     : "text-foreground/70 hover:text-foreground hover:bg-secondary/50"
@@ -105,11 +104,11 @@ export function AdminSidebar() {
           })}
         </nav>
 
-        <div className="p-3 border-t border-input">
+        <div className="p-2 border-t border-input">
           <form action={logoutAction}>
             <button
               type="submit"
-              className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-foreground/70 hover:text-foreground hover:bg-secondary/50 transition-colors"
+              className="flex items-center gap-2.5 w-full px-2.5 py-2 rounded-md text-sm text-foreground/70 hover:text-foreground hover:bg-secondary/50"
             >
               <LogOut className="size-4 shrink-0" />
               Sign Out
