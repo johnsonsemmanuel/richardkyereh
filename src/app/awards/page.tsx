@@ -58,7 +58,7 @@ function AwardCard({ award, index, onSelect }: {
           src={media[0].src}
           alt={`${award.title} - ${award.org}, ${award.year}`}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
         />
         <div className="absolute bottom-0 left-0 right-0 p-5">
           <span className="text-[10px] font-semibold text-muted-foreground tracking-[0.15em] uppercase">
@@ -182,7 +182,7 @@ function Lightbox({
             <button
               key={i}
               onClick={(e) => { e.stopPropagation(); setIdx(i); }}
-              className={`rounded-full transition-all duration-300 flex items-center justify-center ${
+              className={`rounded-full transition-[width,height,background-color] duration-150 ease-out flex items-center justify-center ${
                 i === idx
                   ? "w-6 h-1.5 bg-foreground"
                   : item.type === "video"
@@ -247,7 +247,7 @@ export default function AwardsPage() {
           >
             <button
               onClick={() => handleYearFilter(null)}
-              className={`shrink-0 px-5 py-2 rounded-full text-xs font-medium border transition-all duration-300 ${
+              className={`shrink-0 px-5 py-2 rounded-full text-xs font-medium border transition-[background-color,border-color,color] duration-150 ease-out ${
                 yearFilter === null
                   ? "bg-foreground text-background border-foreground"
                   : "bg-transparent border-border text-muted-foreground hover:border-foreground hover:text-foreground"
@@ -259,7 +259,7 @@ export default function AwardsPage() {
               <button
                 key={y}
                 onClick={() => handleYearFilter(y)}
-                className={`shrink-0 px-5 py-2 rounded-full text-xs font-medium border transition-all duration-300 ${
+                className={`shrink-0 px-5 py-2 rounded-full text-xs font-medium border transition-[background-color,border-color,color] duration-150 ease-out ${
                   yearFilter === y
                     ? "bg-foreground text-background border-foreground"
                     : "bg-transparent border-border text-muted-foreground hover:border-foreground hover:text-foreground"

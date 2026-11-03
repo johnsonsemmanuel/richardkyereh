@@ -58,7 +58,7 @@ export function AdminSidebar() {
       {/* Mobile slide-in drawer */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 w-64 bg-card border-r border-input z-50 flex flex-col transition-transform duration-300 md:translate-x-0",
+          "fixed inset-y-0 left-0 w-64 bg-card border-r border-input z-50 flex flex-col transition-transform duration-200 ease-out md:translate-x-0",
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >

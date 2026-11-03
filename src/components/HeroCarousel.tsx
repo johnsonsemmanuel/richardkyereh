@@ -59,7 +59,7 @@ export function HeroCarousel() {
           <button
             key={index}
             onClick={() => goTo(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+            className={`w-2 h-2 rounded-full transition-[width,background-color] duration-150 ease-out ${
               index === current
                 ? "bg-white w-6"
                 : "bg-white/30 hover:bg-white/50"

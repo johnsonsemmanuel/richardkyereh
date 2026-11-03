@@ -185,7 +185,7 @@ export default async function ArticlePage({ params }: Props) {
                     <FallbackImage
                       src={r.image}
                       alt={r.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300 ease-out"
                     />
                   </div>
                   <div className="p-5">

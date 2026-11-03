@@ -101,7 +101,7 @@ export const TestimonialSlider = ({
                 <button
                   key={review.id}
                   onClick={() => handleThumbnailClick(originalIndex)}
-                  className="overflow-hidden rounded-md w-16 h-20 md:w-20 md:h-24 opacity-70 hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+                  className="overflow-hidden rounded-md w-16 h-20 md:w-20 md:h-24 opacity-70 hover:opacity-100 transition-opacity duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
                   aria-label={`View review from ${review.name}`}
                 >
                   <img

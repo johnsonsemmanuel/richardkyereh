@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <>
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        <HeroBackground images={[homeHeroImages[0]]} />
+        <HeroBackground images={[homeHeroImages[0]]} overlay="bg-gradient-to-r from-background/98 via-background/90 to-background/40" />
         <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
           <Reveal className="max-w-2xl">
             <p className="text-muted-foreground text-sm font-medium tracking-[0.15em] uppercase mb-6 flex items-center gap-2">
@@ -62,7 +62,7 @@ export default function Home() {
               <br />
               <span className="text-gradient">for the skies</span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-lg">
+            <p className="mt-6 text-lg sm:text-xl text-foreground/95 leading-relaxed max-w-lg drop-shadow-[0_1px_1px_rgba(255,255,255,0.4)] dark:drop-shadow-none">
               Richard Kyereh advises on aviation policy, aero-politics, aircraft brokerage, and airline start-ups - bringing deep expertise in fleet strategy and operational excellence to airlines and operators across Africa.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
@@ -183,7 +183,7 @@ export default function Home() {
                       <img
                         src={serviceImageUrls[service.title]}
                         alt={service.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300 ease-out"
                       />
                     </div>
                     <div className="p-6 flex flex-col flex-1">

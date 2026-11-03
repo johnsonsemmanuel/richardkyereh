@@ -97,7 +97,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={handleFilterChange(() => setActiveTag(null))}
-                className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
+                className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-[background-color,border-color,color] duration-150 ease-out ${
                   !activeTag
                     ? "bg-foreground text-background border-foreground"
                     : "border-border text-foreground/50 hover:border-foreground/30"
@@ -109,7 +109,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
                 <button
                   key={tag}
                   onClick={handleFilterChange(() => setActiveTag(tag === activeTag ? null : tag))}
-                  className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
+                  className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-[background-color,border-color,color] duration-150 ease-out ${
                     activeTag === tag
                       ? "bg-foreground text-background border-foreground"
                       : "border-border text-foreground/50 hover:border-foreground/30"
@@ -126,7 +126,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
             </span>
             <button
               onClick={handleFilterChange(() => setActiveYear(null))}
-              className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
+              className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-[background-color,border-color,color] duration-150 ease-out ${
                 !activeYear
                   ? "bg-foreground text-background border-foreground"
                   : "border-border text-foreground/50 hover:border-foreground/30"
@@ -138,7 +138,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
               <button
                 key={year}
                 onClick={handleFilterChange(() => setActiveYear(year === activeYear ? null : year))}
-                className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
+                className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-[background-color,border-color,color] duration-150 ease-out ${
                   activeYear === year
                     ? "bg-foreground text-background border-foreground"
                     : "border-border text-foreground/50 hover:border-foreground/30"
@@ -169,13 +169,13 @@ export function NewsroomFilter({ articles, allTags }: Props) {
                     <Link
                       key={article.slug}
                       href={`/newsroom/${article.slug}`}
-                      className="group block bg-secondary/50 hover:bg-secondary transition-all duration-500 border border-border hover:border-foreground/20 rounded-xl overflow-hidden shadow-card"
+                      className="group block bg-secondary/50 hover:bg-secondary transition-colors duration-150 ease-out border border-border hover:border-foreground/20 rounded-xl overflow-hidden shadow-card"
                     >
                       <div className="aspect-[16/9] overflow-hidden">
                         <img
                           src={article.image}
                           alt={article.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect fill='%2305080F' width='800' height='450'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff15' font-family='system-ui' font-size='24' text-anchor='middle' dominant-baseline='middle'%3EArticle%3C/text%3E%3C/svg%3E";

@@ -41,7 +41,7 @@ export function HeroBackground({
           />
         </motion.div>
       </AnimatePresence>
-      <div className={`absolute inset-0 ${overlay}`} />
+      <div className={`absolute inset-0 ${overlay} bg-gradient-to-r from-background/95 via-background/80 to-transparent`} />
     </div>
   );
 }

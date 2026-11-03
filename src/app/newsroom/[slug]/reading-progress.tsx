@@ -18,7 +18,7 @@ export function ArticleReadingProgress() {
   return (
     <div className="fixed top-14 left-0 right-0 z-50 h-0.5 bg-border">
       <div
-        className="h-full bg-foreground transition-all duration-100 ease-out"
+        className="h-full bg-foreground transition-[width] duration-100 ease-out"
         style={{ width: `${progress * 100}%` }}
       />
     </div>

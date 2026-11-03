@@ -30,7 +30,7 @@ export default function AboutPage() {
                 <img
                   src="/photos/aviadev-profile.jpg"
                   alt="Richard Kyereh"
-                  className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-700"
+                  className="w-full h-full object-cover scale-100 hover:scale-[1.02] transition-transform duration-300 ease-out"
                 />
               </Card>
             </Reveal>

@@ -64,7 +64,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 w-full border-b border-transparent transition-[background-color,border-color] duration-300 ease-out",
+        "fixed top-0 left-0 right-0 z-50 w-full border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-200 ease-out",
         scrolled && !open
           ? "bg-background/80 supports-[backdrop-filter]:bg-background/60 border-border/50 backdrop-blur-md"
           : "",
@@ -74,7 +74,7 @@ export function Header() {
       <div className="max-w-5xl mx-auto">
         <nav
           className={cn(
-            "flex h-16 w-full items-center justify-between px-6 transition-[padding] duration-300 ease-out",
+            "flex h-16 w-full items-center justify-between px-6 transition-[padding] duration-200 ease-out",
             scrolled ? "md:px-4" : "md:px-6"
           )}
         >
