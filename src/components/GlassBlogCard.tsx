@@ -24,9 +24,9 @@ interface GlassBlogCardProps {
 
 const defaultPost = {
   slug: "",
-  title: "The Future of UI Design",
+  title: "Aviation Strategy & Commercial Outlook",
   excerpt:
-    "Exploring the latest trends in glassmorphism, 3D elements, and micro-interactions.",
+    "Exploring strategic airline growth, aero-politics, fleet operations, and market connectivity across Africa.",
   image: "/photos/richard-speaking-1.jpeg",
   author: {
     name: "Richard Kyereh",
@@ -58,7 +58,7 @@ export function GlassBlogCard({
       className={cn("w-full max-w-[400px] h-full", className)}
     >
       <Link href={href} className="block h-full">
-        <Card className="group relative h-full flex flex-col overflow-hidden shadow-premium-hover hover:border-primary/50">
+        <Card className="group relative h-full flex flex-col overflow-hidden bg-card border border-input shadow-sm hover:border-primary/50 transition-all duration-200">
           <div className="relative aspect-[16/9] overflow-hidden bg-secondary">
             <motion.img
               src={image}
@@ -74,18 +74,11 @@ export function GlassBlogCard({
                 <Badge
                   key={index}
                   variant="outline"
-                  className="bg-background/85 backdrop-blur-sm hover:bg-primary hover:text-primary-foreground"
+                  className="bg-card text-foreground border border-input font-medium shadow-xs"
                 >
                   {tag}
                 </Badge>
               ))}
-            </div>
-
-            <div className="absolute inset-0 flex items-center justify-center bg-card/85 opacity-0 transition-opacity duration-150 ease-out group-hover:opacity-100">
-              <span className="flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-lg">
-                <BookOpen className="h-4 w-4" />
-                Read Article
-              </span>
             </div>
           </div>
 
@@ -103,7 +96,7 @@ export function GlassBlogCard({
           <CardFooter className="px-5 pt-0 pb-5">
             <div className="flex w-full items-center justify-between pt-2">
               <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-muted">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-input bg-muted">
                   <User className="h-4 w-4 text-muted-foreground" />
                 </div>
                 <div className="flex flex-col text-xs">

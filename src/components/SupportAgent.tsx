@@ -116,7 +116,7 @@ export function SupportAgent() {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             className="fixed bottom-20 right-4 z-50 w-[calc(100%-2rem)] max-w-sm"
           >
-            <div className="bg-card border border-border/60 rounded-2xl shadow-2xl backdrop-blur-xl flex flex-col max-h-[70vh]">
+            <div className="bg-card border border-input rounded-2xl shadow-2xl flex flex-col max-h-[70vh]">
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-border/60 shrink-0">
                 <div className="flex items-center gap-3">

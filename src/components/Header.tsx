@@ -66,9 +66,9 @@ export function Header() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 w-full transition-[background-color,box-shadow,backdrop-filter] duration-200 ease-out",
         scrolled && !open
-          ? "bg-background/85 supports-[backdrop-filter]:bg-background/70 shadow-sm backdrop-blur-md"
+          ? "bg-background shadow-xs"
           : "",
-        open ? "bg-background/95" : ""
+        open ? "bg-background" : ""
       )}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

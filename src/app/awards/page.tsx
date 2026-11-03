@@ -137,7 +137,7 @@ function EventCard({ event, index, onSelect }: {
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-      <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-black/65 backdrop-blur-sm px-2.5 py-1 text-[11px] font-medium text-white border border-white/15">
+      <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-black/85 px-2.5 py-1 text-[11px] font-medium text-white">
         <Images className="size-3" />
         <span>
           {imageCount} {imageCount === 1 ? "Photo" : "Photos"}
@@ -189,7 +189,7 @@ function Lightbox({
       className="fixed inset-0 z-[60] flex items-center justify-center"
       onClick={onClose}
     >
-      <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/95" />
 
       <button
         onClick={onClose}

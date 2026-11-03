@@ -58,72 +58,70 @@ export function Footer() {
   }
 
   return (
-    <footer className="relative overflow-hidden bg-secondary mt-16 sm:mt-24">
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <div className="relative bg-card rounded-3xl border border-border/50 p-6 sm:p-8 md:p-12 shadow-premium">
-          <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-16">
-            <div className="flex flex-col gap-4 max-w-sm">
-              <Link href="/" className="flex items-center gap-2">
-                <img
-                  src="/richardkyerehlogo.png"
-                  alt="Richard Kyereh"
-                  className="h-10 w-auto"
-                />
-              </Link>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                African aviation expert delivering strategic direction, operational safety, and results that reach a global stage.
-              </p>
+    <footer className="bg-secondary text-foreground py-14 sm:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-16">
+          <div className="flex flex-col gap-4 max-w-sm">
+            <Link href="/" className="flex items-center gap-2">
+              <img
+                src="/richardkyerehlogo.png"
+                alt="Richard Kyereh"
+                className="h-10 w-auto"
+              />
+            </Link>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              African aviation expert delivering strategic direction, operational safety, and results that reach a global stage.
+            </p>
 
-              <div className="mt-6">
-                <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
-                  Newsletter
+            <div className="mt-6">
+              <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                Newsletter
+              </h4>
+              {subscribed ? (
+                <p className="text-sm text-muted-foreground">
+                  You&apos;re subscribed. Watch for aviation insights.
+                </p>
+              ) : (
+                <form onSubmit={handleNewsletter} className="flex gap-2">
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your email"
+                    className="flex-1 min-w-0 bg-background border border-input rounded-lg px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-ring focus:ring-1 focus:ring-ring transition-colors"
+                  />
+                  <Button type="submit" size="sm">
+                    Join
+                  </Button>
+                </form>
+              )}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-6 sm:gap-8 md:gap-16">
+            {footerLinkGroups.map((group) => (
+              <div key={group.title} className="flex flex-col gap-3">
+                <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  {group.title}
                 </h4>
-                {subscribed ? (
-                  <p className="text-sm text-muted-foreground">
-                    You&apos;re subscribed. Watch for aviation insights.
-                  </p>
-                ) : (
-                  <form onSubmit={handleNewsletter} className="flex gap-2">
-                    <input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Your email"
-                      className="flex-1 min-w-0 bg-background border border-input rounded-lg px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-ring focus:ring-1 focus:ring-ring transition-colors"
-                    />
-                    <Button type="submit" size="sm">
-                      Join
-                    </Button>
-                  </form>
-                )}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-6 sm:gap-8 md:gap-16">
-              {footerLinkGroups.map((group) => (
-                <div key={group.title} className="flex flex-col gap-3">
-                  <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    {group.title}
-                  </h4>
-                  <div className="flex flex-col gap-2">
-                    {group.links.map((link) => (
-                      <Link
-                        key={link.label}
-                        href={link.href}
-                        className="text-sm text-foreground/70 hover:text-foreground transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </div>
+                <div className="flex flex-col gap-2">
+                  {group.links.map((link) => (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-10 px-2">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-12 pt-8 border-t border-input/60">
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} Richard Kyereh. All rights reserved.
           </p>
