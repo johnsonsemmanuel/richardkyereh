@@ -32,8 +32,8 @@ function botReply(input: string): string {
     return "For **Aircraft Leases** and fleet strategy, Richard offers expert advisory. Visit our [Aircraft Leases page](/services/aircraft-leases) or [book a consultation](/booking).";
   if (lower.includes("charter") || lower.includes("charters"))
     return "Our **Charters Services** consulting covers operations, certification, and service standards. See the [Charters page](/services/charters-services) or [book now](/booking).";
-  if (lower.includes("price") || lower.includes("cost") || lower.includes("fee") || lower.includes("free") || lower.includes("pay"))
-    return "All initial consultations are **free of charge**. Select your service on our [booking page](/booking) to get started with no commitment.";
+  if (lower.includes("price") || lower.includes("cost") || lower.includes("fee") || lower.includes("free") || lower.includes("pay") || lower.includes("rate"))
+    return "Our rates are clearly structured: Career Consultancy, Face to Face Meetings, and Mentorship offer **10 mins free / $20 per 30 mins**. Speaking Engagements, Aircraft Leases, and Charters Services are **negotiable**. Select your service on our [booking page](/booking) to proceed.";
   if (lower.includes("call") || lower.includes("phone") || lower.includes("speak") || lower.includes("talk"))
     return `You can reach us directly at **${PHONE}**, [chat on WhatsApp](https://wa.me/233243681135), or schedule a call via our [booking page](/booking).`;
   if (lower.includes("video") || lower.includes("zoom") || lower.includes("remote"))

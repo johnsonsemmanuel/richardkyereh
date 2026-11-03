@@ -383,8 +383,8 @@ export default function BookingPage() {
               <span className="text-muted-foreground">consultation.</span>
             </h1>
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              Tell us about yourself and what you need. Each service includes a
-              complimentary initial consultation.
+              Tell us about yourself and what you need. Select your service below
+              to schedule your consultation or advisory session.
             </p>
           </Reveal>
         </div>
