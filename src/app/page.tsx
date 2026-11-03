@@ -60,7 +60,7 @@ export default function Home() {
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
               Strategic Clarity
               <br />
-              <span className="text-gradient">for the skies</span>
+              <span className="text-primary">for the skies</span>
             </h1>
             <p className="mt-5 sm:mt-6 text-base sm:text-lg text-foreground/95 leading-relaxed max-w-lg drop-shadow-[0_1px_1px_rgba(255,255,255,0.4)] dark:drop-shadow-none">
               Richard Kyereh advises on aviation policy, aero-politics, aircraft brokerage, and airline start-ups - bringing deep expertise in fleet strategy and operational excellence to airlines and operators across Africa.

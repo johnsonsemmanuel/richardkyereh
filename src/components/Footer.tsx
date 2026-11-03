@@ -94,7 +94,7 @@ export function Footer() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Your email"
-                      className="flex-1 min-w-0 bg-background border border-input rounded-lg px-3 py-2.5 text-sm text-foreground focus:outline-none focus:border-ring focus:ring-1 focus:ring-ring"
+                      className="flex-1 min-w-0 bg-background border border-input rounded-lg px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-ring focus:ring-1 focus:ring-ring transition-colors"
                     />
                     <Button type="submit" size="sm">
                       Join
