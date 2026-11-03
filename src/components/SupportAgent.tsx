@@ -40,7 +40,7 @@ function botReply(input: string): string {
     return "Video consultations are available for all services. When booking, select **Video Call** as your preferred format.";
   if (lower.includes("whatsapp") || lower.includes("chat") || lower.includes("message"))
     return `You can reach us on WhatsApp anytime. [Click here to start a chat](https://wa.me/233243681135?text=Hello%2C%20I%27d%20like%20to%20inquire%20about%20your%20aviation%20services).`;
-  return "Thank you for your message. I can help you with bookings, service information, or connect you with Richard directly. Would you like to:\n\n• [Browse our services](/services)\n• [Book a consultation](/booking)\n• [Call us](tel:+233243681135)\n• [Chat on WhatsApp](https://wa.me/233243681135)\n• Or just keep chatting?";
+  return "Thank you for your message. I can help you with bookings, service information, or connect you with Richard directly. Would you like to:\n\n• [Browse our services](/services)\n• [Book a consultation](/booking)\n• [Call us](tel:+233243681135)\n• [Chat on WhatsApp](https://wa.me/233243681135)\n\nOr just keep chatting?";
 }
 
 const quickReplies = [
