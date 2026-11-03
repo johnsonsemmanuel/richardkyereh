@@ -71,12 +71,9 @@ export function Header() {
         open ? "bg-background/90" : ""
       )}
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <nav
-          className={cn(
-            "flex h-16 w-full items-center justify-between px-6 transition-[padding] duration-200 ease-out",
-            scrolled ? "md:px-4" : "md:px-6"
-          )}
+          className="flex h-16 w-full items-center justify-between"
         >
           <Link href="/" className="flex items-center gap-2">
             <img

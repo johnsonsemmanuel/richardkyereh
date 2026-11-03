@@ -81,7 +81,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
 
   return (
     <section className="py-12 lg:py-16 bg-background">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col gap-4 mb-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div className="relative flex-1 max-w-sm">

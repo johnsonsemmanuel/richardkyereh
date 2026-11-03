@@ -316,7 +316,7 @@ export default function BookingPage() {
   if (paymentVerifying) {
     return (
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 bg-background min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 w-full">
           <div className="max-w-xl mx-auto text-center">
             <Loader2 className="size-8 text-primary animate-spin mx-auto mb-4" />
             <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
@@ -334,7 +334,7 @@ export default function BookingPage() {
   if (submitted) {
     return (
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 bg-background min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 w-full">
           <Reveal className="max-w-xl mx-auto text-center">
             <div className="size-16 rounded-full bg-primary flex items-center justify-center mx-auto mb-6">
               <Check className="size-7 text-primary" />
@@ -371,9 +371,9 @@ export default function BookingPage() {
   return (
     <>
       <section className="pt-32 pb-12 lg:pt-40 lg:pb-16 bg-background">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <Reveal className="max-w-2xl">
-            <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4 flex items-center gap-2">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal className="max-w-2xl mx-auto text-center">
+            <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
               <PlaneIcon className="size-4" />
               Booking
             </p>
@@ -391,10 +391,10 @@ export default function BookingPage() {
       </section>
 
       <section className="pb-24 lg:pb-32 bg-background">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="max-w-3xl">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto">
             {/* Progress steps */}
-            <div className="flex items-center gap-4 mb-12">
+            <div className="flex items-center justify-center gap-4 mb-12">
               {steps.map((s) => (
                 <div key={s.n} className="flex items-center gap-4">
                   <div className="flex items-center gap-2">

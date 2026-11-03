@@ -321,7 +321,7 @@ export default function AwardsPage() {
       </section>
 
       <section className="relative pb-24 lg:pb-32 bg-background">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -361,7 +361,7 @@ export default function AwardsPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               {paginated.map((event, i) => (
                 <EventCard

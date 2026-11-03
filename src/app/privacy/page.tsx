@@ -16,7 +16,7 @@ export default function PrivacyPage() {
           icon={PlaneIcon}
         />
 
-        <div className="space-y-8 text-sm text-muted-foreground leading-relaxed mt-10">
+        <div className="max-w-3xl space-y-8 text-sm text-muted-foreground leading-relaxed mt-10">
           <section>
             <h2 className="text-lg font-semibold text-foreground mb-3">1. Information We Collect</h2>
             <p>

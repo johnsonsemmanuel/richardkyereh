@@ -175,7 +175,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     <>
       {/* Hero */}
       <section className="pt-32 pb-12 lg:pt-40 lg:pb-16 bg-background">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <Reveal>
               <div className="flex items-center gap-2 text-xs text-foreground/30 mb-4">
@@ -220,7 +220,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="relative rounded-xl overflow-hidden border border-input/40">
+              <div className="relative rounded-2xl overflow-hidden border border-input aspect-[16/10] max-h-[420px] bg-secondary shadow-card">
                 <img
                   src={serviceImageUrls[service.title]}
                   alt={service.title}
@@ -234,7 +234,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
       {/* Features */}
       <section className="pb-24 lg:pb-32 bg-background">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
             <Reveal>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">

@@ -171,7 +171,7 @@ export default async function ArticlePage({ params }: Props) {
 
       {related.length > 0 && (
         <section className="pb-16 lg:pb-24 bg-background border-t border-border">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-12 lg:pt-16">
+          <div className="max-w-6xl mx-auto px-6 lg:px-8 pt-12 lg:pt-16">
             <h2 className="text-2xl font-bold tracking-tight text-foreground mb-8">
               Related Articles
             </h2>

@@ -22,19 +22,19 @@ const highlights = [
 export default function AboutPage() {
   return (
     <>
-      <section className="section-bg-light pt-28 pb-20 lg:pt-36 lg:pb-28">
+      <section className="section-bg-light pt-28 pb-16 lg:pt-36 lg:pb-20">
         <div className="premium-container">
-          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
-            <Reveal direction="left" className="lg:col-span-2">
-              <Card variant="outlined" className="overflow-hidden p-0">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <Reveal direction="left" className="lg:col-span-5 flex justify-center lg:justify-start">
+              <div className="w-full max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-input bg-secondary shadow-premium">
                 <img
                   src="/photos/richard-biography.jpg"
                   alt="Richard Kyereh"
                   className="w-full h-full object-cover scale-100 hover:scale-[1.02] transition-transform duration-300 ease-out"
                 />
-              </Card>
+              </div>
             </Reveal>
-            <Reveal direction="right" className="lg:col-span-3 space-y-4">
+            <Reveal direction="right" className="lg:col-span-7 space-y-4">
               <SectionHeader
                 title="Richard Kyereh"
                 subtitle="MBA, PMP"
@@ -56,11 +56,11 @@ export default function AboutPage() {
 
       <WavePath />
 
-      <section className="section-bg-light pt-28 pb-20 lg:pt-36 lg:pb-28">
+      <section className="section-bg-light py-20 lg:py-28">
         <div className="premium-container">
-          <div className="max-w-4xl space-y-5 text-muted-foreground leading-relaxed">
+          <div className="max-w-3xl mx-auto space-y-8 text-muted-foreground leading-relaxed">
             <Reveal delay={0.1}>
-              <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Airline Leadership Experience</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">Airline Leadership Experience</h2>
               <p>
                 Richard has led commercial teams at Africa World Airlines, Antrak Air, Westair Aviation, and Turkish Airlines. He has also served as Brand Ambassador for major aviation brands across Africa, including Hitit CS, the third-largest passenger service system in the world.
               </p>
@@ -70,7 +70,7 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.15}>
-              <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Aviation Consulting Expertise</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">Aviation Consulting Expertise</h2>
               <p>
                 Across these roles, Richard has built a deep repertoire of airline business functions, including:
               </p>
@@ -88,7 +88,7 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.2}>
-              <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Route Development &amp; Network Growth in Ghana and West Africa</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">Route Development &amp; Network Growth in Ghana and West Africa</h2>
               <p>
                 While at Africa World Airlines, Richard spearheaded the growth of the regional network from a single route in 2016 to five destinations across four African cities. That&apos;s Lagos, Abuja, Monrovia, Freetown, and Abidjan - alongside expansion of key domestic Ghana routes: Kumasi-Tamale direct, Takoradi, and Wa.
               </p>
@@ -98,7 +98,7 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.25}>
-              <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Industry Roles &amp; Affiliations</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">Industry Roles &amp; Affiliations</h2>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Advisory Board Member, Aviation Development (AviaDev) Africa (2020-2021)</li>
                 <li>African Representative, Lombok Institute of Flight Technology (LIFT), Indonesia</li>
@@ -108,14 +108,14 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.3}>
-              <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">A Legacy of Industry Innovation</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">A Legacy of Industry Innovation</h2>
               <p>
                 Richard&apos;s most notable contribution to Ghana&apos;s aviation industry is the introduction of Passenger Re-Protection Agreements among competing airlines. A framework that reduced operational losses during downtime and remains in use today. He is a regular guest speaker and panelist at aviation conferences across the continent speaking on commercial strategy.
               </p>
             </Reveal>
 
             <Reveal delay={0.35}>
-              <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Education &amp; Certifications</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">Education &amp; Certifications</h2>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Three IATA Diplomas: Airline Management, Airline Revenue Accounting and Controls, and Airline Business Development</li>
                 <li>MBA in Project Management from the Ghana Institute of Management and Public Administration (GIMPA)</li>
@@ -126,9 +126,11 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.4}>
-              <Button asChild size="lg" className="mt-8 w-full sm:w-auto">
-                <Link href="/booking">Book a Consultation</Link>
-              </Button>
+              <div className="pt-4 text-center">
+                <Button asChild size="lg" className="px-8 w-full sm:w-auto">
+                  <Link href="/booking">Book a Consultation</Link>
+                </Button>
+              </div>
             </Reveal>
           </div>
         </div>
@@ -136,25 +138,29 @@ export default function AboutPage() {
 
       <section className="section-bg-secondary section-padding">
         <div className="premium-container">
-          <StaggerReveal className="grid md:grid-cols-3 gap-6">
-            {highlights.map((item) => {
-              const Icon = item.Icon;
-              return (
-                <StaggerItem key={item.label}>
-                  <Card variant="outlined" className="h-full">
-                    <Icon className="size-6 text-primary/20 group-hover:text-primary/40 transition-colors mb-4" />
-                    <p className="text-xs text-primary uppercase tracking-widest font-medium">
-                      {item.label}
-                    </p>
-                    <p className="mt-2 text-2xl font-bold text-foreground">
-                      {item.value}
-                    </p>
-                    <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
-                  </Card>
-                </StaggerItem>
-              );
-            })}
-          </StaggerReveal>
+          <div className="max-w-4xl mx-auto">
+            <StaggerReveal className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {highlights.map((item) => {
+                const Icon = item.Icon;
+                return (
+                  <StaggerItem key={item.label}>
+                    <Card variant="outlined" className="h-full p-6 flex flex-col justify-between">
+                      <div>
+                        <Icon className="size-6 text-primary/40 group-hover:text-primary transition-colors mb-4" />
+                        <p className="text-xs text-primary uppercase tracking-widest font-semibold">
+                          {item.label}
+                        </p>
+                        <p className="mt-2 text-2xl font-bold text-foreground">
+                          {item.value}
+                        </p>
+                      </div>
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                    </Card>
+                  </StaggerItem>
+                );
+              })}
+            </StaggerReveal>
+          </div>
         </div>
       </section>
     </>

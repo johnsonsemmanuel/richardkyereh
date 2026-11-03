@@ -51,7 +51,7 @@ export default function Home() {
     <>
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <HeroBackground images={[homeHeroImages[0]]} overlay="bg-gradient-to-r from-background/98 via-background/90 to-background/40" />
-        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
+        <div className="relative w-full max-w-6xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
           <Reveal className="max-w-2xl">
             <p className="text-muted-foreground text-sm font-medium tracking-[0.15em] uppercase mb-6 flex items-center gap-2">
               <CompassIcon className="size-4" />
@@ -80,7 +80,7 @@ export default function Home() {
       <div className="border-t border-border/50" />
 
       <section className="bg-secondary py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <StaggerReveal className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
               ["30+", "Projects Delivered"],
@@ -134,10 +134,10 @@ export default function Home() {
       <div className="border-t border-border/50" />
 
       <section className="bg-background py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <Reveal direction="left" className="lg:col-span-2">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-input bg-secondary shadow-premium">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <Reveal direction="left" className="lg:col-span-5 flex justify-center lg:justify-start">
+              <div className="w-full max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-input bg-secondary shadow-premium">
                 <img
                   src="/richardkyereh.jpg"
                   alt="Richard Kyereh"
@@ -145,7 +145,7 @@ export default function Home() {
                 />
               </div>
             </Reveal>
-            <Reveal direction="right" className="lg:col-span-3">
+            <Reveal direction="right" className="lg:col-span-7">
               <p className="text-primary text-sm font-medium tracking-widest uppercase mb-3 flex items-center gap-2">
                 <CompassIcon className="size-4" />
                 Profile
@@ -183,7 +183,7 @@ export default function Home() {
       <div className="border-t border-border/50" />
 
       <section className="bg-background py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal className="text-center max-w-2xl mx-auto mb-20">
             <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
               <WingsIcon className="size-4" />
@@ -229,7 +229,7 @@ export default function Home() {
       <div className="border-t border-border/50" />
 
       <section className="bg-secondary py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Reveal direction="left">
               <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase mb-4 flex items-center gap-2">
@@ -267,7 +267,7 @@ export default function Home() {
       <div className="border-t border-border/50" />
 
       <section className="bg-background py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal className="text-center max-w-2xl mx-auto mb-16">
             <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
               <WingsIcon className="size-4" />
@@ -310,7 +310,7 @@ export default function Home() {
       <div className="border-t border-border/50" />
 
       <section className="bg-secondary py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 text-center">
           <Reveal>
             <AltitudeIcon className="size-8 text-primary mx-auto mb-6" />
             <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
