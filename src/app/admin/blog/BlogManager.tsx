@@ -2,6 +2,7 @@
 
 import { useState, useTransition, useRef } from "react";
 import { Plus, Edit, Trash2, X, Upload, Image, FileText } from "lucide-react";
+import { RichTextEditor } from "./RichTextEditor";
 
 interface Post {
   _id: string;
@@ -238,13 +239,10 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-foreground/70 mb-1">Content (HTML)</label>
-                <textarea
+                <label className="block text-sm font-medium text-foreground/70 mb-1">Content</label>
+                <RichTextEditor
                   value={formData.content}
-                  onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                  rows={8}
-                  required
-                  className="w-full px-4 py-2 bg-background border border-input rounded-lg focus:outline-none focus:border-ring font-mono text-sm"
+                  onChange={(content) => setFormData({ ...formData, content })}
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
