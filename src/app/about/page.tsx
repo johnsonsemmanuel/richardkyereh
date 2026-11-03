@@ -22,13 +22,13 @@ const highlights = [
 export default function AboutPage() {
   return (
     <>
-      <section className="section-bg-light section-padding">
+      <section className="section-bg-light pt-28 pb-20 lg:pt-36 lg:pb-28">
         <div className="premium-container">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
             <Reveal direction="left" className="lg:col-span-2">
-              <Card variant="outlined" className="overflow-hidden">
+              <Card variant="outlined" className="overflow-hidden p-0">
                 <img
-                  src="/photos/aviadev-profile.jpg"
+                  src="/photos/richard-biography.jpg"
                   alt="Richard Kyereh"
                   className="w-full h-full object-cover scale-100 hover:scale-[1.02] transition-transform duration-300 ease-out"
                 />
@@ -56,7 +56,7 @@ export default function AboutPage() {
 
       <WavePath />
 
-      <section className="section-bg-light section-padding">
+      <section className="section-bg-light pt-28 pb-20 lg:pt-36 lg:pb-28">
         <div className="premium-container">
           <div className="max-w-4xl space-y-5 text-muted-foreground leading-relaxed">
             <Reveal delay={0.1}>

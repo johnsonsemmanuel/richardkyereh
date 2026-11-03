@@ -24,7 +24,7 @@ const timeSlots = [
 const services = [
   {
     id: "Career Consultancy", icon: CompassIcon, desc: "Personalized career guidance for aviation professionals",
-    duration: "1 hr", rate: "RATE: 10mins Free / $20 per 30mins", isFree: false, amount: 20,
+    duration: "1 hr", rate: "RATE: 10mins Free / $20 per 30mins", badge: "Paid", isFree: false, amount: 20,
     headerTitle: "Book a Career Consultation",
     headerDesc: "Tell us about your aviation career goals. We will match you with the right guidance for your next move.",
     step2Subtitle: "Tell us about your career goals",
@@ -36,7 +36,7 @@ const services = [
   },
   {
     id: "Speaking Engagement", icon: GlobeIcon, desc: "Keynote speaking and panel participation",
-    duration: "1 hr", isFree: true, amount: 0,
+    duration: "1 hr", rate: "Negotiable", badge: "(Free/Paid)", isFree: true, amount: 0,
     headerTitle: "Book a Speaking Engagement",
     headerDesc: "Invite Richard to speak at your next event. Share the details and we will be in touch.",
     step2Subtitle: "Tell us about your event",
@@ -48,7 +48,7 @@ const services = [
   },
   {
     id: "Face To Face Meeting", icon: WingsIcon, desc: "Confidential one-on-one strategic discussions",
-    duration: "30 mins", isFree: false, amount: 20,
+    duration: "30 mins", rate: "RATE: 10mins Free / $20 per 30mins", badge: "Paid", isFree: false, amount: 20,
     headerTitle: "Book a Face to Face Meeting",
     headerDesc: "Schedule a private one-on-one meeting to discuss matters that matter most to you.",
     step2Subtitle: "Tell us what you would like to discuss",
@@ -60,7 +60,7 @@ const services = [
   },
   {
     id: "Mentorship", icon: ShieldIcon, desc: "Structured leadership development for emerging leaders",
-    duration: "1 hr", isFree: false, amount: 20,
+    duration: "1 hr", rate: "RATE: 10mins Free / $20 per 30mins", badge: "Paid", isFree: false, amount: 20,
     headerTitle: "Book a Mentorship Session",
     headerDesc: "Begin your mentorship journey. Share where you are and where you want to be.",
     step2Subtitle: "Tell us about your development goals",
@@ -72,7 +72,7 @@ const services = [
   },
   {
     id: "Aircraft Leases", icon: RadarIcon, desc: "Lease vs. buy analysis and fleet strategy",
-    duration: "1 hr", isFree: true, amount: 0,
+    duration: "1 hr", rate: "Negotiable", badge: "Paid", isFree: false, amount: 0,
     headerTitle: "Book an Aircraft Leasing Consultation",
     headerDesc: "Get expert guidance on fleet strategy, lease structures, and acquisition planning.",
     step2Subtitle: "Tell us about your leasing needs",
@@ -84,7 +84,7 @@ const services = [
   },
   {
     id: "Charters Services", icon: PlaneIcon, desc: "Charter operations and service delivery consulting",
-    duration: "1 hr", isFree: true, amount: 0,
+    duration: "1 hr", rate: "Negotiable", badge: "Paid", isFree: false, amount: 0,
     headerTitle: "Book a Charters Consultation",
     headerDesc: "Explore charter operations, route planning, and service delivery strategy with expert guidance.",
     step2Subtitle: "Tell us about your charter needs",
@@ -532,26 +532,26 @@ export default function BookingPage() {
                                   >
                                     {s.id}
                                   </p>
-                                  <span className={`text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full ${
+                                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
                                     s.isFree
-                                      ? "bg-emerald-500 text-emerald-400 border border-emerald-500"
-                                      : "bg-primary text-primary-foreground border border-primary"
+                                      ? "bg-emerald-600 text-white border border-emerald-600"
+                                      : selected
+                                        ? "bg-primary-foreground text-primary border border-primary-foreground"
+                                        : "bg-primary text-primary-foreground border border-primary"
                                   }`}>
-                                    {s.isFree ? "Free" : "Paid"}
+                                    {s.badge}
                                   </span>
                                 </div>
-                              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                              <p className={`text-xs mt-1 leading-relaxed ${
+                                selected ? "text-primary-foreground/90" : "text-muted-foreground"
+                              }`}>
                                 {s.desc}
                               </p>
-                              {s.rate ? (
-                                <span className="text-[10px] text-red-500 font-bold mt-2 block">
-                                  {s.rate}
-                                </span>
-                              ) : (
-                                <span className="text-[10px] text-muted-foreground mt-2 block">
-                                  {s.duration} &middot; Free
-                                </span>
-                              )}
+                              <span className={`text-[10px] font-bold mt-2 block ${
+                                selected ? "text-red-200" : "text-red-600 dark:text-red-400"
+                              }`}>
+                                {s.rate}
+                              </span>
                             </button>
                           );
                         })}

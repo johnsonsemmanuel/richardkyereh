@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   getAwardMediaPaths,
 } from "@/lib/images";
-import { X, ChevronLeft, ChevronRight, Award } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Award, Images } from "lucide-react";
 import {
   Pagination,
   PaginationContent,
@@ -14,75 +14,157 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "@/components/ui/pagination";
-import { Card } from "@/components/ui/card";
 import { SectionHeader } from "@/components/ui/section-header";
 
-type Award = { year: string; title: string; org: string; folder: string };
+type EventItem = {
+  year: string;
+  title: string;
+  org: string;
+  folder: string;
+  captions?: Record<number, string>;
+};
 
-const awards: Award[] = [
-  { year: "2024", title: "Aviation Leadership Award", org: "African Aviation Summit", folder: "media-engagement" },
-  { year: "2024", title: "Excellence in Aerospace Consulting", org: "Global Aviation Awards", folder: "airline-business-summit-mauritius-2019" },
-  { year: "2023", title: "Safety Innovation Recognition", org: "ICAO Regional Forum", folder: "iata-regional-forum-accra-2019" },
-  { year: "2023", title: "Outstanding Contribution to Aviation", org: "West African Aviation Conference", folder: "media-engagement" },
-  { year: "2022", title: "Best Airline Route Development", org: "African Airlines Association", folder: "routes-africa-accra-2018" },
-  { year: "2022", title: "Young Aviation Professional Award", org: "Youth in Aviation Summit", folder: "aviadev-cape-town-2019" },
-  { year: "2021", title: "Operational Excellence Award", org: "Ghana Aviation Awards", folder: "aviation-festival-africa-2017" },
-  { year: "2021", title: "Community Impact Recognition", org: "Aviation Social Responsibility Forum", folder: "media-engagement" },
-  { year: "2020", title: "Pandemic Response Leadership", org: "ICAO Regional Office", folder: "aviadev-cape-town-2018" },
-  { year: "2019", title: "Emerging Leader in Aviation", org: "African Business Aviation Association", folder: "apg-monaco-2018" },
-  { year: "2019", title: "Passenger Experience Innovation", org: "World Aviation Summit", folder: "airline-business-seminar-seychelles-2018" },
-  { year: "2018", title: "Rising Star Award", org: "Ghana Aviation Excellence Awards", folder: "accra-weizo-2018" },
+const events: EventItem[] = [
+  {
+    year: "2019",
+    title: "African Union Summit for the Implementation of SAATM by Heads of States",
+    org: "Addis Ababa, Ethiopia",
+    folder: "african-union-saatm-2019",
+  },
+  {
+    year: "2019",
+    title: "AviaDev Aviation Development Conference",
+    org: "Cape Town, South Africa",
+    folder: "aviadev-cape-town-2019",
+  },
+  {
+    year: "2019",
+    title: "Airline Business Summit",
+    org: "Mauritius",
+    folder: "airline-business-summit-mauritius-2019",
+  },
+  {
+    year: "2019",
+    title: "IATA Regional Forum",
+    org: "Accra, Ghana",
+    folder: "iata-regional-forum-accra-2019",
+  },
+  {
+    year: "2019",
+    title: "Routes Africa",
+    org: "Mombasa, Kenya",
+    folder: "routes-africa-mombasa-2019",
+  },
+  {
+    year: "2018",
+    title: "APG World Connect Aviation Conference",
+    org: "Monaco",
+    folder: "apg-monaco-2018",
+  },
+  {
+    year: "2018",
+    title: "Routes Africa",
+    org: "Accra, Ghana",
+    folder: "routes-africa-accra-2018",
+  },
+  {
+    year: "2018",
+    title: "AviaDev Aviation Development Conference",
+    org: "Cape Town, South Africa",
+    folder: "aviadev-cape-town-2018",
+  },
+  {
+    year: "2018",
+    title: "Airline Business Seminar",
+    org: "Seychelles",
+    folder: "airline-business-seminar-seychelles-2018",
+  },
+  {
+    year: "2018",
+    title: "Accra Weizo Aviation Day Conference",
+    org: "Accra, Ghana",
+    folder: "accra-weizo-2018",
+  },
+  {
+    year: "2017",
+    title: "Aviation Festival - Africa",
+    org: "Sandton, Johannesburg, South Africa",
+    folder: "aviation-festival-africa-2017",
+  },
+  {
+    year: "Media & Others",
+    title: "Media Engagement / Others",
+    org: "Asaase Radio, Metro TV, Aviatour, Young Aviators Ghana & More",
+    folder: "media-engagement",
+    captions: {
+      0: "Aviation and AfCFTA — Asaase Radio",
+      1: "Aviators Ghana",
+      2: "Aviatour Conference",
+      3: "Metro TV Ghana — AfCFTA and Aviation",
+      4: "Kharkov National Airforce University Aviation Seminar",
+      5: "SAATM and Aviation",
+      6: "Industry Engagement",
+      7: "Young Aviators Ghana",
+    },
+  },
 ];
 
-const years = [...new Set(awards.map((a) => a.year))].sort().reverse();
+const years = ["2019", "2018", "2017", "Media & Others"];
 
-function AwardCard({ award, index, onSelect }: {
-  award: Award;
+function EventCard({ event, index, onSelect }: {
+  event: EventItem;
   index: number;
   onSelect: () => void;
 }) {
-  const media = getAwardMediaPaths(award.folder);
+  const media = getAwardMediaPaths(event.folder);
+  const videoCount = media.filter((m) => m.type === "video").length;
+  const imageCount = media.length - videoCount;
 
   return (
-    <Card variant="outlined" className="h-full overflow-hidden group">
-      <motion.button
-        layout
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ duration: 0.4, delay: index * 0.04, ease: [0.25, 0.1, 0.25, 1] }}
-        onClick={onSelect}
-        className="block h-full w-full rounded-xl border-transparent bg-transparent shadow-none transition-none"
-      >
-        <motion.img
-          src={media[0].src}
-          alt={`${award.title} - ${award.org}, ${award.year}`}
-          loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
-        />
-        <div className="absolute bottom-0 left-0 right-0 p-5">
-          <span className="text-[10px] font-semibold text-muted-foreground tracking-[0.15em] uppercase">
-            {award.year}
-          </span>
-          <h3 className="text-sm font-semibold text-foreground mt-1 leading-tight">
-            {award.title}
-          </h3>
-          <p className="text-xs text-muted-foreground mt-0.5">{award.org}</p>
-        </div>
-        <div className="absolute inset-0 ring-1 ring-inset ring-transparent rounded-xl pointer-events-none" />
-      </motion.button>
-    </Card>
+    <motion.button
+      layout
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.4, delay: index * 0.04, ease: [0.25, 0.1, 0.25, 1] }}
+      onClick={onSelect}
+      className="group relative block w-full aspect-[4/3] rounded-2xl overflow-hidden bg-secondary border border-border hover:border-primary/60 transition-all duration-300 text-left shadow-card focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+    >
+      <img
+        src={media[0].src}
+        alt={`${event.title} - ${event.org}, ${event.year}`}
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+      <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-black/65 backdrop-blur-sm px-2.5 py-1 text-[11px] font-medium text-white border border-white/15">
+        <Images className="size-3" />
+        <span>
+          {imageCount} {imageCount === 1 ? "Photo" : "Photos"}
+          {videoCount > 0 ? ` · ${videoCount} Video` : ""}
+        </span>
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
+        <span className="text-[10px] font-semibold text-amber-300 tracking-[0.15em] uppercase">
+          {event.year}
+        </span>
+        <h3 className="text-sm font-semibold text-white mt-1 leading-snug line-clamp-2">
+          {event.title}
+        </h3>
+        <p className="text-xs text-white/80 mt-0.5 line-clamp-1">{event.org}</p>
+      </div>
+    </motion.button>
   );
 }
 
 function Lightbox({
-  award,
+  event,
   onClose,
 }: {
-  award: Award;
+  event: EventItem;
   onClose: () => void;
 }) {
-  const media = getAwardMediaPaths(award.folder);
+  const media = getAwardMediaPaths(event.folder);
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
@@ -96,6 +178,7 @@ function Lightbox({
   }, [onClose, media.length]);
 
   const current = media[idx];
+  const currentCaption = event.captions?.[idx];
 
   return (
     <motion.div
@@ -106,32 +189,32 @@ function Lightbox({
       className="fixed inset-0 z-[60] flex items-center justify-center"
       onClick={onClose}
     >
-      <div className="absolute inset-0 bg-background" />
+      <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
 
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-20 size-10 rounded-full bg-foreground hover:bg-foreground/80 flex items-center justify-center transition-colors"
+        className="absolute top-4 right-4 z-20 size-10 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors"
         aria-label="Close lightbox"
       >
-        <X className="size-5 text-foreground" />
+        <X className="size-5" />
       </button>
 
       {idx > 0 && (
         <button
           onClick={(e) => { e.stopPropagation(); setIdx(idx - 1); }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 size-10 rounded-full bg-foreground hover:bg-foreground/80 flex items-center justify-center transition-colors"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 size-10 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors"
           aria-label="Previous"
         >
-          <ChevronLeft className="size-5 text-foreground" />
+          <ChevronLeft className="size-5" />
         </button>
       )}
       {idx < media.length - 1 && (
         <button
           onClick={(e) => { e.stopPropagation(); setIdx(idx + 1); }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 size-10 rounded-full bg-foreground hover:bg-foreground/80 flex items-center justify-center transition-colors"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 size-10 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors"
           aria-label="Next"
         >
-          <ChevronRight className="size-5 text-foreground" />
+          <ChevronRight className="size-5" />
         </button>
       )}
 
@@ -153,22 +236,22 @@ function Lightbox({
         ) : (
           <img
             src={current.src}
-            alt={`${award.title} - ${award.org}`}
-            className="w-full h-full max-h-[85vh] object-contain bg-background"
+            alt={`${event.title} - ${event.org}`}
+            className="w-full h-full max-h-[85vh] object-contain bg-black"
           />
         )}
-        <div className="absolute bottom-0 left-0 right-0 bg-card p-6 pt-16 pointer-events-none">
-          <span className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase">
-            {award.year} &middot; {award.org}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-6 pt-16 pointer-events-none">
+          <span className="text-xs font-semibold text-amber-300 tracking-[0.15em] uppercase">
+            {event.year} &middot; {event.org}
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-1">
-            {award.title}
+          <h2 className="text-lg sm:text-2xl font-bold text-white mt-1">
+            {currentCaption ? `${event.title} — ${currentCaption}` : event.title}
           </h2>
         </div>
-        <div className="absolute top-4 left-4 text-xs text-muted-foreground tabular-nums">
+        <div className="absolute top-4 left-4 rounded-full bg-black/65 px-3 py-1 text-xs text-white tabular-nums">
           {idx + 1} / {media.length}
           {current.type === "video" && (
-            <span className="ml-2 inline-flex items-center gap-1 text-primary">
+            <span className="ml-2 inline-flex items-center gap-1 text-amber-300">
               <svg viewBox="0 0 24 24" fill="currentColor" className="size-3"><path d="M8 5v14l11-7z"/></svg>
               Video
             </span>
@@ -177,17 +260,17 @@ function Lightbox({
       </motion.div>
 
       {media.length > 1 && (
-        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
           {media.map((item, i) => (
             <button
               key={i}
               onClick={(e) => { e.stopPropagation(); setIdx(i); }}
               className={`rounded-full transition-[width,height,background-color] duration-150 ease-out flex items-center justify-center ${
                 i === idx
-                  ? "w-6 h-1.5 bg-foreground"
+                  ? "w-6 h-1.5 bg-white"
                   : item.type === "video"
-                    ? "size-2 bg-primary hover:bg-primary/80"
-                    : "w-1.5 h-1.5 bg-foreground hover:bg-foreground/80"
+                    ? "size-2 bg-amber-400 hover:bg-amber-300"
+                    : "w-1.5 h-1.5 bg-white/50 hover:bg-white/80"
               }`}
               aria-label={`Media ${i + 1}`}
             >
@@ -202,16 +285,16 @@ function Lightbox({
   );
 }
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 12;
 
 export default function AwardsPage() {
   const [yearFilter, setYearFilter] = useState<string | null>(null);
-  const [lightboxAward, setLightboxAward] = useState<Award | null>(null);
+  const [lightboxEvent, setLightboxEvent] = useState<EventItem | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   const filtered = yearFilter
-    ? awards.filter((a) => a.year === yearFilter)
-    : awards;
+    ? events.filter((a) => a.year === yearFilter)
+    : events;
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const paginated = filtered.slice(
@@ -226,11 +309,12 @@ export default function AwardsPage() {
 
   return (
     <>
-      <section className="section-bg-light section-padding">
+      <section className="section-bg-light pt-28 pb-12 lg:pt-36 lg:pb-16">
         <div className="premium-container">
           <SectionHeader
             title="Events &"
-            subtitle="honours."
+            subtitle="conferences."
+            description="Keynote speaking, panel sessions, international aviation summits, and media engagements across Africa and the globe."
             icon={Award}
           />
         </div>
@@ -253,7 +337,7 @@ export default function AwardsPage() {
                   : "bg-transparent border-border text-muted-foreground hover:border-foreground hover:text-foreground"
               }`}
             >
-              All
+              All ({events.length})
             </button>
             {years.map((y) => (
               <button
@@ -277,14 +361,14 @@ export default function AwardsPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
             >
-              {paginated.map((award, i) => (
-                <AwardCard
-                  key={`${award.year}-${award.title}`}
-                  award={award}
+              {paginated.map((event, i) => (
+                <EventCard
+                  key={`${event.folder}-${event.title}`}
+                  event={event}
                   index={i}
-                  onSelect={() => setLightboxAward(award)}
+                  onSelect={() => setLightboxEvent(event)}
                 />
               ))}
             </motion.div>
@@ -337,17 +421,17 @@ export default function AwardsPage() {
               animate={{ opacity: 1 }}
               className="text-center text-muted-foreground text-sm py-20"
             >
-              No awards found for {yearFilter}.
+              No events found for {yearFilter}.
             </motion.p>
           )}
         </div>
       </section>
 
       <AnimatePresence>
-        {lightboxAward && (
+        {lightboxEvent && (
           <Lightbox
-            award={lightboxAward}
-            onClose={() => setLightboxAward(null)}
+            event={lightboxEvent}
+            onClose={() => setLightboxEvent(null)}
           />
         )}
       </AnimatePresence>

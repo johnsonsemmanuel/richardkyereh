@@ -18,6 +18,7 @@ const services = [
     gradient: "05080F,1A2D4A",
     duration: "1 hr",
     price: "RATE: 10mins Free / $20 per 30mins",
+    badge: "Paid",
     isFree: false,
     amount: 20,
     description:
@@ -39,7 +40,8 @@ const services = [
     icon: GlobeIcon,
     gradient: "0A0F1A,111827",
     duration: "1 hr",
-    price: "RATE: Free or paid depending on location and logistics",
+    price: "Negotiable",
+    badge: "(Free/Paid)",
     isFree: true,
     amount: 0,
     description:
@@ -61,7 +63,8 @@ const services = [
     icon: WingsIcon,
     gradient: "05080F,111827",
     duration: "30 mins",
-    price: "RATE: Negotiable",
+    price: "RATE: 10mins Free / $20 per 30mins",
+    badge: "Paid",
     isFree: false,
     amount: 20,
     description:
@@ -84,6 +87,7 @@ const services = [
     gradient: "0A0F1A,1A2D4A",
     duration: "1 hr",
     price: "RATE: 10mins Free / $20 per 30mins",
+    badge: "Paid",
     isFree: false,
     amount: 20,
     description:
@@ -105,8 +109,9 @@ const services = [
     icon: RadarIcon,
     gradient: "05080F,1F2937",
     duration: "1 hr",
-    price: "RATE: Free or paid depending on location and logistics",
-    isFree: true,
+    price: "Negotiable",
+    badge: "Paid",
+    isFree: false,
     amount: 0,
     description:
       "Advisory on aircraft leasing strategies, wet lease vs dry lease, fleet optimization, and portfolio management. Whether you are a startup airline or an established operator, we help you make informed, data-driven decisions.",
@@ -127,8 +132,9 @@ const services = [
     icon: PlaneIcon,
     gradient: "0A0F1A,1F2937",
     duration: "1 hr",
-    price: "RATE: NEGOTIABLE",
-    isFree: true,
+    price: "Negotiable",
+    badge: "Paid",
+    isFree: false,
     amount: 0,
     description:
       "Amongst our range of available aircraft is a Beech 1900 to support charters operators, corporate clients and individuals.",
@@ -184,10 +190,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 </span>
                 <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
                   service.isFree
-                    ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                    : "bg-primary/10 text-primary border border-primary/20"
+                    ? "bg-emerald-600 text-white border border-emerald-600"
+                    : "bg-primary text-primary-foreground border border-primary"
                 }`}>
-                  {service.isFree ? "Free" : "Paid"}
+                  {service.badge}
                 </span>
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">

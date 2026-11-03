@@ -86,16 +86,17 @@ export default function Home() {
               ["30+", "Projects Delivered"],
               ["20+", "Years of Experience"],
               ["40+", "Global Clients"],
-              ["99.7%", "IATA, GCAA Certified"],
             ].map(([stat, label], i) => {
               const Icon = statIcons[i];
               return (
                 <StaggerItem key={stat} className="group">
-                  <Card variant="outlined" className="p-6 hover:border-primary/50 transition-colors">
-                    {Icon && <Icon className="size-6 text-primary group-hover:text-primary transition-colors mb-3" />}
-                    <p className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
-                      {stat}
-                    </p>
+                  <Card variant="outlined" className="p-6 h-full flex flex-col justify-between hover:border-primary/50 transition-colors">
+                    <div>
+                      {Icon && <Icon className="size-6 text-primary group-hover:text-primary transition-colors mb-3" />}
+                      <p className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
+                        {stat}
+                      </p>
+                    </div>
                     <p className="mt-2 text-sm text-muted-foreground uppercase tracking-wider">
                       {label}
                     </p>
@@ -103,6 +104,29 @@ export default function Home() {
                 </StaggerItem>
               );
             })}
+            <StaggerItem className="group">
+              <Card variant="outlined" className="p-6 h-full flex flex-col justify-between hover:border-primary/50 transition-colors">
+                <div className="flex items-center gap-3 pt-1 pb-2">
+                  <div className="bg-white rounded-lg px-3 py-2 flex items-center justify-center shadow-sm">
+                    <img
+                      src="/logos/iata.svg"
+                      alt="IATA Logo"
+                      className="h-9 sm:h-10 w-auto object-contain"
+                    />
+                  </div>
+                  <div className="bg-white rounded-lg px-2.5 py-1.5 flex items-center justify-center shadow-sm">
+                    <img
+                      src="/logos/gcaa.png"
+                      alt="GCAA Logo"
+                      className="h-10 sm:h-11 w-auto object-contain"
+                    />
+                  </div>
+                </div>
+                <p className="mt-2 text-sm text-muted-foreground uppercase tracking-wider">
+                  IATA, GCAA Certified
+                </p>
+              </Card>
+            </StaggerItem>
           </StaggerReveal>
         </div>
       </section>
@@ -257,8 +281,9 @@ export default function Home() {
           </Reveal>
           <StaggerReveal className="grid md:grid-cols-3 gap-8 justify-items-center">
             {articles.slice(0, 3).map((article) => (
-              <StaggerItem key={article.title}>
+              <StaggerItem key={article.slug} className="w-full flex justify-center">
                 <GlassBlogCard
+                  slug={article.slug}
                   title={article.title}
                   excerpt={article.excerpt}
                   image={article.image}

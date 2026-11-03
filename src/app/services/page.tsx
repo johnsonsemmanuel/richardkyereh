@@ -18,6 +18,7 @@ const services = [
     title: "Career Consultancy",
     slug: "career-consultancy",
     rate: "RATE: 10mins Free / $20 per 30mins",
+    badge: "Paid",
     isFree: false,
     amount: 20,
     description: "Whether you are pursuing a career upgrade, transitioning into management, or entering the industry for the first time, we provide structured, one-on-one coaching tailored to your goals.",
@@ -25,7 +26,8 @@ const services = [
   {
     title: "Speaking Engagement",
     slug: "speaking-engagement",
-    rate: "RATE: Free or paid depending on location and logistics",
+    rate: "Negotiable",
+    badge: "(Free/Paid)",
     isFree: true,
     amount: 0,
     description: "Expert keynote speaking and panel participation for conferences, media discussions, corporate events, industry summits, and academic institutions. Richard brings decades of operational experience, strategic insight, and a compelling personal story that resonates with any audience.",
@@ -33,7 +35,8 @@ const services = [
   {
     title: "Face To Face Meeting",
     slug: "face-to-face-meeting",
-    rate: "RATE: Negotiable",
+    rate: "RATE: 10mins Free / $20 per 30mins",
+    badge: "Paid",
     isFree: false,
     amount: 20,
     description: "Confidential one-on-one meetings for strategic discussions, partnership exploration, airline start-up development or executive advisory sessions. These private engagements are designed for decision-makers who need direct, unfiltered access to Richard's expertise.",
@@ -42,6 +45,7 @@ const services = [
     title: "Mentorship",
     slug: "mentorship",
     rate: "RATE: 10mins Free / $20 per 30mins",
+    badge: "Paid",
     isFree: false,
     amount: 20,
     description: "Structured mentorship for emerging aviation leaders, covering technical and leadership development.",
@@ -49,16 +53,18 @@ const services = [
   {
     title: "Aircraft Leases",
     slug: "aircraft-leases",
-    rate: "RATE: Free or paid depending on location and logistics",
-    isFree: true,
+    rate: "Negotiable",
+    badge: "Paid",
+    isFree: false,
     amount: 0,
     description: "Advisory on aircraft leasing strategies, wet lease vs dry lease, fleet optimization, and portfolio management. Whether you are a startup airline or an established operator, we help you make informed, data-driven decisions.",
   },
   {
     title: "Charters Services",
     slug: "charters-services",
-    rate: "RATE: NEGOTIABLE",
-    isFree: true,
+    rate: "Negotiable",
+    badge: "Paid",
+    isFree: false,
     amount: 0,
     description: "Amongst our range of available aircraft is a Beech 1900 to support charters operators, corporate clients and individuals.",
   },
@@ -67,7 +73,7 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
-      <section className="section-bg-light section-padding">
+      <section className="section-bg-light pt-28 pb-16 lg:pt-36 lg:pb-24">
         <div className="premium-container">
           <SectionHeader
             title="What we"
@@ -80,7 +86,7 @@ export default function ServicesPage() {
 
       <WavePath />
 
-      <section className="section-bg-light section-padding">
+      <section className="section-bg-light pt-28 pb-16 lg:pt-36 lg:pb-24">
         <div className="premium-container">
           <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (
@@ -104,10 +110,10 @@ export default function ServicesPage() {
                         </h3>
                         <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
                           service.isFree
-                            ? "bg-emerald-500 text-emerald-400 border border-emerald-500"
+                            ? "bg-emerald-600 text-white border border-emerald-600"
                             : "bg-primary text-primary-foreground border border-primary"
                         }`}>
-                          {service.isFree ? "Free" : "Paid"}
+                          {service.badge}
                         </span>
                       </div>
                       <p className="text-xs mb-2 text-red-500 font-bold">

@@ -100,11 +100,12 @@ export default async function ArticlePage({ params }: Props) {
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <div
             className="prose prose-sm sm:prose-base prose-foreground max-w-none
-              prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight
-              prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
-              prose-p:text-foreground/70 prose-p:leading-relaxed
-              prose-strong:text-foreground
-              prose-a:text-primary"
+              [&_p]:mb-5 [&_p]:text-foreground/80 [&_p]:leading-relaxed
+              [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground [&_h2]:mt-10 [&_h2]:mb-4
+              [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-foreground [&_h3]:mt-8 [&_h3]:mb-3
+              [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-5 [&_li]:mb-1.5 [&_li]:text-foreground/80
+              [&_strong]:text-foreground [&_strong]:font-semibold
+              [&_a]:text-primary [&_a]:underline"
             dangerouslySetInnerHTML={{ __html: formatContent(article.content) }}
           />
 
