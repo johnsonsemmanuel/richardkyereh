@@ -174,8 +174,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-12 lg:pt-40 lg:pb-16 bg-background">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+      <section className="pt-24 pb-8 sm:pt-32 sm:pb-12 lg:pt-40 lg:pb-16 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <Reveal>
               <div className="flex items-center gap-2 text-xs text-foreground/30 mb-4">
@@ -233,8 +233,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       </section>
 
       {/* Features */}
-      <section className="pb-24 lg:pb-32 bg-background">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+      <section className="pb-16 sm:pb-24 lg:pb-32 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
             <Reveal>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">

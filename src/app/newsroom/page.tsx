@@ -15,7 +15,7 @@ export default function NewsroomPage() {
   return (
     <>
       <section className="section-bg-light">
-        <div className="premium-container py-12 lg:pt-40 lg:pb-20">
+        <div className="premium-container py-8 sm:py-12 lg:pt-40 lg:pb-20">
           <SectionHeader
             title="Newsroom"
             subtitle="&amp; insights."

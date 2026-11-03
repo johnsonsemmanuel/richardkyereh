@@ -6,7 +6,6 @@ import { serviceImageUrls } from "@/lib/images";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
 import { CompassIcon } from "@/components/ui/aviation-icons";
-import { WavePath } from "@/components/ui/wave-path";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -73,7 +72,7 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
-      <section className="section-bg-light pt-28 pb-16 lg:pt-36 lg:pb-24">
+      <section className="section-bg-light pt-20 pb-8 sm:pt-28 sm:pb-12 lg:pt-36 lg:pb-16">
         <div className="premium-container">
           <SectionHeader
             title="What we"
@@ -84,9 +83,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <WavePath />
-
-      <section className="section-bg-light pt-28 pb-16 lg:pt-36 lg:pb-24">
+      <section className="section-bg-light pb-16 sm:pb-24 lg:pb-32">
         <div className="premium-container">
           <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (

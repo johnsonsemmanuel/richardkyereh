@@ -5,7 +5,6 @@ import { Card } from "@/components/ui/card";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
 import { GlobeIcon, CompassIcon, ShieldIcon, PlaneIcon } from "@/components/ui/aviation-icons";
-import { WavePath } from "@/components/ui/wave-path";
 
 export const metadata: Metadata = {
   title: "About",
@@ -22,11 +21,11 @@ const highlights = [
 export default function AboutPage() {
   return (
     <>
-      <section className="section-bg-light pt-28 pb-16 lg:pt-36 lg:pb-20">
+      <section className="section-bg-light pt-20 pb-12 sm:pt-28 sm:pb-16 lg:pt-36 lg:pb-20">
         <div className="premium-container">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-center">
             <Reveal direction="left" className="lg:col-span-5 flex justify-center lg:justify-start">
-              <div className="w-full max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-input bg-secondary shadow-premium">
+              <div className="w-full max-w-[280px] sm:max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-input bg-secondary shadow-premium">
                 <img
                   src="/photos/richard-biography.jpg"
                   alt="Richard Kyereh"
@@ -41,7 +40,7 @@ export default function AboutPage() {
                 description="Richard Kyereh exemplifies everything good about the business side of aviation."
                 icon={PlaneIcon}
               />
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <div className="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
                 <p>
                   Richard Kyereh is an aviation expert, aircraft broker, and aero-politics specialist based in Ghana, with 20 years of senior leadership experience across Africa&apos;s airline industry. A certified project manager, he brings deep expertise in commercial airline strategy, network development, and aviation consulting for West Africa&apos;s fast-growing travel market and Africa at large.
                 </p>
@@ -54,9 +53,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <WavePath />
-
-      <section className="section-bg-light py-20 lg:py-28">
+      <section className="section-bg-light py-12 sm:py-16 lg:py-24">
         <div className="premium-container">
           <div className="max-w-3xl mx-auto space-y-8 text-muted-foreground leading-relaxed">
             <Reveal delay={0.1}>

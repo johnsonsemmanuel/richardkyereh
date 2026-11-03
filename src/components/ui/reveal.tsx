@@ -15,10 +15,10 @@ interface RevealProps {
 }
 
 const directionOffset: Record<Direction, { x?: number; y?: number }> = {
-  up: { y: 50 },
-  down: { y: -50 },
-  left: { x: 50 },
-  right: { x: -50 },
+  up: { y: 24 },
+  down: { y: -24 },
+  left: { y: 24 },
+  right: { y: 24 },
 };
 
 export function Reveal({

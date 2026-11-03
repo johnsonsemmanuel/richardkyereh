@@ -71,7 +71,7 @@ export function Header() {
         open ? "bg-background/90" : ""
       )}
     >
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav
           className="flex h-16 w-full items-center justify-between"
         >

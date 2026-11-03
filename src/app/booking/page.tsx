@@ -370,19 +370,19 @@ export default function BookingPage() {
 
   return (
     <>
-      <section className="pt-32 pb-12 lg:pt-40 lg:pb-16 bg-background">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+      <section className="pt-24 pb-8 sm:pt-32 sm:pb-12 lg:pt-40 lg:pb-16 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl mx-auto text-center">
-            <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
+            <p className="text-primary text-xs sm:text-sm font-medium tracking-widest uppercase mb-3 sm:mb-4 flex items-center justify-center gap-2">
               <PlaneIcon className="size-4" />
               Booking
             </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground">
               Book a
               <br />
               <span className="text-muted-foreground">consultation.</span>
             </h1>
-            <p className="mt-6 text-muted-foreground leading-relaxed">
+            <p className="mt-4 sm:mt-6 text-sm sm:text-base text-muted-foreground leading-relaxed">
               Tell us about yourself and what you need. Select your service below
               to schedule your consultation or advisory session.
             </p>
@@ -390,16 +390,16 @@ export default function BookingPage() {
         </div>
       </section>
 
-      <section className="pb-24 lg:pb-32 bg-background">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+      <section className="pb-16 sm:pb-24 lg:pb-32 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             {/* Progress steps */}
-            <div className="flex items-center justify-center gap-4 mb-12">
+            <div className="flex items-center justify-center gap-2 sm:gap-4 mb-8 sm:mb-12">
               {steps.map((s) => (
-                <div key={s.n} className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
+                <div key={s.n} className="flex items-center gap-2 sm:gap-4">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
                     <div
-                      className={`size-8 rounded-full flex items-center justify-center text-xs font-semibold transition-colors shrink-0 ${
+                      className={`size-7 sm:size-8 rounded-full flex items-center justify-center text-xs font-semibold transition-colors shrink-0 ${
                         s.n <= step
                           ? "bg-primary text-primary-foreground"
                           : "bg-secondary text-muted-foreground border border-input"
@@ -417,7 +417,7 @@ export default function BookingPage() {
                   </div>
                   {s.n < totalSteps && (
                     <div
-                      className={`w-12 sm:w-20 h-px ${
+                      className={`w-4 sm:w-16 md:w-20 h-px ${
                         s.n < step ? "bg-primary" : "bg-input"
                       }`}
                     />

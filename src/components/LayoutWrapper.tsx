@@ -15,7 +15,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
     <>
       {!isAdmin && <Header />}
-      <main className="flex-1">
+      <main className="flex-1 w-full overflow-x-clip">
         <PageTransition>{children}</PageTransition>
       </main>
       {!isAdmin && <Footer />}

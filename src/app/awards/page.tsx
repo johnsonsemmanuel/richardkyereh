@@ -309,7 +309,7 @@ export default function AwardsPage() {
 
   return (
     <>
-      <section className="section-bg-light pt-28 pb-12 lg:pt-36 lg:pb-16">
+      <section className="section-bg-light pt-20 pb-8 sm:pt-28 sm:pb-12 lg:pt-36 lg:pb-16">
         <div className="premium-container">
           <SectionHeader
             title="Events &"
@@ -320,8 +320,8 @@ export default function AwardsPage() {
         </div>
       </section>
 
-      <section className="relative pb-24 lg:pb-32 bg-background">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+      <section className="relative pb-16 sm:pb-24 lg:pb-32 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
