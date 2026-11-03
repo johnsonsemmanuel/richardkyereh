@@ -109,7 +109,7 @@ export default async function ArticlePage({ params }: Props) {
             dangerouslySetInnerHTML={{ __html: formatContent(article.content) }}
           />
 
-          <div className="mt-12 pt-8 border-t border-border">
+          <div className="mt-12 pt-6">
             <ArticleShare title={article.title} slug={article.slug} />
           </div>
 
@@ -170,7 +170,7 @@ export default async function ArticlePage({ params }: Props) {
       </article>
 
       {related.length > 0 && (
-        <section className="pb-16 lg:pb-24 bg-background border-t border-border">
+        <section className="pb-16 lg:pb-24 bg-background">
           <div className="max-w-6xl mx-auto px-6 lg:px-8 pt-12 lg:pt-16">
             <h2 className="text-2xl font-bold tracking-tight text-foreground mb-8">
               Related Articles

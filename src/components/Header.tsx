@@ -64,11 +64,11 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 w-full border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-200 ease-out",
+        "fixed top-0 left-0 right-0 z-50 w-full transition-[background-color,box-shadow,backdrop-filter] duration-200 ease-out",
         scrolled && !open
-          ? "bg-background/80 supports-[backdrop-filter]:bg-background/60 border-border/50 backdrop-blur-md"
+          ? "bg-background/85 supports-[backdrop-filter]:bg-background/70 shadow-sm backdrop-blur-md"
           : "",
-        open ? "bg-background/90" : ""
+        open ? "bg-background/95" : ""
       )}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -155,7 +155,7 @@ export function Header() {
 
       <div
         className={cn(
-          "fixed top-16 right-0 bottom-0 left-0 z-50 flex flex-col overflow-y-auto border-y md:hidden bg-background",
+          "fixed top-16 right-0 bottom-0 left-0 z-50 flex flex-col overflow-y-auto md:hidden bg-background",
           open ? "block" : "hidden"
         )}
       >
@@ -262,7 +262,7 @@ export function Header() {
             </Link>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-center gap-4 pt-2 border-t border-border/50">
+            <div className="flex items-center justify-center gap-4 pt-4">
               <a href="https://gh.linkedin.com/in/richard-kyereh-mba-pmp-7726bb1b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-foreground transition-colors">
                 <LinkedInIcon className="size-5" />
               </a>

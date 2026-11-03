@@ -151,7 +151,7 @@ export default function ContactPage() {
               </div>
 
               {/* Social */}
-              <div className="mt-10 pt-8 border-t border-border/50">
+              <div className="mt-8 pt-4">
                 <p className="text-xs text-muted-foreground font-semibold tracking-wider uppercase mb-4">
                   Connect with Richard
                 </p>

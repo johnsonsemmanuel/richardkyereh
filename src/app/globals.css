@@ -44,13 +44,13 @@
   --accent-foreground: #ffffff;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --input: #FED7AA;
+  --input: #e7e5e4;
   --ring: #B45309;
   --card: #ffffff;
   --card-foreground: #1c1917;
   --muted: #FFF7ED;
   --muted-foreground: #78350f;
-  --border: #FDBA74;
+  --border: #e7e5e4;
   --dot-color: rgba(180, 83, 9, 0.04);
   --popover: #ffffff;
   --popover-foreground: #1c1917;
@@ -73,7 +73,7 @@
   --card-foreground: #fafaf9;
   --muted: #292524;
   --muted-foreground: #d6d3d1;
-  --border: #44403c;
+  --border: #292524;
   --dot-color: rgba(217, 119, 6, 0.03);
   --popover: #1c1917;
   --popover-foreground: #fafaf9;
@@ -314,12 +314,6 @@ html {
 
 .section-bg-secondary {
   background-color: var(--secondary);
-}
-
-/* Section divider line */
-.divider-line {
-  border-top: 1px solid var(--border);
-  margin: 0;
 }
 
 /* Consistent form input styling */

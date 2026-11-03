@@ -101,7 +101,7 @@ export function GlassBlogCard({
           </CardContent>
 
           <CardFooter className="px-5 pt-0 pb-5">
-            <div className="flex w-full items-center justify-between border-t border-border/60 pt-4">
+            <div className="flex w-full items-center justify-between pt-2">
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-muted">
                   <User className="h-4 w-4 text-muted-foreground" />

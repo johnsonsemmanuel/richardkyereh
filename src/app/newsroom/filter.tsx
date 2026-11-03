@@ -196,7 +196,7 @@ export function NewsroomFilter({ articles, allTags }: Props) {
                         <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2">
                           {article.excerpt}
                         </p>
-                        <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border text-xs text-foreground/50">
+                        <div className="flex items-center gap-3 mt-4 pt-2 text-xs text-foreground/50">
                           <span className="flex items-center gap-1">
                             <User className="size-3" />
                             {article.author.name}
